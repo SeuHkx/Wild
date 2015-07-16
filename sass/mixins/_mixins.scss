@@ -1,0 +1,80 @@
+@mixin setTextSize() {
+  $i: 4;
+  $s: 18;
+  @while $i > 0 {
+    h#{$i},.h#{$i}{
+      font-size: $s + px;
+      small,.small{
+        font-size: 65%;
+      }
+    }
+    $i : $i - 1;
+    $s : $s + 6;
+  }
+  h5,.h5{
+    font-size: 14px;
+    small,.small{
+      font-size: 65%;
+    }
+  }
+  h6,.h6{
+    font-size: 12px;
+    small,.small{
+      font-size: 65%;
+    }
+  }
+  .small{
+    font-size: 85%;
+  }
+}
+@mixin clear(){
+  .wd-clear{
+    zoom: 1;
+    &:before,&:after{
+      content: "";
+      display: table;
+    }
+    &:after{
+      clear: both;
+    }
+  }
+}
+@mixin setTextAlign(){
+  @each $props in left,right,center,justify{
+    .wd-text-#{$props}{
+      text-align: $props;
+    }
+  }
+}
+@mixin setTextTransform(){
+  @each $props in lowercase,uppercase,capitalize{
+    .wd-text--#{$props}{
+      text-transform: $props;
+    }
+  }
+}
+@mixin setButton-theme($name,$color,$bgColor,$bdColor){
+  .wd-button--#{$name}{
+    color: $color;
+    background-color: $bgColor;
+    border-color: $bdColor;
+    &:hover{
+      color: $color;
+      background-color: darken($bgColor,4%);//#fafafa;
+      border-color: darken($bdColor,4%);    //#ccc;
+    }
+    &:active{
+      background-color: darken($bgColor,8%);//#fafafa;
+      border-color: darken($bdColor,8%);//#ccc;
+    }
+  }
+}
+@mixin user-select(){
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+@mixin box-shadow($shadow...){
+  box-shadow: $shadow;
+}

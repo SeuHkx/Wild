@@ -1,0 +1,51 @@
+$wd-table-border-color          :                             #ddd    !default;
+$wd-table-bg-color              :                             #f9f9f9 !default;
+$wd-table-padding               :                             8px     !default;
+
+.wd-table {
+  width: 100%;
+  >thead{
+    >tr{
+      border-bottom: 1px solid $wd-table-border-color;
+      th{
+        text-align: left;
+        font-weight: bold;
+      }
+    }
+  }
+  >tbody{
+    tr{
+      border-bottom: 1px solid $wd-table-border-color;
+      &:last-child{
+        border-bottom: none;
+      }
+    }
+  }
+  thead > tr > th,tbody > tr >td{
+    padding: $wd-table-padding;
+    line-height: 1.428;
+  }
+  &.wd-table--striped{
+    >tbody {
+      tr:nth-of-type(odd){
+        background-color: $wd-table-bg-color;
+      }
+    }
+  }
+  &.wd-table--bordered{
+    thead >tr,tbody > tr{
+      td,th{
+        border: 1px solid $wd-table-border-color;
+      }
+    }
+  }
+  &.wd-table--hover{
+    tbody{
+      tr{
+        &:hover{
+          background-color: $wd-table-bg-color;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+@import "../mixins/mixins";
+
+body,html{
+  font-size: 14px;
+  line-height: 1.428;
+}
+article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+  display: block;
+}
+body, button, input, select, textarea{
+  font-family: "Microsoft Yahei";
+}
+strong, b {
+  font-weight: bold;
+  color: #000;
+}
+a{
+  color: #0088cc;
+  text-decoration: none;
+}
+a:hover {
+  color: #005580;
+  text-decoration: underline;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family: "Microsoft Yahei", Helvetica, STHeiTi, sans-serif;
+  line-height: 1.428;
+}
+p{
+  margin: 0 0 10px;
+}
+@include setTextSize();
+
+
+
+
