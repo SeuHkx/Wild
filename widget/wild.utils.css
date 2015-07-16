@@ -1,0 +1,28 @@
+.wd-text-left {
+  text-align: left; }
+
+.wd-text-right {
+  text-align: right; }
+
+.wd-text-center {
+  text-align: center; }
+
+.wd-text-justify {
+  text-align: justify; }
+
+.wd-text--lowercase {
+  text-transform: lowercase; }
+
+.wd-text--uppercase {
+  text-transform: uppercase; }
+
+.wd-text--capitalize {
+  text-transform: capitalize; }
+
+.wd-clear {
+  zoom: 1; }
+  .wd-clear:before, .wd-clear:after {
+    content: "";
+    display: table; }
+  .wd-clear:after {
+    clear: both; }

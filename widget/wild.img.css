@@ -1,0 +1,13 @@
+.wd-img-rounded {
+  border-radius: 4px; }
+
+.wd-img-circle {
+  border-radius: 50%; }
+
+.wd-img-thumbnail {
+  display: inline-block;
+  border: 1px solid #ddd;
+  max-width: 100%;
+  padding: 4px;
+  background-color: #fff;
+  border-radius: 4px; }
