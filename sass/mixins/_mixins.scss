@@ -69,6 +69,18 @@
     }
   }
 }
+@mixin setButtonSize(){
+  @each $name,$size,$padding in
+                  ('tiny',12px,1px 2px),
+                  ('sm',14px,3px 6px),
+                  ('lg',18px,12px 24px),
+                  ('jumbo',20px,14px 26px) {
+    .wd-button--#{$name}{
+      font-size: $size;
+      padding: $padding;
+    }
+  }
+}
 @mixin user-select(){
   -webkit-user-select: none;
   -moz-user-select: none;

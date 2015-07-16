@@ -1,0 +1,17 @@
+$wd-img-border-radius             :                 4px       !default;
+$wd-img-border-padding            :                 $wd-img-border-radius       !default;
+
+.wd-img-rounded{
+  border-radius: $wd-img-border-radius;
+}
+.wd-img-circle{
+  border-radius: 50%;
+}
+.wd-img-thumbnail{
+  display: inline-block;
+  border: 1px solid #ddd;
+  max-width: 100%;
+  padding: $wd-img-border-padding;
+  background-color: #fff;
+  border-radius: $wd-img-border-radius;
+}
