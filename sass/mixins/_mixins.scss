@@ -71,7 +71,7 @@
 }
 @mixin setButtonSize(){
   @each $name,$size,$padding in
-                  ('tiny',12px,1px 2px),
+                  ('tiny',12px,1px 6px),
                   ('sm',14px,3px 6px),
                   ('lg',18px,12px 24px),
                   ('jumbo',20px,14px 26px) {
@@ -89,4 +89,47 @@
 }
 @mixin box-shadow($shadow...){
   box-shadow: $shadow;
+}
+@mixin pull-float($name){
+  @if $name == left{
+    .wd-#{$name}{
+      float: $name;
+    }
+  }@else if $name == right{
+    .wd-#{$name}{
+      float: $name;
+    }
+  }
+}
+@mixin center-block(){
+  .wd-center-block{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@mixin text-overflow(){
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@mixin border-top-radius($props,$radius){
+  border-top-#{$props}-radius: $radius;
+}
+@mixin border-bottom-radius($props,$radius){
+  border-bottom-#{$props}-radius: $radius;
+}
+@mixin triangle(){
+  .wd-triangle{
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 4px;
+    margin-top: -2px;
+    vertical-align: middle;
+    border-top: 5px dashed;
+    border-top: 4px solid\9;
+    border-right: 5px dashed transparent;
+    border-left: 5px dashed transparent;
+  }
 }

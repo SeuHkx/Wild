@@ -26,3 +26,26 @@
     display: table; }
   .wd-clear:after {
     clear: both; }
+
+.wd-left {
+  float: left; }
+
+.wd-right {
+  float: right; }
+
+.wd-center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
+.wd-triangle {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 4px;
+  margin-top: -2px;
+  vertical-align: middle;
+  border-top: 5px dashed;
+  border-top: 4px solid\9;
+  border-right: 5px dashed transparent;
+  border-left: 5px dashed transparent; }

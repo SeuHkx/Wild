@@ -5,7 +5,7 @@
   margin-bottom: 0;
   font-size: 14px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 1.571;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
@@ -22,14 +22,14 @@
   .wd-button:hover {
     text-decoration: none; }
   .wd-button:active {
-    -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.1);
-            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.1); }
+    -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2); }
   .wd-button.wd-button--block {
     display: block; }
 
 .wd-button--tiny {
   font-size: 12px;
-  padding: 1px 2px; }
+  padding: 1px 6px; }
 
 .wd-button--sm {
   font-size: 14px;
@@ -90,3 +90,25 @@
   .wd-button--red:active {
     background-color: #cc2f19;
     border-color: #cc2f19; }
+
+.wd-button-group {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  zoom: 1; }
+  .wd-button-group:before, .wd-button-group:after {
+    content: "";
+    display: table; }
+  .wd-button-group:after {
+    clear: both; }
+  .wd-button-group .wd-button {
+    float: left;
+    border-radius: 0;
+    border-right: none; }
+    .wd-button-group .wd-button:first-child {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px; }
+    .wd-button-group .wd-button:last-child {
+      border-right: 1px solid #ccc;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px; }

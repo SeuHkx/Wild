@@ -14,7 +14,7 @@ $wd-button-red            :           'red',#FFF,#E54028,#E54028     !default;
   margin-bottom: 0;
   font-size: $wd-button-font-size;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 1.571;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
@@ -30,7 +30,7 @@ $wd-button-red            :           'red',#FFF,#E54028,#E54028     !default;
     text-decoration: none;
   }
   &:active{
-    @include box-shadow(inset 0 1px 4px rgba(0, 0, 0, 0.1));
+    @include box-shadow(inset 0 1px 4px rgba(0, 0, 0, 0.2));
   }
   &.wd-button--block{
     display: block;
@@ -41,5 +41,34 @@ $wd-button-red            :           'red',#FFF,#E54028,#E54028     !default;
 @include setButton-theme($wd-button-blue...);
 @include setButton-theme($wd-button-orange...);
 @include setButton-theme($wd-button-red...);
+
+.wd-button-group{
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  zoom: 1;
+  &:before,&:after{
+    content: "";
+    display: table;
+  }
+  &:after{
+    clear: both;
+  }
+  .wd-button{
+    float: left;
+    border-radius: 0;
+    border-right: none;
+    &:first-child{
+      @include border-top-radius('left',4px);
+      @include border-bottom-radius('left',4px);
+    }
+    &:last-child{
+      border-right: 1px solid #ccc;
+      @include border-top-radius('right',4px);
+      @include border-bottom-radius('right',4px);
+    }
+  }
+}
+
 
 

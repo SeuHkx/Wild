@@ -1,5 +1,6 @@
 .wd-table {
-  width: 100%; }
+  width: 100%;
+  border-radius: 4px; }
   .wd-table > thead > tr {
     border-bottom: 1px solid #ddd; }
     .wd-table > thead > tr th {
@@ -11,7 +12,7 @@
       border-bottom: none; }
   .wd-table thead > tr > th, .wd-table tbody > tr > td {
     padding: 8px;
-    line-height: 1.428; }
+    line-height: 1.571; }
   .wd-table.wd-table--striped > tbody tr:nth-of-type(odd) {
     background-color: #f9f9f9; }
   .wd-table.wd-table--bordered thead > tr td, .wd-table.wd-table--bordered thead > tr th, .wd-table.wd-table--bordered tbody > tr td, .wd-table.wd-table--bordered tbody > tr th {

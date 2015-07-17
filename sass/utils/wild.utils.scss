@@ -3,3 +3,8 @@
 @include setTextAlign();
 @include setTextTransform();
 @include clear();
+@include pull-float(left);
+@include pull-float(right);
+@include center-block();
+@include triangle();
+

@@ -4,6 +4,7 @@ $wd-table-padding               :                             8px     !default;
 
 .wd-table {
   width: 100%;
+  border-radius: 4px;
   >thead{
     >tr{
       border-bottom: 1px solid $wd-table-border-color;
@@ -23,7 +24,7 @@ $wd-table-padding               :                             8px     !default;
   }
   thead > tr > th,tbody > tr >td{
     padding: $wd-table-padding;
-    line-height: 1.428;
+    line-height: 1.571;
   }
   &.wd-table--striped{
     >tbody {

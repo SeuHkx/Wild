@@ -15,3 +15,7 @@ $wd-img-border-padding            :                 $wd-img-border-radius       
   background-color: #fff;
   border-radius: $wd-img-border-radius;
 }
+.wd-img-responsive{
+  width: 100%;
+  max-width: 100%;
+}

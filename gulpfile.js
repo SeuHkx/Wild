@@ -65,3 +65,4 @@ gulp.task('dist',['clean'],function(){
         }))
         .pipe(gulp.dest(config.dir.dist));
 });
+
