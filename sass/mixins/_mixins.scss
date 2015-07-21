@@ -73,8 +73,8 @@
   @each $name,$size,$padding in
                   ('tiny',12px,1px 6px),
                   ('sm',14px,3px 6px),
-                  ('lg',18px,12px 24px),
-                  ('jumbo',20px,14px 26px) {
+                  ('lg',16px,6px 8px),
+                  ('jumbo',18px,8px 10px) {
     .wd-button--#{$name}{
       font-size: $size;
       padding: $padding;
@@ -124,12 +124,13 @@
     display: inline-block;
     width: 0;
     height: 0;
-    margin-left: 4px;
+    //margin-left: 4px;
     margin-top: -2px;
+    line-height: 1.571;
     vertical-align: middle;
-    border-top: 5px dashed;
-    border-top: 4px solid\9;
-    border-right: 5px dashed transparent;
-    border-left: 5px dashed transparent;
+    border-top: 5px solid;
+    border-top: 5px solid\9;
+    border-right: 4px dashed transparent;
+    border-left: 4px dashed transparent;
   }
 }

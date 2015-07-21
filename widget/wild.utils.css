@@ -42,10 +42,10 @@
   display: inline-block;
   width: 0;
   height: 0;
-  margin-left: 4px;
   margin-top: -2px;
+  line-height: 1.571;
   vertical-align: middle;
-  border-top: 5px dashed;
-  border-top: 4px solid\9;
-  border-right: 5px dashed transparent;
-  border-left: 5px dashed transparent; }
+  border-top: 5px solid;
+  border-top: 5px solid\9;
+  border-right: 4px dashed transparent;
+  border-left: 4px dashed transparent; }

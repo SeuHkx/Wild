@@ -36,6 +36,9 @@ $wd-button-red            :           'red',#FFF,#E54028,#E54028     !default;
     display: block;
   }
 }
+.wd-button-text{
+  margin-right:4px;
+}
 @include setButtonSize();
 @include setButton-theme($wd-button-default...);
 @include setButton-theme($wd-button-blue...);
@@ -59,16 +62,16 @@ $wd-button-red            :           'red',#FFF,#E54028,#E54028     !default;
     border-radius: 0;
     border-right: none;
     &:first-child{
-      @include border-top-radius('left',4px);
-      @include border-bottom-radius('left',4px);
+      @include border-top-radius('left',$wd-button-radius);
+      @include border-bottom-radius('left',$wd-button-radius);
     }
     &:last-child{
       border-right: 1px solid #ccc;
-      @include border-top-radius('right',4px);
-      @include border-bottom-radius('right',4px);
+      @include border-top-radius('right',$wd-button-radius);
+      @include border-bottom-radius('right',$wd-button-radius);
+    }
+    &.ie7-last-child{
+      border-right: 1px solid #ccc\9;
     }
   }
 }
-
-
-

@@ -27,6 +27,9 @@
   .wd-button.wd-button--block {
     display: block; }
 
+.wd-button-text {
+  margin-right: 4px; }
+
 .wd-button--tiny {
   font-size: 12px;
   padding: 1px 6px; }
@@ -36,12 +39,12 @@
   padding: 3px 6px; }
 
 .wd-button--lg {
-  font-size: 18px;
-  padding: 12px 24px; }
+  font-size: 16px;
+  padding: 6px 8px; }
 
 .wd-button--jumbo {
-  font-size: 20px;
-  padding: 14px 26px; }
+  font-size: 18px;
+  padding: 8px 10px; }
 
 .wd-button--default {
   color: #333;
@@ -112,3 +115,5 @@
       border-right: 1px solid #ccc;
       border-top-right-radius: 4px;
       border-bottom-right-radius: 4px; }
+    .wd-button-group .wd-button.ie7-last-child {
+      border-right: 1px solid #ccc \9; }

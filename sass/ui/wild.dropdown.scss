@@ -1,28 +1,39 @@
 @import "../mixins/mixins";
+
+$wd-dropdown-width                      :                                 160px     !default;
+$wd-dropdown-padding                    :                                 5px       !default;
+$wd-dropdown-bg-color                   :                                 #fff      !default;
+$wd-dropdown-bd-radius                  :                                 4px       !default;
+$wd-dropdown-insert-padding             :                                 4px 10px  !default;
+$wd-dropdown-insert-color               :                                 #333      !default;
+$wd-dropdown-insert-hover-color         :                                 #262626   !default;
+$wd-dropdown-insert-hover-bgColor       :                                 #f5f5f5   !default;
+
 .wd-dropdown{
   position: absolute;
-  min-width: 160px;
-  padding: 5px;
+  min-width: $wd-dropdown-width;
+  padding: $wd-dropdown-padding;
   text-align: left;
-  background-color: #fff;
+  background-color: $wd-dropdown-bg-color;
   background-clip: padding-box;
   border: 1px solid rgba(0,0,0,.15);
-  border-radius: 4px;
+  border: 1px solid #ddd\9;
+  border-radius: $wd-dropdown-bd-radius;
   @include box-shadow(0 6px 12px rgba(0,0,0,.175));
   >li{
     >a{
       display: block;
-      padding: 4px 10px;
+      padding: $wd-dropdown-insert-padding;
       clear: both;
       font-weight: 400;
       line-height: 1.571;
-      color: #333;
+      color: $wd-dropdown-insert-color;
       white-space: nowrap;
 
       &:hover{
-        color: #262626;
+        color: $wd-dropdown-insert-hover-color;
         text-decoration: none;
-        background-color: #f5f5f5;
+        background-color: $wd-dropdown-insert-hover-bgColor;
       }
     }
   }

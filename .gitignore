@@ -1,0 +1,12 @@
+
+.idea/.name
+
+*.xml
+
+*.iml
+
+*.scssc
+
+node_modules/
+
+*.js
