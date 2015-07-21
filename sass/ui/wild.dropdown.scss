@@ -1,7 +1,7 @@
 @import "../mixins/mixins";
 
 $wd-dropdown-width                      :                                 160px     !default;
-$wd-dropdown-padding                    :                                 5px       !default;
+$wd-dropdown-padding                    :                                 5px 0     !default;
 $wd-dropdown-bg-color                   :                                 #fff      !default;
 $wd-dropdown-bd-radius                  :                                 4px       !default;
 $wd-dropdown-insert-padding             :                                 4px 10px  !default;
