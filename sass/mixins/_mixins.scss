@@ -61,11 +61,11 @@
     &:hover{
       color: $color;
       background-color: darken($bgColor,4%);//#fafafa;
-      border-color: darken($bdColor,4%);    //#ccc;
+      border-color: darken($bdColor,6%);    //#ccc;
     }
     &:active{
       background-color: darken($bgColor,8%);//#fafafa;
-      border-color: darken($bdColor,8%);//#ccc;
+      border-color: darken($bdColor,10%);//#ccc;
     }
   }
 }
@@ -73,11 +73,49 @@
   @each $name,$size,$padding in
                   ('tiny',12px,1px 6px),
                   ('sm',14px,3px 6px),
-                  ('lg',16px,6px 8px),
-                  ('jumbo',18px,8px 10px) {
+                  ('lg',16px,6px 10px),
+                  ('jumbo',18px,8px 12px) {
     .wd-button--#{$name}{
       font-size: $size;
       padding: $padding;
+    }
+  }
+}
+@mixin setGroupButton-theme($name,$color,$bgColor,$bdColor){
+  .wd-button-group{
+    &.wd-button--#{$name}{
+      background-color: transparent;
+      .wd-button{
+        color: $color;
+        background-color: $bgColor;
+        border-color: $bdColor;
+        &:hover{
+          color: $color;
+          background-color: darken($bgColor,4%);//#fafafa;
+          border-color: darken($bdColor,6%);    //#ccc;
+        }
+        &:active{
+          background-color: darken($bgColor,8%);//#fafafa;
+          border-color: darken($bdColor,10%);//#ccc;
+        }
+      }
+    }
+  }
+}
+@mixin setGroupButton(){
+  @each $name,$size,$padding in
+                  ('tiny',12px,1px 6px),
+                  ('sm',14px,3px 6px),
+                  ('lg',16px,6px 8px),
+                  ('jumbo',18px,8px 10px) {
+    .wd-button-group{
+      &.wd-button--#{$name}{
+        padding: 0;
+        .wd-button{
+          font-size: $size;
+          padding: $padding;
+        }
+      }
     }
   }
 }

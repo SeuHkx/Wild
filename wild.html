@@ -14,8 +14,11 @@
     <link rel="stylesheet" href="widget/wild.button.css"/>
     <link rel="stylesheet" href="widget/wild.img.css"/>
     <link rel="stylesheet" href="widget/wild.dropdown.css"/>
+    <link rel="stylesheet" href="widget/wild.media.css"/>
+    <link rel="stylesheet" href="widget/wild.panel.css"/>
     <link rel="stylesheet" href="widget/wild.responsive.table.css"/>
     <script src="js/respond.min.js"></script>
+
 </head>
 <body>
     <div class="demo" style="padding: 20px">
@@ -69,35 +72,127 @@
             <input class="wd-button  wd-button--red" type="submit" value="爱笑的眼睛">
             <a class="wd-button wd-button--blue" href="#">幸福了然后</a>
             <button class="wd-button wd-button--default" type="submit">量身订做</button>
+            <button class="wd-button wd-button--green" type="submit">三万英尺</button>
+            <button class="wd-button wd-button--positive" type="submit">爱不爱我</button>
         </div>
         <div style="margin: 10px 0">
             <a class="wd-button wd-button--default wd-button--tiny" href="#" >就是爱你</a>
             <input class="wd-button  wd-button--orange wd-button--sm" type="button" value="天使的翅膀">
-            <button class="wd-button wd-button--default" type="button">量身订做</button>
+            <button class="wd-button wd-button--positive" type="button">量身订做</button>
             <input class="wd-button  wd-button--red wd-button--lg" type="submit" value="爱笑的眼睛">
-            <a class="wd-button wd-button--blue wd-button--jumbo" href="#">幸福了然后</a>
+            <a class="wd-button wd-button--green wd-button--jumbo" href="#">幸福了然后</a>
         </div>
         <div style="margin: 10px 0">
-            <div class="wd-button-group">
+            <div class="wd-button-group wd-button--green">
                 <a class="wd-button wd-button--default" href="#"><span class="wd-button-text">就是爱你</span><i class="wd-triangle"></i></a>
                 <a class="wd-button wd-button--default" href="#">量身订做</a>
-                <a class="wd-button wd-button--default" href="#">依然爱你</a>
-                <a class="wd-button wd-button--default ie7-last-child" href="#">我爱台妹</a>
             </div>
-            <div class="wd-button-group">
+            <div class="wd-button-group wd-button--red">
+                <a class="wd-button " href="#">依然爱你</a>
+                <a class="wd-button  ie7-last-child" href="#">我爱台妹</a>
+                <a class="wd-button wd-button--default ie7-last-child" href="#"><i class="wd-triangle"></i></a>
+            </div>
+            <div class="wd-button-group wd-button--positive">
                 <a class="wd-button wd-button--default" href="#">就是爱你</a>
                 <a class="wd-button wd-button--default ie7-last-child" href="#"><i class="wd-triangle"></i></a>
             </div>
         </div>
-        <div style="margin: 10px 0;position: relative;width: 200px;height: 100px;">
-            <ul class="wd-dropdown">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-            </ul>
+        <div style="">
+            <div style="margin: 10px 0;position: relative;width: 200px;height: 100px;float: left">
+                <ul class="wd-dropdown">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                </ul>
+            </div>
+            <div style="margin: 10px 0;position: relative;width: 200px;height: 100px;display: inline-block">
+                <ul class="wd-dropdown wd-dropdown-default">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                </ul>
+            </div>
         </div>
         <div style="margin: 10px 0">
-            <img src="data:image/svg+xml;base64,
+            <div class="wd-media">
+                <a class="wd-media-avatar">
+                    <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAGnElEQVR4Xu2a6UscQRDF22jU4EU8ongjYowaxRvvv108ELySD6JRRNSIggeeeGt4Dbu0kzU7wZp1in4NQXF7Km/q/bq6ujXr5OTk2XB4m4EsAuCt9/bFCYDf/hMAz/0nAASATaDXDLAH8Np+NoGe208ACADvAfxmgD2A3/7zGOi5/wSAAPAewGsG2AN4bT+PgZ7bTwAIAO8B/GaAPYDf/vMY6Ln/BIAA8B7AawbYA3htP4+BnttPAAgA7wH8ZoA9gN/+8xjouf8EgADwHsBrBtgDeG0/j4Ge208ACADvAfxmgD2A3/7zGOi5/wSAAPAewGsG2AN4bT+PgZ7bTwAIAO8B/GaAPYDf/vMY6Ln/BIAA8B7AawbYA3htP4+BnttPAAgA7wH8ZoA9gN/+8xjouf8EgADE+B7g+fnZLC4umqqqKlNbW/tfXp2enpqNjQ3T09NjsrOz/+vZdJPjqiud7lSfx7oHWF1dNXt7e1Z3c3OzaWxsDPWOMGhqaso8PDyY8fFxk5OTE+q5sJPiqiusfndebAHACsbqh5m5ublmZGQk9Er++fOnOTw8tMaPjY2Ffi5MAuOqK4x2NRUApk9PT5vb21urubu725SVlYV6R1QMrFAMaQDiqitUYl6ZFMsKsLKyYvb3963kL1++mM7OzlDveH9/b0v/09NTJADEVVeo5GgB4C0ldn5+3pydnSVf1a0AqAybm5smKyvLNDU1mZqamhcpOTg4sE0jRmtrq6moqHjxeVS63mKexLOxqgBvKbEwd2tr60VOXABubm7M7OysrQ4fPnywvcHHjx/t/MfHx2TTCECGh4fNp0+fkrGi1CVh4ltixAoAt8SWlpbaI1yYcXV1Zebm5pINY0NDg13NwR7A7Q+Ki4vNwMCADb+wsGCwwjG+ffv2V3WIWleYd4xqTmwAOD4+NsvLy7ZEY8W5Aw1gV1eXXbnBgbkzMzMGKxwDDSO+RyOYqgn88eOHOTo6snNxtEQVSDSNqaDLlK6oDE4XNxYABE1MJRpHQZTm4JneXZ24MOro6DC7u7vm169fKQHAFoBGEQ2jOxB3dHT0RfxM6kpnVFSfxwIAtzSjAuDCp76+3lxeXpq1tTWDEo/x+fNn09vbm8xFYnXiB/n5+fauAM+7AARNxVw8h0rgVhpUmGDjl2ldUZn8r7ixACDRvcM87MtFRUUvNLt79ODgoP0cK3lyctI2cNgaYDSqBEbCOKxq3ASm2jqw3QAEjJKSEtPf3/9Xnt5DV6YheHcAEte2d3d39s4fJTw43JWeuBRaWloyJycnyakwMQHD9fV1ssQXFBQYNHzt7e3Juefn5wbmuhUgeNn0HroybT7+v1gAkLj1w/kc/4IDZ3sYhoGtAY0bjn1hByrLxMSE3d9f29eDDaN79MuErrDvIj0vFgCgKUMFCO7xiZd192ysVIydnZ2UpR3lHqcAQIPvy8vL7de2tjb71W0acVzMy8sz6+vrNqZ7CnArQCZ0SRsbNt67AwChbjn/+vWrqaurS+rHXo9jHn4vgJWMHqCwsPCf7/daD+BuJdgahoaGbBz3BhGgVFdX259nSldYs6KYFwsAgnsyViJMuLi4ML9//7Z7O0ZlZaX5/v172jykOga6x7/gbZ/7OwT3ljATutK+TMQTYgEA3nF7ezt5F5/qndHk9fX12SqQbmB7QFmHmYm/B3BXc6q/LXCPfG51iFpXuneJ+vPYAIAXxYrDrRxWfmLgfI+/Bgr7xyB4DqUexqGS4Dns59j7sdIRD9e9qQagwZ0DAGhpaUlOiUpX1OaGiR8rAMII5hzZDBAA2Xyqi0YA1FkmK5gAyOZTXTQCoM4yWcEEQDaf6qIRAHWWyQomALL5VBeNAKizTFYwAZDNp7poBECdZbKCCYBsPtVFIwDqLJMVTABk86kuGgFQZ5msYAIgm0910QiAOstkBRMA2Xyqi0YA1FkmK5gAyOZTXTQCoM4yWcEEQDaf6qIRAHWWyQomALL5VBeNAKizTFYwAZDNp7poBECdZbKCCYBsPtVFIwDqLJMVTABk86kuGgFQZ5msYAIgm0910QiAOstkBRMA2Xyqi0YA1FkmK5gAyOZTXTQCoM4yWcEEQDaf6qIRAHWWyQomALL5VBeNAKizTFYwAZDNp7poBECdZbKCCYBsPtVFIwDqLJMVTABk86kuGgFQZ5msYAIgm0910QiAOstkBRMA2Xyqi0YA1FkmK5gAyOZTXTQCoM4yWcEEQDaf6qIRAHWWyQomALL5VBftDyTyYEwx0DMbAAAAAElFTkSuQmCC" style="width: 64px; height: 64px;">
+                </a>
+                <div class="wd-media-body">
+                    <h4 class="">机器铃 砍菜刀</h4>
+
+                    谁晚上尿了床白天就得少玩火
+                    谁骑着大梁自行车 扎过麦秸垛
+                    谁哩作业最多谁就捞不着一起唱儿歌
+                    机器灵 砍菜刀 恁那边哩紧俺挑
+                    挑谁吧 挑 挑的那个人已经回家了
+                    机器灵 砍菜刀 恁那边哩紧俺挑
+                    挑谁吧 挑 挑的那个人已经回家了
+                    我想俺姐姐分给我哩那块糖疙瘩
+                </div>
+            </div>
+        </div>
+        <div style="margin: 10px 0">
+            <div class="wd-panel">
+                <div class="wd-panel-header">
+                    <h3>下雨</h3>
+                </div>
+                <div class="wd-panel-body">
+                    无所事事，你站在雨里，
+                    闭上眼睛也感觉不到力气
+                    不能忘记，不能忘乎所以，
+                    不能继续就这样沉下去
+                    Hello kitty，hello hello hello kitty
+                    Hello kitty，hello hello hello kitty
+                    Hello你妈逼的kitty
+                    下起了雨，在你的心里，
+                    下起了雨，在你的怀里
+                    下起了雨，在你的眼里，
+                    下起了雨，在你的心里
+                </div>
+            </div>
+        </div>
+        <div style="margin: 10px 0">
+            <div class="wd-panel ">
+                <div class="wd-panel-header">
+                    <h3>下雨</h3>
+                </div>
+                <div class="wd-panel-body">
+                    <table class="wd-table wd-table--striped  ">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div style="margin: 10px 0">
+            <img style="margin-right: 10px;" src="data:image/svg+xml;base64,
             PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI
             /PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZ
             WlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwh
@@ -108,7 +203,7 @@
             W5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE0ZTk2YzUyYzViIj48
             cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA0Njg3NSIgeT0iNzQuNSI+MTQweDE0MDwv
             dGV4dD48L2c+PC9nPjwvc3ZnPg==" alt="rounded" class="wd-img-rounded">
-            <img src="data:image/svg+xml;base64,
+            <img style="margin:0 10px;" src="data:image/svg+xml;base64,
             PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI
             /PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZ
             WlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwh
@@ -119,7 +214,7 @@
             W5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE0ZTk2YzUyYzViIj48
             cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA0Njg3NSIgeT0iNzQuNSI+MTQweDE0MDwv
             dGV4dD48L2c+PC9nPjwvc3ZnPg==" alt="circle" class="wd-img-circle">
-            <img src="data:image/svg+xml;base64,
+            <img style="margin:0 10px;" src="data:image/svg+xml;base64,
             PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI
             /PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZ
             WlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwh
