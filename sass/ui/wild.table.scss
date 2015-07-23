@@ -5,6 +5,7 @@ $wd-table-padding               :                             8px     !default;
 .wd-table {
   width: 100%;
   border-radius: 4px;
+  background-color: #FFF;
   >thead{
     >tr{
       border-bottom: 1px solid $wd-table-border-color;
