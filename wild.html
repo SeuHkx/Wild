@@ -16,11 +16,13 @@
     <link rel="stylesheet" href="widget/wild.dropdown.css"/>
     <link rel="stylesheet" href="widget/wild.media.css"/>
     <link rel="stylesheet" href="widget/wild.panel.css"/>
+    <link rel="stylesheet" href="widget/wild.pagination.css"/>
+    <link rel="stylesheet" href="widget/wild.tipsWindow.css"/>
     <link rel="stylesheet" href="widget/wild.responsive.table.css"/>
     <script src="js/respond.min.js"></script>
 
 </head>
-<body>
+<body style="background-color: #f4f4f4">
     <div class="demo" style="padding: 20px">
         <h1>h1<small>small</small></h1>
         <h2>h2<small>small</small></h2>
@@ -158,41 +160,62 @@
                     <h3>下雨</h3>
                 </div>
                 <div class="wd-panel-body">
-                    <table class="wd-table wd-table--striped  ">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <div class="wd-table-responsive">
+                        <table class="wd-table wd-table--striped  ">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Username</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </div>
         <div style="margin: 10px 0">
-            <img style="margin-right: 10px;" src="data:image/svg+xml;base64,
+            <div class="wd-pagination">
+                <ul>
+                    <li><a href="#">«</a></li>
+                    <li><a href="#">1</a></li>
+                    <li class="active"><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li class=""><a href="#">»</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="margin: 10px 0;height: 50px;">
+            <div class="wd-tipsWin">
+                Test Tips Windows
+            </div>
+        </div>
+        <div style="margin: 10px 0">
+            <img  style="margin-right: 10px;" src="data:image/svg+xml;base64,
             PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI
             /PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZ
             WlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwh
