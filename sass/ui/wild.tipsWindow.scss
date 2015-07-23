@@ -1,0 +1,15 @@
+@import "../mixins/mixins";
+
+$wd-tipsWin-minWidth                :                         160px     !default;
+$wd-tipsWin-padding                 :                         10px      !default;
+$wd-tipsWin-bd-radius               :                         2px      !default;
+.wd-tipsWin{
+  position: absolute;
+  min-width: $wd-tipsWin-minWidth;
+  padding: $wd-tipsWin-padding;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.15);
+  border: 1px solid #ddd\9;
+  border-radius: $wd-tipsWin-bd-radius;
+  @include box-shadow(0 6px 12px rgba(0,0,0,.175));
+}
