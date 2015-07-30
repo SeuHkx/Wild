@@ -24,7 +24,8 @@ var file = {
     },
     filePath: function (event) {
         return path.dirname(event.path) + '/' + this.changeFile(event);
-    }
+    },
+    fileDist : false
 };
 gulp.task('clean',function(){
     return gulp.src(config.dir.dist, {read: false})
@@ -32,7 +33,8 @@ gulp.task('clean',function(){
 });
 gulp.task('compile',function(){
     var watcher = gulp.watch(config.dir.sass,function(event){
-            if(event.type === 'changed' || event.type === 'added' && file.changeFile(event).split('.').shift() !== packageJson.name){
+            if(event.type === 'changed' || event.type === 'added'){
+                if(file.changeFile(event).split('.').shift() === packageJson.name)file.fileDist = true;
                 var compile = gulp.src(file.filePath(event))
                     .pipe(plugins.sass().on('error', plugins.sass.logError))
                     .pipe(plugins.prefix({
@@ -42,7 +44,7 @@ gulp.task('compile',function(){
                         ],
                         cascade: true
                     }))
-                    .pipe(gulp.dest(config.dir.widget));
+                    .pipe(gulp.dest(file.fileDist ? config.dir.dist :config.dir.widget));
 
                 return compile;
             }
