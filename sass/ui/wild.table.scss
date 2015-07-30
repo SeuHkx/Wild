@@ -1,10 +1,7 @@
-$wd-table-border-color          :                             #ddd    !default;
-$wd-table-bg-color              :                             #f9f9f9 !default;
-$wd-table-padding               :                             8px     !default;
+@import "../variables/var.table";
 
 .wd-table {
   width: 100%;
-  border-radius: 4px;
   background-color: #FFF;
   >thead{
     >tr{

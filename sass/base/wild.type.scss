@@ -1,8 +1,9 @@
-@import "../mixins/mixins";
+@import "../mixins/mixins",
+        "../variables/var.type";
 
 body,html{
-  font-size: 14px;
-  line-height: 1.571;
+  font-size: $wd-type-font-size;
+  line-height:$wd-type-line-height;
 }
 article, aside, details, figcaption, figure, footer, header, menu, nav, section {
   display: block;
@@ -15,6 +16,7 @@ strong, b {
   color: #000;
 }
 a{
+  font-size: 14px;
   color: #0088cc;
   text-decoration: none;
 }
@@ -24,12 +26,10 @@ a:hover {
 }
 h1,h2,h3,h4,h5,h6{
   font-family: "Microsoft Yahei", Helvetica, STHeiTi, sans-serif;
-  line-height: 1.571;
-}
-p{
-  margin: 0 0 10px;
 }
 @include setTextSize();
+
+
 
 
 

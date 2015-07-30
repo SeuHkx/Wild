@@ -1,7 +1,20 @@
-.wd-media .wd-media-avatar {
-  float: left;
-  margin-right: 10px; }
-
-.wd-media .wd-media-body {
-  overflow: hidden;
+.wd-media {
   zoom: 1; }
+  .wd-media:before, .wd-media:after {
+    content: "";
+    display: table; }
+  .wd-media:after {
+    clear: both; }
+  .wd-media .wd-media-avatar {
+    float: left;
+    margin-right: 10px; }
+  .wd-media .wd-media-body {
+    overflow: hidden;
+    zoom: 1; }
+    .wd-media .wd-media-body p {
+      text-align: justify;
+      font-size: 12px;
+      color: #333;
+      margin: 0; }
+    .wd-media .wd-media-body p + a {
+      font-size: 12px; }

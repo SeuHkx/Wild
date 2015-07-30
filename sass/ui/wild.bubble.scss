@@ -1,0 +1,47 @@
+@import "../mixins/mixins",
+        "../variables/var.type",
+        "../variables/var.bubble";
+
+.wd-bubble{
+  position: absolute;
+  min-width: $wd-bubble-minwidth;
+  padding: $wd-bubble-padding;
+  background-color: $wd-bubble-bg-color;
+  border-width: 1px;
+  border-style: solid;
+  border-color: $wd-bubble-bd-color;
+  border: 1px solid #ddd\9;
+  @include border-radius($wd-bubble-bd-radius);
+  @include box-shadow($wd-bubble-shadow);
+}
+.wd-bubble-mass{
+  position: absolute;
+  display: block;
+  padding: $wd-bubble-padding 0;
+  width: 100%;
+  top: 0;
+  z-index: 99;
+  background-color: $wd-bubble-bg-color;
+  @include box-shadow($wd-bubble-mass-shadow...);
+
+  .wd-bubble-mass-bar{
+    >li{
+      >a{
+        display: block;
+        padding: $wd-bubble-mass-padding;
+        clear: both;
+        font-weight: 400;
+        line-height: $wd-type-line-height;
+        color: $wd-bubble-mass-font-color;
+        white-space: nowrap;
+        cursor: pointer;
+
+        &:hover{
+          color: $wd-bubble-mass-hover-color;
+          text-decoration: none;
+          background-color: $wd-bubble-mass-hover-bg-color;
+        }
+      }
+    }
+  }
+}

@@ -1,10 +1,13 @@
-.wd-img-rounded {
+.wd-img {
+  vertical-align: middle; }
+
+.wd-img--rounded {
   border-radius: 4px; }
 
-.wd-img-circle {
+.wd-img--circle {
   border-radius: 50%; }
 
-.wd-img-thumbnail {
+.wd-img--thumbnail {
   display: inline-block;
   border: 1px solid #ddd;
   max-width: 100%;
@@ -12,6 +15,6 @@
   background-color: #fff;
   border-radius: 4px; }
 
-.wd-img-responsive {
+.wd-img--responsive {
   width: 100%;
   max-width: 100%; }

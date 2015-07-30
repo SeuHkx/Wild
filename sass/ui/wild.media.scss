@@ -1,10 +1,29 @@
+@import "../variables/var.media";
+
 .wd-media{
+  zoom: 1;
+  &:before,&:after{
+    content: "";
+    display: table;
+  }
+  &:after{
+    clear: both;
+  }
   .wd-media-avatar{
     float: left;
-    margin-right: 10px;
+    margin-right: $wd-media-avatar-margin;
   }
   .wd-media-body{
     overflow: hidden;
     zoom: 1;
+    p{
+      text-align: justify;
+      font-size: $wd-media-body-font-size;
+      color: $wd-media-body-font-color;
+      margin: 0;
+    }
+    p + a{
+      font-size: $wd-media-body-font-size;
+    }
   }
 }

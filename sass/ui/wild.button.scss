@@ -1,13 +1,7 @@
-@import "../mixins/mixins";
-$wd-button-padding        :           6px 12px    !default;
-$wd-button-font-size      :           14px        !default;
-$wd-button-radius         :           2px         !default;
-$wd-button-default        :           'default',#333,#fff,#ccc          !default;
-$wd-button-blue           :           'blue',#FFF,#162f78,#162f78       !default;
-$wd-button-orange         :           'orange',#FFF,#fa9915,#fa9915     !default;
-$wd-button-red            :           'red',#FFF,#ef473a,#e42012        !default;
-$wd-button-positive       :           'positive',#FFF,#387ef5,#0c63ee   !default;
-$wd-button-green          :           'green',#FFF,#33cd5f,#28a54c      !default;
+@import "../mixins/mixins",
+        "../variables/var.type",
+        "../variables/var.button";
+
 
 .wd-button{
   display: inline-block;
@@ -16,7 +10,7 @@ $wd-button-green          :           'green',#FFF,#33cd5f,#28a54c      !default
   margin-bottom: 0;
   font-size: $wd-button-font-size;
   font-weight: 400;
-  line-height: 1.571;
+  line-height: $wd-type-line-height;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
@@ -32,7 +26,7 @@ $wd-button-green          :           'green',#FFF,#33cd5f,#28a54c      !default
     text-decoration: none;
   }
   &:active{
-    @include box-shadow(inset 0 1px 4px rgba(0, 0, 0, 0.2));
+    @include box-shadow($wd-button-active-shadow);
   }
   &.wd-button--block{
     display: block;
@@ -43,7 +37,6 @@ $wd-button-green          :           'green',#FFF,#33cd5f,#28a54c      !default
 }
 @include setButtonSize();
 @include setButton-theme($wd-button-default...);
-@include setButton-theme($wd-button-blue...);
 @include setButton-theme($wd-button-orange...);
 @include setButton-theme($wd-button-red...);
 @include setButton-theme($wd-button-green...);
@@ -78,11 +71,9 @@ $wd-button-green          :           'green',#FFF,#33cd5f,#28a54c      !default
       border-right: 1px solid #ccc\9;
     }
   }
-
 }
 @include setGroupButton();
 @include setGroupButton-theme($wd-button-positive...);
-@include setGroupButton-theme($wd-button-blue...);
 @include setGroupButton-theme($wd-button-orange...);
 @include setGroupButton-theme($wd-button-red...);
 @include setGroupButton-theme($wd-button-green...);

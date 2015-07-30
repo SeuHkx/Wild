@@ -58,18 +58,6 @@
     background-color: #ebebeb;
     border-color: #b3b3b3; }
 
-.wd-button--blue {
-  color: #FFF;
-  background-color: #162f78;
-  border-color: #162f78; }
-  .wd-button--blue:hover {
-    color: #FFF;
-    background-color: #132867;
-    border-color: #11255e; }
-  .wd-button--blue:active {
-    background-color: #102156;
-    border-color: #0e1e4d; }
-
 .wd-button--orange {
   color: #FFF;
   background-color: #fa9915;
@@ -179,20 +167,6 @@
     .wd-button-group.wd-button--positive .wd-button:active {
       background-color: #1165f3;
       border-color: #0a4fbd; }
-
-.wd-button-group.wd-button--blue {
-  background-color: transparent; }
-  .wd-button-group.wd-button--blue .wd-button {
-    color: #FFF;
-    background-color: #162f78;
-    border-color: #162f78; }
-    .wd-button-group.wd-button--blue .wd-button:hover {
-      color: #FFF;
-      background-color: #132867;
-      border-color: #11255e; }
-    .wd-button-group.wd-button--blue .wd-button:active {
-      background-color: #102156;
-      border-color: #0e1e4d; }
 
 .wd-button-group.wd-button--orange {
   background-color: transparent; }

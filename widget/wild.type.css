@@ -13,6 +13,7 @@ strong, b {
   color: #000; }
 
 a {
+  font-size: 14px;
   color: #0088cc;
   text-decoration: none; }
 
@@ -21,41 +22,37 @@ a:hover {
   text-decoration: underline; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Microsoft Yahei", Helvetica, STHeiTi, sans-serif;
-  line-height: 1.571; }
+  font-family: "Microsoft Yahei", Helvetica, STHeiTi, sans-serif; }
 
-p {
-  margin: 0 0 10px; }
-
-h4, .h4 {
+h4, .wd-h4 {
   font-size: 18px; }
-  h4 small, h4 .small, .h4 small, .h4 .small {
+  h4 small, h4 .wd-small, .wd-h4 small, .wd-h4 .wd-small {
     font-size: 65%; }
 
-h3, .h3 {
+h3, .wd-h3 {
   font-size: 24px; }
-  h3 small, h3 .small, .h3 small, .h3 .small {
+  h3 small, h3 .wd-small, .wd-h3 small, .wd-h3 .wd-small {
     font-size: 65%; }
 
-h2, .h2 {
+h2, .wd-h2 {
   font-size: 30px; }
-  h2 small, h2 .small, .h2 small, .h2 .small {
+  h2 small, h2 .wd-small, .wd-h2 small, .wd-h2 .wd-small {
     font-size: 65%; }
 
-h1, .h1 {
+h1, .wd-h1 {
   font-size: 36px; }
-  h1 small, h1 .small, .h1 small, .h1 .small {
+  h1 small, h1 .wd-small, .wd-h1 small, .wd-h1 .wd-small {
     font-size: 65%; }
 
-h5, .h5 {
+h5, .wd-h5 {
   font-size: 14px; }
-  h5 small, h5 .small, .h5 small, .h5 .small {
+  h5 small, h5 .small, .wd-h5 small, .wd-h5 .small {
     font-size: 65%; }
 
-h6, .h6 {
+h6, .wd-h6 {
   font-size: 12px; }
-  h6 small, h6 .small, .h6 small, .h6 .small {
+  h6 small, h6 .small, .wd-h6 small, .wd-h6 .small {
     font-size: 65%; }
 
-.small {
+.wd-small {
   font-size: 85%; }

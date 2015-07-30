@@ -1,21 +1,22 @@
-$wd-img-border-radius             :                 4px       !default;
-$wd-img-border-padding            :                 $wd-img-border-radius       !default;
-
-.wd-img-rounded{
+@import "../variables/var.img";
+.wd-img{
+  vertical-align: middle;
+}
+.wd-img--rounded{
   border-radius: $wd-img-border-radius;
 }
-.wd-img-circle{
+.wd-img--circle{
   border-radius: 50%;
 }
-.wd-img-thumbnail{
+.wd-img--thumbnail{
   display: inline-block;
-  border: 1px solid #ddd;
+  border: 1px solid $wd-img-bd-color;
   max-width: 100%;
   padding: $wd-img-border-padding;
-  background-color: #fff;
+  background-color: $wd-img-bg-color;
   border-radius: $wd-img-border-radius;
 }
-.wd-img-responsive{
+.wd-img--responsive{
   width: 100%;
   max-width: 100%;
 }

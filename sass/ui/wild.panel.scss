@@ -1,38 +1,86 @@
-@import "../mixins/mixins";
+@import "../mixins/mixins",
+        "../variables/var.panel";
 .wd-panel{
-  margin-bottom: 20px;
-  background-color: #fff;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  border-color: #ddd;
-  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
-  box-shadow: 0 1px 1px rgba(0,0,0,.05);
-
-  .wd-panel-header{
-    padding: 10px 15px;
-    border-bottom: 1px solid transparent;
-    color: #333;
-    background-color: #f5f5f5;
-    border-color: #ddd;
-    .wd-panel-header-title,h3{
-      font-size: 16px;
-      font-weight: bold;
-    }
-  }
-  .wd-panel-body{
-    padding: 15px;
-    zoom: 1;
-    &:before,&:after{
-      content: "";
-      display: table;
-    }
-    &:after{
-      clear: both;
-    }
-  }
+  border-width: 1px;
+  border-style: solid;
+  border-color: $wd-panel-bd-color;
+  @include border-radius($wd-panel-bd-radius);
+  @include box-shadow($wd-panel-shadow);
   &.wd-panel--table{
     .wd-panel-body{
       padding: 0;
     }
+  }
+  &.wd-panel--none{
+    .wd-panel-header{
+      border: none;
+      box-shadow: none;
+    }
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  &.wd-panel--menu{
+    .wd-panel-header{
+      height: $wd-panel-header-height;
+      padding: 0 $wd-panel-header-padding;
+      line-height: $wd-panel-header-line-height;
+      zoom: 1;
+      &:before,&:after{
+        content: "";
+        display: table;
+      }
+      &:after{
+        clear: both;
+      }
+      .wd-panel-header-title,h3{
+        float: left;
+        padding: $wd-panel-header-menu-padding;
+      }
+      .wd-panel-header-menu{
+        float: right;
+        >li{
+          float: left;
+          padding: 0 $wd-panel-header-padding - 5;
+          &:last-child{
+            padding-right: 0;
+          }
+          a{
+            display: block;
+            height: $wd-panel-header-height;
+            padding: $wd-panel-header-menu-padding;
+            cursor: pointer;
+            color: $wd-panel-header-font-color;
+            &:hover{
+              text-decoration: none;
+              color: #000000;
+              font-weight: 700;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.wd-panel-header{
+  padding: $wd-panel-header-padding - 5 $wd-panel-header-padding;
+  border-bottom: 1px solid $wd-panel-bd-color;
+  color: $wd-panel-header-font-color;
+  background-color: $wd-panel-header-bg-color;
+}
+.wd-panel-header-title,.wd-panel-header > h3{
+  font-size: $wd-panel-header-font-size;
+  font-weight: bold;
+}
+.wd-panel-body{
+  background-color: $wd-panel-body-bg-color;
+  padding: $wd-panel-body-padding;
+  zoom: 1;
+  &:before,&:after{
+    content: "";
+    display: table;
+  }
+  &:after{
+    clear: both;
   }
 }

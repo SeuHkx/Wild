@@ -2,28 +2,28 @@
   $i: 4;
   $s: 18;
   @while $i > 0 {
-    h#{$i},.h#{$i}{
+    h#{$i},.wd-h#{$i}{
       font-size: $s + px;
-      small,.small{
+      small,.wd-small{
         font-size: 65%;
       }
     }
     $i : $i - 1;
     $s : $s + 6;
   }
-  h5,.h5{
+  h5,.wd-h5{
     font-size: 14px;
     small,.small{
       font-size: 65%;
     }
   }
-  h6,.h6{
+  h6,.wd-h6{
     font-size: 12px;
     small,.small{
       font-size: 65%;
     }
   }
-  .small{
+  .wd-small{
     font-size: 85%;
   }
 }
@@ -119,6 +119,19 @@
     }
   }
 }
+@mixin setDrop($name,$color,$bgColor){
+  .wd-dropdown--#{$name}{
+    li{
+      >a{
+        &:hover{
+          color: $color;
+          text-decoration: none;
+          background-color: $bgColor;
+        }
+      }
+    }
+  }
+}
 @mixin user-select(){
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -156,6 +169,9 @@
 }
 @mixin border-bottom-radius($props,$radius){
   border-bottom-#{$props}-radius: $radius;
+}
+@mixin border-radius($radius){
+  border-radius: $radius;
 }
 @mixin triangle(){
   .wd-triangle{

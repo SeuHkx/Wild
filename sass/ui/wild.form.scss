@@ -1,0 +1,55 @@
+@import "../mixins/mixins",
+        "../variables/var.form";
+
+textarea,
+input[type="text"],
+input[type="password"]{
+  display: inline-block;
+  height: $wd-form-input-height;
+  line-height: $wd-form-input-line-height;
+  padding: $wd-form-input-padding 6px;
+
+  font-size: $wd-form-input-font-size;
+  vertical-align: middle;
+
+  color: $wd-form-input-color;
+  background-color: $wd-form-input-bg-color;
+  border: 1px solid $wd-form-input-bd-color;
+  border-radius: $wd-form-input-bd-radius;
+  @include box-shadow($wd-form-box-shadow);
+
+  transition: border linear .2s,box-shadow linear .2s;
+
+  &:focus{
+    border-color: $wd-form-input-focus-bd-color;
+    outline: 0;
+    outline: thin dotted \9;
+    @include box-shadow($wd-form-box-shadow,0 0 8px darken($wd-form-input-focus-bd-color,5%));
+  }
+}
+.wd-controls-group{
+  position: relative;
+  display: inline-block;
+  border:1px solid darken($wd-form-input-group-bg-color,10%);
+  background-color: $wd-form-input-group-bg-color;
+  min-width: 230px;
+  font-size: 0;
+  input{
+    height: $wd-form-input-height;
+    background-color: $wd-form-input-bg-color;
+    border: none;
+    border-radius: 0;
+  }
+  .wd-button{
+    color: #FFF;
+  }
+  .wd-button-group{
+    .wd-button:last-child{
+      border-right: none;
+      border-left: 1px solid darken($wd-form-input-group-bg-color,10%);
+    }
+  }
+}
+
+
+

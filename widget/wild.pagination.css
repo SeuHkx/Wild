@@ -1,0 +1,48 @@
+.wd-pagination {
+  margin: 20px 0; }
+  .wd-pagination ul {
+    display: inline-block;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    zoom: 1; }
+    .wd-pagination ul:before, .wd-pagination ul:after {
+      content: "";
+      display: table; }
+    .wd-pagination ul:after {
+      clear: both; }
+    .wd-pagination ul > li {
+      float: left; }
+      .wd-pagination ul > li.active > a {
+        z-index: 99;
+        background-color: #387ef5;
+        border-color: #387ef5;
+        color: #fff; }
+        .wd-pagination ul > li.active > a:hover {
+          color: #fff;
+          cursor: default;
+          background-color: #387ef5; }
+      .wd-pagination ul > li.disabled > a {
+        color: #999;
+        cursor: default;
+        background-color: transparent; }
+        .wd-pagination ul > li.disabled > a:hover {
+          color: #999;
+          cursor: default;
+          background-color: transparent; }
+      .wd-pagination ul > li:first-child > a {
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px; }
+      .wd-pagination ul > li:last-child > a {
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px; }
+      .wd-pagination ul > li > a {
+        position: relative;
+        display: block;
+        margin-left: -1px;
+        padding: 5px 12px;
+        text-decoration: none;
+        background-color: #fff;
+        border: 1px solid #ddd; }
+        .wd-pagination ul > li > a:hover {
+          background-color: #f5f5f5; }
