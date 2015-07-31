@@ -226,6 +226,9 @@ a:hover {
 h1, h2, h3, h4, h5, h6 {
   font-family: "Microsoft Yahei", Helvetica, STHeiTi, sans-serif; }
 
+p {
+  margin: 0 0 10px; }
+
 h4, .wd-h4 {
   font-size: 18px; }
   h4 small, h4 .wd-small, .wd-h4 small, .wd-h4 .wd-small {
@@ -701,6 +704,8 @@ input[type="password"] {
       border: none;
       -webkit-box-shadow: none;
               box-shadow: none; }
+  .wd-panel.wd-panel--border .wd-panel-header {
+    border-bottom: 1px solid #ddd; }
   .wd-panel.wd-panel--menu .wd-panel-header {
     height: 48px;
     padding: 0 15px;

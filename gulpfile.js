@@ -25,7 +25,7 @@ var file = {
     filePath: function (event) {
         return path.dirname(event.path) + '/' + this.changeFile(event);
     },
-    fileDist : false
+    fileDist : null
 };
 gulp.task('clean',function(){
     return gulp.src(config.dir.dist, {read: false})
@@ -34,6 +34,7 @@ gulp.task('clean',function(){
 gulp.task('compile',function(){
     var watcher = gulp.watch(config.dir.sass,function(event){
             if(event.type === 'changed' || event.type === 'added'){
+                file.fileDist = false;
                 if(file.changeFile(event).split('.').shift() === packageJson.name)file.fileDist = true;
                 var compile = gulp.src(file.filePath(event))
                     .pipe(plugins.sass().on('error', plugins.sass.logError))
@@ -55,8 +56,8 @@ gulp.task('compile',function(){
         }
     })
 });
-gulp.task('dist',['clean'],function(){
-    return gulp.src('sass/wild.scss')
+gulp.task('minify',['clean'],function(){
+    return gulp.src('sass/Wild.scss')
         .pipe(plugins.sass().on('error', plugins.sass.logError))
         .pipe(plugins.prefix({
             browsers: [
@@ -65,6 +66,10 @@ gulp.task('dist',['clean'],function(){
             ],
             cascade: true
         }))
+        .pipe(plugins.rename({
+            suffix : '.min'
+        }))
+        .pipe(plugins.mini())
         .pipe(gulp.dest(config.dir.dist));
 });
 

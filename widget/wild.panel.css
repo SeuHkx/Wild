@@ -16,6 +16,8 @@
       border: none;
       -webkit-box-shadow: none;
               box-shadow: none; }
+  .wd-panel.wd-panel--border .wd-panel-header {
+    border-bottom: 1px solid #ddd; }
   .wd-panel.wd-panel--menu .wd-panel-header {
     height: 48px;
     padding: 0 15px;

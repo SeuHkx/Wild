@@ -20,6 +20,11 @@
     border-radius: 0;
     box-shadow: none;
   }
+  &.wd-panel--border{
+    .wd-panel-header{
+      border-bottom: 1px solid $wd-panel-bd-color;
+    }
+  }
   &.wd-panel--menu{
     .wd-panel-header{
       height: $wd-panel-header-height;
