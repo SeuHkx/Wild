@@ -4,6 +4,7 @@
   margin: $wd-pagination-margin 0;
   ul{
     display: inline-block;
+    *display: inline;
     border-radius: $wd-pagination-bd-radius;
     @include box-shadow($wd-pagination-box-shadow);
     zoom: 1;

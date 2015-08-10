@@ -5,7 +5,6 @@
 .wd-bubble{
   position: absolute;
   min-width: $wd-bubble-minwidth;
-  padding: $wd-bubble-padding;
   background-color: $wd-bubble-bg-color;
   border-width: 1px;
   border-style: solid;
@@ -14,34 +13,75 @@
   @include border-radius($wd-bubble-bd-radius);
   @include box-shadow($wd-bubble-shadow);
 }
-.wd-bubble-mass{
-  position: absolute;
-  display: block;
-  padding: $wd-bubble-padding 0;
-  width: 100%;
-  top: 0;
-  z-index: 99;
-  background-color: $wd-bubble-bg-color;
-  @include box-shadow($wd-bubble-mass-shadow...);
-
-  .wd-bubble-mass-bar{
+.wd-bubble-title{
+  padding: $wd-bubble-padding;
+  text-align: left;
+  font-size: 14px;
+  color: #666;
+  >h5,p,.wd-h5{
+    margin-bottom: 5px;
+  }
+  >p{
+    >span{
+      font-size: 12px;
+    }
+    font-size: 12px;
+  }
+  >p:last-child{
+    margin-bottom: 0;
+  }
+}
+.wd-bubble-bar{
+  margin-top: 5px;
+  border-top: 1px solid #ddd;
+  .wd-dropdown{
+    position: relative;
+    border: none;
+    box-shadow: none;
     >li{
       >a{
-        display: block;
-        padding: $wd-bubble-mass-padding;
-        clear: both;
-        font-weight: 400;
-        line-height: $wd-type-line-height;
-        color: $wd-bubble-mass-font-color;
-        white-space: nowrap;
-        cursor: pointer;
-
+        padding: $wd-bubble-padding/2 $wd-bubble-padding;
+        color: #666;
+        font-size: 12px;
         &:hover{
-          color: $wd-bubble-mass-hover-color;
-          text-decoration: none;
-          background-color: $wd-bubble-mass-hover-bg-color;
+          color: #fff;
         }
       }
     }
   }
 }
+.wd-bubble-mass{
+  position: absolute;
+  display: block;
+  padding: $wd-bubble-padding 0;
+  width: 100%;
+  z-index: 9;
+  background-color: $wd-bubble-bg-color;
+  border: 1px solid #ddd\9;
+  @include box-shadow($wd-bubble-mass-shadow...);
+}
+.wd-bubble-mass-title{
+  text-align: center;
+  margin-top: -$wd-bubble-padding;
+}
+.wd-bubble-mass-bar{
+  >li{
+    >a{
+      display: block;
+      padding: $wd-bubble-mass-padding;
+      clear: both;
+      font-weight: 400;
+      line-height: $wd-type-line-height;
+      color: $wd-bubble-mass-font-color;
+      white-space: nowrap;
+      cursor: pointer;
+
+      &:hover{
+        color: $wd-bubble-mass-hover-color;
+        text-decoration: none;
+        background-color: $wd-bubble-mass-hover-bg-color;
+      }
+    }
+  }
+}
+

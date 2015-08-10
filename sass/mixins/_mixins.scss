@@ -23,9 +23,6 @@
       font-size: 65%;
     }
   }
-  .wd-small{
-    font-size: 85%;
-  }
 }
 @mixin clear(){
   .wd-clear{
@@ -71,10 +68,10 @@
 }
 @mixin setButtonSize(){
   @each $name,$size,$padding in
-                  ('tiny',12px,1px 6px),
-                  ('sm',14px,3px 6px),
-                  ('lg',16px,6px 10px),
-                  ('jumbo',18px,8px 12px) {
+                  ('tiny',10px,1px 4px),
+                  ('sm',12px,3px 6px),
+                  ('lg',16px,8px 12px),
+                  ('jumbo',18px,10px 14px) {
     .wd-button--#{$name}{
       font-size: $size;
       padding: $padding;
@@ -104,10 +101,10 @@
 }
 @mixin setGroupButton(){
   @each $name,$size,$padding in
-                  ('tiny',12px,1px 6px),
-                  ('sm',14px,3px 6px),
-                  ('lg',16px,6px 8px),
-                  ('jumbo',18px,8px 10px) {
+                  ('tiny',10px,1px 4px),
+                  ('sm',12px,3px 6px),
+                  ('lg',16px,8px 12px),
+                  ('jumbo',18px,10px 14px) {
     .wd-button-group{
       &.wd-button--#{$name}{
         padding: 0;
@@ -176,6 +173,8 @@
 @mixin triangle(){
   .wd-triangle{
     display: inline-block;
+    *display:inline;
+    zoom: 1;
     width: 0;
     height: 0;
     //margin-left: 4px;

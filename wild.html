@@ -14,15 +14,84 @@
     <link rel="stylesheet" href="widget/wild.button.css"/>
     <link rel="stylesheet" href="widget/wild.img.css"/>
     <link rel="stylesheet" href="widget/wild.dropdown.css"/>
-    <link rel="stylesheet" href="widget/wild.media.css"/    >
+    <link rel="stylesheet" href="widget/wild.media.css"/>
     <link rel="stylesheet" href="widget/wild.panel.css"/>
     <link rel="stylesheet" href="widget/wild.pagination.css"/>
     <link rel="stylesheet" href="widget/wild.bubble.css"/>
     <link rel="stylesheet" href="widget/wild.form.css"/>
-    <link rel="stylesheet" href="widget/wild.responsive.table.css"/>
+    <link rel="stylesheet" href="widget/wild.header.css"/>
+    <link rel="stylesheet" href="widget/wild.nav.css"/>
+    <link rel="stylesheet" href="widget/wild.responsive.css"/>
+    <link rel="stylesheet" href="public/css/common.css"/>
     <script src="js/respond.min.js"></script>
 </head>
 <body style="background-color: #f4f4f4">
+    <div class="wd-header">
+        <div class="wd-header-left"> </div>
+        <div class="wd-header-right"> </div>
+    </div>
+    <ul class="wd-nav">
+        <li class="wd-nav-active">
+            <a>首页</a>
+        </li>
+        <li>
+            <a>成功案例</a>
+        </li>
+        <li>
+            <a>诉讼业务</a>
+            <div class="wd-bubble-mass">
+                <div class="wd-bubble-mass-title">
+                    诉讼业务
+                    <span class="wd-triangle"></span>
+                </div>
+                <ul class="wd-bubble-mass-bar">
+                    <li>
+                        <a>个人主页</a>
+                    </li>
+                    <li>
+                        <a>我的圈子</a>
+                    </li>
+                    <li>
+                        <a>我的好友</a>
+                    </li>
+                    <li>
+                        <a>圈内消息</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <a>综合咨询</a>
+        </li>
+        <li class="">
+            <a>首页</a>
+        </li>
+        <li class="wd-nav-drown">
+            <a>一汽迈腾圈子</a>
+            <div class="wd-bubble">
+                <div class="wd-bubble-title">
+                    <h5>张小康</h5>
+                    <p>已使用： <span>7.14G</span></p>
+                    <p>总容量： <span>11281.56G</span></p>
+                </div>
+                <div class="wd-bubble-bar">
+                    <ul class="wd-dropdown">
+                        <li><a href="#">我的原创</a></li>
+                        <li><a href="#">个人中心</a></li>
+                        <li><a href="#">退出</a></li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <ul class="wd-nav custom-nav">
+        <li class="wd-nav-active">
+            <a>首页</a>
+        </li>
+        <li>
+            <a>迈腾圈子</a>
+        </li>
+    </ul>
     <div class="demo" style="padding: 20px">
         <h1>h1<small>small</small></h1>
         <h2>h2<small>small</small></h2>
@@ -70,35 +139,35 @@
         </div>
         <div style="margin: 10px 0">
             <a class="wd-button wd-button--default" href="#">就是爱你</a>
-            <input class="wd-button  wd-button--orange" type="button" value="天使的翅膀">
-            <input class="wd-button  wd-button--red" type="submit" value="爱笑的眼睛">
-            <button class="wd-button wd-button--default" type="submit">量身订做</button>
-            <button class="wd-button wd-button--green" type="submit">三万英尺</button>
-            <button class="wd-button wd-button--positive" type="submit">爱不爱我</button>
+            <a class="wd-button  wd-button--orange" >天使的翅膀</a>
+            <a class="wd-button  wd-button--red"  >爱笑的眼睛</a>
+            <a class="wd-button wd-button--green" >三万英尺</a>
+            <a class="wd-button wd-button--positive" >爱不爱我</a>
+            <a class="wd-button wd-button--default hack-last-right-border wd-button--hack-icon" href="#"><i class="wd-triangle"></i></a>
         </div>
         <div style="margin: 10px 0">
             <a class="wd-button wd-button--default wd-button--tiny" href="#" >就是爱你</a>
-            <input class="wd-button  wd-button--orange wd-button--sm" type="button" value="天使的翅膀">
-            <button class="wd-button wd-button--positive" type="button">量身订做</button>
-            <input class="wd-button  wd-button--red wd-button--lg" type="submit" value="爱笑的眼睛">
+            <a class="wd-button  wd-button--orange wd-button--sm" >天使的翅膀</a>
+            <a class="wd-button wd-button--positive">量身订做</a>
+            <a class="wd-button  wd-button--red wd-button--lg" >爱笑的眼睛</a>
             <a class="wd-button wd-button--green wd-button--jumbo" href="#">幸福了然后</a>
         </div>
         <div style="margin: 10px 0">
             <div class="wd-button-group wd-button--green">
-                <a class="wd-button wd-button--default" href="#"><span class="wd-button-text">就是爱你</span><i class="wd-triangle"></i></a>
+                <a class="wd-button wd-button--default" href="#"><span class="">就是爱你</span><i class="wd-triangle wd-button-icon"></i></a>
                 <a class="wd-button wd-button--default" href="#">量身订做</a>
             </div>
             <div class="wd-button-group wd-button--red">
                 <a class="wd-button " href="#">依然爱你</a>
                 <a class="wd-button  ie7-last-child" href="#">我爱台妹</a>
-                <a class="wd-button wd-button--default ie7-last-child" href="#"><i class="wd-triangle"></i></a>
+                <a class="wd-button wd-button--default hack-last-right-border wd-button--hack-icon" href="#"><i class="wd-triangle"></i></a>
             </div>
             <div class="wd-button-group wd-button--positive">
                 <a class="wd-button wd-button--default" href="#">就是爱你</a>
-                <a class="wd-button wd-button--default ie7-last-child" href="#"><i class="wd-triangle"></i></a>
+                <a class="wd-button wd-button--default hack-last-right-border wd-button--hack-icon" href="#" ><i class="wd-triangle"></i></a>
             </div>
         </div>
-        <div style="">
+        <div style="" class="wd-clear">
             <div style="margin: 10px 0;position: relative;width: 200px;height: 100px;float: left">
                 <ul class="wd-dropdown">
                     <li><a href="#">Action</a></li>
@@ -221,11 +290,11 @@
             <input type="text" placeholder="没有梦想何必远方"/>
         </div>
         <div style="margin-bottom: 10px;">
-            <div class="wd-controls-group">
+            <div class="wd-from-controls">
                 <input type="text" placeholder="如果不悲伤就无法飞翔"/>
                 <div class="wd-button-group">
                     <a class="wd-button " >Search</a>
-                    <a class="wd-button " ><i class="wd-triangle"></i></a>
+                    <a class="wd-button hack-last-left-border wd-button--hack-icon" ><i class="wd-triangle"></i></a>
                 </div>
             </div>
         </div>

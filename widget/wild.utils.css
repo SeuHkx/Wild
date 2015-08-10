@@ -40,6 +40,8 @@
 
 .wd-triangle {
   display: inline-block;
+  *display: inline;
+  zoom: 1;
   width: 0;
   height: 0;
   margin-top: -2px;

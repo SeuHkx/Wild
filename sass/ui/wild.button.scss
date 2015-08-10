@@ -2,10 +2,10 @@
         "../variables/var.type",
         "../variables/var.button";
 
-
 .wd-button{
   display: inline-block;
   *display: inline;
+  zoom: 1;
   padding: $wd-button-padding;
   margin-bottom: 0;
   font-size: $wd-button-font-size;
@@ -31,8 +31,15 @@
   &.wd-button--block{
     display: block;
   }
+  &.wd-button--hack-icon{
+    *height: 22px;
+    .wd-triangle{
+      *margin-top: 2px;
+    }
+  }
 }
-.wd-button-text{
+.wd-button-icon{
+  margin-left: 4px;
   margin-right:4px;
 }
 @include setButtonSize();
@@ -45,6 +52,7 @@
 .wd-button-group{
   position: relative;
   display: inline-block;
+  *display: inline;
   vertical-align: middle;
   zoom: 1;
   &:before,&:after{
@@ -67,7 +75,7 @@
       @include border-top-radius('right',$wd-button-radius);
       @include border-bottom-radius('right',$wd-button-radius);
     }
-    &.ie7-last-child{
+    &.hack-last-right-border{
       border-right: 1px solid #ccc\9;
     }
   }

@@ -27,7 +27,7 @@ blockquote, q {
 blockquote:before, blockquote:after,
 q:before, q:after {
   content: '';
-  content: none; }
+}
 
 
 audio:not([controls]) {
@@ -47,8 +47,6 @@ html {
   /* 1 */
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
-  /* 2 */
-  -webkit-text-size-adjust: 100%;
   /* 2 */ }
 
 
@@ -57,8 +55,9 @@ html {
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
+  *behavior: url(/js/boxsizing.htc);
   -webkit-tap-highlight-color: transparent;
-  -webkit-tap-highlight-color: transparent; }
+}
 
 body {
   margin: 0;
@@ -77,7 +76,7 @@ a:hover {
 a {
   -webkit-user-drag: none;
   -webkit-tap-highlight-color: transparent;
-  -webkit-tap-highlight-color: transparent; }
+ }
 a[href]:hover {
   cursor: pointer; }
 
