@@ -12,6 +12,21 @@
   border: 1px solid #ddd\9;
   @include border-radius($wd-bubble-bd-radius);
   @include box-shadow($wd-bubble-shadow);
+
+}
+.wd-bubble--down{
+  .wd-triangle-group{
+    bottom: -12px;
+    margin-left: -12px;
+    left: 50%;
+  }
+}
+.wd-bubble--up{
+  .wd-triangle-group{
+    top: -12px;
+    margin-left: -12px;
+    left: 50%;
+  }
 }
 .wd-bubble-title{
   padding: $wd-bubble-padding;

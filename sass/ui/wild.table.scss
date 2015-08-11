@@ -21,6 +21,7 @@
     }
   }
   thead > tr > th,tbody > tr >td{
+    position: relative;
     padding: $wd-table-padding;
     line-height: 1.571;
   }

@@ -24,7 +24,7 @@ input[type="password"]{
   &:focus{
     border-color: $wd-form-input-focus-bd-color;
     outline: 0;
-    @include box-shadow($wd-form-box-shadow,0 0 8px darken($wd-form-input-focus-bd-color,5%));
+    @include box-shadow($wd-form-box-shadow,0 0 8px lighten($wd-form-input-focus-bd-color,20%));
   }
 }
 .wd-from-controls{
@@ -56,6 +56,5 @@ input[type="password"]{
     }
   }
 }
-
 
 

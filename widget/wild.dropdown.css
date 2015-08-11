@@ -22,3 +22,7 @@
       color: #fff;
       text-decoration: none;
       background-color: #387ef5; }
+  .wd-dropdown > li > .wd-triangle-group {
+    top: -12px;
+    left: 50%;
+    margin-left: -12px; }

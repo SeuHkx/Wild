@@ -11,6 +11,7 @@
     .wd-table > tbody tr:last-child {
       border-bottom: none; }
   .wd-table thead > tr > th, .wd-table tbody > tr > td {
+    position: relative;
     padding: 12px 8px;
     line-height: 1.571; }
   .wd-table.wd-table--striped > tbody tr:nth-of-type(odd) {

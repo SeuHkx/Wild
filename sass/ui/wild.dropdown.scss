@@ -31,6 +31,11 @@
         background-color: $wd-dropdown-insert-hover-bgColor;
       }
     }
+    >.wd-triangle-group{
+      top: -12px;
+      left: 50%;
+      margin-left: -12px;
+    }
   }
 }
 

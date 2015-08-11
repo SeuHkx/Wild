@@ -10,6 +10,16 @@
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
           box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); }
 
+.wd-bubble--down .wd-triangle-group {
+  bottom: -12px;
+  margin-left: -12px;
+  left: 50%; }
+
+.wd-bubble--up .wd-triangle-group {
+  top: -12px;
+  margin-left: -12px;
+  left: 50%; }
+
 .wd-bubble-title {
   padding: 10px;
   text-align: left;

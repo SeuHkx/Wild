@@ -9,7 +9,6 @@
     <meta name="apple-mobile-web-app-title" content="title">
     <link rel="stylesheet" href="widget/wild.reset.css"/>
     <link rel="stylesheet" href="widget/wild.type.css"/>
-    <link rel="stylesheet" href="widget/wild.utils.css"/>
     <link rel="stylesheet" href="widget/wild.table.css"/>
     <link rel="stylesheet" href="widget/wild.button.css"/>
     <link rel="stylesheet" href="widget/wild.img.css"/>
@@ -22,6 +21,7 @@
     <link rel="stylesheet" href="widget/wild.header.css"/>
     <link rel="stylesheet" href="widget/wild.nav.css"/>
     <link rel="stylesheet" href="widget/wild.responsive.css"/>
+    <link rel="stylesheet" href="widget/wild.utils.css"/>
     <link rel="stylesheet" href="public/css/common.css"/>
     <script src="js/respond.min.js"></script>
 </head>
@@ -180,6 +180,11 @@
                     <li><a href="#">Action</a></li>
                     <li><a href="#">Another action</a></li>
                     <li><a href="#">Something else here</a></li>
+                    <li>
+                        <span class="wd-triangle-group wd-triangle-group--upward">
+                            <i class="wd-triangle"></i>
+                         </span>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -203,13 +208,9 @@
             </div>
         </div>
         <div style="margin: 10px 0">
-            <div class="wd-panel wd-panel--none wd-panel--menu">
+            <div class="wd-panel">
                 <div class="wd-panel-header">
-                    <h3>下雨</h3>
-                    <ul class="wd-panel-header-menu">
-                        <li><a>海浪</a></li>
-                        <li><a>明白</a></li>
-                    </ul>
+                    <h4>下雨</h4>
                 </div>
                 <div class="wd-panel-body">
                     无所事事，你站在雨里，
@@ -227,9 +228,46 @@
             </div>
         </div>
         <div style="margin: 10px 0">
+            <div class="wd-panel wd-panel--none">
+                <div class="wd-panel-header">
+                    <h4>
+                        我们都一样
+                        <span>
+                            <i class="wd-panel-header-icon icon-pin"></i>成都
+                        </span>
+                    </h4>
+                    <ul class="wd-panel-header-nav">
+                        <li>
+                            <a>神秘嘉宾<span class="wd-triangle"></span></a>
+                            <!--<ul class="wd-dropdown" style="left: -50%">-->
+                                <!--<li><a href="#">Action</a></li>-->
+                                <!--<li><a href="#">Another action</a></li>-->
+                                <!--<li><a href="#">Something else here</a></li>-->
+                                <!--<li>-->
+                                    <!--<span class="wd-triangle-group wd-triangle-group&#45;&#45;upward">-->
+                                        <!--<i class="wd-triangle"></i>-->
+                                     <!--</span>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                            <div class="wd-bubble wd-bubble--up" style="left: -50%;">
+                                <span class="wd-triangle-group wd-triangle-group--upward">
+                                    <i class="wd-triangle"></i>
+                                </span>
+                                <div class="wd-bubble-title">
+                                    <input type="text" placeholder="请输入编号"/>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a>热门</a></li>
+                        <li><a>最新</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="margin: 10px 0">
             <div class="wd-panel ">
                 <div class="wd-panel-header">
-                    <h3>下雨</h3>
+                    <h4>下雨</h4>
                 </div>
                 <div class="wd-panel-body">
                     <div class="wd-table-responsive">
@@ -282,10 +320,22 @@
             </div>
         </div>
         <div style="margin: 10px 0;height: 50px;">
-            <div class="wd-bubble">
+            <div class="wd-bubble wd-bubble--down">
+                <span class="wd-triangle-group">
+                    <i class="wd-triangle"></i>
+                </span>
                 Test Bubble
             </div>
         </div>
+        <div style="margin: 10px 0;height: 50px;">
+            <div class="wd-bubble wd-bubble--up">
+                <span class="wd-triangle-group wd-triangle-group--upward">
+                    <i class="wd-triangle"></i>
+                </span>
+                Test Bubble
+            </div>
+        </div>
+
         <div style="margin-bottom: 10px;">
             <input type="text" placeholder="没有梦想何必远方"/>
         </div>
@@ -298,6 +348,7 @@
                 </div>
             </div>
         </div>
+        <textarea></textarea>
         <div style="margin: 10px 0">
             <img  style="margin-right: 10px;" src="data:image/svg+xml;base64,
             PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI

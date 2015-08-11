@@ -186,4 +186,39 @@
     border-right: 4px dashed transparent;
     border-left: 4px dashed transparent;
   }
+  .wd-triangle-group{
+    position: absolute;
+    display: inline-block;
+    *display:inline;
+    zoom: 1;
+    width: 0;
+    height: 0;
+    //margin-left: 4px;
+    //margin-top: -2px;
+    line-height: 1.571;
+    vertical-align: middle;
+    border-top: 12px solid #ddd;
+    border-right: 12px dashed transparent;
+    border-left: 12px dashed transparent;
+    .wd-triangle{
+      position: absolute;
+      top: -11px;
+      left: -12px;
+      border-top: 11px solid #fff;
+      border-right: 12px dashed transparent;
+      border-left: 12px dashed transparent;
+    }
+    &.wd-triangle-group--upward{
+      border-top: none;
+      border-bottom: 12px solid #ddd;
+      border-right: 12px dashed transparent;
+      border-left: 12px dashed transparent;
+      .wd-triangle{
+        top: 4px;
+        left: -12px;
+        border-top: none;
+        border-bottom: 11px solid #fff;
+      }
+    }
+  }
 }
