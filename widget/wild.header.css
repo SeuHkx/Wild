@@ -1,7 +1,0 @@
-.wd-header {
-  zoom: 1; }
-  .wd-header:before, .wd-header:after {
-    content: "";
-    display: table; }
-  .wd-header:after {
-    clear: both; }
