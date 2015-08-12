@@ -66,6 +66,7 @@ gulp.task('minify',['clean'],function(){
             ],
             cascade: true
         }))
+        .pipe(gulp.dest(config.dir.dist))
         .pipe(plugins.rename({
             suffix : '.min'
         }))

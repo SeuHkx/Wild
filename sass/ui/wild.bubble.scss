@@ -13,6 +13,11 @@
   z-index: 99;
   @include border-radius($wd-bubble-bd-radius);
   @include box-shadow($wd-bubble-shadow);
+  >.wd-dropdown{
+    border: none;
+    box-shadow: none;
+    position: relative;
+  }
 }
 .wd-bubble--down{
   .wd-triangle-group{

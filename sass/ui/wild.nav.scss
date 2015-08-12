@@ -38,8 +38,10 @@
   .wd-nav-drown{
     >a{
       border: 1px solid #ddd;
+      border-top: none;
       border-bottom: 1px solid #fff;
       border-bottom: 2px solid #fff\9;
+      padding: 0 19px;
       position: relative;
       z-index: 999;
       &:hover{
@@ -50,6 +52,6 @@
   }
 }
 .wd-nav-active{
-  //
+
 }
 
