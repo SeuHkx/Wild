@@ -6,6 +6,7 @@
   border-style: solid;
   border-color: rgba(0, 0, 0, 0.15);
   border: 1px solid #ddd \9;
+  z-index: 99;
   border-radius: 2px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
           box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); }

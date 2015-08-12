@@ -10,9 +10,9 @@
   border-style: solid;
   border-color: $wd-bubble-bd-color;
   border: 1px solid #ddd\9;
+  z-index: 99;
   @include border-radius($wd-bubble-bd-radius);
   @include box-shadow($wd-bubble-shadow);
-
 }
 .wd-bubble--down{
   .wd-triangle-group{

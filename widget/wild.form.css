@@ -40,6 +40,13 @@ input[type="password"] {
     border-radius: 0; }
   .wd-from-controls .wd-button {
     color: #FFF; }
+  .wd-from-controls button {
+    background: transparent;
+    *height: 35px;
+    *padding: 0; }
+    .wd-from-controls button.wd-button--hack-icon {
+      *height: 35px;
+      *padding: 6px 10px; }
   .wd-from-controls .wd-button-group .wd-button:last-child {
     border-right: none;
     border-left: 1px solid #0c60ee; }

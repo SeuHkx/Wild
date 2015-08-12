@@ -44,6 +44,15 @@ input[type="password"]{
   .wd-button{
     color: #FFF;
   }
+  button{
+    background: transparent;
+    *height: 35px;
+    *padding: 0;
+    &.wd-button--hack-icon{
+      *height: 35px;
+      *padding: 6px 10px;
+    }
+  }
   .wd-button-group{
     .wd-button:last-child{
       border-right: none;
