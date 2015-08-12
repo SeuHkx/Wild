@@ -34,7 +34,7 @@ input[type="password"]{
   zoom: 1;
   border:1px solid darken($wd-form-input-group-bg-color,10%);
   background-color: $wd-form-input-group-bg-color;
-  min-width: 230px;
+  //min-width: 230px;
   font-size: 0;
   input{
     background-color: $wd-form-input-bg-color;

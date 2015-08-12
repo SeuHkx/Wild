@@ -37,6 +37,7 @@
   border-bottom: none;
 }
 .wd-panel-header-title,.wd-panel-header > h4{
+  position: relative;
   float: left;
   line-height: 44px;
   font-size: $wd-panel-header-font-size;

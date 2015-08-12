@@ -32,7 +32,6 @@ input[type="password"] {
   zoom: 1;
   border: 1px solid #0c60ee;
   background-color: #387ef5;
-  min-width: 230px;
   font-size: 0; }
   .wd-from-controls input {
     background-color: #fff;
