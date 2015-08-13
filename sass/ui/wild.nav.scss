@@ -2,6 +2,18 @@
   width: 100%;
   min-height: 45px;
   zoom: 1;
+  &.wd-nav--vertical{
+    >li{
+      float: none;
+    }
+  }
+  &.wd-nav--right{
+    display: inline-block;
+    *display: inline;
+    width: auto;
+    zoom: 1;
+    float: right;
+  }
   &:before,&:after{
     content: "";
     display: table;
