@@ -65,5 +65,72 @@ input[type="password"]{
     }
   }
 }
+.wd-form-group{
+  margin-bottom: 10px;
+  >label{
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+  }
+  >input{
+    display: block;
+    width: 100%;
+  }
+  &.wd-form-group--inline{
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    >input{
+      display: inline-block;
+      *display: inline;
+      zoom: 1;
+      width: auto;
+    }
+  }
+  &.wd-form-group--standard{
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+  }
+}
+.wd-form-fixed{
+  *position: relative;
+  margin-bottom: 15px;
+  zoom: 1;
+  &:before,&:after{
+    content: "";
+    display: table;
+  }
+  &:after{
+    clear: both;
+  }
+  .wd-form-fixed-label{
+    float: left;
+    width: 100px;
+    height: 35px;
+    line-height: 33px;
+    *position: relative;
+    *z-index: 9;
+    //text-align: right;
+    >label{
+      display: inline-block;
+      *display: inline;
+      zoom: 1;
+      max-width: 100%;
+      padding-right: 20px;
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+  }
+  .wd-from-fixed-flux{
+    width: 100%;
+    *position: absolute;
 
-
+    padding-left: 100px;
+    *padding-left: 0;
+    *margin-left: -100px;
+  }
+}
