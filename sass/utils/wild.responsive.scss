@@ -57,4 +57,16 @@
       }
     }
   }
+  .wd-form-group{
+    >input{
+      width: 100%;
+    }
+    &.wd-form-group--inline{
+      display: block;
+      >input{
+        display: block;
+        width: 100%;
+      }
+    }
+  }
 }

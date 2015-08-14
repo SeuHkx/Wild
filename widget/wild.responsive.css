@@ -30,4 +30,11 @@
           padding-right: 30px; }
         .wd-nav > li .wd-bubble .wd-bubble-bar .wd-dropdown > li > a {
           padding-left: 30px;
-          padding-right: 30px; } }
+          padding-right: 30px; }
+  .wd-form-group > input {
+    width: 100%; }
+  .wd-form-group.wd-form-group--inline {
+    display: block; }
+    .wd-form-group.wd-form-group--inline > input {
+      display: block;
+      width: 100%; } }
