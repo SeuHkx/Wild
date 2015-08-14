@@ -339,6 +339,40 @@ h6, .wd-h6 {
       border-top: none;
       border-bottom: 11px solid #fff; }
 
+@media screen and (min-width: 300px) and (max-width: 768px) {
+  .wd-table-responsive {
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    border: 1px solid #ddd; }
+    .wd-table-responsive .wd-table thead > tr td, .wd-table-responsive .wd-table thead > tr th, .wd-table-responsive .wd-table tbody > tr td, .wd-table-responsive .wd-table tbody > tr th {
+      border-left: none; }
+      .wd-table-responsive .wd-table thead > tr td:last-child, .wd-table-responsive .wd-table thead > tr th:last-child, .wd-table-responsive .wd-table tbody > tr td:last-child, .wd-table-responsive .wd-table tbody > tr th:last-child {
+        border-right: none; }
+    .wd-table-responsive .wd-table thead > tr > td, .wd-table-responsive .wd-table thead > tr > th, .wd-table-responsive .wd-table tbody > tr > td, .wd-table-responsive .wd-table tbody > tr > th {
+      white-space: nowrap; }
+  .wd-nav {
+    height: auto; }
+    .wd-nav > li {
+      float: none; }
+      .wd-nav > li > a {
+        text-align: left; }
+      .wd-nav > li .wd-bubble-mass {
+        position: relative;
+        padding-left: 30px;
+        padding-right: 30px; }
+        .wd-nav > li .wd-bubble-mass .wd-bubble-mass-bar {
+          text-align: left; }
+      .wd-nav > li .wd-bubble {
+        position: relative; }
+        .wd-nav > li .wd-bubble .wd-bubble-title {
+          padding-left: 30px;
+          padding-right: 30px; }
+        .wd-nav > li .wd-bubble .wd-bubble-bar .wd-dropdown > li > a {
+          padding-left: 30px;
+          padding-right: 30px; } }
+
 .wd-button {
   display: inline-block;
   *display: inline;
@@ -641,6 +675,63 @@ input[type="password"] {
   .wd-from-controls .wd-button-group .wd-button.hack-last-left-border {
     border-left: 1px solid #0c60ee; }
 
+.wd-form-group {
+  margin-bottom: 10px; }
+  .wd-form-group > label {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700; }
+  .wd-form-group > input {
+    display: block;
+    width: 100%; }
+  .wd-form-group.wd-form-group--inline {
+    display: inline-block;
+    *display: inline;
+    zoom: 1; }
+    .wd-form-group.wd-form-group--inline > input {
+      display: inline-block;
+      *display: inline;
+      zoom: 1;
+      width: auto; }
+  .wd-form-group.wd-form-group--standard {
+    display: inline-block;
+    *display: inline;
+    zoom: 1; }
+
+.wd-form-fixed {
+  *position: relative;
+  margin-bottom: 15px;
+  zoom: 1; }
+  .wd-form-fixed:before, .wd-form-fixed:after {
+    content: "";
+    display: table; }
+  .wd-form-fixed:after {
+    clear: both; }
+  .wd-form-fixed .wd-form-fixed-label {
+    float: left;
+    width: 100px;
+    height: 35px;
+    line-height: 33px;
+    *position: relative;
+    *z-index: 9; }
+    .wd-form-fixed .wd-form-fixed-label > label {
+      display: inline-block;
+      *display: inline;
+      zoom: 1;
+      max-width: 100%;
+      padding-right: 20px;
+      margin-bottom: 5px;
+      font-weight: 700; }
+  .wd-form-fixed .wd-from-fixed-flux {
+    width: 100%;
+    *position: absolute;
+    padding-left: 100px;
+    *padding-left: 0;
+    *margin-left: -100px; }
+
 .wd-img {
   vertical-align: middle; }
 
@@ -840,6 +931,14 @@ input[type="password"] {
   width: 100%;
   min-height: 45px;
   zoom: 1; }
+  .wd-nav.wd-nav--vertical > li {
+    float: none; }
+  .wd-nav.wd-nav--right {
+    display: inline-block;
+    *display: inline;
+    width: auto;
+    zoom: 1;
+    float: right; }
   .wd-nav:before, .wd-nav:after {
     content: "";
     display: table; }
