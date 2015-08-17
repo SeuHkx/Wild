@@ -11,16 +11,16 @@
   border-radius: 2px; }
 
 .wd-badge--default {
-  background-color: #777; }
+  background-color: #ccc; }
 
 .wd-badge--positive {
-  background-color: #2571f4; }
+  background-color: #0c63ee; }
 
 .wd-badge--red {
-  background-color: #ef473a; }
+  background-color: #e42012; }
 
 .wd-badge--orange {
   background-color: #fa9915; }
 
 .wd-badge--green {
-  background-color: #33cd5f; }
+  background-color: #28a54c; }
