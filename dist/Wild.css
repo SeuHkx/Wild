@@ -371,7 +371,14 @@ h6, .wd-h6 {
           padding-right: 30px; }
         .wd-nav > li .wd-bubble .wd-bubble-bar .wd-dropdown > li > a {
           padding-left: 30px;
-          padding-right: 30px; } }
+          padding-right: 30px; }
+  .wd-form-group > input {
+    width: 100%; }
+  .wd-form-group.wd-form-group--inline {
+    display: block; }
+    .wd-form-group.wd-form-group--inline > input {
+      display: block;
+      width: 100%; } }
 
 .wd-button {
   display: inline-block;
@@ -406,6 +413,9 @@ h6, .wd-h6 {
     *height: 22px; }
     .wd-button.wd-button--hack-icon .wd-triangle {
       *margin-top: 2px; }
+  .wd-button .wd-badge {
+    margin-left: 4px;
+    border-radius: 10px; }
 
 .wd-button-icon {
   margin-left: 4px;
@@ -657,6 +667,7 @@ input[type="password"] {
   background-color: #387ef5;
   font-size: 0; }
   .wd-from-controls input {
+    min-width: 180px;
     background-color: #fff;
     border: none;
     border-radius: 0; }
@@ -674,9 +685,18 @@ input[type="password"] {
     border-left: 1px solid #0c60ee; }
   .wd-from-controls .wd-button-group .wd-button.hack-last-left-border {
     border-left: 1px solid #0c60ee; }
+  .wd-from-controls .wd-badge {
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    margin-top: -12px;
+    padding-top: 3px;
+    padding-bottom: 3px; }
+  .wd-from-controls .wd-badge + input {
+    padding-left: 55px; }
 
 .wd-form-group {
-  margin-bottom: 10px; }
+  margin-bottom: 20px; }
   .wd-form-group > label {
     display: inline-block;
     *display: inline;
@@ -685,8 +705,7 @@ input[type="password"] {
     margin-bottom: 5px;
     font-weight: 700; }
   .wd-form-group > input {
-    display: block;
-    width: 100%; }
+    display: block; }
   .wd-form-group.wd-form-group--inline {
     display: inline-block;
     *display: inline;
@@ -975,6 +994,33 @@ input[type="password"] {
     .wd-nav .wd-nav-drown > a:hover {
       background-color: transparent;
       color: #333; }
+
+.wd-badge {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  padding: 1px 7px;
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 2px; }
+
+.wd-badge--default {
+  background-color: #ccc; }
+
+.wd-badge--positive {
+  background-color: #0c63ee; }
+
+.wd-badge--red {
+  background-color: #e42012; }
+
+.wd-badge--orange {
+  background-color: #fa9915; }
+
+.wd-badge--green {
+  background-color: #28a54c; }
 
 .wd-bubble {
   position: absolute;
