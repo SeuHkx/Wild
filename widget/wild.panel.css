@@ -24,6 +24,9 @@
   border-bottom: 1px solid #ddd;
   background-color: #f5f5f5;
   color: #333; }
+  .wd-panel-header .wd-button {
+    margin-top: 5px;
+    margin-bottom: 5px; }
 
 .wd-panel-header--border {
   border-top: 1px solid #ddd;
@@ -65,8 +68,6 @@
       .wd-panel-header-nav > li > a:hover {
         text-decoration: none;
         color: #000; }
-    .wd-panel-header-nav > li:last-child > a {
-      padding-right: 0; }
 
 .wd-panel-body {
   background-color: #fff;

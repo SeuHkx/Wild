@@ -31,6 +31,10 @@
   border-bottom: 1px solid $wd-panel-bd-color;
   background-color: $wd-panel-header-bg-color;
   color: $wd-panel-header-font-color;
+  .wd-button{
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
 }
 .wd-panel-header--border{
   border-top: 1px solid $wd-panel-bd-color;
@@ -77,9 +81,9 @@
         color: #000;
       }
     }
-    &:last-child > a{
-      padding-right: 0;
-    }
+    //&:last-child > a{
+    //  padding-right: 0;
+    //}
   }
 }
 .wd-panel-body{
