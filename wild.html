@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="widget/wild.bubble.css"/>
     <link rel="stylesheet" href="widget/wild.form.css"/>
     <link rel="stylesheet" href="widget/wild.nav.css"/>
+    <link rel="stylesheet" href="widget/wild.badge.css"/>
     <link rel="stylesheet" href="widget/wild.responsive.css"/>
     <link rel="stylesheet" href="widget/wild.utils.css"/>
     <link rel="stylesheet" href="public/css/common.css"/>
@@ -168,7 +169,7 @@
         </div>
         <div style="margin: 10px 0">
             <a class="wd-button wd-button--default" href="#">就是爱你</a>
-            <a class="wd-button  wd-button--orange" >天使的翅膀</a>
+            <a class="wd-button  wd-button--orange" >天使的翅膀<span class="wd-badge wd-badge--positive">8</span></a>
             <a class="wd-button  wd-button--red"  >爱笑的眼睛</a>
             <a class="wd-button wd-button--green" >三万英尺</a>
             <a class="wd-button wd-button--positive" >爱不爱我</a>
@@ -177,7 +178,7 @@
         <div style="margin: 10px 0">
             <a class="wd-button wd-button--default wd-button--tiny" href="#" >就是爱你</a>
             <a class="wd-button  wd-button--orange wd-button--sm" >天使的翅膀</a>
-            <a class="wd-button wd-button--positive">量身订做</a>
+            <a class="wd-button wd-button--positive">量身订做<span class="wd-badge wd-badge--positive">12</span></a>
             <a class="wd-button  wd-button--red wd-button--lg" >爱笑的眼睛</a>
             <a class="wd-button wd-button--green wd-button--jumbo" href="#">幸福了然后</a>
         </div>
@@ -424,24 +425,40 @@
             </div>
         </div>
         <div style="margin-bottom: 10px;">
+            <span class="wd-badge wd-badge--positive">标签</span>
+            <span class="wd-badge wd-badge--default">标签</span>
+            <span class="wd-badge wd-badge--red">标签</span>
+            <span class="wd-badge wd-badge--orange">标签</span>
+            <span class="wd-badge wd-badge--green">标签</span>
+        </div>
+        <div style="margin-bottom: 10px;">
             <div class="wd-from-controls">
-                <input type="text" placeholder="如果不悲伤就无法飞翔"/>
+                <input type="text" placeholder="请输入相关信息"/>
                 <div class="wd-button-group">
-                    <button class="wd-button">Search</button>
+                    <button class="wd-button">搜索</button>
                     <button class="wd-button hack-last-left-border wd-button--hack-icon" ><i class="wd-triangle"></i></button>
                 </div>
             </div>
         </div>
         <div style="margin-bottom: 10px;">
             <div class="wd-from-controls">
-                <input type="text" placeholder="如果不悲伤就无法飞翔"/>
+                <span class="wd-badge wd-badge--red">圈子</span>
+                <input type="text" placeholder="搜索一下"/>
                 <div class="wd-button-group">
-                    <a class="wd-button " >Search</a>
+                    <a class="wd-button " >搜索</a>
                     <a class="wd-button hack-last-left-border wd-button--hack-icon" ><i class="wd-triangle"></i></a>
+                </div>
+                <div class="wd-bubble wd-bubble--up" style="right: 0;top: 48px;">
+                    <span class="wd-triangle-group wd-triangle-group--upward">
+                        <i class="wd-triangle"></i>
+                    </span>
+                    <ul class="wd-dropdown">
+                        <li><a href="#">圈子</a></li>
+                        <li><a href="#">话题</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <textarea></textarea>
         <div style="margin: 10px 0">
             <img  style="margin-right: 10px;" src="data:image/svg+xml;base64,
             PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI

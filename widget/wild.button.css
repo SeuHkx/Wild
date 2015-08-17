@@ -31,6 +31,9 @@
     *height: 22px; }
     .wd-button.wd-button--hack-icon .wd-triangle {
       *margin-top: 2px; }
+  .wd-button .wd-badge {
+    margin-left: 4px;
+    border-radius: 10px; }
 
 .wd-button-icon {
   margin-left: 4px;

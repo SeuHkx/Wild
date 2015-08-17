@@ -129,6 +129,11 @@
     }
   }
 }
+@mixin setBadge($name,$bgColor){
+  .wd-badge--#{$name}{
+    background-color: $bgColor;
+  }
+}
 @mixin user-select(){
   -webkit-user-select: none;
   -moz-user-select: none;

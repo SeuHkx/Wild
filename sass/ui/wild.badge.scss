@@ -1,0 +1,21 @@
+@import "../mixins/mixins";
+
+.wd-badge{
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  padding: 1px 7px;
+  font-size: 12px;
+  //font-weight: 700;
+  //line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 2px;
+}
+@include setBadge('default',#777);
+@include setBadge('positive',#2571f4);
+@include setBadge('red',#ef473a);
+@include setBadge('orange',#fa9915);
+@include setBadge('green',#33cd5f);

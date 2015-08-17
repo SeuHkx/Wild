@@ -1,0 +1,26 @@
+.wd-badge {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  padding: 1px 7px;
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 2px; }
+
+.wd-badge--default {
+  background-color: #777; }
+
+.wd-badge--positive {
+  background-color: #2571f4; }
+
+.wd-badge--red {
+  background-color: #ef473a; }
+
+.wd-badge--orange {
+  background-color: #fa9915; }
+
+.wd-badge--green {
+  background-color: #33cd5f; }
