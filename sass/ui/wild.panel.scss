@@ -31,7 +31,7 @@
   border-bottom: 1px solid $wd-panel-bd-color;
   background-color: $wd-panel-header-bg-color;
   color: $wd-panel-header-font-color;
-  .wd-button{
+  .wd-button, input[type="text"], input[type="password"]{
     margin-top: 5px;
     margin-bottom: 5px;
   }

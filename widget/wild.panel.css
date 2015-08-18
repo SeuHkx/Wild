@@ -24,7 +24,7 @@
   border-bottom: 1px solid #ddd;
   background-color: #f5f5f5;
   color: #333; }
-  .wd-panel-header .wd-button {
+  .wd-panel-header .wd-button, .wd-panel-header input[type="text"], .wd-panel-header input[type="password"] {
     margin-top: 5px;
     margin-bottom: 5px; }
 

@@ -13,6 +13,11 @@
       white-space: nowrap; }
   .wd-nav {
     height: auto; }
+    .wd-nav.wd-nav--right {
+      display: block;
+      float: none; }
+      .wd-nav.wd-nav--right > li {
+        float: none; }
     .wd-nav > li {
       float: none; }
       .wd-nav > li > a {

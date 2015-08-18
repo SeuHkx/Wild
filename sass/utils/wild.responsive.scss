@@ -25,6 +25,13 @@
   }
   .wd-nav{
     height: auto;
+    &.wd-nav--right{
+      display: block;
+      float: none;
+      >li{
+        float: none;
+      }
+    }
     >li{
       float: none;
       >a{
