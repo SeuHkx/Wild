@@ -33,6 +33,13 @@
       }
     }
     &.wd-nav-no-respond{
+      &.wd-nav--right{
+        display: inline-block;
+        *display: inline;
+        width: auto;
+        zoom: 1;
+        float: right;
+      }
       > li {
         float: left;
       }
