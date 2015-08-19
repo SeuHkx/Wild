@@ -18,6 +18,10 @@
       float: none; }
       .wd-nav.wd-nav--right > li {
         float: none; }
+    .wd-nav.wd-nav-no-respond > li {
+      float: left; }
+    .wd-nav.wd-nav-no-respond .wd-bubble-mass, .wd-nav.wd-nav-no-respond .wd-bubble {
+      position: absolute; }
     .wd-nav > li {
       float: none; }
       .wd-nav > li > a {

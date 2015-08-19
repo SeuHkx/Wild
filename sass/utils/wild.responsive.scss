@@ -32,6 +32,14 @@
         float: none;
       }
     }
+    &.wd-nav-no-respond{
+      > li {
+        float: left;
+      }
+      .wd-bubble-mass,.wd-bubble{
+        position: absolute;
+      }
+    }
     >li{
       float: none;
       >a{
