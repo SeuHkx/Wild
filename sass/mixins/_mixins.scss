@@ -1,31 +1,19 @@
 @mixin setTextSize() {
-  $i: 4;
-  $s: 18;
-  @while $i > 0 {
-    h#{$i},.wd-h#{$i}{
-      font-size: $s + px;
+  $font-index: 6;
+  $font-size: 12;
+  @while $font-index > 0 {
+    h#{$font-index},.wd-h#{$font-index}{
+      font-size: $font-size + px;
       small,.wd-small{
         font-size: 65%;
       }
     }
-    $i : $i - 1;
-    $s : $s + 6;
-  }
-  h5,.wd-h5{
-    font-size: 14px;
-    small,.small{
-      font-size: 65%;
-    }
-  }
-  h6,.wd-h6{
-    font-size: 12px;
-    small,.small{
-      font-size: 65%;
-    }
+    $font-index :  $font-index - 1;
+    $font-size  :  $font-size  + 2;
   }
 }
-@mixin clear(){
-  .wd-clear{
+@mixin setClear(){
+  .wd-utils-clear{
     zoom: 1;
     &:before,&:after{
       content: "";
@@ -38,14 +26,25 @@
 }
 @mixin setTextAlign(){
   @each $props in left,right,center,justify{
-    .wd-text-#{$props}{
+    .wd-utils-text--#{$props}{
       text-align: $props;
     }
   }
 }
+@mixin setBoxShadow($val,$val-deep,$val-hover){
+  .wd-utils-bs{
+    @include box-shadow($val);
+  }
+  .wd-utils-bs--deep{
+    @include box-shadow($val-deep)
+  }
+  .wd-utils-bs--hover{
+    @include box-shadow($val-hover);
+  }
+}
 @mixin setTextTransform(){
   @each $props in lowercase,uppercase,capitalize{
-    .wd-text--#{$props}{
+    .wd-utils-text--#{$props}{
       text-transform: $props;
     }
   }
@@ -116,7 +115,7 @@
     }
   }
 }
-@mixin setDrop($name,$color,$bgColor){
+@mixin setDropdonw-theme($name,$color,$bgColor){
   .wd-dropdown--#{$name}{
     li{
       >a{
@@ -129,7 +128,7 @@
     }
   }
 }
-@mixin setBadge($name,$bgColor){
+@mixin setBadge-theme($name,$bgColor){
   .wd-badge--#{$name}{
     background-color: $bgColor;
   }
@@ -143,25 +142,25 @@
 @mixin box-shadow($shadow...){
   box-shadow: $shadow;
 }
-@mixin pull-float($name){
+@mixin setPull-float($name){
   @if $name == left{
-    .wd-#{$name}{
+    .wd-utils-#{$name}{
       float: $name;
     }
   }@else if $name == right{
-    .wd-#{$name}{
+    .wd-utils-#{$name}{
       float: $name;
     }
   }
 }
-@mixin center-block(){
-  .wd-center-block{
+@mixin setCenterBlock(){
+  .wd-utils-center-block{
     display: block;
     margin-left: auto;
     margin-right: auto;
   }
 }
-@mixin text-overflow(){
+@mixin setTextOverflow(){
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -175,7 +174,7 @@
 @mixin border-radius($radius){
   border-radius: $radius;
 }
-@mixin triangle(){
+@mixin setTriangle(){
   .wd-triangle{
     display: inline-block;
     *display:inline;

@@ -5,24 +5,18 @@
   text-align: left;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, 0.15);
   border: 1px solid #ddd \9;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); }
+  border-radius: 2px;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 2px 0 rgba(0, 0, 0, 0.12); }
   .wd-dropdown > li > a {
     display: block;
-    padding: 4px 10px;
-    clear: both;
+    padding: 5px 10px;
     font-weight: 400;
-    line-height: 1.571;
-    color: #333;
+    line-height: 1.57143;
+    color: #212121;
     white-space: nowrap; }
     .wd-dropdown > li > a:hover {
       color: #fff;
       text-decoration: none;
       background-color: #387ef5; }
-  .wd-dropdown > li > .wd-triangle-group {
-    top: -12px;
-    left: 50%;
-    margin-left: -12px; }

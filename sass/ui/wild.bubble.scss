@@ -4,12 +4,13 @@
 
 .wd-bubble{
   position: absolute;
-  min-width: $wd-bubble-minwidth;
+  min-width: $wd-bubble-min-width;
   background-color: $wd-bubble-bg-color;
-  border-width: 1px;
-  border-style: solid;
-  border-color: $wd-bubble-bd-color;
+
+  //border: $wd-bubble-bd-width solid $wd-bubble-bd-color;
+  //IE
   border: 1px solid #ddd\9;
+
   z-index: 99;
   @include border-radius($wd-bubble-bd-radius);
   @include box-shadow($wd-bubble-shadow);
@@ -34,25 +35,19 @@
   }
 }
 .wd-bubble-title{
-  padding: $wd-bubble-padding;
+  padding: $wd-bubble-padding $wd-bubble-padding*2;
   text-align: left;
   font-size: 14px;
-  color: #666;
-  >h5,p,.wd-h5{
-    margin-bottom: 5px;
-  }
-  >p{
-    >span{
-      font-size: 12px;
-    }
-    font-size: 12px;
+  color: $wd-bubble-font-color;
+  h5,p,.wd-h5{
+    margin-bottom: $wd-bubble-padding;
   }
   >p:last-child{
     margin-bottom: 0;
   }
 }
 .wd-bubble-bar{
-  margin-top: 5px;
+  margin-top: $wd-bubble-padding;
   border-top: 1px solid #ddd;
   .wd-dropdown{
     position: relative;
@@ -60,9 +55,8 @@
     box-shadow: none;
     >li{
       >a{
-        padding: $wd-bubble-padding/2 $wd-bubble-padding;
-        color: #666;
-        font-size: 12px;
+        padding: $wd-bubble-padding $wd-bubble-padding*2;
+        color: $wd-bubble-font-color;
         &:hover{
           color: #fff;
         }
@@ -104,4 +98,3 @@
     }
   }
 }
-

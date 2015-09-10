@@ -2,14 +2,11 @@
   position: absolute;
   min-width: 160px;
   background-color: #fff;
-  border-width: 1px;
-  border-style: solid;
-  border-color: rgba(0, 0, 0, 0.15);
   border: 1px solid #ddd \9;
   z-index: 99;
   border-radius: 2px;
-  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); }
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 2px 0 rgba(0, 0, 0, 0.12); }
   .wd-bubble > .wd-dropdown {
     border: none;
     -webkit-box-shadow: none;
@@ -27,16 +24,12 @@
   left: 50%; }
 
 .wd-bubble-title {
-  padding: 10px;
+  padding: 5px 10px;
   text-align: left;
   font-size: 14px;
-  color: #666; }
-  .wd-bubble-title > h5, .wd-bubble-title p, .wd-bubble-title .wd-h5 {
+  color: #212121; }
+  .wd-bubble-title h5, .wd-bubble-title p, .wd-bubble-title .wd-h5 {
     margin-bottom: 5px; }
-  .wd-bubble-title > p {
-    font-size: 12px; }
-    .wd-bubble-title > p > span {
-      font-size: 12px; }
   .wd-bubble-title > p:last-child {
     margin-bottom: 0; }
 
@@ -50,15 +43,14 @@
             box-shadow: none; }
     .wd-bubble-bar .wd-dropdown > li > a {
       padding: 5px 10px;
-      color: #666;
-      font-size: 12px; }
+      color: #212121; }
       .wd-bubble-bar .wd-dropdown > li > a:hover {
         color: #fff; }
 
 .wd-bubble-mass {
   position: absolute;
   display: block;
-  padding: 10px 0;
+  padding: 5px 0;
   width: 100%;
   z-index: 9;
   background-color: #fff;
@@ -68,15 +60,15 @@
 
 .wd-bubble-mass-title {
   text-align: center;
-  margin-top: -10px; }
+  margin-top: -5px; }
 
 .wd-bubble-mass-bar > li > a {
   display: block;
   padding: 5px 10px;
   clear: both;
   font-weight: 400;
-  line-height: 1.571;
-  color: #333;
+  line-height: 1.57143;
+  color: #212121;
   white-space: nowrap;
   cursor: pointer; }
   .wd-bubble-mass-bar > li > a:hover {

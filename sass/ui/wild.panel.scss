@@ -1,9 +1,10 @@
 @import "../mixins/mixins",
         "../variables/var.panel";
+
 .wd-panel{
-  border-width: 1px;
-  border-style: solid;
-  border-color: $wd-panel-bd-color;
+  border-width: 1px\9;
+  border-style: solid\9;
+  border-color: $wd-panel-bd-color \9;
   @include border-radius($wd-panel-bd-radius);
   @include box-shadow($wd-panel-shadow);
   &.wd-panel--table{
@@ -31,10 +32,10 @@
   border-bottom: 1px solid $wd-panel-bd-color;
   background-color: $wd-panel-header-bg-color;
   color: $wd-panel-header-font-color;
-  .wd-button, input[type="text"], input[type="password"]{
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
+  //.wd-button, input[type="text"], input[type="password"]{
+  //  margin-top: 5px;
+  //  margin-bottom: 5px;
+  //}
 }
 .wd-panel-header--border{
   border-top: 1px solid $wd-panel-bd-color;

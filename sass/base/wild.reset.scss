@@ -15,11 +15,14 @@ time, mark, audio, video {
   padding: 0;
   border: 0;
   vertical-align: baseline;
-  font: inherit;
-  font-size: 14px; }
+  font-size: 100%; }
 
 ol, ul {
   list-style: none; }
+
+article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+  display: block;
+}
 
 blockquote, q {
   quotes: none; }
@@ -43,7 +46,6 @@ script {
 
 
 html {
-  font-family: "Microsoft Yahei","Helvetica Neue", Helvetica, STHeiTi, sans-serif;
   /* 1 */
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -52,16 +54,15 @@ html {
 
 * {
   -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-  *behavior: url(../js/boxsizing.htc);
+     -moz-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+          box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
 
-body {
+body,html{
   margin: 0;
-  font-family: "Microsoft Yahei","Helvetica Neue", Helvetica, STHeiTi, sans-serif; }
+  font-family: Microsoft Yahei,Helvetica Neue,Arial,Helvetica, STHeiTi, sans-serif; }
 
 a,
 button,

@@ -1,10 +1,10 @@
 .wd-panel {
-  border-width: 1px;
-  border-style: solid;
-  border-color: #ddd;
+  border-width: 1px\9;
+  border-style: solid\9;
+  border-color: #DADADA \9;
   border-radius: 2px;
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); }
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 2px 0 rgba(0, 0, 0, 0.12); }
   .wd-panel.wd-panel--table .wd-panel-body {
     padding: 0; }
   .wd-panel.wd-panel--none {
@@ -16,20 +16,17 @@
       -webkit-box-shadow: none;
               box-shadow: none; }
   .wd-panel.wd-panel--border .wd-panel-header {
-    border-bottom: 1px solid #ddd; }
+    border-bottom: 1px solid #DADADA; }
 
 .wd-panel-header {
   height: 45px;
   padding: 0 15px;
-  border-bottom: 1px solid #ddd;
-  background-color: #f5f5f5;
-  color: #333; }
-  .wd-panel-header .wd-button, .wd-panel-header input[type="text"], .wd-panel-header input[type="password"] {
-    margin-top: 5px;
-    margin-bottom: 5px; }
+  border-bottom: 1px solid #DADADA;
+  background-color: #FFF;
+  color: #212121; }
 
 .wd-panel-header--border {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #DADADA;
   border-bottom: none; }
 
 .wd-panel-header-title, .wd-panel-header > h4 {
@@ -63,14 +60,14 @@
       line-height: 44px;
       text-align: center;
       padding: 0 10px;
-      color: #333;
+      color: #212121;
       cursor: pointer; }
       .wd-panel-header-nav > li > a:hover {
         text-decoration: none;
         color: #000; }
 
 .wd-panel-body {
-  background-color: #fff;
+  background-color: #FFF;
   padding: 15px;
   zoom: 1; }
   .wd-panel-body:before, .wd-panel-body:after {

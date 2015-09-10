@@ -2,46 +2,41 @@
         "../variables/var.type",
         "../variables/var.dropdown";
 
-
-
 .wd-dropdown{
   position: absolute;
   min-width: $wd-dropdown-width;
-  padding: $wd-dropdown-padding;
+  padding: $wd-dropdown-padding 0;
   text-align: left;
+
   background-color: $wd-dropdown-bg-color;
   background-clip: padding-box;
-  border: 1px solid rgba(0,0,0,.15);
+  //border: $wd-dropdown-bd-width solid $wd-dropdown-bd-color;
+  //IE
   border: 1px solid #ddd\9;
   border-radius: $wd-dropdown-bd-radius;
   @include box-shadow($wd-dropdown-shadow);
   >li{
     >a{
       display: block;
-      padding: $wd-dropdown-insert-padding;
-      clear: both;
+      padding: $wd-dropdown-padding $wd-dropdown-padding * 2;
       font-weight: 400;
       line-height: $wd-type-line-height;
-      color: $wd-dropdown-insert-color;
+      color: $wd-dropdown-font-color;
       white-space: nowrap;
 
       &:hover{
-        color: $wd-dropdown-insert-hover-color;
+        color: $wd-dropdown-hover-font-color;
         text-decoration: none;
-        background-color: $wd-dropdown-insert-hover-bgColor;
+        background-color: $wd-dropdown-hover-bg-color;
       }
     }
-    >.wd-triangle-group{
-      top: -12px;
-      left: 50%;
-      margin-left: -12px;
-    }
+    //>.wd-triangle-group{
+    //  top: $wd-triangle-group-top;
+    //  left: $wd-triangle-group-left;
+    //  margin-left: $wd-triangle-group-margin-left;
+    //}
   }
 }
-
-
-
-
 
 
 

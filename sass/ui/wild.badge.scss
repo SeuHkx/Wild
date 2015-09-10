@@ -1,14 +1,14 @@
-@import "../mixins/mixins";
+@import "../mixins/mixins",
+        "../variables/var.badge";
 
 .wd-badge{
   display: inline-block;
   *display: inline;
   zoom: 1;
-  padding: 1px 7px;
-  font-size: 12px;
-  //font-weight: 700;
-  //line-height: 1;
-  color: #fff;
+  padding: $wd-badge-padding;
+  font-size: $wd-badge-font-size;
+
+  color: $wd-badge-font-color;
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;

@@ -1,7 +1,8 @@
 @import "../variables/var.nav";
 .wd-nav{
   width: 100%;
-  min-height: 45px;
+  min-height: $wd-nav-min-height;
+  background-color: $wd-nav-bg-color;
   zoom: 1;
   &.wd-nav--vertical{
     >li{
@@ -9,9 +10,9 @@
     }
   }
   &.wd-nav--right{
+    width: auto;
     display: inline-block;
     *display: inline;
-    width: auto;
     zoom: 1;
     float: right;
   }
@@ -26,12 +27,13 @@
     position: relative;
     float: left;
     >a{
-      height: 45px;
-      line-height: 45px;
       display: block;
-      padding: 0 20px;
+      height: $wd-nav-min-height;
+      line-height: $wd-nav-min-height;
+      padding: 0 $wd-nav-padding;
+
       text-align: center;
-      color: #333;
+      color: $wd-nav-font-color;
       cursor: pointer;
       &:hover{
         text-decoration: none;
@@ -40,6 +42,8 @@
     .wd-bubble{
       margin-top: -1px;
       right: 0;
+      border: 1px solid #dadada;
+      box-shadow:  0 6px 12px rgba(0,0,0,.175);
     }
     .wd-bubble-mass{
       top: 0;
@@ -50,21 +54,23 @@
   }
   .wd-nav-drown{
     >a{
-      border: 1px solid #ddd;
-      border-top: none;
-      border-bottom: 1px solid #fff;
-      border-bottom: 2px solid #fff\9;
-      padding: 0 19px;
       position: relative;
       z-index: 999;
+      padding: 0 $wd-nav-padding - 1;
+      line-height: $wd-nav-min-height - $wd-nav-bd-width * 2;
+
+      background-color: $wd-nav-bg-color;
+      border: $wd-nav-bd-width solid $wd-nav-bd-color;
+      //border-top: none;
+      border-bottom: $wd-nav-bd-width solid $wd-nav-bg-color;
+      border-bottom: $wd-nav-bd-width * 2 solid #fff\9;
+
       &:hover{
         background-color: transparent;
-        color: #333;
+        color: $wd-nav-font-color;
       }
     }
   }
 }
-.wd-nav-active{
 
-}
 

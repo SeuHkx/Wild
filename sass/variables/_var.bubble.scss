@@ -1,14 +1,34 @@
-$wd-bubble-minwidth                :                         160px     !default;
-$wd-bubble-padding                 :                         10px      !default;
-$wd-bubble-bd-radius               :                         2px       !default;
-$wd-bubble-bg-color                :                         #fff      !default;
-$wd-bubble-bd-color                :                         rgba(0,0,0,.15)      !default;
-$wd-bubble-shadow                  :                         0 6px 12px rgba(0,0,0,.175)  !default;
+$wd-material-flag                   :                         true      !default;
+$wd-bubble-min-width                :                         160px     !default;
+$wd-bubble-bg-color                 :                         #fff      !default;
+$wd-bubble-font-color               :                         #333      !default;
+
+$wd-bubble-bd-width                 :                         1px       !default;
+$wd-bubble-bd-color                 :                         rgba(0,0,0,.15)      !default;
+$wd-bubble-bd-radius                :                         2px       !default;
+
+$wd-bubble-shadow                   :                         0 6px 12px rgba(0,0,0,.175)  !default;
+$wd-bubble-padding                  :                         5px       !default;
 
 
-$wd-bubble-mass-shadow             :                         0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !default;
-$wd-bubble-mass-padding            :                         5px 10px  !default;
-$wd-bubble-mass-font-color         :                         #333      !default;
 
-$wd-bubble-mass-hover-color        :                         #fff      !default;
-$wd-bubble-mass-hover-bg-color     :                         #387ef5   !default;
+$wd-bubble-mass-shadow              :                         0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !default;
+$wd-bubble-mass-padding             :                         5px 10px  !default;
+$wd-bubble-mass-font-color          :                         $wd-bubble-font-color      !default;
+
+$wd-bubble-mass-hover-color         :                         #fff      !default;
+$wd-bubble-mass-hover-bg-color      :                         #387ef5   !default;
+
+@if $wd-material-flag == true {
+  @import "var.material";
+  $wd-bubble-font-color             :                         $wd-material-primary-font-color;
+  $wd-bubble-bd-color               :                         $wd-material-divider-color;
+  $wd-bubble-shadow                 :                         $wd-material-box-shadow;
+  $wd-bubble-mass-font-color        :                         $wd-material-primary-font-color;
+  $wd-bubble-mass-shadow            :                         $wd-material-box-shadow-deep;
+}
+
+
+
+
+

@@ -1,2 +1,12 @@
-$wd-type-font-size                        :                               14px    !default;
-$wd-type-line-height                      :                               1.571   !default;
+$wd-type-font-size                        :                               14px                     !default;
+$wd-type-line-height                      :                               22/($wd-type-font-size / ($wd-type-font-size * 0 + 1) )   !default;
+
+$wd-type-margin-bottom                    :                               10px          !default;
+
+$Wd-type-a-font-color                     :                               #448AFF       !default;
+$Wd-type-a-font-hover-color               :                               #0288D1       !default;
+
+$wd-type-base-font-color                  :                               #FFFFFF       !default;
+$wd-type-primary-font-color               :                               darken(#FFFFFF,87%)   !default;
+$wd-type-secondary-font-color             :                               darken(#FFFFFF,54%)   !default;
+$wd-type-divider-color                    :                               darken(#FFFFFF,28.5%) !default;

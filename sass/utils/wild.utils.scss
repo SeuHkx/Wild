@@ -1,9 +1,11 @@
 @import "../mixins/mixins";
+@import "../variables/var.material";
 
 @include setTextAlign();
 @include setTextTransform();
-@include clear();
+@include setClear();
+@include setTriangle();
+@include setBoxShadow($wd-material-box-shadow,$wd-material-box-shadow-deep,$wd-material-box-shadow-hover);
 @include pull-float(left);
 @include pull-float(right);
 @include center-block();
-@include triangle();
