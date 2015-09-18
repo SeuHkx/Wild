@@ -1,7 +1,11 @@
 $wd-material-base-font-color                  :                               #FFFFFF               !default;
-$wd-material-primary-font-color               :                               darken(#FFFFFF,87%)   !default;
-$wd-material-secondary-font-color             :                               darken(#FFFFFF,54%)   !default;
+$wd-material-primary-font-color               :                               darken($wd-material-base-font-color,87%)   !default;
+$wd-material-secondary-font-color             :                               darken($wd-material-base-font-color,54%)   !default;
+$wd-material-tips-font-color                  :                               darken($wd-material-base-font-color,26%)   !default;
 $wd-material-divider-color                    :                               #DADADA !default;
+
+$wd-material-lights-secondary-font-color      :                               lighten($wd-material-base-font-color,70%)  !default;
+$wd-material-lights-tips-font-color           :                               lighten($wd-material-base-font-color,30%)  !default;
 
 $wd-material-box-shadow                       :                               0 2px 2px 0 rgba(0,0,0,.16),0 0 2px 0 rgba(0,0,0,.12) !default;
 $wd-material-box-shadow-deep                  :                               0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !default;

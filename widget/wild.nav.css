@@ -1,7 +1,7 @@
 .wd-nav {
   width: 100%;
-  min-height: 45px;
-  background-color: #fff;
+  min-height: 56px;
+  background-color: #FFF;
   zoom: 1; }
   .wd-nav.wd-nav--vertical > li {
     float: none; }
@@ -20,34 +20,53 @@
     position: relative;
     float: left; }
     .wd-nav > li > a {
+      position: relative;
       display: block;
-      height: 45px;
-      line-height: 45px;
-      padding: 0 20px;
+      height: 56px;
+      line-height: 56px;
+      padding: 0 16px;
+      background-color: #FFF;
+      z-index: 10;
       text-align: center;
-      color: #333;
-      cursor: pointer; }
+      color: #212121;
+      cursor: pointer;
+      -webkit-transition: background-color 0.4s;
+              transition: background-color 0.4s; }
       .wd-nav > li > a:hover {
         text-decoration: none; }
-    .wd-nav > li .wd-bubble {
-      margin-top: -1px;
-      right: 0;
-      border: 1px solid #dadada;
-      -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-              box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); }
     .wd-nav > li .wd-bubble-mass {
-      top: 0; }
-      .wd-nav > li .wd-bubble-mass .wd-bubble-mass-bar {
-        text-align: center; }
+      top: 0;
+      z-index: 20;
+      min-height: 86px; }
+      .wd-nav > li .wd-bubble-mass .wd-bubble-mass-title {
+        min-height: 56px;
+        line-height: 56px; }
+  .wd-nav .wd-nav-down > a {
+    z-index: 20; }
   .wd-nav .wd-nav-drown > a {
     position: relative;
-    z-index: 999;
-    padding: 0 19px;
-    line-height: 43px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-bottom: 1px solid #fff;
-    border-bottom: 2px solid #fff \9; }
+    z-index: 100;
+    padding: 0 15px;
+    line-height: 56px;
+    background-color: #FFF;
+    border: 1px solid #DADADA;
+    border-top: none;
+    border-bottom: 1px solid #FFF;
+    border-bottom: 2px solid #fff \9;
+    color: #212121; }
     .wd-nav .wd-nav-drown > a:hover {
-      background-color: transparent;
-      color: #333; }
+      background-color: #FFF;
+      border-bottom: #FFF;
+      color: #212121; }
+  .wd-nav .wd-nav-drown .wd-bubble {
+    margin-top: -1px;
+    right: 0;
+    border: 1px solid #DADADA;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    z-index: 20;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0; }
+    .wd-nav .wd-nav-drown .wd-bubble .wd-dropdown {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0; }

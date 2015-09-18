@@ -18,14 +18,16 @@
   >li{
     >a{
       display: block;
-      padding: $wd-dropdown-padding $wd-dropdown-padding * 2;
+      padding: $wd-dropdown-padding + 5 $wd-dropdown-padding * 2;
       font-weight: 400;
       line-height: $wd-type-line-height;
       color: $wd-dropdown-font-color;
       white-space: nowrap;
+      cursor: pointer;
+      @include transition(background-color,.4s);
 
       &:hover{
-        color: $wd-dropdown-hover-font-color;
+        //color: $wd-dropdown-hover-font-color;
         text-decoration: none;
         background-color: $wd-dropdown-hover-bg-color;
       }
@@ -37,6 +39,3 @@
     //}
   }
 }
-
-
-

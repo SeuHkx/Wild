@@ -8,7 +8,7 @@ $wd-bubble-bd-color                 :                         rgba(0,0,0,.15)   
 $wd-bubble-bd-radius                :                         2px       !default;
 
 $wd-bubble-shadow                   :                         0 6px 12px rgba(0,0,0,.175)  !default;
-$wd-bubble-padding                  :                         5px       !default;
+$wd-bubble-padding                  :                         8px       !default;
 
 
 
@@ -17,7 +17,7 @@ $wd-bubble-mass-padding             :                         5px 10px  !default
 $wd-bubble-mass-font-color          :                         $wd-bubble-font-color      !default;
 
 $wd-bubble-mass-hover-color         :                         #fff      !default;
-$wd-bubble-mass-hover-bg-color      :                         #387ef5   !default;
+$wd-bubble-mass-hover-bg-color      :                         #132c53   !default;
 
 @if $wd-material-flag == true {
   @import "var.material";

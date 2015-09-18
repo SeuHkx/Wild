@@ -56,12 +56,27 @@
         position: relative;
         padding-left: 30px;
         padding-right: 30px;
+
+        box-shadow: none;
+        //border-top: 1px solid #dadada;
+        .wd-bubble-mass-title{
+          display: none;
+        }
         .wd-bubble-mass-bar{
           text-align: left;
         }
       }
       .wd-bubble{
         position: relative;
+        padding-left: 30px;
+        padding-right: 30px;
+
+        border: none;
+        //border-top: 1px solid #dadada;
+        margin-top: 0;
+
+        //box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        box-shadow: none;
         .wd-bubble-title{
           padding-left: 30px;
           padding-right: 30px;
@@ -76,6 +91,16 @@
             }
           }
         }
+      }
+    }
+    .wd-nav-drown{
+      >a{
+        border: none;
+        //border-bottom: 1px solid #dadada;
+      }
+      .wd-bubble{
+        box-shadow: none;
+        border: none;
       }
     }
   }

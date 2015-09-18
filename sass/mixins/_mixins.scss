@@ -24,6 +24,17 @@
     }
   }
 }
+@mixin setTextColor($p,$s,$t){
+  .wd-utils-txt--primary{
+    color: $p;
+  }
+  .wd-utils-txt--secondary{
+    color:$s;
+  }
+  .wd-utils-txt--tip{
+    color: $t;
+  }
+}
 @mixin setTextAlign(){
   @each $props in left,right,center,justify{
     .wd-utils-text--#{$props}{
@@ -225,4 +236,7 @@
       }
     }
   }
+}
+@mixin transition($prop,$time){
+  transition: $prop $time;
 }

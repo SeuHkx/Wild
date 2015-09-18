@@ -1,6 +1,14 @@
-$wd-nav-min-height                    :                                   45px    !default;
-$wd-nav-padding                       :                                   20px    !default;
-$wd-nav-font-color                    :                                   #333    !default;
-$wd-nav-bg-color                      :                                   #fff    !default;
+@import "var.material";
+
+$wd-nav-min-height                    :                                   56px    !default;
+$wd-nav-padding                       :                                   16px    !default;
+$wd-nav-font-color                    :                                   $wd-material-primary-font-color    !default;
+$wd-nav-base-zIndex                   :                                   10      !default;
+
+$wd-nav-bg-color                      :                                   #FFF    !default;
 $wd-nav-bd-width                      :                                   1px     !default;
-$wd-nav-bd-color                      :                                   #ddd    !default;
+$wd-nav-bd-color                      :                                   $wd-material-divider-color    !default;
+$wd-nav-bg-drown-color                :                                   #FFF    !default;
+
+$wd-nav-bubble-bd-color               :                                   $wd-material-divider-color  !default;
+$wd-nav-bubble-box-shadow             :                                   0 6px 12px rgba(0,0,0,.175) !default;

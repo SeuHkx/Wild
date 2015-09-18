@@ -6,7 +6,7 @@
   margin-bottom: 0;
   font-size: 14px;
   font-weight: 400;
-  line-height: 1.571;
+  line-height: 1.57143;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
@@ -81,15 +81,15 @@
 
 .wd-button--red {
   color: #FFF;
-  background-color: #ef473a;
-  border-color: #e42012; }
+  background-color: #e81f24;
+  border-color: #e81f24; }
   .wd-button--red:hover {
     color: #FFF;
-    background-color: #ed3527;
-    border-color: #c81c10; }
+    background-color: #dc171c;
+    border-color: #d3161a; }
   .wd-button--red:active {
-    background-color: #ec2414;
-    border-color: #b5190e; }
+    background-color: #ca1519;
+    border-color: #c01418; }
 
 .wd-button--green {
   color: #FFF;
@@ -105,15 +105,15 @@
 
 .wd-button--positive {
   color: #FFF;
-  background-color: #387ef5;
-  border-color: #0c63ee; }
+  background-color: #132c53;
+  border-color: #111f3d; }
   .wd-button--positive:hover {
     color: #FFF;
-    background-color: #2571f4;
-    border-color: #0b57d1; }
+    background-color: #0f2342;
+    border-color: #0a1325; }
   .wd-button--positive:active {
-    background-color: #1165f3;
-    border-color: #0a4fbd; }
+    background-color: #0b1a32;
+    border-color: #060b15; }
 
 .wd-button-group {
   position: relative;
@@ -168,15 +168,15 @@
   background-color: transparent; }
   .wd-button-group.wd-button--positive .wd-button {
     color: #FFF;
-    background-color: #387ef5;
-    border-color: #0c63ee; }
+    background-color: #132c53;
+    border-color: #111f3d; }
     .wd-button-group.wd-button--positive .wd-button:hover {
       color: #FFF;
-      background-color: #2571f4;
-      border-color: #0b57d1; }
+      background-color: #0f2342;
+      border-color: #0a1325; }
     .wd-button-group.wd-button--positive .wd-button:active {
-      background-color: #1165f3;
-      border-color: #0a4fbd; }
+      background-color: #0b1a32;
+      border-color: #060b15; }
 
 .wd-button-group.wd-button--orange {
   background-color: transparent; }
@@ -196,15 +196,15 @@
   background-color: transparent; }
   .wd-button-group.wd-button--red .wd-button {
     color: #FFF;
-    background-color: #ef473a;
-    border-color: #e42012; }
+    background-color: #e81f24;
+    border-color: #e81f24; }
     .wd-button-group.wd-button--red .wd-button:hover {
       color: #FFF;
-      background-color: #ed3527;
-      border-color: #c81c10; }
+      background-color: #dc171c;
+      border-color: #d3161a; }
     .wd-button-group.wd-button--red .wd-button:active {
-      background-color: #ec2414;
-      border-color: #b5190e; }
+      background-color: #ca1519;
+      border-color: #c01418; }
 
 .wd-button-group.wd-button--green {
   background-color: transparent; }

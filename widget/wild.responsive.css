@@ -35,17 +35,33 @@
       .wd-nav > li .wd-bubble-mass {
         position: relative;
         padding-left: 30px;
-        padding-right: 30px; }
+        padding-right: 30px;
+        -webkit-box-shadow: none;
+                box-shadow: none; }
+        .wd-nav > li .wd-bubble-mass .wd-bubble-mass-title {
+          display: none; }
         .wd-nav > li .wd-bubble-mass .wd-bubble-mass-bar {
           text-align: left; }
       .wd-nav > li .wd-bubble {
-        position: relative; }
+        position: relative;
+        padding-left: 30px;
+        padding-right: 30px;
+        border: none;
+        margin-top: 0;
+        -webkit-box-shadow: none;
+                box-shadow: none; }
         .wd-nav > li .wd-bubble .wd-bubble-title {
           padding-left: 30px;
           padding-right: 30px; }
         .wd-nav > li .wd-bubble .wd-bubble-bar .wd-dropdown > li > a {
           padding-left: 30px;
           padding-right: 30px; }
+    .wd-nav .wd-nav-drown > a {
+      border: none; }
+    .wd-nav .wd-nav-drown .wd-bubble {
+      -webkit-box-shadow: none;
+              box-shadow: none;
+      border: none; }
   .wd-form-group > input {
     width: 100%; }
   .wd-form-group.wd-form-group--inline {

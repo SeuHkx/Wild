@@ -11,10 +11,11 @@
   //IE
   border: 1px solid #ddd\9;
 
-  z-index: 99;
+  z-index: 10;
   @include border-radius($wd-bubble-bd-radius);
   @include box-shadow($wd-bubble-shadow);
   >.wd-dropdown{
+    min-width: 100%;
     border: none;
     box-shadow: none;
     position: relative;
@@ -37,9 +38,9 @@
 .wd-bubble-title{
   padding: $wd-bubble-padding $wd-bubble-padding*2;
   text-align: left;
-  font-size: 14px;
+  font-size: $wd-type-font-size;
   color: $wd-bubble-font-color;
-  h5,p,.wd-h5{
+  h5,.wd-h5,p{
     margin-bottom: $wd-bubble-padding;
   }
   >p:last-child{
@@ -50,6 +51,7 @@
   margin-top: $wd-bubble-padding;
   border-top: 1px solid #ddd;
   .wd-dropdown{
+    min-width: 100%;
     position: relative;
     border: none;
     box-shadow: none;
@@ -69,32 +71,29 @@
   display: block;
   padding: $wd-bubble-padding 0;
   width: 100%;
-  z-index: 9;
+  z-index: 10;
   background-color: $wd-bubble-bg-color;
   border: 1px solid #ddd\9;
   @include box-shadow($wd-bubble-mass-shadow...);
-}
-.wd-bubble-mass-title{
-  text-align: center;
-  margin-top: -$wd-bubble-padding;
-}
-.wd-bubble-mass-bar{
-  >li{
-    >a{
-      display: block;
-      padding: $wd-bubble-mass-padding;
-      clear: both;
-      font-weight: 400;
-      line-height: $wd-type-line-height;
-      color: $wd-bubble-mass-font-color;
-      white-space: nowrap;
-      cursor: pointer;
-
-      &:hover{
-        color: $wd-bubble-mass-hover-color;
-        text-decoration: none;
-        background-color: $wd-bubble-mass-hover-bg-color;
-      }
-    }
+  .wd-dropdown{
+    min-width: 100%;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    position: relative;
   }
 }
+.wd-bubble-mass-title{
+  margin-top: -$wd-bubble-padding;
+  font-size: $wd-type-font-size;
+  text-align: center;
+  cursor: pointer;
+}
+.wd-bubble-mass-bar{
+  .wd-dropdown{
+    position: relative;
+    box-shadow: none;
+    padding: 0;
+  }
+}
+

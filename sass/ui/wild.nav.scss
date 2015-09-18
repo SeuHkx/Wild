@@ -1,4 +1,5 @@
 @import "../variables/var.nav";
+@import "../mixins/mixins";
 .wd-nav{
   width: 100%;
   min-height: $wd-nav-min-height;
@@ -27,50 +28,72 @@
     position: relative;
     float: left;
     >a{
+      position: relative;
       display: block;
       height: $wd-nav-min-height;
       line-height: $wd-nav-min-height;
       padding: 0 $wd-nav-padding;
 
+      background-color: $wd-nav-bg-color;
+      z-index: $wd-nav-base-zIndex;
+
       text-align: center;
       color: $wd-nav-font-color;
       cursor: pointer;
+
+      @include transition(background-color,.4s);
       &:hover{
         text-decoration: none;
       }
     }
-    .wd-bubble{
-      margin-top: -1px;
-      right: 0;
-      border: 1px solid #dadada;
-      box-shadow:  0 6px 12px rgba(0,0,0,.175);
-    }
     .wd-bubble-mass{
       top: 0;
-      .wd-bubble-mass-bar{
-        text-align: center;
+      z-index: $wd-nav-base-zIndex * 2;
+      min-height: $wd-nav-min-height + 30;
+      .wd-bubble-mass-title{
+        min-height: $wd-nav-min-height;
+        line-height: $wd-nav-min-height;
       }
+    }
+  }
+  .wd-nav-down{
+    >a{
+      z-index: $wd-nav-base-zIndex * 2;
     }
   }
   .wd-nav-drown{
     >a{
       position: relative;
-      z-index: 999;
+      z-index: $wd-nav-base-zIndex * 10;
       padding: 0 $wd-nav-padding - 1;
-      line-height: $wd-nav-min-height - $wd-nav-bd-width * 2;
+      line-height: $wd-nav-min-height;
 
-      background-color: $wd-nav-bg-color;
+      background-color: $wd-nav-bg-drown-color;
       border: $wd-nav-bd-width solid $wd-nav-bd-color;
-      //border-top: none;
-      border-bottom: $wd-nav-bd-width solid $wd-nav-bg-color;
+      border-top: none;
+      border-bottom: $wd-nav-bd-width solid $wd-nav-bg-drown-color;
       border-bottom: $wd-nav-bd-width * 2 solid #fff\9;
 
+      color: $wd-nav-font-color;
       &:hover{
-        background-color: transparent;
+        background-color: $wd-nav-bg-drown-color;
+        border-bottom: $wd-nav-bg-color;
         color: $wd-nav-font-color;
+      }
+    }
+    .wd-bubble{
+      margin-top: -1px;
+      right: 0;
+      border: 1px solid $wd-nav-bubble-bd-color;
+      box-shadow:  $wd-nav-bubble-box-shadow;
+      z-index: $wd-nav-base-zIndex * 2;
+      @include border-top-radius('left',0);
+      @include border-top-radius('right',0);
+
+      .wd-dropdown{
+        @include border-top-radius('left',0);
+        @include border-top-radius('right',0);
       }
     }
   }
 }
-
-

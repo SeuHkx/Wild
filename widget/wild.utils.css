@@ -93,3 +93,12 @@
   display: block;
   margin-left: auto;
   margin-right: auto; }
+
+.wd-utils-txt--primary {
+  color: #212121; }
+
+.wd-utils-txt--secondary {
+  color: #757575; }
+
+.wd-utils-txt--tip {
+  color: #bdbdbd; }

@@ -14,8 +14,8 @@
   vertical-align: baseline;
   border-radius: 2px;
 }
-@include setBadge('default',#ccc);
-@include setBadge('positive',#0c63ee);
-@include setBadge('red',#e42012);
-@include setBadge('orange',#fa9915);
-@include setBadge('green',#28a54c);
+@include setBadge-theme('default',#ccc);
+@include setBadge-theme('positive',#0c63ee);
+@include setBadge-theme('red',#e42012);
+@include setBadge-theme('orange',#fa9915);
+@include setBadge-theme('green',#28a54c);
