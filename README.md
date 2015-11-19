@@ -8,8 +8,8 @@
 + 定制性高、轻量级
 
 ### Screenshot
-+ 下图是通过Wild改造的示例。
-![](我)
++ 下图是通过Wild打造的示例。
++ ![](我)
 
 ### Quick Start
 
@@ -22,9 +22,7 @@
 * node [官网](nodejs.org "官网")
 * gulp (npm install -g gulp) 请参考[官网](http://gulpjs.com/ "官网")
 
-####2. 使Bower快速安装
-=======
-#### 通过bower安装Wild
+####2. 使用Bower快速安装
 
 ```
 bower install Wild
@@ -48,26 +46,53 @@ bower install Wild
 
 ####4. 关于dist目录
 
+```html
+---
+    |--- dist/
+        |--- Wild.css       // Developer
+        |--- Wild.min.css   // compress     
+    |--- widget/
+```
+
 经过编译好的压缩和未压缩的文件。也可以使用widget目录下面的模块来进行按需引用。通过上线再进行压缩。维护也得到了保证。
 
 ####5. 定制Sass组件
 
+```html
+---
+    |--- sass/
+        |--- ui/
+        |--- variables/
+```
 使用Compass
 * 可以使用compass的函数来进行更好的定制，例如颜色。也可以自定义。如果需要使用compass，需要修改一定的config.rb文件。
 
 定制
 * 通过修改内部的变量来进行定制。参考对应的文档代码。
 
+####6. 关于布局结构以及栅格系统
 
-####6. 兼容性
+##### 使用[Sweet](https://github.com/SeuHkx/Sweet)
+单独使用栅格系统,可以搭建你基础的布局框架.可以引入任何的ui框架来作为搭配.目前Sweet为流式布局.
+也可以通过sass来定制你的栅格系数.默认为12,16,24.
+
+#### 通过Bower快速安装
+
+```
+bower install sweet
+```
+
++ 使用方法详见[Sweet](http://github.com/SeuHkx/Sweet)
+
+####7. 兼容性
 
 + IE7+
 + FF38+
 + Chrome43+
 + Safari8+
 + Opera31+
-+ Android4.0+
-+ IOS7.1+
++ Android2.3+
++ IOS6.1+
 
 ### License
 
