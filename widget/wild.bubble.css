@@ -2,52 +2,37 @@
   position: absolute;
   min-width: 160px;
   background-color: #fff;
+  padding: 8px 16px;
   border: 1px solid #ddd \9;
   z-index: 10;
   border-radius: 2px;
   -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 2px 0 rgba(0, 0, 0, 0.12);
           box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 2px 0 rgba(0, 0, 0, 0.12); }
-  .wd-bubble > .wd-dropdown {
+  .wd-bubble .wd-dropdown {
+    position: relative;
     min-width: 100%;
     border: none;
     -webkit-box-shadow: none;
             box-shadow: none;
-    position: relative; }
-
-.wd-bubble--down .wd-triangle-group {
-  bottom: -12px;
-  margin-left: -12px;
-  left: 50%; }
-
-.wd-bubble--up .wd-triangle-group {
-  top: -12px;
-  margin-left: -12px;
-  left: 50%; }
+    padding-top: 0;
+    padding-bottom: 0; }
 
 .wd-bubble-title {
-  padding: 8px 16px;
+  margin-bottom: 8px;
   text-align: left;
   font-size: 14px;
   color: #212121; }
-  .wd-bubble-title h5, .wd-bubble-title .wd-h5, .wd-bubble-title p {
-    margin-bottom: 8px; }
-  .wd-bubble-title > p:last-child {
-    margin-bottom: 0; }
 
 .wd-bubble-bar {
-  margin-top: 8px;
   border-top: 1px solid #ddd; }
   .wd-bubble-bar .wd-dropdown {
     min-width: 100%;
     position: relative;
     border: none;
     -webkit-box-shadow: none;
-            box-shadow: none; }
-    .wd-bubble-bar .wd-dropdown > li > a {
-      padding: 8px 16px;
-      color: #212121; }
-      .wd-bubble-bar .wd-dropdown > li > a:hover {
-        color: #fff; }
+            box-shadow: none;
+    padding-top: 8px;
+    padding-bottom: 0; }
 
 .wd-bubble-mass {
   position: absolute;

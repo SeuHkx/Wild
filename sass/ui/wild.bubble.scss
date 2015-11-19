@@ -7,6 +7,7 @@
   min-width: $wd-bubble-min-width;
   background-color: $wd-bubble-bg-color;
 
+  padding: $wd-bubble-padding $wd-bubble-padding*2;
   //border: $wd-bubble-bd-width solid $wd-bubble-bd-color;
   //IE
   border: 1px solid #ddd\9;
@@ -14,56 +15,46 @@
   z-index: 10;
   @include border-radius($wd-bubble-bd-radius);
   @include box-shadow($wd-bubble-shadow);
-  >.wd-dropdown{
+  .wd-dropdown{
+    position: relative;
     min-width: 100%;
     border: none;
     box-shadow: none;
-    position: relative;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 }
-.wd-bubble--down{
-  .wd-triangle-group{
-    bottom: -12px;
-    margin-left: -12px;
-    left: 50%;
-  }
-}
-.wd-bubble--up{
-  .wd-triangle-group{
-    top: -12px;
-    margin-left: -12px;
-    left: 50%;
-  }
-}
+//.wd-bubble--down{
+//  .wd-triangle-group{
+//    bottom: -12px;
+//    margin-left: -12px;
+//    left: 50%;
+//  }
+//}
+//.wd-bubble--up{
+//  .wd-triangle-group{
+//    top: -12px;
+//    margin-left: -12px;
+//    left: 50%;
+//  }
+//}
 .wd-bubble-title{
-  padding: $wd-bubble-padding $wd-bubble-padding*2;
+  //padding: $wd-bubble-padding $wd-bubble-padding*2;
+  margin-bottom: $wd-bubble-padding;
   text-align: left;
   font-size: $wd-type-font-size;
   color: $wd-bubble-font-color;
-  h5,.wd-h5,p{
-    margin-bottom: $wd-bubble-padding;
-  }
-  >p:last-child{
-    margin-bottom: 0;
-  }
 }
 .wd-bubble-bar{
-  margin-top: $wd-bubble-padding;
+  //margin-top: $wd-bubble-padding;
   border-top: 1px solid #ddd;
   .wd-dropdown{
     min-width: 100%;
     position: relative;
     border: none;
     box-shadow: none;
-    >li{
-      >a{
-        padding: $wd-bubble-padding $wd-bubble-padding*2;
-        color: $wd-bubble-font-color;
-        &:hover{
-          color: #fff;
-        }
-      }
-    }
+    padding-top: $wd-bubble-padding;
+    padding-bottom: 0;
   }
 }
 .wd-bubble-mass{
@@ -75,6 +66,7 @@
   background-color: $wd-bubble-bg-color;
   border: 1px solid #ddd\9;
   @include box-shadow($wd-bubble-mass-shadow...);
+
   .wd-dropdown{
     min-width: 100%;
     padding: 0;

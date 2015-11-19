@@ -27,15 +27,9 @@
       @include transition(background-color,.4s);
 
       &:hover{
-        //color: $wd-dropdown-hover-font-color;
         text-decoration: none;
         background-color: $wd-dropdown-hover-bg-color;
       }
     }
-    //>.wd-triangle-group{
-    //  top: $wd-triangle-group-top;
-    //  left: $wd-triangle-group-left;
-    //  margin-left: $wd-triangle-group-margin-left;
-    //}
   }
 }

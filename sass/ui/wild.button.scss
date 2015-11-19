@@ -1,7 +1,5 @@
 @import "../mixins/mixins",
-        "../variables/var.type",
         "../variables/var.button";
-
 .wd-button{
   display: inline-block;
   *display: inline;
@@ -10,20 +8,25 @@
   margin-bottom: 0;
   font-size: $wd-button-font-size;
   font-weight: 400;
-  line-height: $wd-type-line-height;
+  min-height: $wd-button-height;
+  line-height: $wd-button-height;
   text-align: center;
+  letter-spacing: 1px;
   white-space: nowrap;
   vertical-align: middle;
   -ms-touch-action: manipulation;
   touch-action: manipulation;
   cursor: pointer;
   background-image: none;
+  //border: none;
   border: 1px solid transparent;
   border-radius: $wd-button-radius;
+  @include transition(all ease-out,.2s);
   @include user-select();
-
+  @include box-shadow(0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12));
   &:hover{
     text-decoration: none;
+    @include box-shadow(0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15));
   }
   &:active{
     @include box-shadow($wd-button-active-shadow);
@@ -31,13 +34,14 @@
   &.wd-button--block{
     display: block;
   }
-  &.wd-button--hack-icon{
-    *height: 22px;
-    .wd-triangle{
-      *margin-top: 2px;
-    }
-  }
+  //&.wd-button--hack-icon{
+  //  *height: 22px;
+  //  .wd-triangle{
+  //    *margin-top: 2px;
+  //  }
+  //}
   .wd-badge{
+    line-height: 18px;
     margin-left: 4px;
     border-radius: 10px;
   }
@@ -46,12 +50,13 @@
   margin-left: 4px;
   margin-right:4px;
 }
-@include setButtonSize();
-@include setButton-theme($wd-button-default...);
-@include setButton-theme($wd-button-orange...);
-@include setButton-theme($wd-button-red...);
-@include setButton-theme($wd-button-green...);
-@include setButton-theme($wd-button-positive...);
+//@include setButtonSize();
+@include setButtonTheme($wd-button-default...);
+@include setButtonTheme($wd-button-orange...);
+@include setButtonTheme($wd-button-red...);
+@include setButtonTheme($wd-button-green...);
+@include setButtonTheme($wd-button-positive...);
+@include setButtonTheme($wd-button-blue...);
 
 .wd-button-group{
   position: relative;
@@ -59,6 +64,8 @@
   *display: inline;
   vertical-align: middle;
   zoom: 1;
+  border-radius: $wd-button-radius;
+  @include box-shadow(0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12));
   &:before,&:after{
     content: "";
     display: table;
@@ -69,18 +76,21 @@
   .wd-button{
     float: left;
     border-radius: 0;
-    border-right: none;
-    &:first-child{
-      @include border-top-radius('left',$wd-button-radius);
-      @include border-bottom-radius('left',$wd-button-radius);
-    }
-    &:last-child{
-      border-right: 1px solid #ccc;
-      @include border-top-radius('right',$wd-button-radius);
-      @include border-bottom-radius('right',$wd-button-radius);
-    }
-    &.hack-last-right-border{
-      border-right: 1px solid #ccc\9;
+    box-shadow: none;
+    //&:first-child{
+    //  @include border-top-radius('left',$wd-button-radius);
+    //  @include border-bottom-radius('left',$wd-button-radius);
+    //}
+    //&:last-child{
+    //  border-right: 1px solid #ccc;
+    //  @include border-top-radius('right',$wd-button-radius);
+    //  @include border-bottom-radius('right',$wd-button-radius);
+    //}
+    //&.hack-last-right-border{
+    //  border-right: 1px solid #ccc\9;
+    //}
+    &:active{
+      @include box-shadow($wd-button-active-shadow);
     }
   }
 }

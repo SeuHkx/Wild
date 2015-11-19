@@ -19,12 +19,11 @@ input[type="password"]{
   border: 1px solid $wd-form-input-bd-color;
   border-radius: $wd-form-input-bd-radius;
   @include box-shadow($wd-form-box-shadow);
-  transition: border linear .2s,box-shadow linear .2s;
+  @include transition(all ease-in,.3s);
 
   &:focus{
     border-color: $wd-form-input-focus-bd-color;
     outline: 0;
-    @include box-shadow($wd-form-box-shadow,0 0 8px lighten($wd-form-input-focus-bd-color,20%));
   }
 }
 .wd-from-controls{

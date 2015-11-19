@@ -5,16 +5,23 @@
     display: table; }
   .wd-media:after {
     clear: both; }
-  .wd-media .wd-media-avatar {
+  .wd-media .wd-media-left {
     float: left;
     margin-right: 10px; }
+  .wd-media .wd-media-right {
+    float: right;
+    margin-left: 10px; }
+  .wd-media .wd-media-left > img, .wd-media .wd-media-right > img {
+    vertical-align: top; }
   .wd-media .wd-media-body {
     overflow: hidden;
     zoom: 1; }
-    .wd-media .wd-media-body p {
-      text-align: justify;
-      font-size: 12px;
-      color: #757575;
-      margin: 0; }
-    .wd-media .wd-media-body p + a {
-      font-size: 12px; }
+    .wd-media .wd-media-body > h4 {
+      line-height: 1;
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-weight: 700; }
+    .wd-media .wd-media-body .wd-button {
+      margin: 8px 0; }
+    .wd-media .wd-media-body .wd-media {
+      margin-top: 16px; }

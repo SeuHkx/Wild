@@ -4,6 +4,7 @@
   width: 100%;
   min-height: $wd-nav-min-height;
   background-color: $wd-nav-bg-color;
+  z-index: $wd-nav-base-zIndex * 2;
   zoom: 1;
   &.wd-nav--vertical{
     >li{
@@ -35,15 +36,22 @@
       padding: 0 $wd-nav-padding;
 
       background-color: $wd-nav-bg-color;
-      z-index: $wd-nav-base-zIndex;
+      z-index: $wd-nav-base-zIndex * 2;
 
       text-align: center;
       color: $wd-nav-font-color;
       cursor: pointer;
 
-      @include transition(background-color,.4s);
+      //@include transition(background-color,.4s);
       &:hover{
         text-decoration: none;
+      }
+      >img{
+        vertical-align: top;
+        width: 46px;
+        height: 46px;
+        margin-top: 5px;
+        margin-bottom: 5px;
       }
     }
     .wd-bubble-mass{
@@ -55,10 +63,13 @@
         line-height: $wd-nav-min-height;
       }
     }
-  }
-  .wd-nav-down{
-    >a{
-      z-index: $wd-nav-base-zIndex * 2;
+    .wd-bubble{
+      border-top-color: transparent;
+    }
+    .wd-button{
+      position: relative;
+      z-index:  $wd-nav-base-zIndex * 2;
+      margin-top: ($wd-nav-min-height - 36)/2;
     }
   }
   .wd-nav-drown{
@@ -87,6 +98,7 @@
       border: 1px solid $wd-nav-bubble-bd-color;
       box-shadow:  $wd-nav-bubble-box-shadow;
       z-index: $wd-nav-base-zIndex * 2;
+      padding: 8px 0;
       @include border-top-radius('left',0);
       @include border-top-radius('right',0);
 
@@ -96,4 +108,60 @@
       }
     }
   }
+}
+.wd-nav-wrap{
+  position: relative;
+  height: $wd-nav-min-height;
+  max-width: 1000px;
+  margin: 0 auto;
+  .wd-nav-fixed{
+    position: fixed;
+    max-width: 1000px;
+    width: 100%;
+    z-index: 9999;
+
+    background-color: $wd-nav-bg-color;
+  }
+}
+.wd-nav-logo{
+  display: block;
+  float: left;
+  height: $wd-nav-min-height;
+  line-height: $wd-nav-min-height;
+  padding-right: $wd-nav-padding/2;
+  margin-right: $wd-nav-padding/2;
+
+  >img{
+    height: $wd-nav-min-height;
+    vertical-align: top;
+  }
+}
+.wd-nav-logo +.wd-nav{
+  float: left;
+  width: auto;
+}
+.wd-nav-respond-menu{
+  position: absolute;
+  top:0;
+  right: 0;
+  display: none;
+  height: $wd-nav-min-height;
+  line-height: $wd-nav-min-height;
+  z-index: 99999;
+
+  >i{
+    display: block;
+    height: $wd-nav-min-height;
+    width: $wd-nav-min-height;
+  }
+}
+.wd-nav-input{
+  margin-top: ($wd-nav-min-height - 36)/2;
+}
+.wd-nav-amputate{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0;
+  z-index: $wd-nav-base-zIndex;
 }

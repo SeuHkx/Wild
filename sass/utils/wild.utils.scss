@@ -4,7 +4,6 @@
 @include setTextAlign();
 @include setTextTransform();
 @include setClear();
-@include setTriangle();
 @include setBoxShadow($wd-material-box-shadow,$wd-material-box-shadow-deep,$wd-material-box-shadow-hover);
 @include setPull-float(left);
 @include setPull-float(right);

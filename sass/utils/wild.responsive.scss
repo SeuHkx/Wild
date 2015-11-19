@@ -24,9 +24,10 @@
     }
   }
   .wd-nav{
+    display: none;
     height: auto;
     &.wd-nav--right{
-      display: block;
+      display: none;
       float: none;
       >li{
         float: none;
@@ -103,6 +104,15 @@
         border: none;
       }
     }
+  }
+  .wd-nav-logo{
+    float: none;
+  }
+  .wd-nav-logo + .wd-nav{
+    float: none;
+  }
+  .wd-nav-respond-menu{
+    display: block;
   }
   .wd-form-group{
     >input{

@@ -1,3 +1,4 @@
+//设置文字大小
 @mixin setTextSize() {
   $font-index: 6;
   $font-size: 12;
@@ -12,6 +13,7 @@
     $font-size  :  $font-size  + 2;
   }
 }
+//清除浮动
 @mixin setClear(){
   .wd-utils-clear{
     zoom: 1;
@@ -24,6 +26,7 @@
     }
   }
 }
+//设置文字基本,首要颜色
 @mixin setTextColor($p,$s,$t){
   .wd-utils-txt--primary{
     color: $p;
@@ -35,6 +38,7 @@
     color: $t;
   }
 }
+//设置文字对齐方式
 @mixin setTextAlign(){
   @each $props in left,right,center,justify{
     .wd-utils-text--#{$props}{
@@ -42,6 +46,7 @@
     }
   }
 }
+//设置阴影
 @mixin setBoxShadow($val,$val-deep,$val-hover){
   .wd-utils-bs{
     @include box-shadow($val);
@@ -53,6 +58,7 @@
     @include box-shadow($val-hover);
   }
 }
+//设置文字转换
 @mixin setTextTransform(){
   @each $props in lowercase,uppercase,capitalize{
     .wd-utils-text--#{$props}{
@@ -60,22 +66,24 @@
     }
   }
 }
-@mixin setButton-theme($name,$color,$bgColor,$bdColor){
+//设置按钮主题
+@mixin setButtonTheme($name,$color,$bgColor,$bdColor){
   .wd-button--#{$name}{
     color: $color;
     background-color: $bgColor;
-    border-color: $bdColor;
+    border-color: darken($bdColor,2%);
     &:hover{
       color: $color;
-      background-color: darken($bgColor,4%);//#fafafa;
-      border-color: darken($bdColor,6%);    //#ccc;
+      background-color: lighten($bgColor,4%);//#fafafa;
+      border-color: lighten($bdColor,6%);    //#ccc;
     }
     &:active{
-      background-color: darken($bgColor,8%);//#fafafa;
-      border-color: darken($bdColor,10%);//#ccc;
+      background-color: darken($bgColor,4%);//#fafafa;
+      border-color: darken($bdColor,4%);//#ccc;
     }
   }
 }
+//设置按钮大小
 @mixin setButtonSize(){
   @each $name,$size,$padding in
                   ('tiny',10px,1px 4px),
@@ -88,6 +96,7 @@
     }
   }
 }
+//设置组按钮主题
 @mixin setGroupButton-theme($name,$color,$bgColor,$bdColor){
   .wd-button-group{
     &.wd-button--#{$name}{
@@ -109,6 +118,7 @@
     }
   }
 }
+//设置组按钮大小
 @mixin setGroupButton(){
   @each $name,$size,$padding in
                   ('tiny',10px,1px 4px),
@@ -126,6 +136,7 @@
     }
   }
 }
+//设置下拉主题
 @mixin setDropdonw-theme($name,$color,$bgColor){
   .wd-dropdown--#{$name}{
     li{
@@ -139,17 +150,20 @@
     }
   }
 }
-@mixin setBadge-theme($name,$bgColor){
+//设置气泡主题
+@mixin setBadgeTheme($name,$bgColor){
   .wd-badge--#{$name}{
     background-color: $bgColor;
   }
 }
+//设置文字不被选中
 @mixin user-select(){
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
+//设置阴影
 @mixin box-shadow($shadow...){
   box-shadow: $shadow;
 }
@@ -164,6 +178,7 @@
     }
   }
 }
+//设置块状元素居中
 @mixin setCenterBlock(){
   .wd-utils-center-block{
     display: block;
@@ -171,6 +186,7 @@
     margin-right: auto;
   }
 }
+//设置文字省略
 @mixin setTextOverflow(){
   overflow: hidden;
   text-overflow: ellipsis;
@@ -185,58 +201,7 @@
 @mixin border-radius($radius){
   border-radius: $radius;
 }
-@mixin setTriangle(){
-  .wd-triangle{
-    display: inline-block;
-    *display:inline;
-    zoom: 1;
-    width: 0;
-    height: 0;
-    //margin-left: 4px;
-    margin-top: -2px;
-    line-height: 1.571;
-    vertical-align: middle;
-    border-top: 5px solid;
-    border-top: 5px solid\9;
-    border-right: 4px dashed transparent;
-    border-left: 4px dashed transparent;
-  }
-  .wd-triangle-group{
-    position: absolute;
-    display: inline-block;
-    *display:inline;
-    zoom: 1;
-    width: 0;
-    height: 0;
-    //margin-left: 4px;
-    //margin-top: -2px;
-    line-height: 1.571;
-    vertical-align: middle;
-    border-top: 12px solid #ddd;
-    border-right: 12px dashed transparent;
-    border-left: 12px dashed transparent;
-    .wd-triangle{
-      position: absolute;
-      top: -11px;
-      left: -12px;
-      border-top: 11px solid #fff;
-      border-right: 12px dashed transparent;
-      border-left: 12px dashed transparent;
-    }
-    &.wd-triangle-group--upward{
-      border-top: none;
-      border-bottom: 12px solid #ddd;
-      border-right: 12px dashed transparent;
-      border-left: 12px dashed transparent;
-      .wd-triangle{
-        top: 4px;
-        left: -12px;
-        border-top: none;
-        border-bottom: 11px solid #fff;
-      }
-    }
-  }
-}
+//css3 过渡
 @mixin transition($prop,$time){
   transition: $prop $time;
 }

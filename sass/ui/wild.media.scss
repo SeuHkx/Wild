@@ -9,21 +9,33 @@
   &:after{
     clear: both;
   }
-  .wd-media-avatar{
+  .wd-media-left{
     float: left;
     margin-right: $wd-media-avatar-margin;
+  }
+  .wd-media-right{
+    float: right;
+    margin-left: $wd-media-avatar-margin;
+  }
+  .wd-media-left,.wd-media-right{
+    > img{
+      vertical-align: top;
+    }
   }
   .wd-media-body{
     overflow: hidden;
     zoom: 1;
-    p{
-      text-align: justify;
-      font-size: $wd-media-body-font-size;
-      color: $wd-media-body-font-color;
-      margin: 0;
+    > h4 {
+      line-height: 1;
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-weight: 700;
     }
-    p + a{
-      font-size: $wd-media-body-font-size;
+    .wd-button{
+      margin: 8px 0;
+    }
+    .wd-media{
+      margin-top: 16px;
     }
   }
 }

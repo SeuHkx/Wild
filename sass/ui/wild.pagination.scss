@@ -1,63 +1,61 @@
 @import "../mixins/mixins",
-        "../variables/var.pagination";
-.wd-pagination{
-  margin: $wd-pagination-margin 0;
-  ul{
-    display: inline-block;
-    *display: inline;
-    border-radius: $wd-pagination-bd-radius;
-    @include box-shadow($wd-pagination-box-shadow);
-    zoom: 1;
-    &:before,&:after{
-      content: "";
-      display: table;
-    }
-    &:after{
-      clear: both;
-    }
-    >li{
-      float: left;
-      &.active > a{
-        z-index: 99;
-        background-color: $wd-pagination-active-bg-color;
-        border-color: $wd-pagination-active-bg-color;
+"../variables/var.pagination";
+.wd-pagination {
+  display: inline-block;
+  *display: inline;
+  border-radius: $wd-pagination-bd-radius;
+  @include box-shadow($wd-pagination-box-shadow);
+  zoom: 1;
+  &:before, &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+  > li {
+    float: left;
+    &.active > a {
+      z-index: 99;
+      background-color: $wd-pagination-active-bg-color;
+      border-color: $wd-pagination-active-bg-color;
+      color: $wd-pagination-active-color;
+      &:hover {
         color: $wd-pagination-active-color;
-        &:hover{
-          color: $wd-pagination-active-color;
-          cursor: default;
-          background-color: $wd-pagination-active-bg-color;
-        }
+        cursor: default;
+        background-color: $wd-pagination-active-bg-color;
       }
-      &.disabled > a{
+    }
+    &.disabled > a {
+      color: $wd-pagination-disabled-color;
+      cursor: default;
+      background-color: transparent;
+      &:hover {
         color: $wd-pagination-disabled-color;
         cursor: default;
         background-color: transparent;
-        &:hover{
-          color: $wd-pagination-disabled-color;
-          cursor: default;
-          background-color: transparent;
-        }
       }
-      &:first-child > a{
-        @include border-top-radius('left',$wd-pagination-bd-radius);
-        @include border-bottom-radius('left',$wd-pagination-bd-radius);
-      }
-      &:last-child > a{
-        @include border-top-radius('right',$wd-pagination-bd-radius);
-        @include border-bottom-radius('right',$wd-pagination-bd-radius);
-      }
-      >a{
-        position: relative;
-        display: block;
-        margin-left: -1px;
-        padding: $wd-pagination-insert-padding;
-        //line-height: 20px;
-        text-decoration: none;
-        background-color: $wd-pagination-insert-bg-color;
-        border: 1px solid $wd-pagination-insert-bd-color;
-        &:hover{
-          background-color: $wd-pagination-hover-bg-color;
-        }
+    }
+    &:first-child > a {
+      @include border-top-radius('left', $wd-pagination-bd-radius);
+      @include border-bottom-radius('left', $wd-pagination-bd-radius);
+    }
+    &:last-child > a {
+      @include border-top-radius('right', $wd-pagination-bd-radius);
+      @include border-bottom-radius('right', $wd-pagination-bd-radius);
+    }
+    > a {
+      position: relative;
+      display: block;
+      margin-left: -1px;
+      padding: $wd-pagination-insert-padding;
+      //line-height: 20px;
+      text-decoration: none;
+      background-color: $wd-pagination-insert-bg-color;
+      border: 1px solid $wd-pagination-insert-bd-color;
+      cursor: pointer;
+      &:hover {
+        background-color: $wd-pagination-hover-bg-color;
       }
     }
   }

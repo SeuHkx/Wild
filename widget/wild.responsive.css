@@ -12,9 +12,10 @@
     .wd-table-responsive .wd-table thead > tr > td, .wd-table-responsive .wd-table thead > tr > th, .wd-table-responsive .wd-table tbody > tr > td, .wd-table-responsive .wd-table tbody > tr > th {
       white-space: nowrap; }
   .wd-nav {
+    display: none;
     height: auto; }
     .wd-nav.wd-nav--right {
-      display: block;
+      display: none;
       float: none; }
       .wd-nav.wd-nav--right > li {
         float: none; }
@@ -62,6 +63,12 @@
       -webkit-box-shadow: none;
               box-shadow: none;
       border: none; }
+  .wd-nav-logo {
+    float: none; }
+  .wd-nav-logo + .wd-nav {
+    float: none; }
+  .wd-nav-respond-menu {
+    display: block; }
   .wd-form-group > input {
     width: 100%; }
   .wd-form-group.wd-form-group--inline {

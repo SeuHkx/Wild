@@ -5,6 +5,7 @@
   display: inline-block;
   *display: inline;
   zoom: 1;
+  line-height: 18px;
   padding: $wd-badge-padding;
   font-size: $wd-badge-font-size;
 
@@ -14,8 +15,9 @@
   vertical-align: baseline;
   border-radius: 2px;
 }
-@include setBadge-theme('default',#ccc);
-@include setBadge-theme('positive',#0c63ee);
-@include setBadge-theme('red',#e42012);
-@include setBadge-theme('orange',#fa9915);
-@include setBadge-theme('green',#28a54c);
+@include setBadgeTheme('default',#CCC);
+@include setBadgeTheme('positive',#9C27B0);
+@include setBadgeTheme('red',#F44336);
+@include setBadgeTheme('orange',#FF9800);
+@include setBadgeTheme('green',#26a69a);
+@include setBadgeTheme('blue',#2196F3);

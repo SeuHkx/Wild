@@ -1,10 +1,12 @@
-$wd-button-padding               :           6px 12px    !default;
+$wd-button-height                :           34px        !default;
+$wd-button-padding               :           0 16px      !default;
 $wd-button-font-size             :           14px        !default;
 $wd-button-radius                :           2px         !default;
 $wd-button-active-shadow         :           inset 0 1px 4px rgba(0, 0, 0, 0.2) !default;
 
-$wd-button-default               :           'default',#333,#fff,#ccc          !default;
-$wd-button-orange                :           'orange',#FFF,#fa9915,#fa9915     !default;
-$wd-button-red                   :           'red',#FFF,#e81f24,#e81f24        !default;
-$wd-button-positive              :           'positive',#FFF,#132c53,#111f3d   !default;
-$wd-button-green                 :           'green',#FFF,#33cd5f,#28a54c      !default;
+$wd-button-default               :           'default',darken(#FFFFFF,87%),#FFF, #dddddd !default;
+$wd-button-orange                :           'orange',#FFF,#FF9800,#FF9800     !default;
+$wd-button-red                   :           'red',#FFF,#F44336,#F44336        !default;
+$wd-button-positive              :           'positive',#FFF,#9C27B0,#9C27B0   !default;
+$wd-button-green                 :           'green',#FFF,#26a69a,#26a69a      !default;
+$wd-button-blue                  :           'blue',#FFF,#2196F3,#2196F3      !default;

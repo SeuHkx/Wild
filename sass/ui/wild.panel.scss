@@ -5,6 +5,7 @@
   border-width: 1px\9;
   border-style: solid\9;
   border-color: $wd-panel-bd-color \9;
+  background-color: #fff;
   @include border-radius($wd-panel-bd-radius);
   @include box-shadow($wd-panel-shadow);
   &.wd-panel--table{
