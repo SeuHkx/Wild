@@ -6,14 +6,14 @@ html {
   color: #212121; }
 
 body, button, input, select, textarea {
-  font-family: "Roboto",Microsoft Yahei,Helvetica Neue,Arial,Helvetica, STHeiTi, sans-serif; }
+  font-family: Microsoft Yahei,Helvetica Neue,Arial,Helvetica, STHeiTi, sans-serif; }
 
 strong, b {
   font-weight: bold;
   color: #757575; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Roboto",Microsoft Yahei,Helvetica Neue,Arial,Helvetica, STHeiTi, sans-serif;
+  font-family: Microsoft Yahei,Helvetica Neue,Arial,Helvetica, STHeiTi, sans-serif;
   font-weight: 100;
   margin: 0 0 10px; }
 
