@@ -2,10 +2,14 @@
 
 基于谷歌Material-Design设计语言结合实际应用情况而诞生的超轻量级CSS框架。丰满健壮的组件以及灵活的定制性，跨屏幕的响应式、低耦合的设计。良好的兼容性，模块式的管理，让你更快速的搭建一个，漂亮，美观，跨屏幕的响应式应用。
 
-+ 支持高分屏
 + 响应式
 + 兼容性高(支持无耻的IE7:joy:)
 + 定制性高、轻量级
++ 支持高分辨率屏
++ 极其简单的结构
++ 组件之间的相互嵌套与结合
++ 更漂亮,美观,时尚
+
 
 ### Screenshot
 + 下图是通过Wild打造的示例。
@@ -79,7 +83,7 @@ bower install Wild
 #### 通过Bower快速安装
 
 ```
-bower install sweet
+bower install Sweet
 ```
 
 + 使用方法详见[Sweet](http://github.com/SeuHkx/Sweet)
