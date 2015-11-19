@@ -70,4 +70,3 @@ bower install Wild
 ### License
 
 基于 MIT License 开源。感谢bootstrap开源软件的贡献。
-
