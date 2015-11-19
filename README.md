@@ -7,6 +7,7 @@
 + 兼容性高(支持无耻的IE7:joy:)
 + 定制性高、轻量级
 
+<<<<<<< HEAD
 ### Screenshot
 + 下图是通过Wild改造的示例。
 ![](我)
@@ -23,6 +24,9 @@
 * gulp (npm install -g gulp) 请参考[官网](http://gulpjs.com/ "官网")
 
 ####2. 使Bower快速安装
+=======
+#### 通过bower安装Wild
+>>>>>>> origin/master
 
 ```
 bower install Wild
@@ -67,6 +71,12 @@ bower install Wild
 + Android4.0+
 + IOS7.1+
 
+<<<<<<< HEAD
 ### License
 
 基于 MIT License 开源。感谢bootstrap开源软件的贡献。
+=======
+### 结合Sweet，可跨屏幕响应整个Web应用
+
+### [Sweet Respond Layout](https://github.com/SeuHkx/Sweet)
+>>>>>>> origin/master
