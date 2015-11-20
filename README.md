@@ -75,7 +75,7 @@ bower install Wild
 单独使用栅格系统,可以搭建你基础的布局框架.可以引入任何的ui框架来作为搭配.目前Sweet为流式布局.
 也可以通过sass来定制你的栅格系数.默认为12,16,24.
 
-#### 通过Bower快速安装
+##### 通过Bower快速安装
 
 ```
 bower install Sweet
