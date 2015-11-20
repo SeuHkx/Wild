@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>Img</title>
+    <link rel="stylesheet" href="../../widget/wild.reset.css"/>
+    <link rel="stylesheet" href="../../widget/wild.type.css"/>
+    <link rel="stylesheet" href="../../widget/wild.img.css"/>
+    <link rel="stylesheet" href="../../public/css/docs.css"/>
+    <style>
+        /***
+         * 以wd为前缀的 是框架内部实现代码
+         * wd-img--responsive  只需设置图片的宽度或者高度即可.
+         * 或者通过原始的比例计算出对应的高宽.
+         *
+         */
+        img{
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="docs">
+        <img class="wd-img--circle" height="100" width="100" src="3_default.jpg"/>
+        <img class="wd-img--rounded" height="100" width="100" src="3_default.jpg"/>
+        <img class="wd-img--thumbnail" height="100" width="100" src="3_default.jpg"/>
+        <img class="wd-img--responsive"  width="200" src="3_default.jpg"/>
+    </div>
+</body>
+</html>

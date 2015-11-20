@@ -63,3 +63,15 @@
   -webkit-box-shadow: none;
           box-shadow: none;
   padding: 0; }
+
+.wd-bubble .wd-triangle-group--top, .wd-bubble-mass .wd-triangle-group--top {
+  top: -24px; }
+
+.wd-bubble .wd-triangle-group--down, .wd-bubble-mass .wd-triangle-group--down {
+  bottom: -24px; }
+
+.wd-bubble .wd-triangle-group--left, .wd-bubble-mass .wd-triangle-group--left {
+  left: -24px; }
+
+.wd-bubble .wd-triangle-group--right, .wd-bubble-mass .wd-triangle-group--right {
+  right: -24px; }

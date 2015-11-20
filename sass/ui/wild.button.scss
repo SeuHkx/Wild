@@ -4,7 +4,7 @@
   display: inline-block;
   *display: inline;
   zoom: 1;
-  padding: $wd-button-padding;
+  padding: 0 $wd-button-padding;
   margin-bottom: 0;
   font-size: $wd-button-font-size;
   font-weight: 400;
@@ -23,10 +23,10 @@
   border-radius: $wd-button-radius;
   @include transition(all ease-out,.2s);
   @include user-select();
-  @include box-shadow(0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12));
+  @include box-shadow($wd-button-box-shadow);
   &:hover{
     text-decoration: none;
-    @include box-shadow(0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15));
+    @include box-shadow($wd-button-hover-box-shadow);
   }
   &:active{
     @include box-shadow($wd-button-active-shadow);
@@ -34,23 +34,33 @@
   &.wd-button--block{
     display: block;
   }
-  //&.wd-button--hack-icon{
-  //  *height: 22px;
-  //  .wd-triangle{
-  //    *margin-top: 2px;
-  //  }
-  //}
   .wd-badge{
     line-height: 18px;
     margin-left: 4px;
-    border-radius: 10px;
+    @include border-radius($wd-button-radius);
   }
 }
-.wd-button-icon{
-  margin-left: 4px;
-  margin-right:4px;
+.wd-button-floating{
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  min-height: 40px;
+  padding: 0;
+  @include border-radius(50%);
 }
-//@include setButtonSize();
+.wd-button-floating--large{
+  width :       ($wd-button-padding/2)*7;
+  height:       ($wd-button-padding/2)*7;
+  line-height : ($wd-button-padding/2)*7;
+}
+.wd-button-flat{
+  background-color : transparent;
+  border: none;
+  @include box-shadow(none);
+  &:hover{
+    @include box-shadow(none);
+  }
+}
 @include setButtonTheme($wd-button-default...);
 @include setButtonTheme($wd-button-orange...);
 @include setButtonTheme($wd-button-red...);
@@ -77,29 +87,15 @@
     float: left;
     border-radius: 0;
     box-shadow: none;
-    //&:first-child{
-    //  @include border-top-radius('left',$wd-button-radius);
-    //  @include border-bottom-radius('left',$wd-button-radius);
-    //}
-    //&:last-child{
-    //  border-right: 1px solid #ccc;
-    //  @include border-top-radius('right',$wd-button-radius);
-    //  @include border-bottom-radius('right',$wd-button-radius);
-    //}
-    //&.hack-last-right-border{
-    //  border-right: 1px solid #ccc\9;
-    //}
     &:active{
       @include box-shadow($wd-button-active-shadow);
     }
   }
 }
-@include setGroupButton();
-@include setGroupButton-theme($wd-button-positive...);
-@include setGroupButton-theme($wd-button-orange...);
-@include setGroupButton-theme($wd-button-red...);
-@include setGroupButton-theme($wd-button-green...);
-
+@include setGroupButtonTheme($wd-button-positive...);
+@include setGroupButtonTheme($wd-button-orange...);
+@include setGroupButtonTheme($wd-button-red...);
+@include setGroupButtonTheme($wd-button-green...);
 
 
 

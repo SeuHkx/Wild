@@ -1,0 +1,78 @@
+.wd-triangle, .wd-triangle-group {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  width: 0;
+  height: 0;
+  vertical-align: middle; }
+
+.wd-triangle-group {
+  position: absolute; }
+
+.wd-triangle--bottom {
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  border-top: 4px solid #333; }
+
+.wd-triangle--top {
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  border-bottom: 4px solid #333; }
+
+.wd-triangle--left {
+  border-right: 4px solid #333;
+  border-bottom: 4px solid transparent;
+  border-top: 4px solid transparent; }
+
+.wd-triangle--right {
+  border-left: 4px solid #333;
+  border-bottom: 4px solid transparent;
+  border-top: 4px solid transparent; }
+
+.wd-triangle-group--down {
+  border-width: 12px;
+  border-style: solid dashed dashed dashed;
+  border-color: #ddd transparent transparent transparent; }
+  .wd-triangle-group--down .wd-triangle {
+    position: absolute;
+    top: -12px;
+    left: -10px;
+    border-width: 10px;
+    border-style: solid dashed dashed dashed;
+    border-color: #fff transparent transparent transparent; }
+
+.wd-triangle-group--top {
+  border-width: 12px;
+  border-style: dashed dashed solid dashed;
+  border-color: transparent transparent #ddd transparent; }
+  .wd-triangle-group--top .wd-triangle {
+    position: absolute;
+    bottom: -12px;
+    left: -10px;
+    border-width: 10px;
+    border-style: dashed dashed solid dashed;
+    border-color: transparent transparent #fff transparent; }
+
+.wd-triangle-group--left {
+  border-width: 12px;
+  border-style: dashed solid dashed dashed;
+  border-color: transparent #ddd transparent transparent; }
+  .wd-triangle-group--left .wd-triangle {
+    position: absolute;
+    top: -10px;
+    left: -8px;
+    border-width: 10px;
+    border-style: dashed solid dashed dashed;
+    border-color: transparent #fff transparent transparent; }
+
+.wd-triangle-group--right {
+  border-width: 12px;
+  border-style: dashed dashed dashed solid;
+  border-color: transparent transparent transparent #ddd; }
+  .wd-triangle-group--right .wd-triangle {
+    position: absolute;
+    top: -10px;
+    right: -8px;
+    border-width: 10px;
+    border-style: dashed dashed dashed solid;
+    border-color: transparent transparent transparent #fff; }

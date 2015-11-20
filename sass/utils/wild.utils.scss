@@ -5,7 +5,7 @@
 @include setTextTransform();
 @include setClear();
 @include setBoxShadow($wd-material-box-shadow,$wd-material-box-shadow-deep,$wd-material-box-shadow-hover);
-@include setPull-float(left);
-@include setPull-float(right);
+@include setFloat(left);
+@include setFloat(right);
 @include setCenterBlock();
 @include setTextColor($wd-material-primary-font-color,$wd-material-secondary-font-color,$wd-material-tips-font-color);

@@ -66,8 +66,23 @@
     }
   }
 }
+//设置三角形颜色
+@mixin triangleTheme($color){
+  .wd-triangle--top {
+    border-bottom-color: $color;
+  }
+  .wd-triangle--bottom {
+    border-top-color: $color;
+  }
+  .wd-triangle--left {
+    border-right-color: $color;
+  }
+  .wd-triangle--right {
+    border-left-color: $color;
+  }
+}
 //设置按钮主题
-@mixin setButtonTheme($name,$color,$bgColor,$bdColor){
+@mixin setButtonTheme($name,$color,$bgColor,$bdColor,$floatingShadow){
   .wd-button--#{$name}{
     color: $color;
     background-color: $bgColor;
@@ -81,6 +96,30 @@
       background-color: darken($bgColor,4%);//#fafafa;
       border-color: darken($bdColor,4%);//#ccc;
     }
+    &.wd-button-floating{
+      &:active{
+        color: $color;
+        background-color: $bgColor;
+        border-color: darken($bdColor,2%);
+      }
+      &.wd-button{
+        &:active{
+          box-shadow: $floatingShadow;
+        }
+      }
+    }
+    &.wd-button-flat{
+      background-color: transparent;
+      color: $bgColor;
+      &:hover{
+        color: $bgColor;
+        background-color: transparent;
+      }
+    }
+    @include triangleTheme(#FFFFFF);
+  }
+  .wd-button--default{
+    @include triangleTheme(#333);
   }
 }
 //设置按钮大小
@@ -97,14 +136,17 @@
   }
 }
 //设置组按钮主题
-@mixin setGroupButton-theme($name,$color,$bgColor,$bdColor){
+@mixin setGroupButtonTheme($name,$color,$bgColor,$bdColor){
   .wd-button-group{
     &.wd-button--#{$name}{
       background-color: transparent;
       .wd-button{
         color: $color;
         background-color: $bgColor;
-        border-color: $bdColor;
+        border-left-color: darken($bdColor,4%);
+        &:last-child{
+          border-right-color: darken($bdColor,4%);
+        }
         &:hover{
           color: $color;
           background-color: darken($bgColor,4%);//#fafafa;
@@ -137,7 +179,7 @@
   }
 }
 //设置下拉主题
-@mixin setDropdonw-theme($name,$color,$bgColor){
+@mixin setDropdownTheme($name,$color,$bgColor){
   .wd-dropdown--#{$name}{
     li{
       >a{
@@ -167,7 +209,7 @@
 @mixin box-shadow($shadow...){
   box-shadow: $shadow;
 }
-@mixin setPull-float($name){
+@mixin setFloat($name){
   @if $name == left{
     .wd-utils-#{$name}{
       float: $name;
@@ -204,4 +246,97 @@
 //css3 过渡
 @mixin transition($prop,$time){
   transition: $prop $time;
+}
+//三角形
+@mixin triangle($name,$size,$color){
+  @if $name == top{
+    .wd-triangle--#{$name}{
+      border-right: $size solid transparent;
+      border-left : $size solid transparent;
+      border-bottom:$size solid $color;
+    }
+  }
+  @if $name == bottom {
+    .wd-triangle--#{$name}{
+      border-right: $size solid transparent;
+      border-left : $size solid transparent;
+      border-top  : $size solid $color;
+      }
+  }
+  @if $name == left {
+    .wd-triangle--#{$name}{
+      border-right  : $size solid $color;
+      border-bottom : $size solid transparent;
+      border-top    : $size solid transparent;
+    }
+  }
+  @if $name == right {
+    .wd-triangle--#{$name}{
+      border-left   : $size solid $color;
+      border-bottom : $size solid transparent;
+      border-top    : $size solid transparent;
+    }
+  }
+}
+@mixin triangleGroup($name,$wrapSize,$wrapColor,$insideSize,$insideColor){
+  @if $name == down {
+    .wd-triangle-group--#{$name}{
+      border-width: $wrapSize;
+      border-style: solid dashed dashed dashed;
+      border-color: $wrapColor transparent transparent transparent;
+      .wd-triangle{
+        position: absolute;
+        top: -$wrapSize;
+        left : -$insideSize;
+        border-width: $insideSize;
+        border-style: solid dashed dashed dashed;
+        border-color: $insideColor transparent transparent transparent;
+      }
+    }
+  }
+  @if $name == top {
+    .wd-triangle-group--#{$name}{
+      border-width: $wrapSize;
+      border-style: dashed dashed solid dashed;
+      border-color: transparent transparent $wrapColor transparent;
+      .wd-triangle{
+        position: absolute;
+        bottom: -$wrapSize;
+        left : -$insideSize;
+        border-width: $insideSize;
+        border-style: dashed dashed solid dashed;
+        border-color: transparent transparent $insideColor transparent;
+      }
+    }
+  }
+  @if $name == left {
+    .wd-triangle-group--#{$name}{
+      border-width: $wrapSize;
+      border-style: dashed solid dashed dashed;
+      border-color: transparent $wrapColor transparent transparent;
+      .wd-triangle{
+        position: absolute;
+        top: -$insideSize;
+        left : -($insideSize - 2);
+        border-width: $insideSize;
+        border-style: dashed solid dashed dashed;
+        border-color: transparent $insideColor transparent transparent;
+      }
+    }
+  }
+  @if $name == right {
+    .wd-triangle-group--#{$name}{
+      border-width: $wrapSize;
+      border-style: dashed dashed dashed solid;
+      border-color: transparent transparent transparent $wrapColor;
+      .wd-triangle{
+        position: absolute;
+        top: -$insideSize;
+        right : -($insideSize - 2);
+        border-width: $insideSize;
+        border-style: dashed dashed dashed solid;
+        border-color: transparent transparent transparent $insideColor;
+      }
+    }
+  }
 }

@@ -10,11 +10,6 @@
 + 组件之间的相互嵌套与结合
 + 更漂亮,美观,时尚
 
-
-### Screenshot
-+ 下图是通过Wild打造的示例。
-+ ![](我)
-
 ### Quick Start
 
 + 下载Wild CSS，引入当前的应用中，也可以git clone下来。
@@ -23,7 +18,7 @@
 ####1. 命令行工具
 环境依赖
 * git
-* node [官网](nodejs.org "官网")
+* node [官网](http://nodejs.org "官网")
 * gulp (npm install -g gulp) 请参考[官网](http://gulpjs.com/ "官网")
 
 ####2. 使用Bower快速安装
@@ -46,7 +41,7 @@ bower install Wild
 ```
 字体模块可根据当时情况来判定是否引入。
 
-* [参考文档](https://github.com/SeuHkx/Wild/docs "文档")
+* [参考文档](https://github.com/SeuHkx/Wild/tree/master/docs)
 
 ####4. 关于dist目录
 
@@ -97,6 +92,10 @@ bower install Sweet
 + Opera31+
 + Android2.3+
 + IOS6.1+
+
+####8. Screenshot
++ 下图是通过Wild打造的示例。
++ ![](我)
 
 ### License
 

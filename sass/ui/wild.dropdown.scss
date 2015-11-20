@@ -16,6 +16,7 @@
   border-radius: $wd-dropdown-bd-radius;
   @include box-shadow($wd-dropdown-shadow);
   >li{
+    position: relative;
     >a{
       display: block;
       padding: $wd-dropdown-padding + 5 $wd-dropdown-padding * 2;
@@ -29,6 +30,12 @@
       &:hover{
         text-decoration: none;
         background-color: $wd-dropdown-hover-bg-color;
+      }
+      .wd-badge{
+        position: absolute;
+        right: 16px;
+        top:50%;
+        margin-top: -10px;
       }
     }
   }

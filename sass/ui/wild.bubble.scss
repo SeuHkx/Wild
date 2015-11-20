@@ -88,4 +88,17 @@
     padding: 0;
   }
 }
-
+.wd-bubble,.wd-bubble-mass{
+  .wd-triangle-group--top{
+    top : -24px
+  }
+  .wd-triangle-group--down{
+    bottom: -24px;
+  }
+  .wd-triangle-group--left{
+    left: -24px;
+  }
+  .wd-triangle-group--right{
+    right: -24px;
+  }
+}
