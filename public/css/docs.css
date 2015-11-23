@@ -1,0 +1,28 @@
+body{
+    background-color: #F4F4F4;
+}
+.docs{
+    padding: 5px;
+    max-width: 1000px;
+    margin: 100px auto;
+    zoom: 1;
+}
+.docs:before,.docs:after{
+    content: "";
+    display: table;
+}
+.docs:after{
+    clear: both;
+}
+.docsDemoAbsolute{
+    position: relative;
+    float: left;
+    width: 25%;
+    height: 220px;
+}
+.hidden{
+    display: none;
+}
+.show{
+    display: block;
+}
