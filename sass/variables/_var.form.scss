@@ -1,9 +1,10 @@
+@import "var.material";
 $wd-form-input-padding                          :                             4px       !default;
 $wd-form-input-font-size                        :                             14px      !default;
 $wd-form-input-height                           :                             36px      !default;
 $wd-form-input-line-height                      :                             26px      !default;
 $wd-form-input-bg-color                         :                             #fff      !default;
-$wd-form-input-color                            :                             #555      !default;
+$wd-form-input-color                            :                             $wd-material-primary-font-color      !default;
 $wd-form-input-bd-color                         :                             #ddd      !default;
 $wd-form-input-bd-radius                        :                             2px       !default;
 $wd-form-input-focus-bd-color                   :                             #349ff4   !default;

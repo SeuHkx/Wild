@@ -1,11 +1,10 @@
 @import "../mixins/mixins",
         "../variables/var.form";
-
 textarea,
 input[type="text"],
 input[type="password"]{
   display: inline-block;
-  height: $wd-form-input-height;
+  min-height: $wd-form-input-height;
   line-height: $wd-form-input-line-height;
   *height: $wd-form-input-height - $wd-form-input-padding*2 - 2;
   *line-height: $wd-form-input-height - $wd-form-input-padding*2 - 2;
@@ -26,70 +25,70 @@ input[type="password"]{
     outline: 0;
   }
 }
-.wd-from-controls{
-  position: relative;
-  display: inline-block;
-  *display: inline;
-  zoom: 1;
-  border:1px solid darken($wd-form-input-group-bg-color,10%);
-  background-color: $wd-form-input-group-bg-color;
-  //min-width: 230px;
-  //width: 268px;
-  font-size: 0;
-  input{
-    min-width: 180px;
-    background-color: $wd-form-input-bg-color;
-    border: none;
-    border-radius: 0;
-  }
-  .wd-button{
-    color: #FFF;
-  }
-  button{
-    background: transparent;
-    *height: 35px;
-    *padding: 0;
-    &.wd-button--hack-icon{
-      *height: 35px;
-      *padding: 6px 10px;
-    }
-  }
-  .wd-button-group{
-    .wd-button:last-child{
-      border-right: none;
-      border-left: 1px solid darken($wd-form-input-group-bg-color,10%);
-    }
-    .wd-button{
-      &.hack-last-left-border{
-        border-left: 1px solid darken($wd-form-input-group-bg-color,10%);
-      }
-    }
-  }
-  .wd-badge{
-    position: absolute;
-    left: 5px;
-    top: 50%;
-    margin-top: -12px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-  }
-  .wd-badge + input{
-    padding-left: 55px;
-  }
-}
+//.wd-from-controls{
+//  position: relative;
+//  display: inline-block;
+//  *display: inline;
+//  zoom: 1;
+//  border:1px solid darken($wd-form-input-group-bg-color,10%);
+//  background-color: $wd-form-input-group-bg-color;
+//  //min-width: 230px;
+//  //width: 268px;
+//  font-size: 0;
+//  input{
+//    min-width: 180px;
+//    background-color: $wd-form-input-bg-color;
+//    border: none;
+//    border-radius: 0;
+//  }
+//  .wd-button{
+//    color: #FFF;
+//  }
+//  button{
+//    background: transparent;
+//    *height: 35px;
+//    *padding: 0;
+//    &.wd-button--hack-icon{
+//      *height: 35px;
+//      *padding: 6px 10px;
+//    }
+//  }
+//  .wd-button-group{
+//    .wd-button:last-child{
+//      border-right: none;
+//      border-left: 1px solid darken($wd-form-input-group-bg-color,10%);
+//    }
+//    .wd-button{
+//      &.hack-last-left-border{
+//        border-left: 1px solid darken($wd-form-input-group-bg-color,10%);
+//      }
+//    }
+//  }
+//  .wd-badge{
+//    position: absolute;
+//    left: 5px;
+//    top: 50%;
+//    margin-top: -12px;
+//    padding-top: 3px;
+//    padding-bottom: 3px;
+//  }
+//  .wd-badge + input{
+//    padding-left: 55px;
+//  }
+//}
 .wd-form-group{
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   >label{
     display: inline-block;
     *display: inline;
     zoom: 1;
     max-width: 100%;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-weight: 700;
   }
   >input{
     display: block;
-    //width: 100%;
+    width: 100%;
   }
   &.wd-form-group--inline{
     display: inline-block;
@@ -110,7 +109,7 @@ input[type="password"]{
 }
 .wd-form-fixed{
   *position: relative;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
   zoom: 1;
   &:before,&:after{
     content: "";
@@ -121,9 +120,9 @@ input[type="password"]{
   }
   .wd-form-fixed-label{
     float: left;
-    width: 100px;
-    height: 35px;
-    line-height: 33px;
+    min-width: 126px;
+    height: $wd-form-input-height;
+    line-height: $wd-form-input-height;
     *position: relative;
     *z-index: 9;
     //text-align: right;
@@ -132,18 +131,27 @@ input[type="password"]{
       *display: inline;
       zoom: 1;
       max-width: 100%;
-      padding-right: 20px;
-      margin-bottom: 5px;
+      padding-right: 16px;
       font-weight: 700;
+      //@include setTextOverflow();
     }
   }
   .wd-from-fixed-flux{
     width: 100%;
     *position: absolute;
 
-    padding-left: 100px;
+    padding-left: 126px;
     *padding-left: 0;
-    *margin-left: -100px;
+    *margin-left: -126px;
+
+    input{
+      width: 100%;
+    }
+  }
+  &.wd-form-fixed--right{
+    .wd-form-fixed-label{
+      text-align: right;
+    }
   }
 }
 
