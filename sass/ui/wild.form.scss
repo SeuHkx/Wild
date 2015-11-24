@@ -120,7 +120,7 @@ input[type="password"]{
   }
   .wd-form-fixed-label{
     float: left;
-    min-width: 126px;
+    width: 82px;
     height: $wd-form-input-height;
     line-height: $wd-form-input-height;
     *position: relative;
@@ -133,16 +133,16 @@ input[type="password"]{
       max-width: 100%;
       padding-right: 16px;
       font-weight: 700;
-      //@include setTextOverflow();
+      @include setTextOverflow();
     }
   }
   .wd-from-fixed-flux{
     width: 100%;
     *position: absolute;
 
-    padding-left: 126px;
+    padding-left: 82px;
     *padding-left: 0;
-    *margin-left: -126px;
+    *margin-left: -82px;
 
     input{
       width: 100%;
@@ -151,6 +151,12 @@ input[type="password"]{
   &.wd-form-fixed--right{
     .wd-form-fixed-label{
       text-align: right;
+      min-width: 126px;
+    }
+    .wd-from-fixed-flux{
+      padding-left: 126px;
+      *padding-left: 0;
+      *margin-left: -126px;
     }
   }
 }

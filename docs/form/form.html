@@ -14,7 +14,12 @@
             padding: 10px;
         }
         .docsForm{
-            max-width: 400px;
+            display: inline-block;
+            *display: inline;
+            width: 400px;
+        }
+        .docsForm:last-child{
+            margin-left: 100px;
         }
     </style>
 </head>
@@ -66,6 +71,37 @@
             <div class="wd-form-fixed wd-form-fixed--right">
                 <div class="wd-form-fixed-label">
                     <label>*夜空中最亮的星:</label>
+                </div>
+                <div class="wd-from-fixed-flux">
+                    <input type="text" placeholder="祈祷"/>
+                </div>
+            </div>
+            <div class="wd-form-fixed wd-form-fixed--right">
+                <div class="wd-from-fixed-flux">
+                    <a class="wd-button wd-button--red">BUTTON</a>
+                </div>
+            </div>
+        </div>
+        <div class="docsForm">
+            <div class="wd-form-fixed">
+                <div class="wd-form-fixed-label">
+                    <label>三万英尺:</label>
+                </div>
+                <div class="wd-from-fixed-flux">
+                    <input type="text" placeholder="眼睛眯着笑"/>
+                </div>
+            </div>
+            <div class="wd-form-fixed">
+                <div class="wd-form-fixed-label">
+                    <label>神秘嘉宾:</label>
+                </div>
+                <div class="wd-from-fixed-flux">
+                    <input type="text" placeholder="祈祷"/>
+                </div>
+            </div>
+            <div class="wd-form-fixed">
+                <div class="wd-form-fixed-label">
+                    <label>独家记忆:</label>
                 </div>
                 <div class="wd-from-fixed-flux">
                     <input type="text" placeholder="祈祷"/>

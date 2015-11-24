@@ -60,7 +60,7 @@ input[type="password"] {
     clear: both; }
   .wd-form-fixed .wd-form-fixed-label {
     float: left;
-    min-width: 126px;
+    width: 82px;
     height: 36px;
     line-height: 36px;
     *position: relative;
@@ -71,14 +71,22 @@ input[type="password"] {
       zoom: 1;
       max-width: 100%;
       padding-right: 16px;
-      font-weight: 700; }
+      font-weight: 700;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; }
   .wd-form-fixed .wd-from-fixed-flux {
     width: 100%;
     *position: absolute;
-    padding-left: 126px;
+    padding-left: 82px;
     *padding-left: 0;
-    *margin-left: -126px; }
+    *margin-left: -82px; }
     .wd-form-fixed .wd-from-fixed-flux input {
       width: 100%; }
   .wd-form-fixed.wd-form-fixed--right .wd-form-fixed-label {
-    text-align: right; }
+    text-align: right;
+    min-width: 126px; }
+  .wd-form-fixed.wd-form-fixed--right .wd-from-fixed-flux {
+    padding-left: 126px;
+    *padding-left: 0;
+    *margin-left: -126px; }

@@ -722,14 +722,14 @@ textarea,
 input[type="text"],
 input[type="password"] {
   display: inline-block;
-  height: 36px;
+  min-height: 36px;
   line-height: 26px;
   *height: 26px;
   *line-height: 26px;
   padding: 4px 6px;
   font-size: 14px;
   vertical-align: middle;
-  color: #555;
+  color: #212121;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 2px;
@@ -743,54 +743,18 @@ input[type="password"] {
     border-color: #349ff4;
     outline: 0; }
 
-.wd-from-controls {
-  position: relative;
-  display: inline-block;
-  *display: inline;
-  zoom: 1;
-  border: 1px solid #0a162a;
-  background-color: #132c53;
-  font-size: 0; }
-  .wd-from-controls input {
-    min-width: 180px;
-    background-color: #fff;
-    border: none;
-    border-radius: 0; }
-  .wd-from-controls .wd-button {
-    color: #FFF; }
-  .wd-from-controls button {
-    background: transparent;
-    *height: 35px;
-    *padding: 0; }
-    .wd-from-controls button.wd-button--hack-icon {
-      *height: 35px;
-      *padding: 6px 10px; }
-  .wd-from-controls .wd-button-group .wd-button:last-child {
-    border-right: none;
-    border-left: 1px solid #0a162a; }
-  .wd-from-controls .wd-button-group .wd-button.hack-last-left-border {
-    border-left: 1px solid #0a162a; }
-  .wd-from-controls .wd-badge {
-    position: absolute;
-    left: 5px;
-    top: 50%;
-    margin-top: -12px;
-    padding-top: 3px;
-    padding-bottom: 3px; }
-  .wd-from-controls .wd-badge + input {
-    padding-left: 55px; }
-
 .wd-form-group {
-  margin-bottom: 20px; }
+  margin-bottom: 16px; }
   .wd-form-group > label {
     display: inline-block;
     *display: inline;
     zoom: 1;
     max-width: 100%;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-weight: 700; }
   .wd-form-group > input {
-    display: block; }
+    display: block;
+    width: 100%; }
   .wd-form-group.wd-form-group--inline {
     display: inline-block;
     *display: inline;
@@ -807,7 +771,7 @@ input[type="password"] {
 
 .wd-form-fixed {
   *position: relative;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
   zoom: 1; }
   .wd-form-fixed:before, .wd-form-fixed:after {
     content: "";
@@ -816,9 +780,9 @@ input[type="password"] {
     clear: both; }
   .wd-form-fixed .wd-form-fixed-label {
     float: left;
-    width: 100px;
-    height: 35px;
-    line-height: 33px;
+    width: 82px;
+    height: 36px;
+    line-height: 36px;
     *position: relative;
     *z-index: 9; }
     .wd-form-fixed .wd-form-fixed-label > label {
@@ -826,15 +790,26 @@ input[type="password"] {
       *display: inline;
       zoom: 1;
       max-width: 100%;
-      padding-right: 20px;
-      margin-bottom: 5px;
-      font-weight: 700; }
+      padding-right: 16px;
+      font-weight: 700;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; }
   .wd-form-fixed .wd-from-fixed-flux {
     width: 100%;
     *position: absolute;
-    padding-left: 100px;
+    padding-left: 82px;
     *padding-left: 0;
-    *margin-left: -100px; }
+    *margin-left: -82px; }
+    .wd-form-fixed .wd-from-fixed-flux input {
+      width: 100%; }
+  .wd-form-fixed.wd-form-fixed--right .wd-form-fixed-label {
+    text-align: right;
+    min-width: 126px; }
+  .wd-form-fixed.wd-form-fixed--right .wd-from-fixed-flux {
+    padding-left: 126px;
+    *padding-left: 0;
+    *margin-left: -126px; }
 
 .wd-img {
   vertical-align: middle; }
