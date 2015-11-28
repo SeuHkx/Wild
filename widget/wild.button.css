@@ -39,6 +39,10 @@
     line-height: 18px;
     margin-left: 4px;
     border-radius: 2px; }
+  .wd-button .wd-triangle {
+    *vertical-align: bottom; }
+  .wd-button.wd-button-hack .wd-triangle {
+    vertical-align: middle\9; }
 
 .wd-button-floating {
   width: 40px;
@@ -47,6 +51,8 @@
   min-height: 40px;
   padding: 0;
   border-radius: 50%; }
+  .wd-button-floating .wd-triangle {
+    *margin-top: 18px; }
 
 .wd-button-floating--large {
   width: 56px;

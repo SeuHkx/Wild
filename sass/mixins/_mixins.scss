@@ -318,6 +318,7 @@
         position: absolute;
         top: -$insideSize;
         left : -($insideSize - 2);
+        *left:  -($insideSize - 3);
         border-width: $insideSize;
         border-style: dashed solid dashed dashed;
         border-color: transparent $insideColor transparent transparent;
@@ -333,6 +334,7 @@
         position: absolute;
         top: -$insideSize;
         right : -($insideSize - 2);
+        *right : -($insideSize - 3);
         border-width: $insideSize;
         border-style: dashed dashed dashed solid;
         border-color: transparent transparent transparent $insideColor;

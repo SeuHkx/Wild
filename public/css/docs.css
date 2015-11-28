@@ -20,6 +20,13 @@ body{
     width: 25%;
     height: 220px;
 }
+.docsDemoAbsolute{
+    padding: 10px;
+}
+.docsForm{
+    display: inline-block;
+    width: 460px;
+}
 .hidden{
     display: none;
 }

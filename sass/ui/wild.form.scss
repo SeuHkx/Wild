@@ -4,7 +4,7 @@ textarea,
 input[type="text"],
 input[type="password"]{
   display: inline-block;
-  min-height: $wd-form-input-height;
+  height: $wd-form-input-height \9;
   line-height: $wd-form-input-line-height;
   *height: $wd-form-input-height - $wd-form-input-padding*2 - 2;
   *line-height: $wd-form-input-height - $wd-form-input-padding*2 - 2;
@@ -23,6 +23,20 @@ input[type="password"]{
   &:focus{
     border-color: $wd-form-input-focus-bd-color;
     outline: 0;
+  }
+}
+.wd-form-controls{
+  overflow: hidden;
+  input{
+    float: left;
+    @include border-bottom-radius(right,0);
+    @include border-top-radius(right,0);
+  }
+  .wd-button,button[class="wd-button"]{
+    //IE
+    margin-left: -1px;
+    height: $wd-form-input-height \9;
+    *height : $wd-form-input-height - 2;
   }
 }
 //.wd-from-controls{
@@ -108,7 +122,6 @@ input[type="password"]{
   }
 }
 .wd-form-fixed{
-  *position: relative;
   margin-bottom: 16px;
   zoom: 1;
   &:before,&:after{
@@ -119,45 +132,22 @@ input[type="password"]{
     clear: both;
   }
   .wd-form-fixed-label{
-    float: left;
-    width: 82px;
+    display: block;
+    min-width: 160px;
+    width: 160px \9;
     height: $wd-form-input-height;
     line-height: $wd-form-input-height;
-    *position: relative;
-    *z-index: 9;
-    //text-align: right;
-    >label{
-      display: inline-block;
-      *display: inline;
-      zoom: 1;
-      max-width: 100%;
-      padding-right: 16px;
-      font-weight: 700;
-      @include setTextOverflow();
-    }
+    float: left;
+    text-align: right;
   }
-  .wd-from-fixed-flux{
-    width: 100%;
-    *position: absolute;
-
-    padding-left: 82px;
-    *padding-left: 0;
-    *margin-left: -82px;
-
+  .wd-form-fixed-flux{
+    margin-left: 180px;
     input{
-      width: 100%;
+      min-width: 220px;
     }
-  }
-  &.wd-form-fixed--right{
-    .wd-form-fixed-label{
-      text-align: right;
-      min-width: 126px;
-    }
-    .wd-from-fixed-flux{
-      padding-left: 126px;
-      *padding-left: 0;
-      *margin-left: -126px;
+    p{
+      height: $wd-form-input-height;
+      line-height: $wd-form-input-height;
     }
   }
 }
-

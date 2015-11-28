@@ -2,10 +2,6 @@
   "name": "Wild",
   "version": "0.0.1",
   "description": "Wild CSS UI And CSS Components",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [
     "CSS",
     "UI",

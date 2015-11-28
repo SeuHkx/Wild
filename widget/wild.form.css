@@ -2,7 +2,7 @@ textarea,
 input[type="text"],
 input[type="password"] {
   display: inline-block;
-  min-height: 36px;
+  height: 36px \9;
   line-height: 26px;
   *height: 26px;
   *line-height: 26px;
@@ -22,6 +22,17 @@ input[type="password"] {
   input[type="password"]:focus {
     border-color: #349ff4;
     outline: 0; }
+
+.wd-form-controls {
+  overflow: hidden; }
+  .wd-form-controls input {
+    float: left;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0; }
+  .wd-form-controls .wd-button, .wd-form-controls button[class="wd-button"] {
+    margin-left: -1px;
+    height: 36px \9;
+    *height: 34px; }
 
 .wd-form-group {
   margin-bottom: 16px; }
@@ -50,7 +61,6 @@ input[type="password"] {
     zoom: 1; }
 
 .wd-form-fixed {
-  *position: relative;
   margin-bottom: 16px;
   zoom: 1; }
   .wd-form-fixed:before, .wd-form-fixed:after {
@@ -59,34 +69,17 @@ input[type="password"] {
   .wd-form-fixed:after {
     clear: both; }
   .wd-form-fixed .wd-form-fixed-label {
-    float: left;
-    width: 82px;
+    display: block;
+    min-width: 160px;
+    width: 160px \9;
     height: 36px;
     line-height: 36px;
-    *position: relative;
-    *z-index: 9; }
-    .wd-form-fixed .wd-form-fixed-label > label {
-      display: inline-block;
-      *display: inline;
-      zoom: 1;
-      max-width: 100%;
-      padding-right: 16px;
-      font-weight: 700;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap; }
-  .wd-form-fixed .wd-from-fixed-flux {
-    width: 100%;
-    *position: absolute;
-    padding-left: 82px;
-    *padding-left: 0;
-    *margin-left: -82px; }
-    .wd-form-fixed .wd-from-fixed-flux input {
-      width: 100%; }
-  .wd-form-fixed.wd-form-fixed--right .wd-form-fixed-label {
-    text-align: right;
-    min-width: 126px; }
-  .wd-form-fixed.wd-form-fixed--right .wd-from-fixed-flux {
-    padding-left: 126px;
-    *padding-left: 0;
-    *margin-left: -126px; }
+    float: left;
+    text-align: right; }
+  .wd-form-fixed .wd-form-fixed-flux {
+    margin-left: 180px; }
+    .wd-form-fixed .wd-form-fixed-flux input {
+      min-width: 220px; }
+    .wd-form-fixed .wd-form-fixed-flux p {
+      height: 36px;
+      line-height: 36px; }

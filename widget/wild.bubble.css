@@ -65,13 +65,17 @@
   padding: 0; }
 
 .wd-bubble .wd-triangle-group--top, .wd-bubble-mass .wd-triangle-group--top {
-  top: -24px; }
+  top: -24px;
+  *top: -23px; }
 
 .wd-bubble .wd-triangle-group--down, .wd-bubble-mass .wd-triangle-group--down {
-  bottom: -24px; }
+  bottom: -24px;
+  *bottom: -23px; }
 
 .wd-bubble .wd-triangle-group--left, .wd-bubble-mass .wd-triangle-group--left {
-  left: -24px; }
+  left: -24px;
+  *left: -23px; }
 
 .wd-bubble .wd-triangle-group--right, .wd-bubble-mass .wd-triangle-group--right {
-  right: -24px; }
+  right: -24px;
+  *right: -23px; }

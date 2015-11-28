@@ -39,6 +39,15 @@
     margin-left: 4px;
     @include border-radius($wd-button-radius);
   }
+  //IE
+  .wd-triangle{
+    *vertical-align: bottom;
+  }
+  &.wd-button-hack{
+    .wd-triangle{
+      vertical-align: middle\9;
+    }
+  }
 }
 .wd-button-floating{
   width: 40px;
@@ -47,6 +56,9 @@
   min-height: 40px;
   padding: 0;
   @include border-radius(50%);
+  .wd-triangle{
+    *margin-top: 18px;
+  }
 }
 .wd-button-floating--large{
   width :       ($wd-button-padding/2)*7;

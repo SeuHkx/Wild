@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>hbox</title>
+    <link rel="stylesheet" href="../../widget/wild.reset.css"/>
+    <link rel="stylesheet" href="../../widget/wild.type.css"/>
+    <link rel="stylesheet" href="../../widget/wild.button.css"/>
+    <link rel="stylesheet" href="css/hbox-skin-material.css"/>
+    <style>
+        .demo{
+            width: 1000px;
+            margin: 100px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body style="height: 1000px">
+
+<div class="demo" id="demo">
+    <a class="wd-button wd-button--green">旅行的意义</a>
+    <a class="wd-button wd-button--green">就是爱你</a>
+</div>
+
+<script src="hbox.js"></script>
+<script>
+    window.onload = function(){
+        var buttons = document.getElementById('demo').getElementsByTagName('a');
+
+        var i = 0;
+
+        var buttonsEvent = function(el,index){
+            el.onclick = function(){
+                switch (index){
+                    case 0 :
+                        hbox.open({
+                            title:'旅行的意义',
+                            content:'你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴',
+                            button : ['旅行的意义'],
+                            mask:false,
+                            callback : {
+                                ok : function(){
+                                    //TODO
+                                    alert('旅行的意义');
+                                    hbox.open({
+                                        title : '就是爱你',
+                                        iframe : true,
+                                        url : 'http://www.baidu.com',
+                                        button : ['情感的禁区'],
+                                        callback : {
+                                            ok : function(){
+                                                alert('情感的禁区')
+                                            }
+                                        }
+                                    })
+                                }
+                            },
+                            repeat : false
+                        });
+                        break;
+                    case 1 :
+                        hbox.open({
+                            title:'相依为命',
+                            width : 400,
+                            content:'仍然自问幸福虽说有阵时为你生气</br>其实以前和你互相不懂得死心塌地</br>直到共你渡过多灾世纪',
+                            button : ['相依为命'],
+                            mask:false,
+                            callback : {
+                                ok : function(){
+                                    //TODO
+                                    alert('我喜欢的音乐');
+
+                                }
+                            }
+                        });
+                }
+            }
+        };
+        for (;i < buttons.length; i += 1){
+            buttonsEvent(buttons[i],i);
+        }
+    }
+</script>
+</body>
+</html>
