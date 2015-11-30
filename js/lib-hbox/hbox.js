@@ -42,13 +42,31 @@
                 el.innerHTML = str;
             }
         },
-        eventClick : function(el,fn,index,bubble){
+        append : function(el){
+            document.body.appendChild(el);
+        },
+        remove : function(el){
+            document.body.removeChild(el);
+        },
+        eventClick : function(el,fn,bubble){
             if (el.addEventListener) {
                 el.addEventListener('click',fn,!!bubble);
             }
             else if (el.attachEvent) {
                 el.attachEvent('onclick', fn);
             }
+        },
+        $class : function(id,klass){
+            var els = [],
+                elements = document.getElementById(id).getElementsByTagName('*'),
+                i = 0,
+                l = elements.length;
+            for(; i < l ; i += 1){
+                if(elements[i].className === klass){
+                    els.push(elements[i]);
+                }
+            }
+            return els;
         },
         getStyle : function(el,attr){
             if (el.currentStyle){
@@ -69,8 +87,7 @@
             height   : '100%',
             backgroundColor : '#000000',
             opacity  : '.4',
-            filter   : 'progid:DXImageTransform.Microsoft.Alpha(Opacity=40)',
-            zIndex   : '9999'
+            filter   : 'progid:DXImageTransform.Microsoft.Alpha(Opacity=40)'
         },
         parentBox : {
             position : 'fixed',
@@ -78,6 +95,15 @@
             top      : '25%',
             width    : function(w){
                 return w || 300 + 'px';
+            },
+            zIndex   : function(index){
+                return 9999 + index;
+            },
+            className: function(klass){
+                return klass;
+            },
+            id       : function(id){
+                return id;
             }
         },
         style : {
@@ -104,7 +130,7 @@
                 return btn;
             }else {
                 for (var i  = 0; i < btns.length; i += 1){
-                    btn += '<a id="test" class="hbox-btn wd-button wd-button-flat wd-button--green">'+ btns[i] +'</a>'
+                    btn += '<a class="hbox-btn">'+ btns[i] +'</a>'
                 }
                 return '<div class='+ configStyle.style.footer +'>'+ btn +'</div>';
             }
@@ -113,12 +139,19 @@
             return '<div class='+ configStyle.style.content +'><iframe src=' + url + ' width="100%" height="100%">'+'</iframe></div>';
         }
     };
+    var cacheData = {
+        nodeParent : [],
+        nodeShade  : [],
+        mask       : null,
+        closeCount : 0
+    };
     var HBox = function(opts){
         return new HBox.fn.init(opts);
     };
     HBox.fn = HBox.prototype;
 
     var init = HBox.fn.init = function(opts){
+        var arg = Array.prototype.slice.call(arguments);
         this.configs = {
                 style    : configStyle.style,
                 id       : '',
@@ -134,10 +167,16 @@
                 cssAnimation : ['pop'],
                 repeat   : true
         };
+        this.parent = utils.createNode('div');
         for (var i in opts){
             if(this.configs.hasOwnProperty(i)){
                 this.configs[i] = opts[i];
             }
+        }
+        if(typeof arg[0] === 'object'){
+            cacheData.mask = this.configs.mask;
+        }else{
+            cacheData.closeCount++;
         }
         return this;
     };
@@ -149,34 +188,56 @@
         }
         return source;
     };
-
     var methodsBox = {
-        _setParentBox : function(){
+        _setBoxAttr : function(){
             this.configs.id !== '' ? configStyle.ID = this.configs.id : configStyle.ID =  configStyle.style.parent + configStyle.count;
-            if( configStyle.count > 0 && this.configs.repeat !== true){
-                configStyle.count = 1;
-                return;
-            }
-            configStyle.count++;
-            this.parent = utils.createNode('div');
-            for (var s in configStyle.parentBox){
-                if(typeof configStyle.parentBox[s] === 'function'){
-                    if(this.configs.width !== null && s === 'width'){
-                        this.parent.style[s] = parseInt(configStyle.parentBox[s](this.configs.width)) + 'px';
+            for (var attr in configStyle.parentBox){
+                if(typeof configStyle.parentBox[attr] === 'function'){
+                    if(this.configs.width !== null && attr === 'width'){
+                        this.parent.style[attr] = parseInt(configStyle.parentBox[attr](this.configs.width)) + 'px';
                         this.parent.style.marginLeft = '-' + (this.configs.width)/2 + 'px';
                     }else{
-                        this.parent.style[s] = configStyle.parentBox[s]();
-                        this.parent.style.marginLeft = '-' + parseInt(configStyle.parentBox[s]())/2 + 'px';
+                        switch (attr){
+                            case 'zIndex' :
+                                this.parent.style[attr] = configStyle.parentBox[attr](configStyle.count);
+                                break;
+                            case 'className' :
+                                this.parent[attr] = configStyle.parentBox[attr](configStyle.style.parent + ' ' + this.configs.cssAnimation[0]);
+                                break;
+                            case 'id' :
+                                this.parent[attr] = configStyle.parentBox[attr](configStyle.ID);
+                                break;
+                            default :
+                                this.parent.style[attr] = configStyle.parentBox[attr]();
+                                this.parent.style.marginLeft = '-' + parseInt(configStyle.parentBox[attr]())/2 + 'px';
+                                break;
+                        }
                     }
                     continue;
                 }
-                this.parent.style[s] = configStyle.parentBox[s];
+                this.parent.style[attr] = configStyle.parentBox[attr];
             }
-            this.parent.className = configStyle.style.parent + ' ' + this.configs.cssAnimation[0];
-            this.parent.id = configStyle.ID;
+            configStyle.count++;
+        },
+        _createBox : function(){
+            this._setBoxAttr();
             utils.html(this.parent,this._createHtml(this.configs));
-            document.body.appendChild(this.parent);
-            utils.log(configStyle.count);
+            utils.append(this.parent);
+            if(this.configs.mask){
+                utils.append(this._createShade());
+            }else {
+                cacheData.nodeShade.push('');
+            }
+            this._closeIcon();
+            cacheData.nodeParent.push(this.parent);
+        },
+        _judge : function(){
+            //todo
+            if(this.configs.repeat !== true){
+                this._createBox();
+            }else{
+                this._createBox();
+            }
         },
         /**
          *
@@ -184,34 +245,49 @@
          * @private
          */
         _createShade : function(){
-            var shade = utils.createNode('div');
+            var shade =  this.shade =  utils.createNode('div');
             for(var k in configStyle.shade)shade.style[k] = configStyle.shade[k];
+            cacheData.nodeShade.push(shade);
             return shade;
         },
         _createHtml : function(opts){
             var title   = opts.title === ''? templateDom.noTitle:templateDom.title(opts.title);
             var content = opts.iframe !== false ? templateDom.iframe(opts.url) : templateDom.content(opts.content);
             var footer  = templateDom.footer(opts.button);
-            var html   = title + content + footer;
-            return html;
+            var template  = title + content + footer;
+            return template;
         },
         _popBox : function(){
-            var callArr = [];
-            if(this.configs.mask)document.body.appendChild(this._createShade());
-            this._setParentBox();
-            //
+            var fn = [];
+            this._judge();
             //callback
-            for(var f in this.configs.callback)callArr.push(f);
-            if(this.configs.button.length !== 0 && callArr.length === this.configs.button.length){
+            for(var f in this.configs.callback)fn.push(f);
+            if(this.configs.button.length !== 0 && fn.length === this.configs.button.length){
+                var els = utils.$class(configStyle.ID,configStyle.style.button);
                 for (var i = 0, l = this.configs.button.length; i< l;i += 1){
-                    utils.eventClick(document.getElementById('test'),this.configs.callback[callArr[i]],i);
+                    utils.eventClick(els[i],this.configs.callback[fn[i]],i);
                 }
             }
         },
+        _closeIcon : function(){
+            var closeIcon = utils.$class(configStyle.ID,configStyle.style._icon),
+                that = this;
+            utils.eventClick(closeIcon[0],function(){
+                utils.remove(that.parent);
+                if(that.configs.mask){
+                    utils.remove(that.shade);
+                }
+            });
+        },
         _closeBox : function(){
-            if(this.configs.mask){
-                document.body.removeChild(this._createShade());
+            var nodeParent = cacheData.nodeParent.pop();
+            if(cacheData.mask || cacheData.nodeShade.length !== 0){
+                var nodeShade  = cacheData.nodeShade.pop();
+                if (nodeShade !== ''){
+                    utils.remove(nodeShade);
+                }
             }
+            utils.remove(nodeParent);
         }
     };
     HBox.fn.copy(init.prototype,methodsBox);
@@ -219,14 +295,13 @@
         version : '1.0.0',
         open : function(cfg){
             HBox(cfg)._popBox();
+            utils.log('弹一个');
         },
         close : function(){
             HBox()._closeBox();
+            utils.log('关闭一个');
         },
-        msg  : function(){
-            
-
-        }
+        msg  : function(){}
     };
     return hbox;
 });

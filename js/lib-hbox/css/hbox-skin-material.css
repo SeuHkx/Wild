@@ -6,7 +6,8 @@ body {
     border: 1px solid #ddd \9;
     border-radius: 2px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-    z-index: 99999;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 .hbox-title {
     position: relative;
@@ -33,12 +34,31 @@ body {
     text-align: right;
     padding: 0 16px 16px 16px;
 }
-
-/* 动画 */
-.hbox {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+.hbox-footer .hbox-btn{
+    display: inline-block;
+    zoom: 1;
+    padding: 0 16px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    min-height: 34px;
+    line-height: 34px;
+    text-align: center;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: none;
 }
+.hbox-footer .hbox-btn:hover {
+    text-decoration: none;
+    color: #2196F3;
+    background-color: transparent;
+}
+/* 动画 */
 .pop{
     -webkit-animation-name: bounceIn;
     animation-name: bounceIn;
