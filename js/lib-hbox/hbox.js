@@ -56,7 +56,9 @@
                 el.addEventListener('click',fn,!!bubble);
             }
             else if (el.attachEvent) {
-                el.attachEvent('onclick', fn);
+                el.attachEvent('onclick', function(){
+                    fn.apply(el,arguments)
+                });
             }
         },
         $class : function(id,klass){
@@ -242,7 +244,6 @@
             }
             if(this.configs.iframe !== false || this.configs.url !== ''){
                 cacheData.iframe[configStyle.ID] = [this.configs.iframe ? this.configs.iframe : this.configs.url,configStyle.ID];
-                utils.log(cacheData.iframe)
             }
             cacheData.nodeParent[configStyle.ID] = this.parent;
             cacheData.changeId = configStyle.ID;
@@ -283,14 +284,10 @@
         },
         _registerCall : function(el,index,fn){
             var that = this;
-            utils.eventClick(el,function(e){
-                //var event = e || window.event;
-                //alert(event.srcElement.tagName);
+            utils.eventClick(el,function(){
                 if(cacheData.changeId !== this.getAttribute('data-id')){
-                    cacheData.changeId = this.getAttribute('data-id');
+                    cacheData.changeId =  this.getAttribute('data-id');
                 }
-                utils.log('click changID:'+ cacheData.changeId);
-                utils.log('click buttonID:'+ this.getAttribute('data-id'));
                 that.configs.callback[fn[index]]();
             });
         },
@@ -322,13 +319,10 @@
                     for (var i in cacheData.iframe){
                         if(cacheData.iframe[i] !== 'undefined'){
                             cacheData.changeId = i;
-                            utils.log('changID to iframe:' + i);
-                            utils.log(cacheData.iframe);
                         }
                     }
                 }
                 if(localPrivate !== cacheData.changeId){
-                    utils.log('点击按钮关闭:'+ cacheData.changeId);
                     utils.remove(cacheData.nodeParent[localPrivate]);
                     cacheData.nodeParent[localPrivate] = 'undefined';
                     if(cacheData.mask[localPrivate] !== false){
