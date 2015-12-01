@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../../widget/wild.reset.css"/>
+    <link rel="stylesheet" href="../../../widget/wild.type.css"/>
+    <link rel="stylesheet" href="../../../widget/wild.button.css"/>
+</head>
+<body>
+    <div id="buttons">
+        <a class="wd-button wd-button--red">信仰</a>
+        <a class="wd-button wd-button--positive">爱是一种信仰</a>
+    </div>
+    <script>
+        window.onload = function(){
+            var buttons = document.getElementById('buttons').getElementsByTagName('a');
+            var i = 0;
+            var buttonsEvent = function(el,index){
+                el.onclick = function(){
+                    switch (index){
+                        case 0 :
+                            window.parent.hbox.require('你知道吗');
+                            break;
+                        case 1 :
+                            window.parent.hbox.close();
+                    }
+                }
+            };
+            for (;i < buttons.length; i += 1){
+                buttonsEvent(buttons[i],i);
+            }
+        }
+    </script>
+</body>
+</html>

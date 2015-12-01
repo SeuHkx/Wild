@@ -27,6 +27,9 @@
                 mobile : ua.match(/ipad/i) || ua.match(/iphone os/i) || ua.match(/android/i)
             };
         },
+        replace : function(str){
+           return str.replace(/^[^\d]*(\d+)[^\d]*$/, "$1");
+        },
         log : function(el){
             if(window.console){
                 console.log(el)
@@ -61,6 +64,9 @@
                 elements = document.getElementById(id).getElementsByTagName('*'),
                 i = 0,
                 l = elements.length;
+            if (arguments.length === 1){
+                return document.getElementById(id);
+            }
             for(; i < l ; i += 1){
                 if(elements[i].className === klass){
                     els.push(elements[i]);
@@ -74,6 +80,12 @@
             }else if (window.getComputedStyle){
                 return window.getComputedStyle(el,null)[attr];
             }
+        },
+        isEmpty : function(obj){
+            for (var name in obj){
+                return false;
+            }
+            return true;
         }
     };
     var configStyle = {
@@ -116,13 +128,14 @@
         }
     };
     var templateDom = {
-        noTitle : '<div  class=' + configStyle.style.title +'><i class='+ configStyle.style._icon +'></i></div>',
+        noTitle : function(){
+            return '<div  class=' + configStyle.style.title +'><i data-id='+ configStyle.ID +' class='+ configStyle.style._icon +'></i></div>'
+        },
         title   : function(str){
-            return '<div class='+ configStyle.style.title +'><i class='+ configStyle.style._icon +'></i><h4>'+ str +'</h4></div>';
+            return '<div class=' + configStyle.style.title +'><i data-id='+ configStyle.ID +' class='+ configStyle.style._icon +'></i><h4>'+ str +'</h4></div>';
         },
         content : function(str){
             return '<div class='+ configStyle.style.content +'>'+ str +'</div>'
-
         },
         footer  : function(btns){
             var btn = '';
@@ -130,20 +143,21 @@
                 return btn;
             }else {
                 for (var i  = 0; i < btns.length; i += 1){
-                    btn += '<a class="hbox-btn">'+ btns[i] +'</a>'
+                    btn += '<a data-id='+ configStyle.ID +' class="hbox-btn">'+ btns[i] +'</a>'
                 }
                 return '<div class='+ configStyle.style.footer +'>'+ btn +'</div>';
             }
         },
         iframe  : function(url){
-            return '<div class='+ configStyle.style.content +'><iframe src=' + url + ' width="100%" height="100%">'+'</iframe></div>';
+            return '<div class='+ configStyle.style.content +'><iframe data-id='+ configStyle.ID +' src=' + url + '  frameborder="0" scrolling="auto" width="100%" height="100%">'+'</iframe></div>';
         }
     };
     var cacheData = {
-        nodeParent : [],
-        nodeShade  : [],
-        mask       : null,
-        closeCount : 0
+        nodeParent : {},
+        nodeShade  : {},
+        mask       : {},
+        iframe     : {},
+        changeId   : ''
     };
     var HBox = function(opts){
         return new HBox.fn.init(opts);
@@ -168,15 +182,11 @@
                 repeat   : true
         };
         this.parent = utils.createNode('div');
+        this.shade  = utils.createNode('div');
         for (var i in opts){
             if(this.configs.hasOwnProperty(i)){
                 this.configs[i] = opts[i];
             }
-        }
-        if(typeof arg[0] === 'object'){
-            cacheData.mask = this.configs.mask;
-        }else{
-            cacheData.closeCount++;
         }
         return this;
     };
@@ -189,7 +199,7 @@
         return source;
     };
     var methodsBox = {
-        _setBoxAttr : function(){
+        _setParentBox : function(){
             this.configs.id !== '' ? configStyle.ID = this.configs.id : configStyle.ID =  configStyle.style.parent + configStyle.count;
             for (var attr in configStyle.parentBox){
                 if(typeof configStyle.parentBox[attr] === 'function'){
@@ -220,24 +230,27 @@
             configStyle.count++;
         },
         _createBox : function(){
-            this._setBoxAttr();
+            this._setParentBox();
             utils.html(this.parent,this._createHtml(this.configs));
             utils.append(this.parent);
             if(this.configs.mask){
                 utils.append(this._createShade());
+                cacheData.nodeShade[configStyle.ID] = this.shade;
+                cacheData.mask[configStyle.ID] = this.configs.mask;
             }else {
-                cacheData.nodeShade.push('');
+                cacheData.mask[configStyle.ID] = this.configs.mask;
             }
-            this._closeIcon();
-            cacheData.nodeParent.push(this.parent);
-        },
+            if(this.configs.iframe !== false || this.configs.url !== ''){
+                cacheData.iframe[configStyle.ID] = [this.configs.iframe ? this.configs.iframe : this.configs.url,configStyle.ID];
+                utils.log(cacheData.iframe)
+            }
+            cacheData.nodeParent[configStyle.ID] = this.parent;
+            cacheData.changeId = configStyle.ID;
+            },
         _judge : function(){
-            //todo
-            if(this.configs.repeat !== true){
-                this._createBox();
-            }else{
-                this._createBox();
-            }
+            //TODO
+            this._createBox();
+            this._closeIcon();
         },
         /**
          *
@@ -245,14 +258,13 @@
          * @private
          */
         _createShade : function(){
-            var shade =  this.shade =  utils.createNode('div');
-            for(var k in configStyle.shade)shade.style[k] = configStyle.shade[k];
-            cacheData.nodeShade.push(shade);
+            var shade =  this.shade;
+            for(var k in configStyle.shade)this.shade.style[k] = configStyle.shade[k];
             return shade;
         },
         _createHtml : function(opts){
-            var title   = opts.title === ''? templateDom.noTitle:templateDom.title(opts.title);
-            var content = opts.iframe !== false ? templateDom.iframe(opts.url) : templateDom.content(opts.content);
+            var title   = opts.title === ''? templateDom.noTitle():templateDom.title(opts.title);
+            var content = opts.iframe !== false || opts.url !== '' ? templateDom.iframe(opts.url) : templateDom.content(opts.content);
             var footer  = templateDom.footer(opts.button);
             var template  = title + content + footer;
             return template;
@@ -265,29 +277,81 @@
             if(this.configs.button.length !== 0 && fn.length === this.configs.button.length){
                 var els = utils.$class(configStyle.ID,configStyle.style.button);
                 for (var i = 0, l = this.configs.button.length; i< l;i += 1){
-                    utils.eventClick(els[i],this.configs.callback[fn[i]],i);
+                    this._registerCall(els[i],i,fn);
                 }
             }
+        },
+        _registerCall : function(el,index,fn){
+            var that = this;
+            utils.eventClick(el,function(e){
+                //var event = e || window.event;
+                //alert(event.srcElement.tagName);
+                if(cacheData.changeId !== this.getAttribute('data-id')){
+                    cacheData.changeId = this.getAttribute('data-id');
+                }
+                utils.log('click changID:'+ cacheData.changeId);
+                utils.log('click buttonID:'+ this.getAttribute('data-id'));
+                that.configs.callback[fn[index]]();
+            });
         },
         _closeIcon : function(){
             var closeIcon = utils.$class(configStyle.ID,configStyle.style._icon),
                 that = this;
             utils.eventClick(closeIcon[0],function(){
-                utils.remove(that.parent);
+                var dataID = this.getAttribute('data-id');
+                utils.remove(cacheData.nodeParent[dataID]);
+                cacheData.nodeParent[dataID] = 'undefined';
                 if(that.configs.mask){
-                    utils.remove(that.shade);
+                    utils.remove(cacheData.nodeShade[dataID]);
+                    cacheData.nodeShade[dataID] = 'undefined';
+                }
+                if(!utils.isEmpty(cacheData.iframe)){
+                    cacheData.iframe[dataID] = 'undefined';
                 }
             });
         },
         _closeBox : function(){
-            var nodeParent = cacheData.nodeParent.pop();
-            if(cacheData.mask || cacheData.nodeShade.length !== 0){
-                var nodeShade  = cacheData.nodeShade.pop();
-                if (nodeShade !== ''){
-                    utils.remove(nodeShade);
+            var arg = arguments[0];
+            if(typeof arg === 'string' && arg !== ''){
+                utils.remove(cacheData.nodeParent[arg]);
+                cacheData.nodeParent[arg] = 'undefined';
+            }
+            var localPrivate = cacheData.changeId;
+            if(!utils.isEmpty(cacheData.iframe)){
+                if(typeof cacheData.iframe[cacheData.changeId] === 'undefined'){
+                    for (var i in cacheData.iframe){
+                        if(cacheData.iframe[i] !== 'undefined'){
+                            cacheData.changeId = i;
+                            utils.log('changID to iframe:' + i);
+                            utils.log(cacheData.iframe);
+                        }
+                    }
+                }
+                if(localPrivate !== cacheData.changeId){
+                    utils.log('点击按钮关闭:'+ cacheData.changeId);
+                    utils.remove(cacheData.nodeParent[localPrivate]);
+                    cacheData.nodeParent[localPrivate] = 'undefined';
+                    if(cacheData.mask[localPrivate] !== false){
+                        utils.remove(cacheData.nodeShade[localPrivate]);
+                        cacheData.nodeShade[localPrivate] = 'undefined';
+                    }
+                }else{
+                    utils.remove(cacheData.nodeParent[cacheData.changeId]);
+                    cacheData.nodeParent[cacheData.changeId] = 'undefined';
+                    if(cacheData.mask[cacheData.changeId] !== false){
+                        utils.remove(cacheData.nodeShade[cacheData.changeId]);
+                        cacheData.nodeShade[cacheData.changeId] = 'undefined';
+                    }
+                    cacheData.iframe[cacheData.changeId] = 'undefined';
+                }
+            }else{
+                utils.remove(cacheData.nodeParent[cacheData.changeId]);
+                cacheData.nodeParent[cacheData.changeId] = 'undefined';
+                if(cacheData.mask[cacheData.changeId] !== false){
+                    utils.remove(cacheData.nodeShade[cacheData.changeId]);
+                    cacheData.nodeShade[cacheData.changeId] = 'undefined';
                 }
             }
-            utils.remove(nodeParent);
         }
     };
     HBox.fn.copy(init.prototype,methodsBox);
@@ -295,11 +359,19 @@
         version : '1.0.0',
         open : function(cfg){
             HBox(cfg)._popBox();
-            utils.log('弹一个');
         },
         close : function(){
             HBox()._closeBox();
-            utils.log('关闭一个');
+        },
+        fn : [],
+        register : function(fn){
+            if(Object.prototype.toString.call(fn) === '[object Function]'){
+                this.fn.push(fn);
+                return fn;
+            }
+        },
+        require : function(arg){
+            this.fn[0](arg);
         },
         msg  : function(){}
     };
