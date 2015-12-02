@@ -10,21 +10,22 @@
     <link rel="stylesheet" href="css/hbox-skin-material.css"/>
     <style>
         .demo{
-            width: 1000px;
-            margin: 100px auto;
+            max-width: 1000px;
+            *width : 1000px;
+            margin: 50px auto;
             text-align: center;
         }
     </style>
 </head>
-<body style="height: 1000px">
-
-<div class="demo" id="demo">
-    <a class="wd-button wd-button--green">旅行的意义</a>
-    <a class="wd-button wd-button--green">就是爱你</a>
-    <a class="wd-button wd-button--green">信仰</a>
-    <a class="wd-button wd-button--green">南山南</a>
-</div>
-
+<body>
+    <div class="demo" id="demo">
+        <div class="wd-button-group wd-button--green">
+            <a class="wd-button">遗憾</a>
+            <a class="wd-button">就是爱你</a>
+            <a class="wd-button">信仰</a>
+            <a class="wd-button">南山南</a>
+        </div>
+    </div>
 <script src="hbox.js"></script>
 <script src="js/index.js"></script>
 </body>

@@ -21,10 +21,10 @@
                 el.onclick = function(){
                     switch (index){
                         case 0 :
-                            window.parent.hbox.require('你知道吗');
+                            parent.hbox.require('你知道吗');
                             break;
                         case 1 :
-                            window.parent.hbox.close();
+                            parent.hbox.close('iframeID');
                     }
                 }
             };

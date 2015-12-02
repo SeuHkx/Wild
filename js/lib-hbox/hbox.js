@@ -100,8 +100,8 @@
             width    : '100%',
             height   : '100%',
             backgroundColor : '#000000',
-            opacity  : '.4',
-            filter   : 'progid:DXImageTransform.Microsoft.Alpha(Opacity=40)'
+            opacity  : '.3',
+            filter   : 'progid:DXImageTransform.Microsoft.Alpha(Opacity=30)'
         },
         parentBox : {
             position : 'fixed',
@@ -126,32 +126,44 @@
             content  : 'hbox-content',
             footer   : 'hbox-footer',
             button   : 'hbox-btn',
-            _icon    : 'hbox-close-icon'
+            icon     : 'hbox-close-icon'
         }
     };
     var templateDom = {
-        noTitle : function(){
-            return '<div  class=' + configStyle.style.title +'><i data-id='+ configStyle.ID +' class='+ configStyle.style._icon +'></i></div>'
+        noTitle : function(klass){
+            return '<div  class=' + klass.title +'><i data-id='+ configStyle.ID +' class='+ klass.icon +'></i></div>'
         },
-        title   : function(str){
-            return '<div class=' + configStyle.style.title +'><i data-id='+ configStyle.ID +' class='+ configStyle.style._icon +'></i><h4>'+ str +'</h4></div>';
+        title   : function(str,klass){
+            return '<div class=' +  klass.title +'><i  data-id='+ configStyle.ID +' class='+ klass.icon +'></i><h4>'+ str +'</h4></div>';
         },
-        content : function(str){
-            return '<div class='+ configStyle.style.content +'>'+ str +'</div>'
+        content : function(str,num,klass){
+            var style;
+            if(typeof num !== 'string'){
+                style = num + 'px';
+            }else{
+                style = 'auto';
+            }
+            return '<div class='+ klass.content +' style="height:'+ style +'">'+ str +'</div>'
         },
-        footer  : function(btns){
+        footer  : function(btns,klass){
             var btn = '';
             if(btns.length === 0){
                 return btn;
             }else {
                 for (var i  = 0; i < btns.length; i += 1){
-                    btn += '<a data-id='+ configStyle.ID +' class="hbox-btn">'+ btns[i] +'</a>'
+                    btn += '<a data-id='+ configStyle.ID +' class='+ klass.button +'>'+ btns[i] +'</a>'
                 }
-                return '<div class='+ configStyle.style.footer +'>'+ btn +'</div>';
+                return '<div class='+ klass.footer +'>'+ btn +'</div>';
             }
         },
-        iframe  : function(url){
-            return '<div class='+ configStyle.style.content +'><iframe data-id='+ configStyle.ID +' src=' + url + '  frameborder="0" scrolling="auto" width="100%" height="100%">'+'</iframe></div>';
+        iframe  : function(url,num,klass){
+            var style;
+            if(typeof num !== 'string'){
+                 style = num + 'px';
+            }else{
+                style = 'auto';
+            }
+            return '<div class='+ klass.content +' style="height:'+ style +'"><iframe data-id='+ configStyle.ID +' src=' + url + '  frameborder="0" scrolling="auto" width="100%" height="100%">'+'</iframe></div>';
         }
     };
     var cacheData = {
@@ -167,14 +179,20 @@
     HBox.fn = HBox.prototype;
 
     var init = HBox.fn.init = function(opts){
-        var arg = Array.prototype.slice.call(arguments);
         this.configs = {
-                style    : configStyle.style,
+                style    : {
+                    parent   : 'hbox',
+                    title    : 'hbox-title',
+                    content  : 'hbox-content',
+                    footer   : 'hbox-footer',
+                    button   : 'hbox-btn',
+                    icon    : 'hbox-close-icon'
+                },
                 id       : '',
                 title    : '',
                 content  : '',
                 width    : null,
-                height   : null,
+                height   : 'auto',
                 iframe   : false,
                 url      : '',
                 mask     : true,
@@ -187,6 +205,14 @@
         this.shade  = utils.createNode('div');
         for (var i in opts){
             if(this.configs.hasOwnProperty(i)){
+                if(i === 'style'){
+                    for(var k in opts[i]){
+                        if(this.configs[i].hasOwnProperty(k)){
+                            this.configs[i][k] = opts[i][k];
+                        }
+                    }
+                    continue;
+                }
                 this.configs[i] = opts[i];
             }
         }
@@ -206,67 +232,75 @@
             for (var attr in configStyle.parentBox){
                 if(typeof configStyle.parentBox[attr] === 'function'){
                     if(this.configs.width !== null && attr === 'width'){
-                        this.parent.style[attr] = parseInt(configStyle.parentBox[attr](this.configs.width)) + 'px';
-                        this.parent.style.marginLeft = '-' + (this.configs.width)/2 + 'px';
+                        if(utils.client().mobile){
+                            this.parent.style[attr]  = '90%';
+                            this.parent.style.margin = '0 5%';
+                        }else {
+                            this.parent.style[attr] = parseInt(configStyle.parentBox[attr](this.configs.width)) + 'px';
+                            this.parent.style.marginLeft = '-' + (this.configs.width)/2 + 'px';
+                        }
                     }else{
                         switch (attr){
                             case 'zIndex' :
                                 this.parent.style[attr] = configStyle.parentBox[attr](configStyle.count);
                                 break;
                             case 'className' :
-                                this.parent[attr] = configStyle.parentBox[attr](configStyle.style.parent + ' ' + this.configs.cssAnimation[0]);
+                                this.parent[attr] = configStyle.parentBox[attr](this.configs.style.parent + ' ' + this.configs.cssAnimation[0]);
                                 break;
                             case 'id' :
                                 this.parent[attr] = configStyle.parentBox[attr](configStyle.ID);
                                 break;
                             default :
-                                this.parent.style[attr] = configStyle.parentBox[attr]();
-                                this.parent.style.marginLeft = '-' + parseInt(configStyle.parentBox[attr]())/2 + 'px';
+                                if(utils.client().mobile){
+                                    this.parent.style[attr]  = '90%';
+                                    this.parent.style.margin = '0 5%';
+                                }else {
+                                    this.parent.style[attr] = configStyle.parentBox[attr]();
+                                    this.parent.style.marginLeft = '-' + parseInt(configStyle.parentBox[attr]())/2 + 'px';
+                                }
                                 break;
                         }
                     }
                     continue;
                 }
+                if(utils.client().mobile){
+                    if(attr === 'left'){
+                        this.parent.style[attr] = '0';
+                        continue;
+                    }
+                }
                 this.parent.style[attr] = configStyle.parentBox[attr];
             }
             configStyle.count++;
         },
-        _createBox : function(){
+        _createBox: function () {
             this._setParentBox();
-            utils.html(this.parent,this._createHtml(this.configs));
+            utils.html(this.parent, this._createHtml(this.configs));
             utils.append(this.parent);
-            if(this.configs.mask){
+            if (this.configs.mask) {
                 utils.append(this._createShade());
                 cacheData.nodeShade[configStyle.ID] = this.shade;
                 cacheData.mask[configStyle.ID] = this.configs.mask;
-            }else {
+            } else {
                 cacheData.mask[configStyle.ID] = this.configs.mask;
-            }
-            if(this.configs.iframe !== false || this.configs.url !== ''){
-                cacheData.iframe[configStyle.ID] = [this.configs.iframe ? this.configs.iframe : this.configs.url,configStyle.ID];
             }
             cacheData.nodeParent[configStyle.ID] = this.parent;
             cacheData.changeId = configStyle.ID;
-            },
+        },
         _judge : function(){
             //TODO
             this._createBox();
             this._closeIcon();
         },
-        /**
-         *
-         * @returns {*}
-         * @private
-         */
         _createShade : function(){
             var shade =  this.shade;
             for(var k in configStyle.shade)this.shade.style[k] = configStyle.shade[k];
             return shade;
         },
         _createHtml : function(opts){
-            var title   = opts.title === ''? templateDom.noTitle():templateDom.title(opts.title);
-            var content = opts.iframe !== false || opts.url !== '' ? templateDom.iframe(opts.url) : templateDom.content(opts.content);
-            var footer  = templateDom.footer(opts.button);
+            var title   = opts.title === ''? templateDom.noTitle(opts.style):templateDom.title(opts.title,opts.style);
+            var content = opts.iframe !== false || opts.url !== '' ? templateDom.iframe(opts.url,opts.height,opts.style) : templateDom.content(opts.content,opts.height,opts.style);
+            var footer  = templateDom.footer(opts.button,opts.style);
             var template  = title + content + footer;
             return template;
         },
@@ -292,7 +326,7 @@
             });
         },
         _closeIcon : function(){
-            var closeIcon = utils.$class(configStyle.ID,configStyle.style._icon),
+            var closeIcon = utils.$class(configStyle.ID,configStyle.style.icon),
                 that = this;
             utils.eventClick(closeIcon[0],function(){
                 var dataID = this.getAttribute('data-id');
@@ -302,43 +336,18 @@
                     utils.remove(cacheData.nodeShade[dataID]);
                     cacheData.nodeShade[dataID] = 'undefined';
                 }
-                if(!utils.isEmpty(cacheData.iframe)){
-                    cacheData.iframe[dataID] = 'undefined';
-                }
             });
         },
         _closeBox : function(){
             var arg = arguments[0];
-            if(typeof arg === 'string' && arg !== ''){
+            if(arg !== ''&& typeof arg !== 'undefined'){
                 utils.remove(cacheData.nodeParent[arg]);
+                if(cacheData.mask[cacheData.changeId] !== false){
+                    utils.remove(cacheData.nodeShade[cacheData.changeId]);
+                    cacheData.nodeShade[cacheData.changeId] = 'undefined';
+                }
                 cacheData.nodeParent[arg] = 'undefined';
-            }
-            var localPrivate = cacheData.changeId;
-            if(!utils.isEmpty(cacheData.iframe)){
-                if(typeof cacheData.iframe[cacheData.changeId] === 'undefined'){
-                    for (var i in cacheData.iframe){
-                        if(cacheData.iframe[i] !== 'undefined'){
-                            cacheData.changeId = i;
-                        }
-                    }
-                }
-                if(localPrivate !== cacheData.changeId){
-                    utils.remove(cacheData.nodeParent[localPrivate]);
-                    cacheData.nodeParent[localPrivate] = 'undefined';
-                    if(cacheData.mask[localPrivate] !== false){
-                        utils.remove(cacheData.nodeShade[localPrivate]);
-                        cacheData.nodeShade[localPrivate] = 'undefined';
-                    }
-                }else{
-                    utils.remove(cacheData.nodeParent[cacheData.changeId]);
-                    cacheData.nodeParent[cacheData.changeId] = 'undefined';
-                    if(cacheData.mask[cacheData.changeId] !== false){
-                        utils.remove(cacheData.nodeShade[cacheData.changeId]);
-                        cacheData.nodeShade[cacheData.changeId] = 'undefined';
-                    }
-                    cacheData.iframe[cacheData.changeId] = 'undefined';
-                }
-            }else{
+            }else {
                 utils.remove(cacheData.nodeParent[cacheData.changeId]);
                 cacheData.nodeParent[cacheData.changeId] = 'undefined';
                 if(cacheData.mask[cacheData.changeId] !== false){
@@ -354,8 +363,8 @@
         open : function(cfg){
             HBox(cfg)._popBox();
         },
-        close : function(){
-            HBox()._closeBox();
+        close : function(id){
+            HBox()._closeBox(id);
         },
         fn : [],
         register : function(fn){

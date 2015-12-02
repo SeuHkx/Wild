@@ -15,6 +15,7 @@ window.onload = function(){
             switch (index){
                 case 0 :
                     hbox.open({
+                        customClass : true,
                         title:'旅行的意义',
                         content:'你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴',
                         button : ['信仰','关闭'],
@@ -22,6 +23,7 @@ window.onload = function(){
                             ok : function(){
                                 //TODO
                                 hbox.open({
+                                    id : 'iframeID',
                                     title : '信仰',
                                     iframe : true,
                                     url : 'test/iframe.html',
@@ -49,8 +51,9 @@ window.onload = function(){
                                                                 ok : function(){
                                                                     //open
                                                                     hbox.open({
+                                                                        id : 'iframeID2',
                                                                         iframe : true,
-                                                                        url : 'test/iframe.html'
+                                                                        url : 'test/iframe2.html'
                                                                     })
                                                                 }
                                                             }
@@ -77,6 +80,7 @@ window.onload = function(){
                     hbox.open({
                         title:'相依为命',
                         width : 450,
+                        height : 100,
                         content:'仍然自问幸福虽说有阵时为你生气</br>其实以前和你互相不懂得死心塌地</br>直到共你渡过多灾世纪',
                         button : ['相依为命'],
                         mask:false,
@@ -125,4 +129,4 @@ window.onload = function(){
     for (;i < buttons.length; i += 1){
         buttonsEvent(buttons[i],i);
     }
-}
+};
