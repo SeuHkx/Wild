@@ -119,7 +119,7 @@
             opacity  : '0.3',
             filter   : 'progid:DXImageTransform.Microsoft.Alpha(Opacity=30)',
             zIndex   : function(index){
-                return 9997 + index
+                return 9999997 + index
             }
         },
         parentBox : {
@@ -130,7 +130,7 @@
                 return w || 300 + 'px';
             },
             zIndex   : function(index){
-                return 9999 + index;
+                return 9999999 + index;
             },
             className: function(klass){
                 return klass;
@@ -373,11 +373,11 @@
                     $el.className += ' ' + cacheData.animateEnd[dataID];
                     utils.pfxEvent($el, 'animationend', function () {
                         that._exeIcon(that,dataID);
-                        utils.log('css icon close animationend remove child');
+                        //utils.log('css icon close animationend remove child');
                     });
                 }else{
                     that._exeIcon(that,dataID);
-                    utils.log('icon close normal')
+                    //utils.log('icon close normal')
                 }
             });
         },
@@ -404,7 +404,7 @@
             utils.$delClass($cacheElement,$cacheStart);
             $cacheElement.className += ' ' + $cacheEnd;
             utils.pfxEvent($cacheElement,'animationend',function(){
-                utils.log('close box start');
+                //utils.log('close box start');
                 slef._executive($cacheElement);
             });
         },
