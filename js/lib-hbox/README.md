@@ -13,6 +13,9 @@
 + 手机端自动适配
 + (拖拽正在测试中... ^ ^)
 
+### 效果
+
+[![gif](https://github.com/SeuHkx/Wild/blob/master/js/lib-hbox/images/hbox.gif "gif")](https://github.com/SeuHkx/Wild/blob/master/js/lib-hbox/images/hbox.gif "gif")
 
 ### API
 
