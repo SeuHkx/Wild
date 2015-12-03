@@ -64,6 +64,11 @@
         $hasClass : function(el,klass){
             return !!el.className.match(new RegExp("(\\s|^)" + klass + "(\\s|$)"));
         },
+        $delClass : function(el,klass){
+            if(this.$hasClass(el,klass)){
+                el.className = el.className.replace(new RegExp( "(\\s|^)" + klass + "(\\s|$)" ),"");
+            }
+        },
         $class : function(id,klass){
             var els = [],
                 elements = document.getElementById(id).getElementsByTagName('*'),
@@ -184,11 +189,12 @@
         }
     };
     var cacheData = {
-        nodeParent : {},
-        nodeShade  : {},
-        mask       : {},
-        changeId   : '',
-        cssClass   : []
+        nodeParent   : {},
+        nodeShade    : {},
+        mask         : {},
+        changeId     : '',
+        animateStart : {},
+        animateEnd   : {}
     };
     var HBox = function(opts){
         return new HBox.fn.init(opts);
@@ -266,6 +272,7 @@
                                 break;
                             case 'className' :
                                 this.parent[attr] = configStyle.parentBox[attr](this.configs.style.parent + ' ' + (typeof this.configs.cssAnimation[0] === 'undefined'?'':this.configs.cssAnimation[0]));
+                                cacheData.animateStart[configStyle.ID] = this.configs.cssAnimation[0];
                                 break;
                             case 'id' :
                                 this.parent[attr] = configStyle.parentBox[attr](configStyle.ID);
@@ -306,7 +313,7 @@
             }
             cacheData.nodeParent[configStyle.ID] = this.parent;
             cacheData.changeId = configStyle.ID;
-            if(typeof this.configs.cssAnimation[1] !== 'undefined')cacheData.cssClass[configStyle.ID] = this.configs.cssAnimation[1];
+            if(typeof this.configs.cssAnimation[1] !== 'undefined')cacheData.animateEnd[configStyle.ID] = this.configs.cssAnimation[1];
 
         },
         _judge : function(){
@@ -358,70 +365,88 @@
             var closeIcon = utils.$class(configStyle.ID,configStyle.style.icon),
                 that = this;
             utils.eventClick(closeIcon[0],function(){
-                var dataID = this.getAttribute('data-id'),
-                       el  = utils.$class(dataID);
-                if(typeof cacheData.cssClass[dataID] !== 'undefined' && window.addEventListener) {
-                    el.className += ' ' + cacheData.cssClass[dataID];
-                    utils.pfxEvent(el, 'animationend', function () {
-                        that._executive(el);
+                var dataID  = this.getAttribute('data-id'),
+                       $el  = utils.$class(dataID);
+                if(typeof cacheData.animateEnd[dataID] !== 'undefined' && window.addEventListener) {
+                    utils.log('css icon close');
+                    utils.$delClass($el,cacheData.animateStart[dataID]);
+                    $el.className += ' ' + cacheData.animateEnd[dataID];
+                    utils.pfxEvent($el, 'animationend', function () {
+                        that._exeIcon(that,dataID);
+                        utils.log('css icon close animationend remove child');
                     });
                 }else{
-                    utils.remove(cacheData.nodeParent[dataID]);
-                    cacheData.nodeParent[dataID] = 'undefined';
-                    if(that.configs.mask){
-                        utils.remove(cacheData.nodeShade[dataID]);
-                        cacheData.nodeShade[dataID] = 'undefined';
-                    }
+                    that._exeIcon(that,dataID);
+                    utils.log('icon close normal')
                 }
             });
         },
-        _executive : function(opts){
-            var el,
-                cssData = cacheData;
-            if (typeof opts === 'undefined'){
-                el = cacheData;
-                utils.remove(el.nodeParent[el.changeId]);
-                cacheData.nodeParent[el.changeId] = 'undefined';
-                if(cacheData.mask[el.changeId] !== false){
-                    utils.remove(el.nodeShade[el.changeId]);
-                    cacheData.nodeShade[el.changeId] = 'undefined';
-                }
-            }else {
-                if(typeof opts === 'object'){
-                    el = utils.$class(cacheData.changeId);
-                    utils.remove(el);
-                    cacheData.nodeParent[cssData.changeId] = 'undefined';
-                    if(cacheData.mask[cssData.changeId] !== false){
-                        utils.remove(cssData.nodeShade[cssData.changeId]);
-                        cacheData.nodeShade[cssData.changeId] = 'undefined';
-                    }
-                    cacheData.cssClass[cacheData.changeId]   = 'undefined';
-                }else{
-                    utils.remove(cacheData.nodeParent[opts]);
-                    if(cacheData.mask[cacheData.changeId] !== false){
-                        utils.remove(cacheData.nodeShade[cacheData.changeId]);
-                        cacheData.nodeShade[cacheData.changeId] = 'undefined';
-                    }
-                    cacheData.nodeParent[opts] = 'undefined';
-                }
+        _shadeDel : function(opt){
+            var arg = typeof opt === 'undefined' ? cacheData.changeId : opt;
+            if(cacheData.mask[arg] !== false){
+                utils.remove(cacheData.nodeShade[arg]);
+                cacheData.nodeShade[arg] = 'undefined';
             }
+        },
+        _exeIcon   : function(self,id){
+            utils.log('exeIcon close');
+            utils.remove(cacheData.nodeParent[id]);
+            cacheData.nodeParent[id] = 'undefined';
+            if(self.configs.mask){
+                utils.remove(cacheData.nodeShade[id]);
+                cacheData.nodeShade[id] = 'undefined';
+            }
+        },
+        _exeEventCss: function(slef){
+            var $cacheElement = cacheData.nodeParent[cacheData.changeId],
+                $cacheStart   = cacheData.animateStart[cacheData.changeId],
+                $cacheEnd     = cacheData.animateEnd[cacheData.changeId];
+            utils.$delClass($cacheElement,$cacheStart);
+            $cacheElement.className += ' ' + $cacheEnd;
+            utils.pfxEvent($cacheElement,'animationend',function(){
+                utils.log('close box start');
+                slef._executive($cacheElement);
+            });
+        },
+        _executive : function(opts){
+            switch (typeof opts){
+                case 'undefined':
+                    //utils.log('exe deft');
+                    //utils.log('exe undefined:' + opts);
 
+                    utils.remove(cacheData.nodeParent[cacheData.changeId]);
+                    this._shadeDel();
+                    cacheData.nodeParent[cacheData.changeId] = 'undefined';
+                    break;
+                case 'object' :
+                    //utils.log('exe css animation remove child');
+                    //utils.log('exe object:' + opts);
+
+                    utils.remove(opts);
+                    this._shadeDel();
+                    cacheData.nodeParent[cacheData.changeId] = 'undefined';
+                    break;
+                case 'string':
+                    //utils.log('exe css animation remove child');
+                    //utils.log('exe string:' + opts);
+
+                    utils.remove(cacheData.nodeParent[opts]);
+                    this._shadeDel(opts);
+                    cacheData.nodeParent[opts] = 'undefined';
+                    break;
+            }
         },
         _closeBox : function(){
             var arg  = arguments[0],
                 that = this;
-            if(arg !== ''&& typeof arg !== 'undefined'){
+            if(arg !== ''&& typeof arg !== 'undefined') {
                 this._executive(arg);
-            }else {
-                var el  = utils.$class(cacheData.changeId);
-                if(typeof cacheData.cssClass[cacheData.changeId] !== 'undefined' && window.addEventListener){
-                    el.className += ' ' + cacheData.cssClass[cacheData.changeId];
-                    utils.pfxEvent(el,'animationend',function(){
-                        that._executive(el);
-                    });
-                }else{
-                    this._executive();
-                }
+            }
+            if(typeof cacheData.animateEnd[cacheData.changeId] !== 'undefined' && window.addEventListener){
+                //todo
+                this._exeEventCss(that);
+            }else{
+                this._executive();
             }
         }
     };

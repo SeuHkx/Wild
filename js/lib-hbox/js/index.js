@@ -29,7 +29,7 @@ window.onload = function(){
                 case 0 :
                     hbox.open({
                         maskAnimation : ['animated maskPop'],
-                        cssAnimation  : ['animated flipInX','hinge'],
+                        cssAnimation  : ['animated flipInX','animated hinge'],
                         title:'旅行的意义',
                         content:'你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴',
                         button : ['信仰','关闭'],
@@ -97,7 +97,7 @@ window.onload = function(){
                     break;
                 case 1 :
                     hbox.open({
-                        cssAnimation: ['animated rollIn'],
+                        cssAnimation: ['animated rollIn','animated rotateOut'],
                         title:'相依为命',
                         width : 450,
                         height : 100,
@@ -116,7 +116,7 @@ window.onload = function(){
                     break;
                 case 2 :
                     hbox.open({
-                        cssAnimation: ['pop'],
+                        cssAnimation: ['animated pop'],
                         title:'信仰',
                         width : 600,
                         content:'仍然自问幸福虽说有阵时为你生气</br>其实以前和你互相不懂得死心塌地</br>直到共你渡过多灾世纪',
@@ -133,7 +133,7 @@ window.onload = function(){
                     break;
                 case 3 :
                     hbox.open({
-                        cssAnimation: ['animated wobble'],
+                        cssAnimation: ['animated wobble','animated zoomOutUp'],
                         mask : false,
                         title:'你在南方的艳阳里大雪纷飞',
                         content:'如果天黑之前来得及</br>我要忘了你的眼睛</br>穷极一生做不完一场梦',
