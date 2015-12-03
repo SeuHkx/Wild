@@ -61,6 +61,9 @@
                 });
             }
         },
+        $hasClass : function(el,klass){
+            return !!el.className.match(new RegExp("(\\s|^)" + klass + "(\\s|$)"));
+        },
         $class : function(id,klass){
             var els = [],
                 elements = document.getElementById(id).getElementsByTagName('*'),
@@ -70,11 +73,19 @@
                 return document.getElementById(id);
             }
             for(; i < l ; i += 1){
-                if(elements[i].className === klass){
+                if(this.$hasClass(elements[i],klass)){
                     els.push(elements[i]);
                 }
             }
             return els;
+        },
+
+        pfxEvent : function(el,type,fn,bubble){
+            var pfx = ['webkit','moz','MS','o',''];
+            for (var p = 0 ; p < pfx.length; p += 1){
+                if(!pfx[p])type.toLowerCase();
+                el.addEventListener(pfx[p] + type,fn,!!bubble)
+            }
         },
         getStyle : function(el,attr){
             if (el.currentStyle){
@@ -100,8 +111,11 @@
             width    : '100%',
             height   : '100%',
             backgroundColor : '#000000',
-            opacity  : '.3',
-            filter   : 'progid:DXImageTransform.Microsoft.Alpha(Opacity=30)'
+            opacity  : '0.3',
+            filter   : 'progid:DXImageTransform.Microsoft.Alpha(Opacity=30)',
+            zIndex   : function(index){
+                return 9997 + index
+            }
         },
         parentBox : {
             position : 'fixed',
@@ -122,9 +136,6 @@
         },
         style : {
             parent   : 'hbox',
-            title    : 'hbox-title',
-            content  : 'hbox-content',
-            footer   : 'hbox-footer',
             button   : 'hbox-btn',
             icon     : 'hbox-close-icon'
         }
@@ -145,13 +156,19 @@
             }
             return '<div class='+ klass.content +' style="height:'+ style +'">'+ str +'</div>'
         },
-        footer  : function(btns,klass){
+        footer  : function(btns,klass,arr){
             var btn = '';
             if(btns.length === 0){
                 return btn;
             }else {
-                for (var i  = 0; i < btns.length; i += 1){
-                    btn += '<a data-id='+ configStyle.ID +' class='+ klass.button +'>'+ btns[i] +'</a>'
+                if(arr.length === 0 || arr.length !== btns.length){
+                    for (var j  = 0; j < btns.length; j += 1){
+                        btn += '<a data-id='+ configStyle.ID +' class='+ klass.button +' >'+ btns[j] +'</a>';
+                    }
+                }else {
+                    for (var i  = 0; i < btns.length; i += 1){
+                        btn += '<a data-id='+ configStyle.ID +' class="'+ klass.button +' '+ arr[i] +'">'+ btns[i] +'</a>'
+                    }
                 }
                 return '<div class='+ klass.footer +'>'+ btn +'</div>';
             }
@@ -170,8 +187,8 @@
         nodeParent : {},
         nodeShade  : {},
         mask       : {},
-        iframe     : {},
-        changeId   : ''
+        changeId   : '',
+        cssClass   : []
     };
     var HBox = function(opts){
         return new HBox.fn.init(opts);
@@ -196,10 +213,13 @@
                 iframe   : false,
                 url      : '',
                 mask     : true,
+                maskAnimation : [],
                 button   : [],
+                buttonClass : [],
                 callback : null,
-                cssAnimation : ['pop'],
-                repeat   : true
+                cssAnimation : [],
+                repeat   : true,
+                drag     : true
         };
         this.parent = utils.createNode('div');
         this.shade  = utils.createNode('div');
@@ -245,7 +265,7 @@
                                 this.parent.style[attr] = configStyle.parentBox[attr](configStyle.count);
                                 break;
                             case 'className' :
-                                this.parent[attr] = configStyle.parentBox[attr](this.configs.style.parent + ' ' + this.configs.cssAnimation[0]);
+                                this.parent[attr] = configStyle.parentBox[attr](this.configs.style.parent + ' ' + (typeof this.configs.cssAnimation[0] === 'undefined'?'':this.configs.cssAnimation[0]));
                                 break;
                             case 'id' :
                                 this.parent[attr] = configStyle.parentBox[attr](configStyle.ID);
@@ -278,7 +298,7 @@
             utils.html(this.parent, this._createHtml(this.configs));
             utils.append(this.parent);
             if (this.configs.mask) {
-                utils.append(this._createShade());
+                utils.append(this._createShade(configStyle.count));
                 cacheData.nodeShade[configStyle.ID] = this.shade;
                 cacheData.mask[configStyle.ID] = this.configs.mask;
             } else {
@@ -286,21 +306,30 @@
             }
             cacheData.nodeParent[configStyle.ID] = this.parent;
             cacheData.changeId = configStyle.ID;
+            if(typeof this.configs.cssAnimation[1] !== 'undefined')cacheData.cssClass[configStyle.ID] = this.configs.cssAnimation[1];
+
         },
         _judge : function(){
             //TODO
             this._createBox();
             this._closeIcon();
         },
-        _createShade : function(){
+        _createShade : function(opts){
             var shade =  this.shade;
-            for(var k in configStyle.shade)this.shade.style[k] = configStyle.shade[k];
+            for(var k in configStyle.shade){
+                if(typeof configStyle.shade[k] === 'function'){
+                    this.shade.style[k] = configStyle.shade[k](opts);
+                    continue;
+                }
+                this.shade.style[k] = configStyle.shade[k];
+            }
+            this.shade.className =typeof this.configs.maskAnimation[0] === 'undefined' ? '' : this.configs.maskAnimation[0];
             return shade;
         },
         _createHtml : function(opts){
             var title   = opts.title === ''? templateDom.noTitle(opts.style):templateDom.title(opts.title,opts.style);
             var content = opts.iframe !== false || opts.url !== '' ? templateDom.iframe(opts.url,opts.height,opts.style) : templateDom.content(opts.content,opts.height,opts.style);
-            var footer  = templateDom.footer(opts.button,opts.style);
+            var footer  = templateDom.footer(opts.button,opts.style,opts.buttonClass);
             var template  = title + content + footer;
             return template;
         },
@@ -329,30 +358,69 @@
             var closeIcon = utils.$class(configStyle.ID,configStyle.style.icon),
                 that = this;
             utils.eventClick(closeIcon[0],function(){
-                var dataID = this.getAttribute('data-id');
-                utils.remove(cacheData.nodeParent[dataID]);
-                cacheData.nodeParent[dataID] = 'undefined';
-                if(that.configs.mask){
-                    utils.remove(cacheData.nodeShade[dataID]);
-                    cacheData.nodeShade[dataID] = 'undefined';
+                var dataID = this.getAttribute('data-id'),
+                       el  = utils.$class(dataID);
+                if(typeof cacheData.cssClass[dataID] !== 'undefined' && window.addEventListener) {
+                    el.className += ' ' + cacheData.cssClass[dataID];
+                    utils.pfxEvent(el, 'animationend', function () {
+                        that._executive(el);
+                    });
+                }else{
+                    utils.remove(cacheData.nodeParent[dataID]);
+                    cacheData.nodeParent[dataID] = 'undefined';
+                    if(that.configs.mask){
+                        utils.remove(cacheData.nodeShade[dataID]);
+                        cacheData.nodeShade[dataID] = 'undefined';
+                    }
                 }
             });
         },
-        _closeBox : function(){
-            var arg = arguments[0];
-            if(arg !== ''&& typeof arg !== 'undefined'){
-                utils.remove(cacheData.nodeParent[arg]);
-                if(cacheData.mask[cacheData.changeId] !== false){
-                    utils.remove(cacheData.nodeShade[cacheData.changeId]);
-                    cacheData.nodeShade[cacheData.changeId] = 'undefined';
+        _executive : function(opts){
+            var el,
+                cssData = cacheData;
+            if (typeof opts === 'undefined'){
+                el = cacheData;
+                utils.remove(el.nodeParent[el.changeId]);
+                cacheData.nodeParent[el.changeId] = 'undefined';
+                if(cacheData.mask[el.changeId] !== false){
+                    utils.remove(el.nodeShade[el.changeId]);
+                    cacheData.nodeShade[el.changeId] = 'undefined';
                 }
-                cacheData.nodeParent[arg] = 'undefined';
             }else {
-                utils.remove(cacheData.nodeParent[cacheData.changeId]);
-                cacheData.nodeParent[cacheData.changeId] = 'undefined';
-                if(cacheData.mask[cacheData.changeId] !== false){
-                    utils.remove(cacheData.nodeShade[cacheData.changeId]);
-                    cacheData.nodeShade[cacheData.changeId] = 'undefined';
+                if(typeof opts === 'object'){
+                    el = utils.$class(cacheData.changeId);
+                    utils.remove(el);
+                    cacheData.nodeParent[cssData.changeId] = 'undefined';
+                    if(cacheData.mask[cssData.changeId] !== false){
+                        utils.remove(cssData.nodeShade[cssData.changeId]);
+                        cacheData.nodeShade[cssData.changeId] = 'undefined';
+                    }
+                    cacheData.cssClass[cacheData.changeId]   = 'undefined';
+                }else{
+                    utils.remove(cacheData.nodeParent[opts]);
+                    if(cacheData.mask[cacheData.changeId] !== false){
+                        utils.remove(cacheData.nodeShade[cacheData.changeId]);
+                        cacheData.nodeShade[cacheData.changeId] = 'undefined';
+                    }
+                    cacheData.nodeParent[opts] = 'undefined';
+                }
+            }
+
+        },
+        _closeBox : function(){
+            var arg  = arguments[0],
+                that = this;
+            if(arg !== ''&& typeof arg !== 'undefined'){
+                this._executive(arg);
+            }else {
+                var el  = utils.$class(cacheData.changeId);
+                if(typeof cacheData.cssClass[cacheData.changeId] !== 'undefined' && window.addEventListener){
+                    el.className += ' ' + cacheData.cssClass[cacheData.changeId];
+                    utils.pfxEvent(el,'animationend',function(){
+                        that._executive(el);
+                    });
+                }else{
+                    this._executive();
                 }
             }
         }
@@ -375,8 +443,7 @@
         },
         require : function(arg){
             this.fn[0](arg);
-        },
-        msg  : function(){}
+        }
     };
     return hbox;
 });
