@@ -9,6 +9,10 @@ body {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
+.hbox::selection,.hbox-content::selection,.hbox-title > h4::selection,.hbox-footer > .hbox-btn::selection{
+    background-color: red;
+    color: #fff;
+}
 .hbox-title {
     position: relative;
     padding: 24px 24px 0 24px;

@@ -365,36 +365,39 @@
             var closeIcon = utils.$class(configStyle.ID,configStyle.style.icon),
                 that = this;
             utils.eventClick(closeIcon[0],function(){
-                var dataID  = this.getAttribute('data-id'),
-                       $el  = utils.$class(dataID);
-                if(typeof cacheData.animateEnd[dataID] !== 'undefined' && window.addEventListener) {
-                    utils.log('css icon close');
-                    utils.$delClass($el,cacheData.animateStart[dataID]);
-                    $el.className += ' ' + cacheData.animateEnd[dataID];
-                    utils.pfxEvent($el, 'animationend', function () {
-                        that._exeIcon(that,dataID);
-                        //utils.log('css icon close animationend remove child');
-                    });
+                var dataID  = this.getAttribute('data-id');
+                if(typeof cacheData.animateEnd[dataID] !== 'undefined' && window.addEventListener && utils.client().mobile === null) {
+                    that._exeIconCss(that,dataID);
+                    utils.log('icon close css');
                 }else{
+                    //todo mobile
                     that._exeIcon(that,dataID);
-                    //utils.log('icon close normal')
+                    utils.log('icon close normal')
                 }
             });
+        },
+        _exeIconCss: function(slef,id){
+            var $el  = utils.$class(id);
+            utils.$delClass($el,cacheData.animateStart[id]);
+            $el.className += ' ' + cacheData.animateEnd[id];
+            utils.pfxEvent($el, 'animationend', function () {
+                utils.log('css icon close animationend remove child');
+                slef._exeIcon(slef,id);
+            });
+        },
+        _exeIcon   : function(self,id){
+            utils.remove(cacheData.nodeParent[id]);
+            cacheData.nodeParent[id] = 'undefined';
+            if(self.configs.mask){
+                utils.remove(cacheData.nodeShade[id]);
+                cacheData.nodeShade[id] = 'undefined';
+            }
         },
         _shadeDel : function(opt){
             var arg = typeof opt === 'undefined' ? cacheData.changeId : opt;
             if(cacheData.mask[arg] !== false){
                 utils.remove(cacheData.nodeShade[arg]);
                 cacheData.nodeShade[arg] = 'undefined';
-            }
-        },
-        _exeIcon   : function(self,id){
-            utils.log('exeIcon close');
-            utils.remove(cacheData.nodeParent[id]);
-            cacheData.nodeParent[id] = 'undefined';
-            if(self.configs.mask){
-                utils.remove(cacheData.nodeShade[id]);
-                cacheData.nodeShade[id] = 'undefined';
             }
         },
         _exeEventCss: function(slef){
@@ -404,31 +407,31 @@
             utils.$delClass($cacheElement,$cacheStart);
             $cacheElement.className += ' ' + $cacheEnd;
             utils.pfxEvent($cacheElement,'animationend',function(){
-                //utils.log('close box start');
+                utils.log('close box start');
                 slef._executive($cacheElement);
             });
+            cacheData.nodeParent[cacheData.changeId] = 'undefined';
         },
         _executive : function(opts){
             switch (typeof opts){
                 case 'undefined':
-                    //utils.log('exe deft');
-                    //utils.log('exe undefined:' + opts);
+                    utils.log('exe deft');
+                    utils.log('exe undefined:' + cacheData.nodeParent[cacheData.changeId]);
 
                     utils.remove(cacheData.nodeParent[cacheData.changeId]);
                     this._shadeDel();
                     cacheData.nodeParent[cacheData.changeId] = 'undefined';
                     break;
                 case 'object' :
-                    //utils.log('exe css animation remove child');
-                    //utils.log('exe object:' + opts);
+                    utils.log('exe css animation remove child');
+                    utils.log('exe object:' + opts);
 
                     utils.remove(opts);
                     this._shadeDel();
-                    cacheData.nodeParent[cacheData.changeId] = 'undefined';
                     break;
                 case 'string':
-                    //utils.log('exe css animation remove child');
-                    //utils.log('exe string:' + opts);
+                    utils.log('exe css animation remove child');
+                    utils.log('exe string:' + opts);
 
                     utils.remove(cacheData.nodeParent[opts]);
                     this._shadeDel(opts);
@@ -442,12 +445,13 @@
             if(arg !== ''&& typeof arg !== 'undefined') {
                 this._executive(arg);
             }
-            if(typeof cacheData.animateEnd[cacheData.changeId] !== 'undefined' && window.addEventListener){
-                //todo
+            if(typeof cacheData.animateEnd[cacheData.changeId] !== 'undefined' && window.addEventListener && utils.client().mobile === null){
                 this._exeEventCss(that);
             }else{
+                //todo mobile
                 this._executive();
             }
+            utils.log(cacheData.nodeParent);
         }
     };
     HBox.fn.copy(init.prototype,methodsBox);

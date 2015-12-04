@@ -90,8 +90,7 @@ window.onload = function(){
                             cancel : function(){
                                 hbox.close();
                             }
-                        },
-                        repeat : false
+                        }
                     });
                     hbox.register(iFrame);
                     break;
@@ -128,7 +127,7 @@ window.onload = function(){
                                 hbox.close();
                             }
                         },
-                        repeat : false
+                        repeat:false
                     });
                     break;
                 case 3 :
