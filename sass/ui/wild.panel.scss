@@ -1,102 +1,23 @@
 @import "../mixins/mixins",
         "../variables/var.panel";
-
+//todo
 .wd-panel{
-  border-width: 1px\9;
-  border-style: solid\9;
-  border-color: $wd-panel-bd-color \9;
-  background-color: #fff;
-  @include border-radius($wd-panel-bd-radius);
-  @include box-shadow($wd-panel-shadow);
-  &.wd-panel--table{
-    .wd-panel-body{
-      padding: 0;
-    }
-  }
-  &.wd-panel--none{
-    .wd-panel-header{
-      box-shadow: none;
-    }
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-  }
-  &.wd-panel--border{
-    .wd-panel-header{
-      border-bottom: 1px solid $wd-panel-bd-color;
-    }
-  }
-}
-.wd-panel-header{
-  height: 45px;
-  padding: 0 $wd-panel-header-padding;
-  border-bottom: 1px solid $wd-panel-bd-color;
-  background-color: $wd-panel-header-bg-color;
-  color: $wd-panel-header-font-color;
-  //.wd-button, input[type="text"], input[type="password"]{
-  //  margin-top: 5px;
-  //  margin-bottom: 5px;
-  //}
-}
-.wd-panel-header--border{
-  border-top: 1px solid $wd-panel-bd-color;
-  border-bottom: none;
-}
-.wd-panel-header-title,.wd-panel-header > h4{
-  position: relative;
-  float: left;
-  line-height: 44px;
-  font-size: $wd-panel-header-font-size;
-  font-weight: bold;
-  margin-right: 10px;
-  span{
-    position: relative;
-    margin-left: 10px;
-    padding-left: 26px;
-    .wd-panel-header-icon{
-      display: block;
-      position: absolute;
-      top: 50%;
-      left: 0;
-      margin-top: -12px;
-      width: 24px;
-      height: 24px;
-    }
-  }
-}
-.wd-panel-header-nav{
-  float: right;
-  >li{
-    position: relative;
-    float: left;
-    >a{
-      display: block;
-      height: 44px;
-      line-height: 44px;
-      text-align: center;
-      padding: 0 $wd-panel-header-padding - 5;
-      color: $wd-panel-header-font-color;
-      cursor: pointer;
-      &:hover{
-        text-decoration: none;
-        //font-weight: bold;
-        color: #000;
-      }
-    }
-    //&:last-child > a{
-    //  padding-right: 0;
-    //}
-  }
-}
-.wd-panel-body{
-  background-color: $wd-panel-body-bg-color;
-  padding: $wd-panel-body-padding;
-  zoom: 1;
+  height: $wd-panel-height;
+  background-color: $wd-panel-bg-color;
+
   &:before,&:after{
     content: "";
     display: table;
   }
   &:after{
     clear: both;
+  }
+  zoom: 1;
+
+  h1, h2, h3, h4, h5, h6{
+    display: inline-block;
+    *display: inline;
+    line-height: $wd-panel-line-height;
+    margin: 0;
   }
 }

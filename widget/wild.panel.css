@@ -1,78 +1,14 @@
 .wd-panel {
-  border-width: 1px\9;
-  border-style: solid\9;
-  border-color: #DADADA \9;
-  background-color: #fff;
-  border-radius: 2px;
-  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 2px 0 rgba(0, 0, 0, 0.12);
-          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 2px 0 rgba(0, 0, 0, 0.12); }
-  .wd-panel.wd-panel--table .wd-panel-body {
-    padding: 0; }
-  .wd-panel.wd-panel--none {
-    border: none;
-    border-radius: 0;
-    -webkit-box-shadow: none;
-            box-shadow: none; }
-    .wd-panel.wd-panel--none .wd-panel-header {
-      -webkit-box-shadow: none;
-              box-shadow: none; }
-  .wd-panel.wd-panel--border .wd-panel-header {
-    border-bottom: 1px solid #DADADA; }
-
-.wd-panel-header {
-  height: 45px;
-  padding: 0 15px;
-  border-bottom: 1px solid #DADADA;
+  height: 56px;
   background-color: #FFF;
-  color: #212121; }
-
-.wd-panel-header--border {
-  border-top: 1px solid #DADADA;
-  border-bottom: none; }
-
-.wd-panel-header-title, .wd-panel-header > h4 {
-  position: relative;
-  float: left;
-  line-height: 44px;
-  font-size: 16px;
-  font-weight: bold;
-  margin-right: 10px; }
-  .wd-panel-header-title span, .wd-panel-header > h4 span {
-    position: relative;
-    margin-left: 10px;
-    padding-left: 26px; }
-    .wd-panel-header-title span .wd-panel-header-icon, .wd-panel-header > h4 span .wd-panel-header-icon {
-      display: block;
-      position: absolute;
-      top: 50%;
-      left: 0;
-      margin-top: -12px;
-      width: 24px;
-      height: 24px; }
-
-.wd-panel-header-nav {
-  float: right; }
-  .wd-panel-header-nav > li {
-    position: relative;
-    float: left; }
-    .wd-panel-header-nav > li > a {
-      display: block;
-      height: 44px;
-      line-height: 44px;
-      text-align: center;
-      padding: 0 10px;
-      color: #212121;
-      cursor: pointer; }
-      .wd-panel-header-nav > li > a:hover {
-        text-decoration: none;
-        color: #000; }
-
-.wd-panel-body {
-  background-color: #FFF;
-  padding: 15px;
   zoom: 1; }
-  .wd-panel-body:before, .wd-panel-body:after {
+  .wd-panel:before, .wd-panel:after {
     content: "";
     display: table; }
-  .wd-panel-body:after {
+  .wd-panel:after {
     clear: both; }
+  .wd-panel h1, .wd-panel h2, .wd-panel h3, .wd-panel h4, .wd-panel h5, .wd-panel h6 {
+    display: inline-block;
+    *display: inline;
+    line-height: 56px;
+    margin: 0; }

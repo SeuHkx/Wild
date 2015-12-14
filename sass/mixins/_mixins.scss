@@ -113,7 +113,7 @@
       color: $bgColor;
       &:hover{
         color: $bgColor;
-        background-color: transparent;
+        background-color: #F2F2F2;
       }
     }
     @include triangleTheme(#FFFFFF);
@@ -208,6 +208,8 @@
 //设置阴影
 @mixin box-shadow($shadow...){
   box-shadow: $shadow;
+  border: 1px solid #ddd\9;
+  *border: 1px solid #ddd;
 }
 @mixin setFloat($name){
   @if $name == left{

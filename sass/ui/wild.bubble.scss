@@ -24,29 +24,14 @@
     padding-bottom: 0;
   }
 }
-//.wd-bubble--down{
-//  .wd-triangle-group{
-//    bottom: -12px;
-//    margin-left: -12px;
-//    left: 50%;
-//  }
-//}
-//.wd-bubble--up{
-//  .wd-triangle-group{
-//    top: -12px;
-//    margin-left: -12px;
-//    left: 50%;
-//  }
-//}
+
 .wd-bubble-title{
-  //padding: $wd-bubble-padding $wd-bubble-padding*2;
   margin-bottom: $wd-bubble-padding;
   text-align: left;
   font-size: $wd-type-font-size;
   color: $wd-bubble-font-color;
 }
 .wd-bubble-bar{
-  //margin-top: $wd-bubble-padding;
   border-top: 1px solid #ddd;
   .wd-dropdown{
     min-width: 100%;
@@ -61,9 +46,10 @@
   position: absolute;
   display: block;
   padding: $wd-bubble-padding 0;
-  width: 100%;
+  min-width: $wd-bubble-min-width;
   z-index: 10;
   background-color: $wd-bubble-bg-color;
+
   border: 1px solid #ddd\9;
   @include box-shadow($wd-bubble-mass-shadow...);
 

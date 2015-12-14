@@ -1,6 +1,7 @@
 @import "../mixins/mixins",
         "../variables/var.button";
 .wd-button{
+  position: relative;
   display: inline-block;
   *display: inline;
   zoom: 1;
@@ -49,6 +50,9 @@
     }
   }
 }
+.wd-button-default{
+  @include box-shadow(none);
+}
 .wd-button-floating{
   width: 40px;
   height: 40px;
@@ -73,6 +77,22 @@
     @include box-shadow(none);
   }
 }
+.wd-button--icon{
+  padding-left: $wd-button-padding*2;
+  >i{
+    display: block;
+    width: 24px;
+    height: 24px;
+
+    position: absolute;
+    top:50%;
+    left: $wd-button-padding/2;
+    margin-top: -12px;
+
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+}
 @include setButtonTheme($wd-button-default...);
 @include setButtonTheme($wd-button-orange...);
 @include setButtonTheme($wd-button-red...);
@@ -80,6 +100,22 @@
 @include setButtonTheme($wd-button-positive...);
 @include setButtonTheme($wd-button-blue...);
 
+.wd-button-dropdown{
+  position: relative;
+  display: inline-block;
+  *display: inline;
+  .wd-bubble,.wd-bubble-mass{
+    top:48px;
+    .wd-dropdown{
+      top:0;
+    }
+  }
+  .wd-dropdown{
+    top: $wd-button-height + 3;
+    right: 0;
+    z-index: 10;
+  }
+}
 .wd-button-group{
   position: relative;
   display: inline-block;
@@ -103,11 +139,24 @@
       @include box-shadow($wd-button-active-shadow);
     }
   }
+  .wd-button-dropdown{
+    display: block;
+    *display: block;
+    float: left;
+    &:before,&:after{
+      content: "";
+      display: table;
+    }
+    &:after{
+      clear: both;
+    }
+  }
 }
+@include setGroupButtonTheme($wd-button-default...);
 @include setGroupButtonTheme($wd-button-positive...);
 @include setGroupButtonTheme($wd-button-orange...);
 @include setGroupButtonTheme($wd-button-red...);
 @include setGroupButtonTheme($wd-button-green...);
-
+@include setGroupButtonTheme($wd-button-blue...);
 
 
