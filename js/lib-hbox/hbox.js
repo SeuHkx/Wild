@@ -194,7 +194,8 @@
         mask         : {},
         changeId     : '',
         animateStart : {},
-        animateEnd   : {}
+        animateEnd   : {},
+        repeat       : {}
     };
     var HBox = function(opts){
         return new HBox.fn.init(opts);
@@ -209,7 +210,7 @@
                     content  : 'hbox-content',
                     footer   : 'hbox-footer',
                     button   : 'hbox-btn',
-                    icon    : 'hbox-close-icon'
+                    icon     : 'hbox-close-icon'
                 },
                 id       : '',
                 title    : '',
@@ -229,6 +230,7 @@
         };
         this.parent = utils.createNode('div');
         this.shade  = utils.createNode('div');
+        this.configs.id !== '' ? this.nextId = this.configs.id : this.nextId =  configStyle.style.parent + configStyle.count;
         for (var i in opts){
             if(this.configs.hasOwnProperty(i)){
                 if(i === 'style'){
@@ -252,6 +254,7 @@
         }
         return source;
     };
+
     var methodsBox = {
         _setParentBox : function(){
             this.configs.id !== '' ? configStyle.ID = this.configs.id : configStyle.ID =  configStyle.style.parent + configStyle.count;
@@ -316,10 +319,32 @@
             if(typeof this.configs.cssAnimation[1] !== 'undefined')cacheData.animateEnd[configStyle.ID] = this.configs.cssAnimation[1];
 
         },
+        _single : 0,
         _judge : function(){
+            if(this.configs.mask !== true){
+
+            }
             //TODO
+            //utils.log(this.nextId);
             this._createBox();
             this._closeIcon();
+            //if (utils.isEmpty(this._cacheBox) && this.configs.mask !== true){
+            //
+            //    this._createBox();
+            //    this._closeIcon();
+            //    this._cacheBox[cacheData.changeId] = cacheData.nodeParent[cacheData.changeId];
+            //    utils.log('no repeat');
+            //}else {
+            //    for(var i in this._cacheBox){
+            //        if(i === cacheData.changeId){
+            //            utils.log(i)
+            //        }
+            //    }
+            //    utils.log('repeat');
+            //    utils.log(cacheData.changeId);
+            //    this._createBox();
+            //    this._closeIcon();
+            //}
         },
         _createShade : function(opts){
             var shade =  this.shade;
@@ -346,7 +371,7 @@
             //callback
             for(var f in this.configs.callback)fn.push(f);
             if(this.configs.button.length !== 0 && fn.length === this.configs.button.length){
-                var els = utils.$class(configStyle.ID,configStyle.style.button);
+                var els = utils.$class(configStyle.ID,this.configs.style.button);
                 for (var i = 0, l = this.configs.button.length; i< l;i += 1){
                     this._registerCall(els[i],i,fn);
                 }
