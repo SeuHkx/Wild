@@ -1,5 +1,7 @@
 @import "../mixins/mixins",
         "../variables/var.button";
+
+//bug
 .wd-button{
   position: relative;
   display: inline-block;
@@ -19,8 +21,8 @@
   touch-action: manipulation;
   cursor: pointer;
   background-image: none;
-  //border: none;
   border: 1px solid transparent;
+  *border: none;
   border-radius: $wd-button-radius;
   @include transition(all ease-out,.2s);
   @include user-select();
@@ -49,6 +51,15 @@
       vertical-align: middle\9;
     }
   }
+  //wd-button-flat
+  &.wd-button-flat{
+    background-color : transparent;
+    border: none;
+    @include box-shadow(none);
+    &:hover{
+      @include box-shadow(none);
+    }
+  }
 }
 .wd-button-default{
   @include box-shadow(none);
@@ -68,14 +79,6 @@
   width :       ($wd-button-padding/2)*7;
   height:       ($wd-button-padding/2)*7;
   line-height : ($wd-button-padding/2)*7;
-}
-.wd-button-flat{
-  background-color : transparent;
-  border: none;
-  @include box-shadow(none);
-  &:hover{
-    @include box-shadow(none);
-  }
 }
 .wd-button--icon{
   padding-left: $wd-button-padding*2;
@@ -139,17 +142,9 @@
       @include box-shadow($wd-button-active-shadow);
     }
   }
-  .wd-button-dropdown{
+  >.wd-button-dropdown{
     display: block;
-    *display: block;
     float: left;
-    &:before,&:after{
-      content: "";
-      display: table;
-    }
-    &:after{
-      clear: both;
-    }
   }
 }
 @include setGroupButtonTheme($wd-button-default...);
@@ -158,5 +153,4 @@
 @include setGroupButtonTheme($wd-button-red...);
 @include setGroupButtonTheme($wd-button-green...);
 @include setGroupButtonTheme($wd-button-blue...);
-
 

@@ -70,7 +70,7 @@ gulp.task('minify',['clean'],function(){
         .pipe(plugins.rename({
             suffix : '.min'
         }))
-        .pipe(plugins.mini())
+        .pipe(plugins.mini({compatibility: 'ie7'}))
         .pipe(gulp.dest(config.dir.dist));
 });
 
