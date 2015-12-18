@@ -1,33 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <title>hscroll</title>
     <link rel="stylesheet" href="../../widget/wild.reset.css">
     <link rel="stylesheet" href="../../widget/wild.type.css">
+    <link rel="stylesheet" href="../../widget/wild.utils.css">
     <link rel="stylesheet" href="../../widget/wild.bubble.css">
+    <link rel="stylesheet" href="../../widget/wild.button.css">
     <style>
         body{
             background-color: #F4F4F4;
         }
         .demo{
             width: 1000px;
-            margin: 0 auto;
-
+            margin: 60px auto;
             position: relative;
         }
         .demo .wd-bubble{
-            top:140px;
+            position: relative;
+            float: left;
             width: 200px;
-            overflow: hidden;
         }
-
+        .demo .wd-bubble.first{
+        }
+        .demo .wd-bubble.second{
+            left: 100px;
+        }
+        .demo .wd-bubble.three{
+            left: 200px;
+        }
+        .demo .btn{
+            padding:16px;
+            text-align: center;
+        }
+        .wd-bubble  p::selection,.wd-bubble p::selection{
+            background-color: red;
+            color: #fff;
+        }
     </style>
 </head>
-<body style="height: 1400px;">
+<body>
 
-<div class="demo">
+<div class="demo wd-utils-clear">
     <div class="wd-bubble first" id="wrap">
         <div id="scroll">
             <p>
@@ -47,27 +63,66 @@
                 也许结局难讲</br>
                 我那么多遗憾 那么多期盼</br>
                 你知道吗</br>
-                每当我听见忧郁的乐章</br>
-                勾起回忆的伤</br>
-                每当我看见白色的月光</br>
-                想起你的脸庞</br>
-                明知不该去想 不能去想</br>
-                偏又想到迷惘</br>
-                是谁让我心酸 谁让我牵挂</br>
-                是你啊</br>
-                我知道那些不该说的话</br>
-                让你负气流浪</br>
-                想知道多年漂浮的时光</br>
-                是否你也想家</br>
-                如果当时吻你 当时抱你</br>
-                也许结局难讲</br>
-                我那么多遗憾 那么多期盼</br>
-                你知道吗</br>
             </p>
+            <div class="btn">
+                <a class="wd-button wd-button--blue wd-button--block" id="btnBlue">点击加载更多</a>
+            </div>
+            <div id="strBlue"></div>
+        </div>
+    </div>
+    <div class="wd-bubble second" id="wrapper">
+        <div id="scrollWrap">
+            <p>
+                还需要多久 多长 多伤<br>
+                你才会听见我没说的话<br>
+                坚强像谎言一样 不过是一种伪装 我只希望有个机会能被你爱上<br>
+                无论要 多久 多长 多受伤<br>
+                我还是爱着你 每分每秒一样 就好像一个傻瓜<br>
+                还需要多久 多长 多伤<br>
+                你才会听见我没说的话<br>
+                坚强像谎言一样 不过是一种伪装 我只希望有个机会能被你爱上<br>
+                无论要 多久 多长 多受伤<br>
+                我还是爱着你 每分每秒一样 就好像一个傻瓜<br>
+                还需要多久 多长 多伤<br>
+                你才会听见我没说的话<br>
+                坚强像谎言一样 不过是一种伪装 我只希望有个机会能被你爱上<br>
+                无论要 多久 多长 多受伤<br>
+                我还是爱着你 每分每秒一样 就好像一个傻瓜<br>
+
+            </p>
+            <div class="btn">
+                <a class="wd-button wd-button--positive" id="btnPos">点击加载更多</a>
+            </div>
+            <div id="strPos"></div>
+        </div>
+    </div>
+    <div class="wd-bubble three" id="wrapper_three">
+        <div id="scroll_three">
+            <p>
+                愿意 在角落唱沙哑的歌<br>
+                再大声也都是给你<br>
+                请原谅我 不会说谎<br>
+                愿意 用一支黑色的铅笔<br>
+                画一出沉默舞台剧<br>
+                灯光再亮 也抱住你<br>
+                愿意 在角落唱沙哑的歌<br>
+                再大声也都是给你<br>
+                请原谅我 不会说谎<br>
+                愿意 用一支黑色的铅笔<br>
+                画一出沉默舞台剧<br>
+                灯光再亮 也抱住你<br>
+                愿意 在角落唱沙哑的歌<br>
+            </p>
+            <div class="btn">
+                <a class="wd-button wd-button--positive">点击加载更多</a>
+            </div>
+            <div></div>
         </div>
     </div>
 </div>
-<script src="jquery-2.1.1.js"></script>
+<div class="demo">
+
+</div>
 <script src="hscroll.js"></script>
 <script src="js/index.js"></script>
 </body>
