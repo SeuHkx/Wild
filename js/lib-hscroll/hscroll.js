@@ -109,7 +109,8 @@
                 color: '#2196F3',
                 opacity: .3,
                 classes: 'hscroll-bar'
-            }
+            },
+            emit : null
         };
         this.opts = utils.$extend({}, config);
         for (var i in opts) {
@@ -290,6 +291,9 @@
             distance = 0;
         } else if (distance > this.opts.height - this.slider.offsetHeight) {
             distance = this.opts.height - this.slider.offsetHeight;
+        }
+        if(this.opts.emit !== null){
+            this.opts.emit.call(this,distance,this.opts.height - this.slider.offsetHeight);
         }
         percent = distance / (this.opts.height - this.slider.offsetHeight);
         this.slider.style.top = distance + 'px';

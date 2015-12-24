@@ -1118,6 +1118,9 @@ input[type="password"] {
   float: left;
   width: auto; }
 
+.wd-nav-logo + .wd-nav.wd-nav--right {
+  float: right; }
+
 .wd-nav-respond-menu {
   position: absolute;
   top: 0;
