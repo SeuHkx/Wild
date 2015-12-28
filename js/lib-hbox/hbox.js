@@ -226,7 +226,8 @@
                 callback : null,
                 cssAnimation : [],
                 repeat   : true,
-                drag     : true
+                drag     : true,
+                init     : null
         };
         this.parent = utils.createNode('div');
         this.shade  = utils.createNode('div');
