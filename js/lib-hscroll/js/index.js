@@ -45,7 +45,7 @@ window.onload = function () {
                  var load = document.getElementById('lodeHTML');
                  if(distance === bottom){
                      //todo
-                     load.innerHTML +=  '<p>还需要多久 多长 多伤</p>';
+                     load.innerHTML +=  '<p style="line-height: 246px;">还需要多久 多长 多伤</p>';
                  }
              }
         });
@@ -61,9 +61,9 @@ window.onload = function () {
         hscroll.fresh('wrap');
     };
     btnPos.onclick = function(){
-        strPos.innerHTML = '还需要多久 多长 多伤<br>'
-                            + '坚强像谎言一样 不过是一种伪装 我只希望有个机会能被你爱上<br>'
-                            + '我还是爱着你 每分每秒一样 就好像一个傻瓜<br>';
+        strPos.innerHTML += '还需要多久 多长 多伤<br>'
+            + '坚强像谎言一样 不过是一种伪装 我只希望有个机会能被你爱上<br>'
+            + '我还是爱着你 每分每秒一样 就好像一个傻瓜<br>';
         hscroll.fresh('wrapper');
     };
 };

@@ -320,32 +320,10 @@
             if(typeof this.configs.cssAnimation[1] !== 'undefined')cacheData.animateEnd[configStyle.ID] = this.configs.cssAnimation[1];
 
         },
-        _single : 0,
         _judge : function(){
-            if(this.configs.mask !== true){
-
-            }
             //TODO
-            //utils.log(this.nextId);
             this._createBox();
             this._closeIcon();
-            //if (utils.isEmpty(this._cacheBox) && this.configs.mask !== true){
-            //
-            //    this._createBox();
-            //    this._closeIcon();
-            //    this._cacheBox[cacheData.changeId] = cacheData.nodeParent[cacheData.changeId];
-            //    utils.log('no repeat');
-            //}else {
-            //    for(var i in this._cacheBox){
-            //        if(i === cacheData.changeId){
-            //            utils.log(i)
-            //        }
-            //    }
-            //    utils.log('repeat');
-            //    utils.log(cacheData.changeId);
-            //    this._createBox();
-            //    this._closeIcon();
-            //}
         },
         _createShade : function(opts){
             var shade =  this.shade;

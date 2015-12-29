@@ -24,7 +24,8 @@
             slider       : {},
             scrollTarget : {},
             sliderTarget : {},
-            opts         : {}
+            opts         : {},
+            data         : {}
         },
 
         doc = document;
@@ -142,6 +143,7 @@
             }
         }
         saveMemory.opts[this.opts.wrapper] = utils.$extend({},this.opts);
+        saveMemory.data[this.opts.wrapper] = [];
         /**
          * opts === 'undefined'
          */
@@ -431,7 +433,7 @@
          */
         if(this.opts.emit !== null){
             this.opts.emit.call(this,distance,this.opts.height - this.slider.offsetHeight);
-            this._fresh(saveMemory.opts[this.opts.wrapper].wrapper);
+            this._fresh(this.opts.wrapper);
         }
         /**
          *
@@ -486,6 +488,10 @@
         var sliderUpDiff = saveMemory.opts[id].height - saveMemory.sliderTarget[id].offsetHeight;
         var scrollDiff   = saveMemory.scroll[id] - saveMemory.opts[id].height + padding;
         var scrollUpDiff = saveMemory.scrollTarget[id].offsetHeight - saveMemory.opts[id].height + padding;
+        saveMemory.data[id].push(sliderUpDiff);
+        if(this._point.endY !== sliderDiff && saveMemory.data[id].length > 1){
+            sliderDiff =  saveMemory.data[id].shift();
+        }
         var sliderTop    = this._formula(this._point.endY,sliderDiff,sliderUpDiff,scrollDiff,scrollUpDiff);
         saveMemory.sliderTarget[id].style.top = Math.ceil(sliderTop) + 'px';
     };
