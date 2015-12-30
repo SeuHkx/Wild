@@ -33,7 +33,7 @@ window.onload = function(){
                         title:'旅行的意义',
                         content:'你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴',
                         button : ['信仰','关闭'],
-                        buttonClass : ['ok','close'],
+                        buttonClass : ['red','blue'],
                         callback : {
                             ok : function(){
                                 //TODO
@@ -49,6 +49,7 @@ window.onload = function(){
                                         ok : function(){
                                             //open
                                             hbox.open({
+                                                mask : false,
                                                 cssAnimation: ['pop'],
                                                 title : '你知道吗',
                                                 content : '我爱你是多么清楚多么坚固的信仰</br>我爱你是多么温暖多么勇敢的力量</br>',
@@ -61,6 +62,7 @@ window.onload = function(){
                                                     alert : function(){
                                                         //open
                                                         hbox.open({
+                                                            mask : false,
                                                             cssAnimation: ['pop'],
                                                             title : '信仰',
                                                             content : '我爱你是忠于自己忠于爱情的信仰</br>我爱你是来自灵魂来自生命的力量',
@@ -142,7 +144,8 @@ window.onload = function(){
                                 //TODO
                                 hbox.close();
                             }
-                        }
+                        },
+                        repeat : false
                     });
                     break;
             }
