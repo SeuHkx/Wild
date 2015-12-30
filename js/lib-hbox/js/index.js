@@ -28,6 +28,9 @@ window.onload = function(){
             switch (index){
                 case 0 :
                     hbox.open({
+                        init : function(){
+                            //todo
+                        },
                         maskAnimation : ['animated maskPop'],
                         cssAnimation  : ['animated flipInX','animated hinge'],
                         title:'旅行的意义',
@@ -92,7 +95,8 @@ window.onload = function(){
                             cancel : function(){
                                 hbox.close();
                             }
-                        }
+                        },
+                        drag : true
                     });
                     hbox.register(iFrame);
                     break;
@@ -112,7 +116,8 @@ window.onload = function(){
 
                             }
                         },
-                        repeat : false
+                        repeat : false,
+                        drag : true
                     });
                     break;
                 case 2 :

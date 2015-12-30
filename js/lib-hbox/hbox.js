@@ -61,6 +61,27 @@
                 });
             }
         },
+        addEvent  : function(el,type,fn,bubble){
+            if (el.addEventListener) {
+                el.addEventListener(type,fn,!!bubble);
+            }
+            else if (el.attachEvent) {
+                el.attachEvent('on' + type, fn);
+            }
+        },
+        removeEvent: function(el,type,fn,bubble){
+            if (el.removeEventListener) {
+                el.removeEventListener(type, fn, !!bubble);
+            }
+            else if (el.detachEvent) {
+                el.detachEvent('on' + type, fn);
+            }
+        },
+        bindFn : function(self,fn){
+              return function (){
+                  fn.apply(self,arguments);
+              }
+        },
         $hasClass : function(el,klass){
             return !!el.className.match(new RegExp("(\\s|^)" + klass + "(\\s|$)"));
         },
@@ -84,7 +105,6 @@
             }
             return els;
         },
-
         pfxEvent : function(el,type,fn,bubble){
             var pfx = ['webkit','moz','MS','o',''];
             for (var p = 0 ; p < pfx.length; p += 1){
@@ -226,7 +246,7 @@
                 callback : null,
                 cssAnimation : [],
                 repeat   : true,
-                drag     : true,
+                drag     : false,
                 init     : null
         };
         this.parent = utils.createNode('div');
@@ -308,6 +328,9 @@
             this._setParentBox();
             utils.html(this.parent, this._createHtml(this.configs));
             utils.append(this.parent);
+            if(this.configs.init !== null && typeof this.configs.init === 'function'){
+                this.configs.init();
+            }
             if (this.configs.mask) {
                 utils.append(this._createShade(configStyle.count));
                 cacheData.nodeShade[configStyle.ID] = this.shade;
@@ -318,11 +341,59 @@
             cacheData.nodeParent[configStyle.ID] = this.parent;
             cacheData.changeId = configStyle.ID;
             if(typeof this.configs.cssAnimation[1] !== 'undefined')cacheData.animateEnd[configStyle.ID] = this.configs.cssAnimation[1];
-
+        },
+        _dragBox : function(){
+            var self = this;
+            this._dragCache.title     = utils.bindFn(self,self._dragBindTitle);
+            this._dragCache.document = utils.bindFn(self,self._dragBindDocument);
+            utils.addEvent(self.parent.children[0],'mousedown',self._dragCache.title);
+            utils.addEvent(self.parent.children[0],'mouseup',self._dragCache.document);
+        },
+        _dragBindTitle : function(e){
+            var event = e || event;
+            this._dragCache.move = utils.bindFn(this,this._dragBoxMove);
+            this._dragTransfer();
+            this._dragCache.x = event.clientX;
+            this._dragCache.y = event.clientY;
+            utils.addEvent(document,'mousemove',this._dragCache.move);
+        },
+        _dragBoxMove : function(e){
+            var self = this;
+            var event= e || event;
+            var dragBindDocument = utils.bindFn(self,self._dragBindDocument);
+            //todo
+            this.parent.style['left'] = this._dragCache.left + event.clientX - this._dragCache.x + 'px';
+            this.parent.style['top']  = this._dragCache.top  + event.clientY - this._dragCache.y + 'px';
+            utils.addEvent(document,'mouseup',dragBindDocument);
+        },
+        _dragBindDocument : function(){
+            var self = this;
+            utils.removeEvent(document,'mouseup',self._dragCache.move);
+            utils.removeEvent(document,'mousemove',self._dragCache.move);
+        },
+        _dragTransfer : function(){
+            var margin    = utils.getStyle(this.parent,'margin');
+            var marginArr = margin.replace(/px/gi,'').split(' ');
+            this.parent.style['left'] = parseInt(-marginArr[marginArr.length - 1]) + this.parent.offsetLeft + 'px';
+            this.parent.style['top']  = this.parent.offsetTop + 'px';
+            this._dragCache.top  = this.parent.offsetTop;
+            this._dragCache.left = parseInt(-marginArr[marginArr.length - 1]) + this.parent.offsetLeft;
+        },
+        _dragCache : {
+            document : null,
+            title : null,
+            move : null,
+            x : '',
+            y : '',
+            top : '',
+            left: ''
         },
         _judge : function(){
             //TODO
             this._createBox();
+            if(!!this.configs.drag){
+                this._dragBox();
+            }
             this._closeIcon();
         },
         _createShade : function(opts){
@@ -347,7 +418,6 @@
         _popBox : function(){
             var fn = [];
             this._judge();
-            //callback
             for(var f in this.configs.callback)fn.push(f);
             if(this.configs.button.length !== 0 && fn.length === this.configs.button.length){
                 var els = utils.$class(configStyle.ID,this.configs.style.button);
