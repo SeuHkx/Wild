@@ -28,7 +28,7 @@
         },
         addEvent : function(el,type,fn,bubble){
             var _fn = function(e){
-                fn.call(el,e);
+                return fn.call(el,e);
             };
             if(el.addEventListener){
                 el.addEventListener(type,fn,!!bubble);
@@ -63,6 +63,7 @@
             element      : '',
             type         : '',
             offset       : 50,
+            top          : 0,
             cssAnimation : []
         };
         for(var i in opts){
@@ -81,9 +82,12 @@
         return source;
     };
     var methodsRoll = {
-        _count: 0,
+        _storage : {
+            prev : 0,
+            count: 0,
+            timer: null
+        },
         _init : function(){
-            console.log('init');
             var self = this,
                 bindScrollFn = $ut.bind(self,self._scrollFn);
             this._element().setAttribute('data-hscroll',false);
@@ -96,18 +100,29 @@
             $ut.addEvent(window,'scroll',fn);
         },
         _scrollFn : function(){
-            var top = document.body.scrollTop || document.documentElement.scrollTop,
-                element = this._element();
-            if(top >= this.configs.offset && this._count === 0 && this.configs.type === ''){
+            var curr = document.body.scrollTop || document.documentElement.scrollTop,
+                element = this._element(),
+                self = this;
+            if(curr >= this.configs.offset && this._storage.count === 0 && this.configs.type === ''){
                 this._setScroll(element);
-                this._count++;
-                console.log('in' + ':' + this._count);
+                this._storage.count++;
             }else{
-                if(top <= this.configs.offset && this._count === 1 && this.configs.type === ''){
+                if(curr <= this.configs.offset && this._storage.count === 1 && this.configs.type === ''){
                     this._setScroll(element);
-                    this._count--;
-                    console.log('out' + ':' + this._count);
+                    this._storage.count--;
                 }
+            }
+            if(this.configs.type === 'modern' && curr >= this.configs.offset){
+                if (curr > this._storage.prev) {
+                    console.log('down');
+                } else if (curr < this._storage.prev) {
+                    console.log('up');
+                } else {
+                    console.log('===')
+                }
+                this._storage.timer = setTimeout(function(){
+                    self._storage.prev = curr;
+                },0)
             }
         },
         _setScroll : function(el){
@@ -117,14 +132,17 @@
                     if($ut.hasClass(el,this.configs.cssAnimation[1])){
                         $ut.delClass(el,this.configs.cssAnimation[1]);
                     }
+                    el.setAttribute('data-hscroll',true);
                     el.className += ' ' + this.configs.cssAnimation[0];
                 }else{
                     if(derail === 'true' && this.configs.cssAnimation.length > 1){
                         if(!$ut.hasClass(el,this.configs.cssAnimation[1])){
                             $ut.delClass(el,this.configs.cssAnimation[0]);
                         }
+                        el.setAttribute('data-hscroll',false);
                         el.className += ' ' + this.configs.cssAnimation[1];
                     }else{
+                        el.setAttribute('data-hscroll',false);
                         $ut.delClass(el,this.configs.cssAnimation[0]);
                     }
                 }
@@ -132,7 +150,7 @@
             }else{
                 if(derail === 'false'){
                     el.style['position'] = 'fixed';
-                    el.style['top']      =  0;
+                    el.style['top']      =  this.configs.top + 'px';
                     el.setAttribute('data-hscroll',true);
                 }else{
                     if(derail === 'true'){
@@ -141,9 +159,6 @@
                     }
                 }
             }
-        },
-        _setCssScrollDown : function(el){
-            //todo
         }
     };
     Hrollover.fn.copy(roll.prototype,methodsRoll);

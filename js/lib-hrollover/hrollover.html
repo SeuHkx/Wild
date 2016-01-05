@@ -7,17 +7,27 @@
     <link rel="stylesheet" href="../../widget/wild.reset.css">
     <link rel="stylesheet" href="../../widget/wild.type.css">
     <link rel="stylesheet" href="../../widget/wild.nav.css">
+    <link rel="stylesheet" href="../../widget/wild.button.css">
     <link rel="stylesheet" href="css/animate.css">
     <style>
         body{
             background-color: #f4f4f4;
-            height: 1600px;
+            height: 3600px;
         }
         .nav{
             position: fixed;
             width: 100%;
             background-color: #fff;
             border-bottom: 1px solid #ddd;
+        }
+        .top{
+            position: fixed;
+            bottom: 40px;
+            left: 40px;
+            display: none;
+        }
+        .show{
+            display: block;
         }
     </style>
 </head>
@@ -48,6 +58,7 @@
         </div>
     </div>
 </div>
+<a class="wd-button-floating wd-button wd-button--red top wd-button-floating--large" id="top">Top</a>
 <script src="hrollover.js"></script>
 <script src="js/index.js"></script>
 </body>

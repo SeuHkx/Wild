@@ -167,7 +167,7 @@
     };
     var templateDom = {
         noTitle : function(klass){
-            return '<div  class=' + klass.title +'><i data-id='+ configStyle.ID +' class='+ klass.icon +'></i></div>'
+            return '<div  class=' + klass.title +'><i data-id='+ configStyle.ID +' class='+ klass.icon  +'></i></div>'
         },
         title   : function(str,klass){
             return '<div class=' +  klass.title +'><i  data-id='+ configStyle.ID +' class='+ klass.icon +'></i><h4>'+ str +'</h4></div>';
@@ -372,12 +372,12 @@
             utils.removeEvent(document,'mousemove',self._dragCache.move);
         },
         _dragTransfer : function(){
-            var margin    = utils.getStyle(this.parent,'margin');
-            var marginArr = margin.replace(/px/gi,'').split(' ');
-            this.parent.style['left'] = parseInt(-marginArr[marginArr.length - 1]) + this.parent.offsetLeft + 'px';
+            var margin    = utils.getStyle(this.parent,'marginLeft');
+            var marginStr = margin.replace(/px/gi,'');
+            this.parent.style['left'] = parseInt(-marginStr) + this.parent.offsetLeft + 'px';
             this.parent.style['top']  = this.parent.offsetTop + 'px';
             this._dragCache.top  = this.parent.offsetTop;
-            this._dragCache.left = parseInt(-marginArr[marginArr.length - 1]) + this.parent.offsetLeft;
+            this._dragCache.left = parseInt(-marginStr) + this.parent.offsetLeft;
         },
         _dragCache : {
             document : null,
