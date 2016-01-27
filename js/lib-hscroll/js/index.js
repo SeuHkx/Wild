@@ -21,24 +21,24 @@ window.onload = function () {
             scroll: 'scrollWrap',
             height: 300,
             slider: {
-                width: 6,
+                width: 12,
                 color: '#ab2bc1'
             },
             bar: {
-                width: 6,
+                width: 12,
                 color: '#ab2bc1'
             }
         });
-     hscroll.roll({
+      hscroll.roll({
             wrapper: 'wrapper_three',
             scroll: 'scroll_three',
             height: 300,
             slider: {
-                width: 6,
+                width: 12,
                 color: '#ab2bc1'
             },
             bar: {
-                width: 6,
+                width: 12,
                 color: '#ab2bc1'
             },
              emit : function (distance,bottom) {
