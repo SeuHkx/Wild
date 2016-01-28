@@ -39,8 +39,6 @@
                 beforeUpload: null,
                 maxFileSize: '',
                 allowFileType: '',
-                preview: false,
-                fileInfo: null,
                 multiple: false,
                 data: null,
                 callback: null,
@@ -86,18 +84,16 @@
             });
         },
         _onAjax: function () {
-            if(this.opts.beforeUpload !== null && typeof this.opts.beforeUpload === 'function')this.opts.beforeUpload(this.fileInput);
-            if (this.opts.preview !== null && typeof this.opts.preview === 'function')this._ajaxFilePreviewImg();
-            if (this.opts.fileInfo !== null && typeof this.opts.fileInfo === 'function')this.opts.fileInfo(this._ajaxFileInfo());
+            if(this.opts.beforeUpload !== null && typeof this.opts.beforeUpload === 'function')this._ajaxFileInfo();
             this._ajaxFormData();
         },
         _ajaxFileInfo: function () {
             var file = this.fileInput.files,
-                name = [],
-                size = [],
-                type = [];
+                self = this,
+                fileInfo = [],
+                imageType = /^image\//;
 
-            for (var i = 0, f; f = file[i]; i++) {
+            for (var i = 0, f; f = file[i]; i += 1) {
                 if (file) {
                     var fileSize = 0;
                     if (f.size > 1024 * 1024) {
@@ -106,35 +102,27 @@
                         fileSize = (Math.round(f.size * 100 / 1024) / 100).toString() + 'KB';
                     }
                 }
-                name.push(f.name);
-                size.push(fileSize);
-                type.push(f.type);
-            }
-            return {
-                name: name,
-                size: size,
-                type: type
-            }
-        },
-        _ajaxFilePreviewImg: function () {
-            var file = this.fileInput.files,
-                self = this,
-                imageType = /^image\//;
-
-            for (var i = 0, f; f = file[i]; i += 1) {
-                if (!imageType.test(f.type)) {
-                    continue;
-                }
-                var fileReader = new FileReader();
-                fileReader.onload = function () {
-                    self.opts.preview(this.result);
+                fileInfo[i] = {
+                    name : f.name,
+                    size : fileSize,
+                    type : f.type
                 };
+                var fileReader = new FileReader();
+                fileReader.onload = (function(file,index){
+                    return function (){
+                        if (imageType.test(file.type)) {
+                            fileInfo[index].img = this.result;
+                        }
+                        fileInfo.index = index;
+                        self.opts.beforeUpload(fileInfo);
+                    };
+                }(f,i));
                 fileReader.readAsDataURL(f);
             }
         },
         _ajaxFormData : function(){
-
             var fd  = new FormData(),
+                file= this.fileInput.files,
                 self= this;
             if(this.opts.data !== null && checkFile.file){
                 for(var i = 0 ; i < this.opts.data.length ; i += 1){
@@ -143,13 +131,19 @@
                     }
                 }
             }
-            fd.append(this.fileInput.getAttribute('name'), this.fileInput.files[0]);
-
-            var xhr = new window.XMLHttpRequest(),
-                __ajaxProgress = Hupload.utilKit.bind(self,self._ajaxProgress),
-                __ajaxLoad = Hupload.utilKit.bind(self,self._ajaxLoad);
-            xhr.upload.addEventListener('progress', __ajaxProgress, false);
-            xhr.addEventListener('load', __ajaxLoad, false);
+            for(var i = 0,f ; f = file[i] ; i += 1){
+                fd.append(this.fileInput.getAttribute('name'),f);
+                self._ajaxUpload(fd,self,i);
+            }
+        },
+        _ajaxUpload : function(data,self,index){
+            var xhr = new window.XMLHttpRequest();
+            xhr.upload.addEventListener('progress', function(event){
+                self._ajaxProgress(event,index)
+            }, false);
+            xhr.addEventListener('load', function(event){
+                self._ajaxLoad(event,index)
+            }, false);
             xhr.addEventListener('error', function(){
                 console.log('error');
             }, false);
@@ -157,18 +151,18 @@
                 console.log('abort')
             }, false);
             xhr.open('POST', this.opts.fileUploadUrl,true);
-            xhr.send(fd);
+            xhr.send(data);
         },
-        _ajaxProgress : function(event){
+        _ajaxProgress : function(event,index){
             if (event.lengthComputable) {
                 var percentComplete = Math.round(event.loaded * 100 / event.total);
-                if(typeof this.opts.progress === 'function' && this.opts.progress !== null)this.opts.progress(percentComplete);
+                if(typeof this.opts.progress === 'function' && this.opts.progress !== null)this.opts.progress(percentComplete,index);
             }
         },
-        _ajaxLoad : function(event){
+        _ajaxLoad : function(event,index){
             if(event.target.readyState === 4  && event.target.status === 200){
                 if(typeof this.opts.callback === 'function' && this.opts.callback !== null){
-                    this.opts.callback(JSON.parse(event.target.responseText));
+                    this.opts.callback(JSON.parse(event.target.responseText),index);
                 }
             }else{
                 console.log('error');
@@ -204,7 +198,7 @@
         },
         _onChangeUpload: function () {
             var wrapper = this.iFrameWrapper = this._templateIFrame();
-            if(this.opts.beforeUpload !== null && typeof this.opts.beforeUpload === 'function')this.opts.beforeUpload(this.fileInput);
+            //if(this.opts.beforeUpload !== null && typeof this.opts.beforeUpload === 'function')this.opts.beforeUpload();
             Hupload.utilKit.append(wrapper);
             this.iFrameForm = Hupload.utilKit.$node(cacheID[this.iFrameExpando], 'form');
             this._exchangeFile();

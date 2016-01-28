@@ -8,13 +8,21 @@
 </head>
 <body>
 <div class="upload-demo">
-    <a class="up-button">
-        选择文件
+    <a class="wd-button wd-button--green">
+        单文件--选择文件
         <input type="file"  id="file"/>
     </a>
-    <a class="up-button upload" id="buttonUpload">上传</a>
+    <a class="wd-button wd-button--red" id="buttonUpload">手动上传</a>
+    <div class="wd-button-group wd-button--green groupMargin">
+        <a class="wd-button">
+            多文件--选择文件
+            <input type="file"  id="fileDemo"/>
+        </a>
+        <a class="wd-button"><span class="wd-triangle wd-triangle--bottom"></span>自动上传</a>
+    </div>
 </div>
-<!--<script src="js/jquery-2.1.1.js"></script>-->
+<div class="upload-demo-wrapper" id="wrapper"></div>
+
 <script src="hupload.js"></script>
 <script src="js/index.js"></script>
 </body>

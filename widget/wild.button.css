@@ -53,6 +53,16 @@
     .wd-button.wd-button-flat:hover {
       -webkit-box-shadow: none;
               box-shadow: none; }
+  .wd-button input[type='file'] {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    filter: alpha(opacity=0); }
 
 .wd-button-default {
   -webkit-box-shadow: none;

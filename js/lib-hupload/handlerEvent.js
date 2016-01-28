@@ -7,6 +7,9 @@ var util = require('util');
 var querystring = require('querystring');
 var formidable  = require('formidable');
 
+var countHttpRequest = 0;
+var dataJson = [];
+
 var handlerEvent = {
     mapHandler : {},
     main  : function(req,res){
@@ -19,38 +22,42 @@ var handlerEvent = {
     },
     upload : function(req,res){
         if(req.method.toLowerCase() === 'post'){
-
             var form = new formidable.IncomingForm();
             form.encoding  = 'utf-8';
             form.uploadDir = 'file/';
             form.keepExtensions = true;
             form.parse(req,function(err,fields,files){
+
                 var data = {
-                    fileName : files.upload.name,
-                    path :'file/',
+                    name : files.upload.name,
                     success : null,
-                    img  : false
+                    img  : 'file/' + files.upload.name,
+                    callback : true
                 };
+
                 if(err){
                     data.success = false;
                 }else{
                     var ext   = files.upload.name.match(/(\.[^.]+|)$/)[0],
                         check = /jpg|png|gif/gi;
-                    if(check.test(ext))data.img = true;
+                    if(check.test(ext))data.isImg = true;
                     data.success = true;
                     console.log("上传成功:" + files.upload.name);
                 }
+                dataJson[countHttpRequest++] = data;
                 fs.renameSync(files.upload.path, './file/'+ files.upload.name);
                 res.writeHead(200, {'Content-Type': 'text/html'});
-                res.write(JSON.stringify(data));
+                res.write(JSON.stringify(dataJson));
                 res.end();
-                console.log(util.inspect({fields: fields, files: files}))
+                //console.log(util.inspect({fields: fields, files: files}))
             })
         }else{
             res.writeHead(200, {'Content-Type': 'text/html'});
             res.write('This is upload');
             res.end();
         }
+        dataJson = [];
+        countHttpRequest = 0;
     }
 };
 handlerEvent.mapHandler['/'] = handlerEvent.main;

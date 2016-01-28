@@ -1,78 +1,82 @@
-window.onload = function(){
+window.onload = function () {
+    var wrapper = document.getElementById('wrapper');
+
     var opts = {
-        fileId : 'file',
+        fileId: 'file',
         fileUploadUrl: '/upload',
-        beforeUpload: function (file) {
+        beforeUpload: function (fileInfo) {
+            var elements = templateFileBox(fileInfo);
+            wrapper.appendChild(elements.div);
+        },
+        data: [{'Hkx': 'This is handsome', 'He': 'This is a boy'}, {'Dang': 'Test Dang'}],
+        progress: function (complete,index) {
             //todo
-            alert('上传之前调用');
-            console.log(file);
+            var fileBox = document.querySelectorAll('.fileInfoBox');
+            var progress= document.createElement('div');
+            var progressInside = document.createElement('div');
+            progress.className = 'progress';
+            progressInside.className = 'progress-inside';
+            progressInside.style.width = complete + '%';
+            progress.appendChild(progressInside);
+            fileBox[index].appendChild(progress);
         },
-        data: [{'Hkx': 'This is handsome', 'He': 'This is a boy'},{'Dang' : 'Test Dang'}],
-        callback : function (data) {
-            var infoText= document.getElementById('infoText');
-            infoText.innerHTML = data.fileName;
-            console.log(data);
+        callback: function (data) {
+            //todo
         },
-        preview : function(data){
-            var img = document.createElement('img');
-            img.src = data;
-            document.body.appendChild(img);
-        },
-        progress : function(complete){
-              console.log(complete);
-        },
-        control : false
+        control: true
     };
     var up = hupload(opts);
 
     var buttonUpload = document.getElementById('buttonUpload');
 
-    buttonUpload.onclick = function(){
+    buttonUpload.onclick = function () {
         up.upload();
     };
+
+    var configs = {
+        fileId: 'fileDemo',
+        fileUploadUrl: '/upload',
+        beforeUpload: function (fileInfo) {
+            var elements = templateFileBox(fileInfo);
+            wrapper.appendChild(elements.div);
+        },
+        data: [{'Hkx': 'This is handsome', 'He': 'This is a boy'}, {'Dang': 'Test Dang'}],
+        progress: function (complete,index) {
+            var fileBox = document.querySelectorAll('.fileInfoBox');
+            var progress= document.createElement('div');
+            var progressInside = document.createElement('div');
+            progress.className = 'progress';
+            progressInside.className = 'progress-inside';
+            progressInside.style.width = complete + '%';
+            progress.appendChild(progressInside);
+            fileBox[index].appendChild(progress);
+            console.log('progress:' + index);
+        },
+        callback: function (data,index) {
+            //todo
+        },
+        multiple : true,
+        control: false
+    };
+    var upLoadFile = hupload(configs);
+
+
+
+    var templateFileBox = function(fileInfo){
+        var div = document.createElement('div');
+        var span= document.createElement('span');
+        if(typeof fileInfo.index !== 'undefined'){
+            if(typeof fileInfo[fileInfo.index].img !== 'undefined'){
+                var img = document.createElement('img');
+                img.src = fileInfo[fileInfo.index].img;
+                div.appendChild(img);
+            }
+            span.innerHTML = fileInfo[fileInfo.index].name;
+        }
+        div.className = 'fileInfoBox';
+        div.appendChild(span);
+        return{
+            div : div
+        }
+    }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//window.onload = function(){
-//
-//    var button = document.getElementById('buttonUpload');
-//
-//    button.addEventListener('click',function(){
-//        $.ajax({
-//            url: '/upload',
-//            type: 'POST',
-//            cache: false,
-//            data: new FormData($('#frmUploadFile')[0]),
-//            processData: false,
-//            contentType: false
-//        }).done(function(res) {
-//            console.log(res);
-//        }).fail(function(res) {
-//            console.log(res);
-//        });
-//    })
-//};
