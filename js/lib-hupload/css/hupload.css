@@ -15,6 +15,12 @@ form{
     padding: 10px 0;
     min-height: 102px;
 }
+.wd-bubble-mass.custom-mass{
+    min-width: 110px;
+    width: 110px;
+    left: 50%;
+    margin-left: -55px;
+}
 .fileInfoBox{
     position: relative;
     width: 160px;
@@ -22,36 +28,38 @@ form{
     margin-right: 20px;
     margin-top: 20px;
 }
+.fileInfoBox a{
+    display: inline-block;
+}
 .fileInfoBox img{
     width: 160px;
     height: 100px;
 }
-.fileInfoBox .fileName{
+.fileInfoBox span{
     color: #666;
     font-size: 14px;
 }
 .groupMargin{
     margin-left: 60px;
 }
-.progress{
-    position: absolute;
-    top:122px;
-    height: 10px;
+/*yilai*/
+.hprogress{
+    position: relative;
+    margin-top: 10px;
+    /*top:122px;*/
+    height: 16px;
+    padding: 4px;
     width: 160px;
     border: 1px solid #ddd;
     border-radius: 10px;
 }
-.progress-inside{
-    position: absolute;
-    top:50%;
-    /*width: 100%;*/
+.hprogress-inside{
+    width: 0;
     height: 6px;
-    margin-top: -3px;
     background-color: #0b97c4;
     border-radius: 10px;
     transition: all ease-in .4s;
 }
-
 .wd-button {
     position: relative;
     display: inline-block;

@@ -5,23 +5,26 @@ window.onload = function () {
         fileId: 'file',
         fileUploadUrl: '/upload',
         beforeUpload: function (fileInfo) {
-            var elements = templateFileBox(fileInfo);
-            wrapper.appendChild(elements.div);
+            //todo
         },
         data: [{'Hkx': 'This is handsome', 'He': 'This is a boy'}, {'Dang': 'Test Dang'}],
-        progress: function (complete,index) {
-            //todo
-            var fileBox = document.querySelectorAll('.fileInfoBox');
-            var progress= document.createElement('div');
-            var progressInside = document.createElement('div');
-            progress.className = 'progress';
-            progressInside.className = 'progress-inside';
-            progressInside.style.width = complete + '%';
-            progress.appendChild(progressInside);
-            fileBox[index].appendChild(progress);
-        },
         callback: function (data) {
             //todo
+        },
+        previewFile : function(progress,fileInfo,thumbnail){
+
+            var div = document.createElement('div');
+            var span= document.createElement('span');
+            if(thumbnail !== false){
+                var img = document.createElement('img');
+                img.src = thumbnail;
+                div.appendChild(img);
+            }
+            div.className = 'fileInfoBox';
+            span.innerHTML= fileInfo.name;
+            div.appendChild(span);
+            div.appendChild(progress);
+            wrapper.appendChild(div);
         },
         control: true
     };
@@ -32,27 +35,28 @@ window.onload = function () {
     buttonUpload.onclick = function () {
         up.upload();
     };
-
     var configs = {
         fileId: 'fileDemo',
         fileUploadUrl: '/upload',
+        previewFile : function(progress,fileInfo,thumbnail){
+
+            var div = document.createElement('div');
+            var span= document.createElement('span');
+            if(thumbnail !== false){
+                var img = document.createElement('img');
+                img.src = thumbnail;
+                div.appendChild(img);
+            }
+            div.className = 'fileInfoBox';
+            span.innerHTML= fileInfo.name;
+            div.appendChild(span);
+            div.appendChild(progress);
+            wrapper.appendChild(div);
+        },
         beforeUpload: function (fileInfo) {
-            var elements = templateFileBox(fileInfo);
-            wrapper.appendChild(elements.div);
+            //todo
         },
-        data: [{'Hkx': 'This is handsome', 'He': 'This is a boy'}, {'Dang': 'Test Dang'}],
-        progress: function (complete,index) {
-            var fileBox = document.querySelectorAll('.fileInfoBox');
-            var progress= document.createElement('div');
-            var progressInside = document.createElement('div');
-            progress.className = 'progress';
-            progressInside.className = 'progress-inside';
-            progressInside.style.width = complete + '%';
-            progress.appendChild(progressInside);
-            fileBox[index].appendChild(progress);
-            console.log('progress:' + index);
-        },
-        callback: function (data,index) {
+        callback: function (data) {
             //todo
         },
         multiple : true,
@@ -60,23 +64,4 @@ window.onload = function () {
     };
     var upLoadFile = hupload(configs);
 
-
-
-    var templateFileBox = function(fileInfo){
-        var div = document.createElement('div');
-        var span= document.createElement('span');
-        if(typeof fileInfo.index !== 'undefined'){
-            if(typeof fileInfo[fileInfo.index].img !== 'undefined'){
-                var img = document.createElement('img');
-                img.src = fileInfo[fileInfo.index].img;
-                div.appendChild(img);
-            }
-            span.innerHTML = fileInfo[fileInfo.index].name;
-        }
-        div.className = 'fileInfoBox';
-        div.appendChild(span);
-        return{
-            div : div
-        }
-    }
 };

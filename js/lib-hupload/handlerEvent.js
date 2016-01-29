@@ -7,9 +7,6 @@ var util = require('util');
 var querystring = require('querystring');
 var formidable  = require('formidable');
 
-var countHttpRequest = 0;
-var dataJson = [];
-
 var handlerEvent = {
     mapHandler : {},
     main  : function(req,res){
@@ -47,7 +44,7 @@ var handlerEvent = {
                 dataJson[countHttpRequest++] = data;
                 fs.renameSync(files.upload.path, './file/'+ files.upload.name);
                 res.writeHead(200, {'Content-Type': 'text/html'});
-                res.write(JSON.stringify(dataJson));
+                res.write(JSON.stringify(data));
                 res.end();
                 //console.log(util.inspect({fields: fields, files: files}))
             })

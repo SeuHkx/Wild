@@ -5,23 +5,39 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <title>上传</title>
     <link rel="stylesheet" href="css/hupload.css"/>
+    <link rel="stylesheet" href="css/Wild.min.css"/>
 </head>
 <body>
 <div class="upload-demo">
-    <a class="wd-button wd-button--green">
-        单文件--选择文件
-        <input type="file"  id="file"/>
-    </a>
+    <div class="wd-button-group wd-button--green">
+        <a class="wd-button wd-button--green">
+            单文件--选择文件
+            <input type="file"  id="file"/>
+        </a>
+        <div class="wd-button-dropdown">
+            <a class="wd-button"><span class="wd-triangle wd-triangle--bottom"></span></a>
+            <div class="wd-bubble-mass custom-mass" style="display: none">
+                <ul class="wd-dropdown wd-utils-text--center">
+                    <li>
+                        <a>创建文件夹</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <a class="wd-button wd-button--red" id="buttonUpload">手动上传</a>
     <div class="wd-button-group wd-button--green groupMargin">
         <a class="wd-button">
             多文件--选择文件
             <input type="file"  id="fileDemo"/>
         </a>
-        <a class="wd-button"><span class="wd-triangle wd-triangle--bottom"></span>自动上传</a>
+        <a class="wd-button"><span class="wd-triangle wd-triangle--bottom"></span></a>
     </div>
 </div>
 <div class="upload-demo-wrapper" id="wrapper"></div>
+
+
 
 <script src="hupload.js"></script>
 <script src="js/index.js"></script>

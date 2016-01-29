@@ -37,13 +37,17 @@
                 fileId: '',
                 fileUploadUrl: '',
                 beforeUpload: null,
-                maxFileSize: '',
-                allowFileType: '',
+                maxFileSize: null,
+                previewFile: null,
+                allowFileType: [],
                 multiple: false,
                 data: null,
                 callback: null,
-                progress: null,
-                control: false
+                error : null,
+                control: false,
+                progress : {
+                    classes : ['hprogress','hprogress-inside']
+                }
             };
             this.opts = Hupload.utilKit.extend({}, config);
             for (var attr in opts) {
@@ -84,15 +88,16 @@
             });
         },
         _onAjax: function () {
-            if(this.opts.beforeUpload !== null && typeof this.opts.beforeUpload === 'function')this._ajaxFileInfo();
+            if(this.opts.beforeUpload !== null && typeof this.opts.beforeUpload === 'function' || this.opts.maxFileSize !== null){
+                this._ajaxFileInfo();
+            }
             this._ajaxFormData();
         },
+        _fileInfo : {},
         _ajaxFileInfo: function () {
             var file = this.fileInput.files,
                 self = this,
-                fileInfo = [],
-                imageType = /^image\//;
-
+                fileInfo = [];
             for (var i = 0, f; f = file[i]; i += 1) {
                 if (file) {
                     var fileSize = 0;
@@ -107,23 +112,15 @@
                     size : fileSize,
                     type : f.type
                 };
-                var fileReader = new FileReader();
-                fileReader.onload = (function(file,index){
-                    return function (){
-                        if (imageType.test(file.type)) {
-                            fileInfo[index].img = this.result;
-                        }
-                        fileInfo.index = index;
-                        self.opts.beforeUpload(fileInfo);
-                    };
-                }(f,i));
-                fileReader.readAsDataURL(f);
             }
+            self.opts.beforeUpload(fileInfo);
+            self._fileInfo = fileInfo;
         },
         _ajaxFormData : function(){
             var fd  = new FormData(),
                 file= this.fileInput.files,
-                self= this;
+                self= this,
+                imageType = /^image\//;
             if(this.opts.data !== null && checkFile.file){
                 for(var i = 0 ; i < this.opts.data.length ; i += 1){
                     for(var attr in this.opts.data[i]){
@@ -131,18 +128,36 @@
                     }
                 }
             }
-            for(var i = 0,f ; f = file[i] ; i += 1){
+
+            for(var j = 0,f ; f = file[j] ; j += 1){
+                var fileReader = new FileReader(),
+                    progress = self._porgressSimple(self);
+                fileReader.onload = (function(file,index,progress){
+                    return function (){
+                        if (imageType.test(file.type)) {
+                            var img = new Image();
+                            img.src = this.result;
+                            self.opts.previewFile(progress,self._fileInfo[index],this.result);
+                            //fileInfo[index].imgSize= [img.width,img.height];
+                            //fileInfo[index].img = this.result;
+                            //console.log(self._progressAll.length);
+                        }else{
+                            self.opts.previewFile(progress,self._fileInfo[index],false);
+                        }
+                    };
+                }(f,j,progress.progress));
+                fileReader.readAsDataURL(f);
                 fd.append(this.fileInput.getAttribute('name'),f);
-                self._ajaxUpload(fd,self,i);
+                self._ajaxUpload(fd,self,j,progress.inside);
             }
         },
-        _ajaxUpload : function(data,self,index){
+        _ajaxUpload : function(data,self,index,progress){
             var xhr = new window.XMLHttpRequest();
             xhr.upload.addEventListener('progress', function(event){
-                self._ajaxProgress(event,index)
+                self._ajaxProgress(event,progress);
             }, false);
             xhr.addEventListener('load', function(event){
-                self._ajaxLoad(event,index)
+                self._ajaxLoad(event)
             }, false);
             xhr.addEventListener('error', function(){
                 console.log('error');
@@ -153,20 +168,32 @@
             xhr.open('POST', this.opts.fileUploadUrl,true);
             xhr.send(data);
         },
-        _ajaxProgress : function(event,index){
+        _ajaxProgress : function(event,progress){
             if (event.lengthComputable) {
                 var percentComplete = Math.round(event.loaded * 100 / event.total);
-                if(typeof this.opts.progress === 'function' && this.opts.progress !== null)this.opts.progress(percentComplete,index);
+                progress.style.width = percentComplete + '%';
             }
         },
-        _ajaxLoad : function(event,index){
-            if(event.target.readyState === 4  && event.target.status === 200){
+        _ajaxLoad : function(event){
+            if((event.target.status >=200 && event.target.status < 300 ) || event.target.status == 304 ){
                 if(typeof this.opts.callback === 'function' && this.opts.callback !== null){
-                    this.opts.callback(JSON.parse(event.target.responseText),index);
+                    this.opts.callback(JSON.parse(event.target.responseText));
                 }
             }else{
-                console.log('error');
+                console.log('request error: ' + event.target.status);
             }
+        },
+        _porgressSimple : function(self){
+            var progress = Hupload.utilKit.createEl('div'),
+                inside   = Hupload.utilKit.createEl('div');
+            //todo
+            progress.className = self.opts.progress.classes[0];
+            inside.className = self.opts.progress.classes[1];
+            Hupload.utilKit.append(progress,inside);
+            return {
+                progress : progress,
+                inside   : inside
+            };
         },
         _templateIFrame: function () {
             var inputHidden = '',
@@ -256,21 +283,13 @@
             }
         },
         extend: function () {
-            var arg = [].slice.call(arguments);
-
-            if (typeof arg[0] !== 'object') {
-                return arg[0];
+            if (typeof arguments[0] != 'object') {
+                return arguments[0];
             }
-            if (this.isEmpty(arg[0])) {
-                for (var attr in arg[1]) {
-                    arg[0][attr] = this.extend(arg[1][attr]);
-                }
-                return arg[0];
-            } else {
-                for (var name in arg[1]) {
-                    arg[0][name] = this.extend(arg[1][name]);
-                }
+            for (var attr in arguments[1]) {
+                arguments[0][attr] = this.extend(arguments[1][attr]);
             }
+            return arguments[0];
         },
         append: function () {
             var arg = [].slice.call(arguments);
