@@ -61,6 +61,7 @@
             }
             if(this.opts.multiple)this.fileInput.setAttribute('multiple','multiple');
             !this.opts.control && this._init();
+            if(this.opts.control && this.opts.beforeUpload !== null)this._onBeforeUploadChange();
         },
         methodsUploadFile;
 
@@ -81,6 +82,11 @@
                 this._onIEChange();
             }
         },
+        _onBeforeUploadChange : function(){
+            var self = this,
+                __ajaxFileInfo = Hupload.utilKit.bind(self,self._ajaxFileInfo);
+            Hupload.utilKit.addEvent(self.fileInput, 'change',__ajaxFileInfo);
+        },
         _onChangeAjax : function(){
             var self = this;
             Hupload.utilKit.addEvent(self.fileInput, 'change', function(){
@@ -93,7 +99,8 @@
             }
             this._ajaxFormData();
         },
-        _fileInfo : {},
+        _fileBeforeData : [],
+        _fileInfo : [],
         _ajaxFileInfo: function () {
             var file = this.fileInput.files,
                 self = this,
@@ -113,14 +120,42 @@
                     type : f.type
                 };
             }
-            self.opts.beforeUpload(fileInfo);
+            self.opts.beforeUpload(fileInfo,self._fileBeforeData);
             self._fileInfo = fileInfo;
+        },
+        _ajaxReadPicture : function(file,index,progress,setData){
+            var self = this,
+                imageType = /^image\//,
+                URL  = URL || webkitURL;
+            if(typeof URL !== 'undefined' && imageType.test(file.type)){
+                var imgSrcResult = URL.createObjectURL(file),
+                    img = new Image();
+                img.src = imgSrcResult;
+                img.onload = function(){
+                    URL.revokeObjectURL(this.src);
+                };
+                self.opts.previewFile(progress,self._fileInfo[index],imgSrcResult,setData);
+                return false;
+            }else if(typeof window.FileReader !== 'undefined' && imageType.test(file.type)){
+                var fileReader = new FileReader();
+                    fileReader.onload = (function(file,index,progress,setData){
+                    return function (){
+                        if (imageType.test(file.type)) {
+                            var img = new Image();
+                            img.src = this.result;
+                            self.opts.previewFile(progress,self._fileInfo[index],this.result,setData);
+                        }
+                    };
+                }(file,index,progress,setData));
+                fileReader.readAsDataURL(file);
+            }
         },
         _ajaxFormData : function(){
             var fd  = new FormData(),
                 file= this.fileInput.files,
-                self= this,
-                imageType = /^image\//;
+                imageType = /^image\//,
+                setData = [],
+                self= this;
             if(this.opts.data !== null && checkFile.file){
                 for(var i = 0 ; i < this.opts.data.length ; i += 1){
                     for(var attr in this.opts.data[i]){
@@ -128,30 +163,25 @@
                     }
                 }
             }
-
+            if(self._fileBeforeData.length > 0){
+                for(var k = 0 ; k < self._fileBeforeData.length ; k += 1){
+                    for(var name in self._fileBeforeData[k]){
+                        fd.append(name, self._fileBeforeData[k][name]);
+                    }
+                }
+            }
             for(var j = 0,f ; f = file[j] ; j += 1){
-                var fileReader = new FileReader(),
-                    progress = self._porgressSimple(self);
-                fileReader.onload = (function(file,index,progress){
-                    return function (){
-                        if (imageType.test(file.type)) {
-                            var img = new Image();
-                            img.src = this.result;
-                            self.opts.previewFile(progress,self._fileInfo[index],this.result);
-                            //fileInfo[index].imgSize= [img.width,img.height];
-                            //fileInfo[index].img = this.result;
-                            //console.log(self._progressAll.length);
-                        }else{
-                            self.opts.previewFile(progress,self._fileInfo[index],false);
-                        }
-                    };
-                }(f,j,progress.progress));
-                fileReader.readAsDataURL(f);
+                var progress = self._progressSimple(self);
+                if(!imageType.test(f.type))self.opts.previewFile(progress.progress,self._fileInfo[j],false,setData);
+                self._ajaxReadPicture(f,j,progress.progress,setData);
+                    for (var prop in setData[j]) {
+                        fd.append(prop, setData[j][prop]);
+                    }
                 fd.append(this.fileInput.getAttribute('name'),f);
-                self._ajaxUpload(fd,self,j,progress.inside);
+                self._ajaxUpload(fd,self,progress.inside);
             }
         },
-        _ajaxUpload : function(data,self,index,progress){
+        _ajaxUpload : function(data,self,progress){
             var xhr = new window.XMLHttpRequest();
             xhr.upload.addEventListener('progress', function(event){
                 self._ajaxProgress(event,progress);
@@ -160,9 +190,11 @@
                 self._ajaxLoad(event)
             }, false);
             xhr.addEventListener('error', function(){
+                this._fileBeforeData = [];
                 console.log('error');
             }, false);
             xhr.addEventListener('abort', function(){
+                this._fileBeforeData = [];
                 console.log('abort')
             }, false);
             xhr.open('POST', this.opts.fileUploadUrl,true);
@@ -177,13 +209,12 @@
         _ajaxLoad : function(event){
             if((event.target.status >=200 && event.target.status < 300 ) || event.target.status == 304 ){
                 if(typeof this.opts.callback === 'function' && this.opts.callback !== null){
+                    this._fileBeforeData = [];
                     this.opts.callback(JSON.parse(event.target.responseText));
                 }
-            }else{
-                console.log('request error: ' + event.target.status);
             }
         },
-        _porgressSimple : function(self){
+        _progressSimple : function(self){
             var progress = Hupload.utilKit.createEl('div'),
                 inside   = Hupload.utilKit.createEl('div');
             //todo

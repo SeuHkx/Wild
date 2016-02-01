@@ -338,6 +338,9 @@
             } else {
                 cacheData.mask[configStyle.ID] = this.configs.mask;
             }
+            if(!this.configs.repeat){
+                cacheData.repeat[configStyle.ID] = configStyle.ID;
+            }
             cacheData.nodeParent[configStyle.ID] = this.parent;
             cacheData.changeId = configStyle.ID;
             if(typeof this.configs.cssAnimation[1] !== 'undefined')cacheData.animateEnd[configStyle.ID] = this.configs.cssAnimation[1];
@@ -388,6 +391,7 @@
             top : '',
             left: ''
         },
+        _repeatCache : [],
         _judge : function(){
             //TODO
             this._createBox();
@@ -395,6 +399,27 @@
                 this._dragBox();
             }
             this._closeIcon();
+            //if(!this.configs.repeat){
+            //    if(utils.isEmpty(cacheData.repeat)){
+            //
+            //        this._repeatCache.push(cacheData.changeId);
+            //        console.log('one')
+            //    }
+            //
+            //    console.log(cacheData.repeat);
+            //    console.log(this._repeatCache);
+            //    console.log(this.nextId);
+            //}
+            //console.log('111111111');
+            //if(utils.isEmpty(cacheData.nodeParent)){
+            //
+            //}else{
+            //    if(!this.configs.repeat){
+            //        console.log(this.configs.repeat);
+            //        return false;
+            //    }
+            //}
+
         },
         _createShade : function(opts){
             var shade =  this.shade;
@@ -489,7 +514,7 @@
         _executive : function(opts){
             switch (typeof opts){
                 case 'undefined':
-                    utils.log('exe deft');
+                    utils.log('exe default');
                     utils.log('exe undefined:' + cacheData.nodeParent[cacheData.changeId]);
 
                     utils.remove(cacheData.nodeParent[cacheData.changeId]);
@@ -525,6 +550,7 @@
                 //todo mobile
                 this._executive();
             }
+            //delete cacheData.repeat[cacheData.changeId];
             utils.log(cacheData.nodeParent);
         }
     };

@@ -26,10 +26,11 @@ var handlerEvent = {
             form.parse(req,function(err,fields,files){
 
                 var data = {
+                    id   : fields.id,
                     name : files.upload.name,
                     success : null,
-                    img  : 'file/' + files.upload.name,
-                    callback : true
+                    path  : 'file/' + files.upload.name,
+                    isImg: false
                 };
 
                 if(err){
@@ -39,9 +40,8 @@ var handlerEvent = {
                         check = /jpg|png|gif/gi;
                     if(check.test(ext))data.isImg = true;
                     data.success = true;
-                    console.log("上传成功:" + files.upload.name);
+                    console.log("*---^上传成功^---* :  " + files.upload.name);
                 }
-                dataJson[countHttpRequest++] = data;
                 fs.renameSync(files.upload.path, './file/'+ files.upload.name);
                 res.writeHead(200, {'Content-Type': 'text/html'});
                 res.write(JSON.stringify(data));

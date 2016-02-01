@@ -27,15 +27,16 @@ form{
     float: left;
     margin-right: 20px;
     margin-top: 20px;
+    text-align: center;
 }
 .fileInfoBox a{
     display: inline-block;
 }
 .fileInfoBox img{
-    width: 160px;
-    height: 100px;
+    max-width: 100px;
 }
 .fileInfoBox span{
+    display: block;
     color: #666;
     font-size: 14px;
 }
@@ -58,7 +59,10 @@ form{
     height: 6px;
     background-color: #0b97c4;
     border-radius: 10px;
-    transition: all ease-in .4s;
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.4s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
 }
 .wd-button {
     position: relative;
