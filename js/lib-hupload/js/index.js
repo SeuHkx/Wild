@@ -40,7 +40,6 @@ window.onload = function () {
     var up = hupload(opts);
 
     var buttonUpload = document.getElementById('buttonUpload');
-
     buttonUpload.onclick = function () {
         up.upload();
     };

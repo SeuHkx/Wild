@@ -1,0 +1,125 @@
+$name :     'hfiler' !default;
+
+.#{$name}-cube{
+  .#{$name}-dir,.#{$name}-file{
+    width: 140px;
+    height: 160px;
+    margin: 0 16px 16px;
+  }
+  .#{$name}-dir{
+    .#{$name}-dir-name{
+      >a{
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+        cursor: pointer;
+      }
+      .#{$name}-dir-name--icon{
+        width: 120px;
+        height: 100px;
+        text-align: center;
+        vertical-align: middle;
+        background-image: url(../images/dir.png);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 107px auto;
+      }
+      .#{$name}-dir-name--link{
+        color: #666;
+        text-decoration: none;
+        &:hover{
+          color: #0c7cd5;
+        }
+      }
+    }
+    .#{$name}-dir-tools{
+      margin: 8px auto;
+      text-align: center;
+      >a{
+        display: inline-block;
+        padding: 6px;
+        text-decoration: none;
+        font-size: 12px;
+        color: #0c7cd5;
+        cursor: pointer;
+        &:hover{
+          color: #2e69d5;
+        }
+      }
+    }
+    &.#{$name}-dir--empty{
+      .#{$name}-dir-name{
+        .#{$name}-dir-name--icon{
+          background-image: url(../images/dir-empty.png);
+        }
+      }
+    }
+  }
+}
+.#{$name}-list{
+  .#{$name}-dir,.#{$name}-file{
+    float: none;
+    height: 56px;
+    line-height: 56px;
+    border-bottom: 1px solid #ddd;
+    &:first-child{
+      border-top:1px solid #ddd;
+    }
+    &:hover{
+      background-color: #f6f6f6;
+    }
+  }
+  .#{$name}-dir{
+    position: relative;
+    .#{$name}-dir-name{
+      position: relative;
+      >a{
+        display: block;
+        &.#{$name}-dir-name--icon{
+          position: absolute;
+          top:50%;
+          left: 8px;
+          margin-top: -18px;
+          width: 36px;
+          height: 36px;
+          vertical-align: middle;
+          background-image: url(../images/dir.png);
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-size: 100% auto;
+        }
+        &.#{$name}-dir-name--link{
+          padding-left: 64px;
+          text-decoration: none;
+          color: #666;
+          cursor: pointer;
+        }
+      }
+    }
+    .#{$name}-dir-tools{
+      position: absolute;
+      top:50%;
+      margin-top: -28px;
+      right: 8px;
+      z-index: 999;
+      >a{
+        margin: 0 8px;
+        display: inline-block;
+        text-decoration: none;
+        font-size: 12px;
+        color: #0c7cd5;
+        cursor: pointer;
+        &:hover{
+          color: #2e69d5;
+        }
+      }
+    }
+    &.#{$name}-dir--empty{
+      .#{$name}-dir-name{
+        .#{$name}-dir-name--icon{
+          background-image: url(../images/dir-empty.png);
+        }
+      }
+    }
+  }
+}
