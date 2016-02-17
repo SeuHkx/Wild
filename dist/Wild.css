@@ -824,6 +824,22 @@ input[type="password"] {
   input[type="password"]:focus {
     border-color: #349ff4;
     outline: 0; }
+  textarea.wd-input,
+  input[type="text"].wd-input,
+  input[type="password"].wd-input {
+    padding: 4px 0;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none; }
+    textarea.wd-input:focus,
+    input[type="text"].wd-input:focus,
+    input[type="password"].wd-input:focus {
+      border-bottom-color: #349ff4;
+      -webkit-box-shadow: 0 1px 0 0 #349ff4;
+              box-shadow: 0 1px 0 0 #349ff4; }
 
 .wd-form-controls {
   overflow: hidden; }
@@ -848,6 +864,8 @@ input[type="password"] {
   .wd-form-group > input {
     display: block;
     width: 100%; }
+    .wd-form-group > input.wd-input {
+      margin-bottom: 32px; }
   .wd-form-group.wd-form-group--inline {
     display: inline-block;
     *display: inline;

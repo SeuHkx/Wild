@@ -55,7 +55,9 @@
     var Hrollover = function(opts){
         return new Hrollover.fn.roll(opts);
     };
-    Hrollover.fn = Hrollover.prototype;
+    Hrollover.fn = Hrollover.prototype = {
+        constructor : Hrollover
+    };
 
     var roll = Hrollover.fn.roll = function(opts){
         opts = opts || {};
@@ -73,8 +75,6 @@
         }
         if(this.configs.element !== '')this._init();
     };
-    roll.prototype = Hrollover.fn;
-
     Hrollover.fn.copy = function(source,traget){
         for(var i in traget){
             source[i] = traget[i];
@@ -161,7 +161,8 @@
             }
         }
     };
-    Hrollover.fn.copy(roll.prototype,methodsRoll);
+    Hrollover.fn.copy(Hrollover.fn,methodsRoll);
+    roll.prototype = Hrollover.fn;
     hrollover = {
         init : function(opts){
             Hrollover(opts);

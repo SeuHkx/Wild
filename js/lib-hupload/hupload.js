@@ -27,10 +27,14 @@
         }
     }());
     var cacheID = {};
+
     var Hupload = function (opts) {
         return new Hupload.fn.init(opts);
     };
-    Hupload.fn = Hupload.prototype;
+    Hupload.fn = Hupload.prototype = {
+        version : '0.0.1',
+        constructor : Hupload
+    };
 
     var init = Hupload.fn.init = function (opts) {
             var config = {
@@ -64,8 +68,6 @@
             if(this.opts.control && this.opts.beforeUpload !== null)this._onBeforeUploadChange();
         },
         methodsUploadFile;
-
-    init.prototype = Hupload.fn;
 
     methodsUploadFile = {
         upload: function () {
@@ -126,7 +128,7 @@
         _ajaxReadPicture : function(file,index,progress,setData){
             var self = this,
                 imageType = /^image\//,
-                URL  = URL || webkitURL;
+                URL  = window.URL || window.webkitURL;
             if(typeof URL !== 'undefined' && imageType.test(file.type)){
                 var imgSrcResult = URL.createObjectURL(file),
                     img = new Image();
@@ -354,7 +356,9 @@
             return str + ('Hupload' + Math.random()).replace(/\D/g, "");
         }
     };
-    Hupload.utilKit.extend(init.prototype, methodsUploadFile);
+    Hupload.utilKit.extend(Hupload.fn, methodsUploadFile);
+
+    init.prototype = Hupload.fn;
 
     return Hupload;
 }));

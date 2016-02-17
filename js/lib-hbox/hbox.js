@@ -220,7 +220,9 @@
     var HBox = function(opts){
         return new HBox.fn.init(opts);
     };
-    HBox.fn = HBox.prototype;
+    HBox.fn = HBox.prototype = {
+        constructor : HBox
+    };
 
     var init = HBox.fn.init = function(opts){
         this.configs = {
@@ -267,8 +269,6 @@
         }
         return this;
     };
-    init.prototype = HBox.fn;
-
     HBox.fn.copy = function(source,traget){
         for(var i in traget){
             source[i] = traget[i];
@@ -554,7 +554,8 @@
             utils.log(cacheData.nodeParent);
         }
     };
-    HBox.fn.copy(init.prototype,methodsBox);
+    HBox.fn.copy(HBox.fn,methodsBox);
+    init.prototype = HBox.fn;
     hbox = {
         version : '1.0.0',
         open : function(cfg){

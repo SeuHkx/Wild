@@ -4,7 +4,7 @@ $name :     'hfiler' !default;
   .#{$name}-dir,.#{$name}-file{
     width: 140px;
     height: 160px;
-    margin: 0 16px 16px;
+    margin: 16px;
   }
   .#{$name}-dir{
     .#{$name}-dir-name{

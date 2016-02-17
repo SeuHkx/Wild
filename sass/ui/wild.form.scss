@@ -24,6 +24,27 @@ input[type="password"]{
     border-color: $wd-form-input-focus-bd-color;
     outline: 0;
   }
+  &.wd-input{
+    padding: $wd-form-input-padding 0;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid $wd-form-input-bd-color;
+    border-radius: 0;
+    @include box-shadow(none);
+    &:focus{
+      border-bottom-color: $wd-form-input-focus-bd-color;
+      @include box-shadow(0 1px 0 0 $wd-form-input-focus-bd-color);
+    }
+    &.wd-input--error{
+      border-bottom: 1px solid $wd-input-error-color;
+      color: $wd-input-error-font-color;
+      @include box-shadow(0 1px 0 0 $wd-input-error-color);
+      &:focus{
+        border-bottom-color: $wd-input-error-color;
+        @include box-shadow(0 1px 0 0 $wd-input-error-color);
+      }
+    }
+  }
 }
 .wd-form-controls{
   overflow: hidden;
@@ -103,6 +124,9 @@ input[type="password"]{
   >input{
     display: block;
     width: 100%;
+    &.wd-input{
+      margin-bottom: 32px;
+    }
   }
   &.wd-form-group--inline{
     display: inline-block;

@@ -40,12 +40,12 @@ var handlerEvent = {
                         check = /jpg|png|gif/gi;
                     if(check.test(ext))data.isImg = true;
                     data.success = true;
-                    console.log("*---^上传成功^---* :  " + files.upload.name);
                 }
                 fs.renameSync(files.upload.path, './file/'+ files.upload.name);
                 res.writeHead(200, {'Content-Type': 'text/html'});
                 res.write(JSON.stringify(data));
                 res.end();
+                console.log("*---^上传成功^---* :  " + files.upload.name);
                 //console.log(util.inspect({fields: fields, files: files}))
             })
         }else{
