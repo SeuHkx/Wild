@@ -29,12 +29,13 @@
         var configs = {
             wrap: '',
             init: null,
+            events:{},
             classes : '',
             dataType: 'type',
             typeFlag: 'folder|file',
             dataFlag: /(id|type|name|buttons|properties|url|icon|images|target|empty)/,
             dataField: 'id|type|name|buttons|properties|url|icon|images|target|empty',
-            dataDeepFlag: /(name|value|title|url|func)/
+            dataDeepFlag: /(name|value|title|url|func|href|target)/
         };
         this.opts = Hfiler.utils.extend({}, configs);
         for (var i in opts) {
@@ -42,7 +43,11 @@
                 this.opts[i] = opts[i];
             }
         }
+
         this.opts.wrap = this.opts.wrap === '' ? doc.body : Hfiler.utils.node(this.opts.wrap);
+    };
+    var cacheData = {
+        data : {}
     };
     var methodsFiler = {
         init: function (data) {
@@ -54,8 +59,30 @@
             divisionData = this._divisionData(filterData);
             this._generate(divisionData);
         },
+        add:function(){
+            //todo
+        },
         build: function () {
-            alert('build');
+            Hfiler.utils.insertBefore(this.opts.wrap,this._buildFolderTemplate());
+        },
+        _buildFolderTemplate: function(){
+            var folder = document.createElement('div'),
+                folderDom,
+                expando= Hfiler.utils.expando('Hfiler');
+            folder.className = this.opts.classes;
+            folder.setAttribute('id',expando);
+            folderDom = '<div class="hfiler-dir hfiler-dir--empty" data-hfiler="hfiler">'
+                      +     '<div class="hfiler-dir-name">'
+                      +         '<a class="hfiler-dir-name--icon" ></a>'
+                      +         '<input type="text" placeholder="新的文件夹" value="新的文件夹">'
+                      +     '</div>'
+                      +     '<div class="hfiler-dir-create">'
+                      +          '<a data-hfiler-buttons="click" data-hfiler-func="Create" data-hfiler-id="'+ expando +'">创建</a>'
+                      +          '<a data-hfiler-buttons="click" data-hfiler-func="Cancel" data-hfiler-id="'+ expando +'">取消</a>'
+                      +     '</div>'
+                      + '</div>';
+            folder.innerHTML = folderDom;
+            return folder;
         },
         _generate: function (data) {
             var foldersAll = this._templateFile(data).concat(this._templateFolder(data)),
@@ -63,6 +90,7 @@
             for(; i < foldersAll.length; i += 1){
                 Hfiler.utils.insertBefore(this.opts.wrap,foldersAll[i]);
             }
+            this._templateEvent();
         },
         _divisionData: function (data) {
             //todo
@@ -121,39 +149,53 @@
         },
         _templateFile: function(data){
             var file,
-                files = [],
+                wrappers = [],
+                wrapper,
+                expando,
                 i = 0;
             for(; i < data.file.length; i += 1){
-                file = document.createElement('div');
-                file.setAttribute('id',Hfiler.utils.expando('Hfiler'));
-                file.className = 'hfiler-file' + ' ' + this.opts.classes;
-                file.innerHTML = this._templateCommonDom(data.file[i]);
-                files[i] = file;
+                expando = Hfiler.utils.expando('Hfiler');
+                wrapper = document.createElement('div');
+                wrapper.setAttribute('id',expando);
+                if(this.opts.classes !== null){
+                    wrapper.className = this.opts.classes;
+                }
+                file = '<div class="hfiler-file" data-hfiler="hfiler">'+ this._templateCommonDom(data.file[i],expando) +'</div>';
+                wrapper.innerHTML = file;
+                wrappers[i] = wrapper;
+                cacheData.data[expando] = data.file[i];
             }
-            return files;
+            return wrappers;
         },
         _templateFolder: function (data) {
-            var folder,
-                folders = [],
+            var folder   = '',
+                wrappers = [],
+                wrapper,
+                expando,
                 i = 0;
             for (; i < data.folder.length; i += 1) {
-                folder = document.createElement('div');
-                folder.setAttribute('id',Hfiler.utils.expando('Hfiler'));
+                expando= Hfiler.utils.expando('Hfiler');
+                wrapper = document.createElement('div');
+                wrapper.setAttribute('id',expando);
+                if(this.opts.classes !== null){
+                    wrapper.className = this.opts.classes;
+                }
                 if(data.folder[i].empty !== null){
                     if(data.folder[i].empty === false){
-                        folder.className = 'hfiler-dir' + ' ' + this.opts.classes;
+                        folder = '<div class="hfiler-dir" data-hfiler="hfiler">'+ this._templateCommonDom(data.folder[i],expando) +'</div>';
                     }else{
-                        folder.className = 'hfiler-dir' + ' ' + 'hfiler-dir--empty' + ' ' + this.opts.classes;
+                        folder = '<div class="hfiler-dir hfiler-dir--empty" data-hfiler="hfiler">'+ this._templateCommonDom(data.folder[i],expando) +'</div>';
                     }
                 }else{
-                    folder.className = 'hfiler-dir' + ' ' + 'hfiler-dir--empty' + this.opts.classes;
+                    folder = '<div class="hfiler-dir hfiler-dir--empty" data-hfiler="hfiler">'+ this._templateCommonDom(data.folder[i],expando) +'</div>';
                 }
-                folder.innerHTML = this._templateCommonDom(data.folder[i]);
-                folders[i] = folder;
+                wrapper.innerHTML = folder;
+                wrappers[i] = wrapper;
+                cacheData.data[expando] = data.folder[i];
             }
-            return folders;
+            return wrappers;
         },
-        _templateCommonDom : function(data){
+        _templateCommonDom : function(data,id){
             var classes = {
                 name : '',
                 icon : '',
@@ -165,29 +207,37 @@
                 classes.icon = 'hfiler-dir-name--icon';
                 classes.link = 'hfiler-dir-name--link';
                 classes.tools= 'hfiler-dir-tools';
+                classes.props= 'hfiler-dir-tools--props'
             }else{
                 classes.name = 'hfiler-file-name';
                 classes.icon = 'hfiler-file-name--icon';
                 classes.link = 'hfiler-file-name--link';
                 classes.tools= 'hfiler-file-tools';
+                classes.props= 'hfiler-dir-tools--props'
             }
             var commonDom  = '<div class="' + classes.name +'">'
-                           +    '<a class="'+ classes.icon +'" href="'+ data.url +'" target="'+ data.target +'"></a>'
+                           +    '<a class="'+ classes.icon +'" href="'+ data.url +'" target="'+ data.target +'">'+ this._templateFileIcon(data) +'</a>'
                            +    '<a class="'+ classes.link +'" href="'+ data.url +'" target="'+ data.target +'">'+ data.name +'</a>'
                            + '</div>'
-                           + '<div class="'+ classes.tools +'">'
-                           + ''+ this._templateFileImg(data) +''
-                           + ''+ this._templateCommonProp(data)  +''
-                           + ''+ this._templateCommonTools(data) +''
+                           + '<div class="'+ classes.tools +'" data-hfiler-tools="tools">'
+                           +    '<div class="'+ classes.props +'">'
+                           +       ''+ this._templateCommonProp(data) +''
+                           +    '</div>'
+                           +       ''+ this._templateCommonTools(data,id) +''
                            + '</div>';
             return commonDom;
         },
-        _templateCommonTools: function(data){
+        _templateCommonTools: function(data,id){
             if(data.buttons === null)return '';
             var folderTools = '',
                 i = 0;
             for(; i < data.buttons.length; i += 1){
-                folderTools += '<a>'+data.buttons[i].name+'</a>'
+                typeof data.buttons[i].href === 'undefined' ? data.buttons[i].href = 'javascript:;' : data.buttons[i].href;
+                if(typeof data.buttons[i].target !== 'undefined'){
+                    folderTools += '<a href="'+ data.buttons[i].href +'" target="'+ data.buttons[i].target +'">'+data.buttons[i].name+'</a>'
+                }else{
+                    folderTools += '<a href="'+ data.buttons[i].href +'" data-hfiler-buttons="click" data-hfiler-id="'+ id +'" data-hfiler-func="'+ data.buttons[i].func +'">'+data.buttons[i].name+'</a>'
+                }
             }
             return folderTools;
         },
@@ -198,16 +248,77 @@
             for(; i < data.properties.length; i += 1){
                 props += '<a>'+data.properties[i].name+'<span>'+ data.properties[i].value +'</span></a>'
             }
+            if(this._templateFileImg(data) !== '')props += '<a>'+ this._templateFileImg(data) +'</a>';
             return props;
+        },
+        _templateFileIcon: function(data){
+            if(data.icon === null)return '';
+            var icon = '';
+            icon += '<img src="'+ data.icon +'">';
+            return icon;
         },
         _templateFileImg : function(data){
             if(data.images === null)return '';
             var images = '',
                 i = 0;
             for(; i < data.images.length; i += 1){
-                images += '<img title="'+ data.images[i].title +'" url="'+ data.images[i].url +'">'
+                images += '<img title="'+ data.images[i].title +'" src="'+ data.images[i].url +'">'
             }
             return images;
+        },
+        _templateEvent: function(){
+            var self = this;
+            self._templateButtonsEvent();
+            Hfiler.utils.event(self.opts.wrap,'mouseover',function(event){
+                var e = event || window.event,
+                    target = e.target || e.srcElement;
+                while(target != self.opts.wrap) {
+                    if(target.getAttribute('data-hfiler')=== 'hfiler'){
+                        if(target.children[1].getAttribute('data-hfiler-tools')==='tools'){
+                            target.children[1].style.display = 'block';
+                        }
+                    }
+                    target = target.parentNode;
+                }
+            });
+            Hfiler.utils.event(this.opts.wrap,'mouseout',function(event){
+                var e = event || window.event,
+                    target = e.target || e.srcElement;
+                while(target != self.opts.wrap) {
+                    if(target.getAttribute('data-hfiler')=== 'hfiler'){
+                        if(target.children[1].getAttribute('data-hfiler-tools')==='tools'){
+                            target.children[1].style.display = 'none';
+                        }
+                    }
+                    target = target.parentNode;
+                }
+            });
+        },
+        _templateButtonsEvent: function(){
+            var self = this,
+                __buttonsEventFn = Hfiler.utils.bind(self,self._buttonsEventFn);
+            Hfiler.utils.event(self.opts.wrap,'click',__buttonsEventFn);
+        },
+        _buttonsEventFn: function(event){
+            var e = event || window.event,
+                target = e.target || e.srcElement,
+                filerNode,
+                func,
+                dataID;
+            if(target.nodeName.toLowerCase() === 'a' && target.getAttribute('data-hfiler-buttons') === 'click'){
+                dataID = target.getAttribute('data-hfiler-id');
+                filerNode = Hfiler.utils.node(dataID);
+                func = target.getAttribute('data-hfiler-func');
+                for(var attr in this.opts.events){
+                    if(attr === func && typeof this.opts.events[attr] === 'function'){
+                        this.opts.events[func](filerNode,cacheData.data[dataID]);
+                    }
+                }
+                if (e && e.preventDefault ){
+                    e.preventDefault();
+                }
+                return false;
+            }
         }
     };
     Hfiler.utils = {
@@ -230,6 +341,22 @@
                 parent.insertBefore(node,null);
             }
             parent.insertBefore(node,parent.children[0]);
+        },
+        event: function(el,type,fn){
+            if(window.addEventListener){
+                el.addEventListener(type,fn,false)
+            }else{
+                var _fn = function(event){
+                    return fn.call(el,event);
+                };
+                el.attachEvent('on'+type,_fn);
+                return _fn;
+            }
+        },
+        bind: function(el,fn){
+            return function (){
+                fn.apply(el,arguments);
+            }
         },
         isJSON: function () {
             var arg = arguments[0],

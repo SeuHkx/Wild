@@ -1,13 +1,36 @@
 $name :     'hfiler' !default;
-
 .#{$name}-cube{
   .#{$name}-dir,.#{$name}-file{
-    width: 140px;
+    position: relative;
+    width: 160px;
     height: 160px;
     margin: 16px;
   }
-  .#{$name}-dir{
-    .#{$name}-dir-name{
+  .#{$name}-file{
+    .#{$name}-file-name{
+      .#{$name}-file-name--icon{
+        width: 120px;
+        height: 100px;
+        text-align: center;
+        overflow: hidden;
+        >img{
+          max-width: 100%;
+          height: 90px;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+  .#{$name}-dir,.#{$name}-file{
+    .#{$name}-dir-name,.#{$name}-file-name{
+      >input{
+        border: none;
+        background: transparent;
+        box-shadow: none;
+        border-bottom: 1px dashed #666;
+        text-align: center;
+        color: #666;
+      }
       >a{
         display: block;
         margin: 0 auto;
@@ -24,7 +47,7 @@ $name :     'hfiler' !default;
         background-repeat: no-repeat;
         background-size: 107px auto;
       }
-      .#{$name}-dir-name--link{
+      .#{$name}-dir-name--link,.#{$name}-file-name--link{
         color: #666;
         text-decoration: none;
         &:hover{
@@ -32,9 +55,18 @@ $name :     'hfiler' !default;
         }
       }
     }
-    .#{$name}-dir-tools{
-      margin: 8px auto;
-      text-align: center;
+    .#{$name}-dir-tools,.#{$name}-file-tools{
+      position: absolute;
+      z-index: 9999;
+      top:130px;
+      left: 50%;
+      margin-left: -113px;
+      width: 226px;
+      display: none;
+      padding: 2px;
+      text-align: left;
+      background-color: #fff;
+      box-shadow: 0 2px 2px 0 rgba(0,0,0,.16),0 0 2px 0 rgba(0,0,0,.12);
       >a{
         display: inline-block;
         padding: 6px;
@@ -46,6 +78,39 @@ $name :     'hfiler' !default;
           color: #2e69d5;
         }
       }
+      >.hfiler-dir-tools--props,>.#{$name}-file-tools--props{
+        >a{
+          display: block;
+          padding: 6px;
+          text-decoration: none;
+          text-align: left;
+          font-size: 12px;
+          color: #666;
+          cursor: pointer;
+          &:hover{
+            color: #333;
+          }
+          >span{
+            font-size: 12px;
+            margin-left: 8px;
+          }
+          >img{
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+    .#{$name}-dir-create{
+      padding: 4px;
+      text-align: center;
+      >a{
+        padding: 8px;
+        text-decoration: none;
+        cursor: pointer;
+      }
     }
     &.#{$name}-dir--empty{
       .#{$name}-dir-name{
@@ -56,26 +121,30 @@ $name :     'hfiler' !default;
     }
   }
 }
+//list
 .#{$name}-list{
-  .#{$name}-dir,.#{$name}-file{
+  .wd-utils-left{
     float: none;
+  }
+  .#{$name}-dir,.#{$name}-file{
     height: 56px;
     line-height: 56px;
     border-bottom: 1px solid #ddd;
-    &:first-child{
-      border-top:1px solid #ddd;
-    }
     &:hover{
-      background-color: #f6f6f6;
+      background-color: #fafafa;
     }
   }
-  .#{$name}-dir{
+  .#{$name}-dir,.#{$name}-file{
     position: relative;
-    .#{$name}-dir-name{
+    .#{$name}-dir-name,.#{$name}-file-name{
       position: relative;
       >a{
         display: block;
-        &.#{$name}-dir-name--icon{
+        >img{
+          width: 36px;
+          height: 36px;
+        }
+        &.#{$name}-dir-name--icon,&.#{$name}-file-name--icon{
           position: absolute;
           top:50%;
           left: 8px;
@@ -83,12 +152,14 @@ $name :     'hfiler' !default;
           width: 36px;
           height: 36px;
           vertical-align: middle;
-          background-image: url(../images/dir.png);
           background-position: center center;
           background-repeat: no-repeat;
           background-size: 100% auto;
         }
-        &.#{$name}-dir-name--link{
+        &.#{$name}-dir-name--icon{
+          background-image: url(../images/dir.png);
+        }
+        &.#{$name}-dir-name--link,&.#{$name}-file-name--link{
           padding-left: 64px;
           text-decoration: none;
           color: #666;
@@ -96,7 +167,8 @@ $name :     'hfiler' !default;
         }
       }
     }
-    .#{$name}-dir-tools{
+    .#{$name}-dir-tools,.#{$name}-file-tools{
+      display: none;
       position: absolute;
       top:50%;
       margin-top: -28px;
@@ -113,6 +185,31 @@ $name :     'hfiler' !default;
           color: #2e69d5;
         }
       }
+      .hfiler-dir-tools--props,.hfiler-file-tools--props{
+        display: none;
+        >a{
+          margin: 0 8px;
+          display: inline-block;
+          text-decoration: none;
+          font-size: 12px;
+          color: #0c7cd5;
+          cursor: pointer;
+          &:hover{
+            color: #2e69d5;
+          }
+          >span{
+            font-size: 12px;
+            margin-left: 8px;
+          }
+          >img{
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 8px;
+          }
+        }
+      }
+
     }
     &.#{$name}-dir--empty{
       .#{$name}-dir-name{
