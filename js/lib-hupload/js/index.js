@@ -1,50 +1,27 @@
 window.onload = function () {
     var wrapper = document.getElementById('wrapper');
+    var loading = document.getElementById('loading');
+    var opts  = {
+        wrap : 'wrapper',
 
-    var opts = {
-        fileId: 'file',
-        fileUploadUrl: '/upload',
-        beforeUpload: function (fileInfo,setData) {
-            //todo
-            console.log(fileInfo);
-        },
-        data: [{'Hkx': 'This is handsome', 'He': 'This is a boy'}, {'Dang': 'Test Dang'}],
-        previewFile : function(progress,fileInfo,thumbnail,setData){
-
-            var div = document.createElement('div');
-            var img = document.createElement('img');
-            var span= document.createElement('span');
-            if(thumbnail !== false){
-                img.src = thumbnail;
-            }else{
-                img.src = 'images/file_extension_others.png';
+        classes : 'wd-utils-left animated flipInY custom',
+        events: {
+            Edit : function(filerNode,filer){
+                alert('编辑');
+                console.log(filerNode,filer);
+            },
+            Del : function(filerNode,filer){
+                alert('删除');
+                document.getElementById('wrapper').removeChild(filerNode);
+                console.log(filerNode,filer);
             }
-            div.id = 'file' + ('Hupload' + Math.random()).replace(/\D/g, "");
-            div.className = 'fileInfoBox';
-            span.innerHTML= fileInfo.name;
-            div.appendChild(img);
-            div.appendChild(span);
-            div.appendChild(progress);
-            wrapper.appendChild(div);
-            setData.push({id:div.id});
-        },
-        callback: function (data) {
-            //todo
-            var currDiv = document.getElementById(data.id);
-            if(data.isImg){
-                var img = currDiv.getElementsByTagName('img')[0];
-                img.src = data.path;
-                //
-            }
-        },
-        control: true
+        }
     };
-    var up = hupload(opts);
-
-    var buttonUpload = document.getElementById('buttonUpload');
-    buttonUpload.onclick = function () {
-        up.upload();
-    };
+    var filer  = hfiler(opts);
+    setTimeout(function(){
+        filer.init(jsonData);
+        document.getElementById('wrapper').removeChild(loading);
+    },1000);
     var configs = {
         fileId: 'fileDemo',
         fileUploadUrl: '/upload',
@@ -54,31 +31,38 @@ window.onload = function () {
         },
         data : [{'Hkx' : 'This is handsome!'}],
         previewFile : function(progress,fileInfo,thumbnail,setData){
-
-            var div = document.createElement('div');
-            var img = document.createElement('img');
-            var span= document.createElement('span');
+            var dataInit = {
+                name : fileInfo.name,
+                size : fileInfo.size
+            };
             if(thumbnail !== false){
-                img.src = thumbnail;
+                dataInit.url = thumbnail;
             }else{
-                img.src = 'images/file_extension_others.png';
+                dataInit.url = 'images/file_extension_others.png';
             }
-            div.id = 'file' + ('Hupload' + Math.random()).replace(/\D/g, "");
-            div.className = 'fileInfoBox';
-            span.innerHTML= fileInfo.name;
-            div.appendChild(img);
-            div.appendChild(span);
-            div.appendChild(progress);
-            wrapper.appendChild(div);
-            setData.push({id:div.id});
+            var node = filer.buildUploadFile(dataInit);
+            node.file.appendChild(progress);
+            if(wrapper.children.length === 0){
+                wrapper.insertBefore(node,null);
+            }
+            wrapper.insertBefore(node.file,wrapper.children[0]);
+            setData.push({id:node.fileID});
         },
         callback: function (data) {
             //todo
             var currDiv = document.getElementById(data.id);
-            if(data.isImg){
-                var img = currDiv.getElementsByTagName('img')[0];
-                img.src = data.path;
-            }
+            var imgIcon = currDiv.getElementsByTagName('img')[0];
+            var progress= currDiv.children[1];
+            progress.className += ' ' + 'animated hinge';
+            setTimeout(function(){
+                imgIcon.className += ' ' + 'magictime foolishOut';
+                currDiv.removeChild(progress);
+                setTimeout(function(){
+                    var node = filer.updateFile(data,data.id);
+                    var img  = node.getElementsByTagName('img')[0];
+                    img.className = 'magictime foolishIn';
+                },1400);
+            },3000);
         },
         multiple : true,
         control: false

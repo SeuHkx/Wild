@@ -9,14 +9,44 @@ $name :     'hfiler' !default;
   .#{$name}-file{
     .#{$name}-file-name{
       .#{$name}-file-name--icon{
+        display: block;
+        position: relative;
         width: 120px;
         height: 100px;
         text-align: center;
-        overflow: hidden;
         >img{
           max-width: 100%;
           height: 90px;
           vertical-align: middle;
+        }
+        .rz{
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          bottom: 0;
+          right: 16px;
+          &.only{
+            bottom: 0;
+            right:-8px;
+          }
+        }
+        .gs{
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          bottom: 0;
+          right:  -12px;
+          &.only{
+            bottom:0;
+            right:-12px;
+          }
+        }
+        .new{
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          top:-8px;
+          right: -8px;
         }
       }
     }
@@ -24,12 +54,21 @@ $name :     'hfiler' !default;
   .#{$name}-dir,.#{$name}-file{
     .#{$name}-dir-name,.#{$name}-file-name{
       >input{
+        display: inline-block;
+        height: 36px \9;
+        line-height: 26px;
+        padding: 4px 6px;
+        font-size: 14px;
+        vertical-align: middle;
+        -webkit-transition: all ease-in .3s;
+        transition: all ease-in .3s;
+
         border: none;
         background: transparent;
         box-shadow: none;
-        border-bottom: 1px dashed #666;
+        border-bottom: 1px dashed #999;
         text-align: center;
-        color: #666;
+        color: #999;
       }
       >a{
         display: block;
@@ -94,12 +133,6 @@ $name :     'hfiler' !default;
             font-size: 12px;
             margin-left: 8px;
           }
-          >img{
-            width: 20px;
-            height: 20px;
-            vertical-align: middle;
-            margin-right: 8px;
-          }
         }
       }
     }
@@ -107,7 +140,7 @@ $name :     'hfiler' !default;
       padding: 4px;
       text-align: center;
       >a{
-        padding: 8px;
+        padding: 0 8px;
         text-decoration: none;
         cursor: pointer;
       }

@@ -9,7 +9,6 @@ window.onload = function(){
     var loading = document.getElementById('loading');
     var configs = {
         wrap : 'hfiles',
-        init : function(){},
         classes : 'wd-utils-left animated flipInY',
         events: {
             Edit : function(filerNode,filer){
@@ -20,26 +19,38 @@ window.onload = function(){
                 alert('删除');
                 document.getElementById('hfiles').removeChild(filerNode);
                 console.log(filerNode,filer);
-            },
-            Create: function(filerNode){
-                alert('创建');
-                console.log(filerNode);
-            },
-            Cancel: function(filerNode){
-                document.getElementById('hfiles').removeChild(filerNode);
             }
         }
     };
     var filer = hfiler(configs);
+    filer.init(jsonData);
+
     setTimeout(function(){
-        filer.init(jsonData);
         document.getElementById('hfiles').removeChild(loading);
     },4000);
     createButton.onclick = function(){
-        filer.build();
+        var setting = {
+            buttons : ['创建','取消'],
+            events  : {
+                creates : function(filerNode,id,name){
+                    var dataInit = {
+                        id : id,
+                        name : name ,
+                        type: "folder",
+                        url:"/originalService/app/group/documentList/78b58204-e704-11e4-8c63-c81f66f585f9",
+                        buttons : [{name:"编辑",func : 'Edit'},{name:"移动",func : 'Move'},{name:"删除",func:'Del'},{name:'下载'}],
+                        empty : true
+                    };
+                    filer.updateFolder(dataInit,id);
+                },
+                cancel  : function(filerNode){
+                    //todo
+                    alert('取消');
+                    document.getElementById('hfiles').removeChild(filerNode);
+                }
+            }
+        };
+        filer.build(setting);
     };
-    filer.add();
-    //filer.update(id,{});
-
 };
 

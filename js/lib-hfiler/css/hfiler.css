@@ -5,22 +5,55 @@
   margin: 16px; }
 
 .hfiler-cube .hfiler-file .hfiler-file-name .hfiler-file-name--icon {
+  display: block;
+  position: relative;
   width: 120px;
   height: 100px;
-  text-align: center;
-  overflow: hidden; }
+  text-align: center; }
   .hfiler-cube .hfiler-file .hfiler-file-name .hfiler-file-name--icon > img {
     max-width: 100%;
     height: 90px;
     vertical-align: middle; }
+  .hfiler-cube .hfiler-file .hfiler-file-name .hfiler-file-name--icon .rz {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    bottom: 0;
+    right: 16px; }
+    .hfiler-cube .hfiler-file .hfiler-file-name .hfiler-file-name--icon .rz.only {
+      bottom: 0;
+      right: -8px; }
+  .hfiler-cube .hfiler-file .hfiler-file-name .hfiler-file-name--icon .gs {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    bottom: 0;
+    right: -12px; }
+    .hfiler-cube .hfiler-file .hfiler-file-name .hfiler-file-name--icon .gs.only {
+      bottom: 0;
+      right: -12px; }
+  .hfiler-cube .hfiler-file .hfiler-file-name .hfiler-file-name--icon .new {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: -8px;
+    right: -8px; }
 
 .hfiler-cube .hfiler-dir .hfiler-dir-name > input, .hfiler-cube .hfiler-dir .hfiler-file-name > input, .hfiler-cube .hfiler-file .hfiler-dir-name > input, .hfiler-cube .hfiler-file .hfiler-file-name > input {
+  display: inline-block;
+  height: 36px \9;
+  line-height: 26px;
+  padding: 4px 6px;
+  font-size: 14px;
+  vertical-align: middle;
+  -webkit-transition: all ease-in .3s;
+  transition: all ease-in .3s;
   border: none;
   background: transparent;
   box-shadow: none;
-  border-bottom: 1px dashed #666;
+  border-bottom: 1px dashed #999;
   text-align: center;
-  color: #666; }
+  color: #999; }
 
 .hfiler-cube .hfiler-dir .hfiler-dir-name > a, .hfiler-cube .hfiler-dir .hfiler-file-name > a, .hfiler-cube .hfiler-file .hfiler-dir-name > a, .hfiler-cube .hfiler-file .hfiler-file-name > a {
   display: block;
@@ -78,17 +111,12 @@
     .hfiler-cube .hfiler-dir .hfiler-dir-tools > .hfiler-dir-tools--props > a > span, .hfiler-cube .hfiler-dir .hfiler-dir-tools > .hfiler-file-tools--props > a > span, .hfiler-cube .hfiler-dir .hfiler-file-tools > .hfiler-dir-tools--props > a > span, .hfiler-cube .hfiler-dir .hfiler-file-tools > .hfiler-file-tools--props > a > span, .hfiler-cube .hfiler-file .hfiler-dir-tools > .hfiler-dir-tools--props > a > span, .hfiler-cube .hfiler-file .hfiler-dir-tools > .hfiler-file-tools--props > a > span, .hfiler-cube .hfiler-file .hfiler-file-tools > .hfiler-dir-tools--props > a > span, .hfiler-cube .hfiler-file .hfiler-file-tools > .hfiler-file-tools--props > a > span {
       font-size: 12px;
       margin-left: 8px; }
-    .hfiler-cube .hfiler-dir .hfiler-dir-tools > .hfiler-dir-tools--props > a > img, .hfiler-cube .hfiler-dir .hfiler-dir-tools > .hfiler-file-tools--props > a > img, .hfiler-cube .hfiler-dir .hfiler-file-tools > .hfiler-dir-tools--props > a > img, .hfiler-cube .hfiler-dir .hfiler-file-tools > .hfiler-file-tools--props > a > img, .hfiler-cube .hfiler-file .hfiler-dir-tools > .hfiler-dir-tools--props > a > img, .hfiler-cube .hfiler-file .hfiler-dir-tools > .hfiler-file-tools--props > a > img, .hfiler-cube .hfiler-file .hfiler-file-tools > .hfiler-dir-tools--props > a > img, .hfiler-cube .hfiler-file .hfiler-file-tools > .hfiler-file-tools--props > a > img {
-      width: 20px;
-      height: 20px;
-      vertical-align: middle;
-      margin-right: 8px; }
 
 .hfiler-cube .hfiler-dir .hfiler-dir-create, .hfiler-cube .hfiler-file .hfiler-dir-create {
   padding: 4px;
   text-align: center; }
   .hfiler-cube .hfiler-dir .hfiler-dir-create > a, .hfiler-cube .hfiler-file .hfiler-dir-create > a {
-    padding: 8px;
+    padding: 0 8px;
     text-decoration: none;
     cursor: pointer; }
 

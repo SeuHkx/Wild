@@ -45,7 +45,6 @@ form{
 }
 /*yilai*/
 .hprogress{
-    position: relative;
     margin-top: 10px;
     /*top:122px;*/
     height: 16px;
@@ -53,6 +52,11 @@ form{
     width: 160px;
     border: 1px solid #ddd;
     border-radius: 10px;
+
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    margin-left: -80px;
 }
 .hprogress-inside{
     width: 0;
@@ -583,4 +587,7 @@ form{
     border-right: 4px solid transparent;
     border-left: 4px solid transparent;
     border-top: 4px solid #333;
+}
+.custom{
+    position: relative;
 }

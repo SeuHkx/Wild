@@ -14,7 +14,9 @@ var router = {
             if(mime.lookupExtension(ext) !== 'text/plain'){
                 if(check.test(ext)){
                     fs.readFile('.' + arg.path, 'binary', function(err, file){
-                        if (err) throw err;
+                        if (err){
+                            throw err;
+                        }
                         arg.res.writeHead(200, {'Content-Type': mime.lookupExtension(ext)});
                         arg.res.write(file, 'binary');
                         arg.res.end();

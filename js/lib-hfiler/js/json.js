@@ -16,7 +16,8 @@ var jsonData = [
         ],
         url :"http://i.k1982.com/design_img/201011/20101115222155796.jpg",
         target:"_blank",
-        buttons : [{name:"编辑",func : 'Edit'},{name:"移动",func : 'Move'},{name:"删除",func:'Del'},{name:'下载'}],
+        images:[{title:'认证',url:'x.png',klass : 'rz'}],
+        buttons : [{name:"编辑",func : 'Edit'},{name:"移动",func : 'Move'},{name:"删除",func:'Del'},{name:'下载',href:'www.baidu.com'}]
     },
     {
         id: "78b58204-e704-1121e4-8c63-c81f66f585f9",
@@ -59,7 +60,8 @@ var jsonData = [
         ],
         url :"/originalService/app/document/viewdoc/4be10198-5ad2-11e5-a590-c81f66f585f9",
         target:"_blank",
-        buttons : [{name:"编辑",func : 'Edit'},{name:"移动",func : 'Move'},{name:"删除",func:'Del'},{name:'下载'}],
+        images:[{title:'认证',url:'x.png',klass : 'rz'},{title:'公示',url:'x.png',klass:'gs'},{title:'新文件',url:'x.png',klass:'new'}],
+        buttons : [{name:"编辑",func : 'Edit'},{name:"移动",func : 'Move'},{name:"删除",func:'Del'},{name:'下载'}]
     }
 ];
 

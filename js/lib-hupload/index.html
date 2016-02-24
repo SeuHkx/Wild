@@ -6,6 +6,10 @@
     <title>上传</title>
     <link rel="stylesheet" href="css/hupload.css"/>
     <link rel="stylesheet" href="css/Wild.min.css"/>
+    <link rel="stylesheet" href="css/magic.min.css"/>
+    <link rel="stylesheet" href="lib/lib-hfiler/css/animate.css"/>
+    <link rel="stylesheet" href="lib/lib-hfiler/css/hfiler.css"/>
+    <link rel="stylesheet" href="lib/lib-hfiler/css/index.css"/>
 </head>
 <body>
 <div class="upload-demo">
@@ -35,11 +39,18 @@
         <a class="wd-button"><span class="wd-triangle wd-triangle--bottom"></span></a>
     </div>
 </div>
-<div class="upload-demo-wrapper" id="wrapper"></div>
+<div class="upload-demo-wrapper hfiler-cube" id="wrapper">
+    <div id="loading">
+        <img src="images/loading.gif"/>
+    </div>
+</div>
 
 
 
 <script src="hupload.js"></script>
+<script src="lib/lib-hfiler/hfiler.js"></script>
+<script src="js/data.js"></script>
 <script src="js/index.js"></script>
+<script src="js/indexControl.js"></script>
 </body>
 </html>

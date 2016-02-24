@@ -10,7 +10,8 @@ var mime = {
         '.css' : 'text/css',
         '.js'  : 'application/javascript;charset=utf-8',
         '.png' : 'image/png',
-        '.jpg' : 'image/jpeg'
+        '.jpg' : 'image/jpeg',
+        '.gif' : 'image/gif'
     }
 };
 
