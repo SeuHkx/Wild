@@ -18,5 +18,5 @@
 
 ####6.[拖拽](https://github.com/SeuHkx/Wild/tree/master/js/lib-hdrag)
 
-####6.[文件夹管理器](https://github.com/SeuHkx/Wild/tree/master/js/lib-filer)
+####6.[文件夹管理器](https://github.com/SeuHkx/Wild/tree/master/js/lib-hfiler)
 
