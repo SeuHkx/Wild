@@ -45,12 +45,25 @@ var handlerEvent = {
                 if(err){
                     data.success = false;
                 }else{
-                    var ext   = files.upload.name.match(/(\.[^.]+|)$/)[0],
-                        images = /jpg|png|gif/gi;
+                    var ext   = files.upload.name.match(/(\.[^.]+|)$/)[0].replace('.',''),
+                        docx  = /docx/,
+                        mp3   = /(mp3|audio)/,
+                        zip   = /zip/,
+                        images = /(jpg|png|gif)/;
                     if(images.test(ext)){
                         data.isImg = true;
-                    }else{
-                        data.icon = 'images/file_extension_others.png'
+                    }
+                    if(mp3.test(ext)){
+                        data.icon = 'images/file_extension_mp3.png';
+                    }
+                    if(zip.test(ext)){
+                        data.icon = 'images/file_extension_zip.png'
+                    }
+                    if(docx.test(ext)){
+                        data.icon = 'images/file_extension_docx.png';
+                    }
+                    if(!images.test(ext)&&!mp3.test(ext)&&!zip.test(ext)&&!docx.test(ext)){
+                        data.icon = 'images/file_extension_others.png';
                     }
                     data.success = true;
                 }

@@ -1,6 +1,7 @@
 window.onload = function () {
     var wrapper = document.getElementById('wrapper');
     var loading = document.getElementById('loading');
+    var createFile = document.getElementById('createFile');
     var opts  = {
         wrap : 'wrapper',
 
@@ -11,8 +12,25 @@ window.onload = function () {
                 console.log(filerNode,filer);
             },
             Del : function(filerNode,filer){
-                alert('删除');
-                document.getElementById('wrapper').removeChild(filerNode);
+                hbox.open({
+                    cssAnimation  : ['magictime spaceInUp','magictime spaceOutUp'],
+                    mask : false,
+                    title:'提示消息',
+                    content:'注意：文件夹和里面的文件将一同被删除，且不可恢复。请谨慎操作！',
+                    button : ['确定','取消'],
+                    buttonClass : ['red','blue'],
+                    callback : {
+                        ok : function(){
+                            //TODO
+                            document.getElementById('wrapper').removeChild(filerNode);
+                            hbox.close();
+                        },
+                        cancel : function(){
+                            hbox.close();
+                        }
+                    },
+                    drag : true
+                });
                 console.log(filerNode,filer);
             }
         }
@@ -21,7 +39,7 @@ window.onload = function () {
     setTimeout(function(){
         filer.init(jsonData);
         document.getElementById('wrapper').removeChild(loading);
-    },1000);
+    },800);
     var configs = {
         fileId: 'fileDemo',
         fileUploadUrl: '/upload',
@@ -68,4 +86,27 @@ window.onload = function () {
         control: false
     };
     hupload(configs);
+    createFile.onclick = function(){
+        var setting = {
+            buttons : ['创建','取消'],
+            events  : {
+                creates : function(filerNode,id,name){
+                    var dataInit = {
+                        id : id,
+                        name : name ,
+                        type: "folder",
+                        url:"/originalService/app/group/documentList/78b58204-e704-11e4-8c63-c81f66f585f9",
+                        buttons : [{name:"编辑",func : 'Edit'},{name:"移动",func : 'Move'},{name:"删除",func:'Del'}],
+                        empty : true
+                    };
+                    filer.updateFolder(dataInit,id);
+                },
+                cancel  : function(filerNode){
+                    //todo
+                    document.getElementById('hfiles').removeChild(filerNode);
+                }
+            }
+        };
+        filer.build(setting);
+    }
 };
