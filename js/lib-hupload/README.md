@@ -9,7 +9,9 @@
 + 足以满足日常所需,灵活的参数配置
 + 支持AMD,CommonJS
 
+### 效果
 
+[![gif](https://github.com/SeuHkx/Wild/blob/master/js/lib-hupload/images/hupload.gif "gif")](https://github.com/SeuHkx/Wild/blob/master/js/lib-hupload/images/hupload.gif "gif")
 ### API
 
 ### License
