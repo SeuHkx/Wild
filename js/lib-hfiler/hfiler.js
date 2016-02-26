@@ -70,6 +70,7 @@
                 folder = Hfiler.utils.node(id);
             this._filterDataLoop(data,dataStructure);
             folder.innerHTML = this._updateFolderTemplate(data,id);
+            cacheData.data[id] = data;
             return folder;
         },
         _updateFolderTemplate:function(data,id){
@@ -90,6 +91,7 @@
                 file = Hfiler.utils.node(id);
             this._filterDataLoop(data,dataStructure);
             file.innerHTML = this._updateFileTemplate(data,id);
+            cacheData.data[id] = data;
             return file;
         },
         _updateFileTemplate: function(data,id){
@@ -396,6 +398,7 @@
                 while(target != self.opts.wrap) {
                     if(target.getAttribute('data-hfiler')=== 'hfiler' && target.children.length >1){
                         if(target.children[1].getAttribute('data-hfiler-tools')==='tools'){
+
                             target.children[1].style.display = 'block';
                         }
                     }

@@ -41,7 +41,8 @@
                 fileId: '',
                 fileUploadUrl: '',
                 beforeUpload: null,
-                maxFileSize: null,
+                maxFileSize: '',
+                maxFileSizeFn : null,
                 previewFile: null,
                 allowFileType: [],
                 multiple: false,
@@ -96,8 +97,38 @@
             });
         },
         _onAjax: function () {
+            var maxFileSize = parseInt(this.opts.maxFileSize),
+                KB = /k/gi,
+                MB = /m/gi,
+                i = 0;
             if(this.opts.beforeUpload !== null && typeof this.opts.beforeUpload === 'function' || this.opts.maxFileSize !== null){
                 this._ajaxFileInfo();
+            }
+            if(this.opts.maxFileSize !== ''){
+                for(; i < this._fileInfo.length; i += 1){
+                    switch (this.opts.maxFileSize !== ''){
+                        case KB.test(this.opts.maxFileSize) :
+                            if(KB.test(this._fileInfo[i].size)){
+                                if(parseInt(this._fileInfo[i].size) > maxFileSize){
+                                    this.opts.maxFileSizeFn(this._fileInfo[i].name);
+                                    return false;
+                                }
+                            }
+                            if(MB.test(this._fileInfo[i].size)){
+                                this.opts.maxFileSizeFn(this._fileInfo[i].name);
+                                return false;
+                            }
+                            break;
+                        case MB.test(this.opts.maxFileSize) :
+                            if(MB.test(this._fileInfo[i].size)){
+                                if(parseInt(this._fileInfo[i].size) > maxFileSize){
+                                    this.opts.maxFileSizeFn(this._fileInfo[i].name);
+                                    return false;
+                                }
+                            }
+                            break;
+                    }
+                }
             }
             this._ajaxFormData();
         },
@@ -117,6 +148,7 @@
                     }
                 }
                 fileInfo[i] = {
+                    file : self.fileInput.files,
                     name : f.name,
                     size : fileSize,
                     type : f.type
@@ -214,6 +246,8 @@
                     this._fileBeforeData = [];
                     this.opts.callback(JSON.parse(event.target.responseText));
                 }
+            }else{
+                this.opts.error(event.target.status);
             }
         },
         _progressSimple : function(self){

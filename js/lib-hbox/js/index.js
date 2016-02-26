@@ -41,6 +41,7 @@ window.onload = function(){
                             ok : function(){
                                 //TODO
                                 hbox.open({
+                                    drag : true,
                                     cssAnimation: ['pop'],
                                     id : 'iframeID',
                                     title : '信仰',
@@ -52,6 +53,7 @@ window.onload = function(){
                                         ok : function(){
                                             //open
                                             hbox.open({
+                                                drag : true,
                                                 mask : false,
                                                 cssAnimation: ['pop'],
                                                 title : '你知道吗',
@@ -65,6 +67,7 @@ window.onload = function(){
                                                     alert : function(){
                                                         //open
                                                         hbox.open({
+                                                            drag : true,
                                                             mask : false,
                                                             cssAnimation: ['pop'],
                                                             title : '信仰',
@@ -77,7 +80,8 @@ window.onload = function(){
                                                                         cssAnimation: ['pop'],
                                                                         id : 'iframeID2',
                                                                         iframe : true,
-                                                                        url : 'test/iframe2.html'
+                                                                        url : 'test/iframe2.html',
+                                                                        drag : true
                                                                     })
                                                                 }
                                                             }
@@ -102,6 +106,7 @@ window.onload = function(){
                     break;
                 case 1 :
                     hbox.open({
+                        id : 'test3',
                         cssAnimation: ['animated rollIn','animated rotateOut'],
                         title:'相依为命',
                         width : 450,
@@ -116,12 +121,12 @@ window.onload = function(){
 
                             }
                         },
-                        repeat : false,
                         drag : true
                     });
                     break;
                 case 2 :
                     hbox.open({
+                        id : 'test2',
                         cssAnimation: ['animated pop'],
                         title:'信仰',
                         width : 600,
@@ -134,11 +139,12 @@ window.onload = function(){
                                 hbox.close();
                             }
                         },
-                        repeat:false
+                        drag : true
                     });
                     break;
                 case 3 :
                     hbox.open({
+                        id : 'test',
                         cssAnimation: ['animated wobble','animated zoomOutUp'],
                         mask : false,
                         title:'你在南方的艳阳里大雪纷飞',
@@ -150,7 +156,7 @@ window.onload = function(){
                                 hbox.close();
                             }
                         },
-                        repeat : false
+                        drag : true
                     });
                     break;
             }

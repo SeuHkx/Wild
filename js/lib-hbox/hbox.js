@@ -214,8 +214,7 @@
         mask         : {},
         changeId     : '',
         animateStart : {},
-        animateEnd   : {},
-        repeat       : {}
+        animateEnd   : {}
     };
     var HBox = function(opts){
         return new HBox.fn.init(opts);
@@ -247,13 +246,11 @@
                 buttonClass : [],
                 callback : null,
                 cssAnimation : [],
-                repeat   : true,
                 drag     : false,
                 init     : null
         };
         this.parent = utils.createNode('div');
         this.shade  = utils.createNode('div');
-        this.configs.id !== '' ? this.nextId = this.configs.id : this.nextId =  configStyle.style.parent + configStyle.count;
         for (var i in opts){
             if(this.configs.hasOwnProperty(i)){
                 if(i === 'style'){
@@ -338,9 +335,6 @@
             } else {
                 cacheData.mask[configStyle.ID] = this.configs.mask;
             }
-            if(!this.configs.repeat){
-                cacheData.repeat[configStyle.ID] = configStyle.ID;
-            }
             cacheData.nodeParent[configStyle.ID] = this.parent;
             cacheData.changeId = configStyle.ID;
             if(typeof this.configs.cssAnimation[1] !== 'undefined')cacheData.animateEnd[configStyle.ID] = this.configs.cssAnimation[1];
@@ -391,7 +385,6 @@
             top : '',
             left: ''
         },
-        _repeatCache : [],
         _judge : function(){
             //TODO
             this._createBox();
@@ -399,27 +392,6 @@
                 this._dragBox();
             }
             this._closeIcon();
-            //if(!this.configs.repeat){
-            //    if(utils.isEmpty(cacheData.repeat)){
-            //
-            //        this._repeatCache.push(cacheData.changeId);
-            //        console.log('one')
-            //    }
-            //
-            //    console.log(cacheData.repeat);
-            //    console.log(this._repeatCache);
-            //    console.log(this.nextId);
-            //}
-            //console.log('111111111');
-            //if(utils.isEmpty(cacheData.nodeParent)){
-            //
-            //}else{
-            //    if(!this.configs.repeat){
-            //        console.log(this.configs.repeat);
-            //        return false;
-            //    }
-            //}
-
         },
         _createShade : function(opts){
             var shade =  this.shade;
@@ -475,13 +447,13 @@
                 }
             });
         },
-        _exeIconCss: function(slef,id){
+        _exeIconCss: function(self,id){
             var $el  = utils.$class(id);
             utils.$delClass($el,cacheData.animateStart[id]);
             $el.className += ' ' + cacheData.animateEnd[id];
             utils.pfxEvent($el, 'animationend', function () {
                 utils.log('css icon close animationend remove child');
-                slef._exeIcon(slef,id);
+                self._exeIcon(self,id);
             });
         },
         _exeIcon   : function(self,id){
@@ -499,7 +471,7 @@
                 cacheData.nodeShade[arg] = 'undefined';
             }
         },
-        _exeEventCss: function(slef){
+        _exeEventCss: function(self){
             var $cacheElement = cacheData.nodeParent[cacheData.changeId],
                 $cacheStart   = cacheData.animateStart[cacheData.changeId],
                 $cacheEnd     = cacheData.animateEnd[cacheData.changeId];
@@ -507,7 +479,7 @@
             $cacheElement.className += ' ' + $cacheEnd;
             utils.pfxEvent($cacheElement,'animationend',function(){
                 utils.log('close box start');
-                slef._executive($cacheElement);
+                self._executive($cacheElement);
             });
             cacheData.nodeParent[cacheData.changeId] = 'undefined';
         },
@@ -550,8 +522,6 @@
                 //todo mobile
                 this._executive();
             }
-            //delete cacheData.repeat[cacheData.changeId];
-            utils.log(cacheData.nodeParent);
         }
     };
     HBox.fn.copy(HBox.fn,methodsBox);
@@ -559,7 +529,13 @@
     hbox = {
         version : '1.0.0',
         open : function(cfg){
-            HBox(cfg)._popBox();
+            if(cfg.id !==''){
+                if(cacheData.nodeParent[cfg.id] === 'undefined' || typeof cacheData.nodeParent[cfg.id] === 'undefined'){
+                    HBox(cfg)._popBox();
+                }
+            }else{
+                HBox(cfg)._popBox();
+            }
         },
         close : function(id){
             HBox()._closeBox(id);

@@ -43,6 +43,22 @@ window.onload = function () {
     var configs = {
         fileId: 'fileDemo',
         fileUploadUrl: '/upload',
+        maxFileSize : '100KB',
+        maxFileSizeFn : function(name){
+            hbox.open({
+                cssAnimation  : ['magictime foolishIn','magictime foolishOut'],
+                mask : false,
+                title:'提示消息',
+                content:'选择的文件:'+'<span style="color: red;">'+ name +'</span>'+' 超出上传文件大小的范围,请重新选择!',
+                button : ['确定'],
+                buttonClass : ['red'],
+                callback : {
+                    ok : function(){
+                        hbox.close();
+                    }
+                }
+            });
+        },
         beforeUpload: function (fileInfo,setData) {
             //todo
             setData.push({'beforeId':'before' + ('file' +  Math.random()).replace(/\D/g, "")});
@@ -82,13 +98,16 @@ window.onload = function () {
                 },1400);
             },3000);
         },
+        error : function(){
+
+        },
         multiple : true,
         control: false
     };
     hupload(configs);
     createFile.onclick = function(){
         var setting = {
-            buttons : ['创建','取消'],
+            buttons : ['确定','取消'],
             events  : {
                 creates : function(filerNode,id,name){
                     var dataInit = {
@@ -99,11 +118,12 @@ window.onload = function () {
                         buttons : [{name:"编辑",func : 'Edit'},{name:"移动",func : 'Move'},{name:"删除",func:'Del'}],
                         empty : true
                     };
+                    alert(name);
                     filer.updateFolder(dataInit,id);
                 },
                 cancel  : function(filerNode){
                     //todo
-                    document.getElementById('hfiles').removeChild(filerNode);
+                    document.getElementById('wrapper').removeChild(filerNode);
                 }
             }
         };
