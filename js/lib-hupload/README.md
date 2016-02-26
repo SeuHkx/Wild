@@ -11,7 +11,7 @@
 
 ### 效果
 
-[![gif](https://github.com/SeuHkx/Wild/blob/master/js/lib-hupload/images/hupload.gif "gif")](https://github.com/SeuHkx/Wild/blob/master/js/lib-hupload/images/hupload.gif "gif")
+[![gif](https://github.com/SeuHkx/Wild/blob/master/js/lib-hupload/images/upload.gif "gif")](https://github.com/SeuHkx/Wild/blob/master/js/lib-hupload/images/upload.gif "gif")
 ### API
 
 ### License
