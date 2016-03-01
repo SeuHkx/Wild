@@ -32,10 +32,12 @@
             style : 'file',
             events:{},
             classes : '',
+            limitValue: 10,
+            limitClass:'animated flipInY',
             dataType: 'type',
             typeFlag: 'folder|file',
-            dataFlag: /(id|type|name|buttons|properties|url|icon|images|target|empty|size)/,
-            dataField: 'id|type|name|buttons|properties|url|icon|images|target|empty|size',
+            dataFlag: /(id|type|name|buttons|properties|url|icon|images|target|empty|size|project)/,
+            dataField: 'id|type|name|buttons|properties|url|icon|images|target|empty|size|project',//配置
             dataDeepFlag: /(name|value|title|url|func|href|target|klass)/
         };
         this.opts = Hfiler.utils.extend({}, configs);
@@ -64,6 +66,9 @@
             filterData = this._filterData(dataJson);
             divisionData = this._divisionData(filterData);
             this._generate(divisionData);
+        },
+        add:function(data){
+            this.init.call(this,data);
         },
         updateFolder:function(data,id){
             var dataStructure = this._dataStructure(),
@@ -285,6 +290,8 @@
         },
         _templateFolder: function (data) {
             var folder   = '',
+                folderClass,
+                emptyClass,
                 wrappers = [],
                 wrapper,
                 expando,
@@ -293,18 +300,23 @@
                 expando= Hfiler.utils.expando('Hfiler');
                 wrapper = document.createElement('div');
                 wrapper.setAttribute('id',expando);
-                if(this.opts.classes !== null){
-                    wrapper.className = this.opts.classes;
-                }
-                if(data.folder[i].empty !== null){
-                    if(data.folder[i].empty === false){
-                        folder = '<div class="hfiler-dir" data-hfiler="hfiler">'+ this._templateCommonDom(data.folder[i],expando) +'</div>';
+                if(this.opts.classes !== null)wrapper.className = this.opts.classes;
+                if(data.folder[i].project === true){
+                    folderClass = 'hfiler-project';
+                    if(data.folder[i].empty){
+                        emptyClass = ' ' + 'hfiler-project--empty';
                     }else{
-                        folder = '<div class="hfiler-dir hfiler-dir--empty" data-hfiler="hfiler">'+ this._templateCommonDom(data.folder[i],expando) +'</div>';
+                        emptyClass = '';
                     }
                 }else{
-                    folder = '<div class="hfiler-dir hfiler-dir--empty" data-hfiler="hfiler">'+ this._templateCommonDom(data.folder[i],expando) +'</div>';
+                    folderClass = 'hfiler-dir';
+                    if(data.folder[i].empty){
+                        emptyClass = ' ' + 'hfiler-dir--empty';
+                    }else{
+                        emptyClass = '';
+                    }
                 }
+                folder = '<div class="'+ folderClass +''+ emptyClass +'" data-hfiler="hfiler">'+ this._templateCommonDom(data.folder[i],expando) +'</div>';
                 wrapper.innerHTML = folder;
                 wrappers[i] = wrapper;
                 cacheData.data[expando] = data.folder[i];
@@ -390,33 +402,43 @@
             return images;
         },
         _templateEvent: function(){
-            var self = this;
+            var self = this,
+                __templateEventMouseover = Hfiler.utils.bind(self,self._templateEventMouseover),
+                __templateEventMouseout  = Hfiler.utils.bind(self,self._templateEventMouseout);
             self._templateButtonsEvent();
-            Hfiler.utils.event(self.opts.wrap,'mouseover',function(event){
-                var e = event || window.event,
-                    target = e.target || e.srcElement;
-                while(target != self.opts.wrap) {
-                    if(target.getAttribute('data-hfiler')=== 'hfiler' && target.children.length >1){
-                        if(target.children[1].getAttribute('data-hfiler-tools')==='tools'){
-
-                            target.children[1].style.display = 'block';
+            Hfiler.utils.event(self.opts.wrap,'mouseover',__templateEventMouseover);
+            Hfiler.utils.event(self.opts.wrap,'mouseout',__templateEventMouseout);
+        },
+        _templateEventMouseover:function(event){
+            var e = event || window.event,
+                target = e.target || e.srcElement;
+            while(target != this.opts.wrap) {
+                if(target.getAttribute('data-hfiler')=== 'hfiler' && target.children.length >1){
+                    if(target.children[1].getAttribute('data-hfiler-tools')==='tools'){
+                        var limitHeight = (window.innerHeight||window.screen.availHeight) - (target.offsetHeight + target.offsetTop),
+                            targetHeight= target.offsetHeight;
+                        target.children[1].style.display = 'block';
+                        if(targetHeight > limitHeight){
+                            target.children[1].className += ' ' + this.opts.limitClass;
+                            target.children[1].style.top = -(target.children[1].offsetHeight - this.opts.limitValue) + 'px';
                         }
                     }
-                    target = target.parentNode;
                 }
-            });
-            Hfiler.utils.event(this.opts.wrap,'mouseout',function(event){
-                var e = event || window.event,
-                    target = e.target || e.srcElement;
-                while(target != self.opts.wrap) {
-                    if(target.getAttribute('data-hfiler')=== 'hfiler' && target.children.length >1){
-                        if(target.children[1].getAttribute('data-hfiler-tools')==='tools'){
-                            target.children[1].style.display = 'none';
-                        }
+                target = target.parentNode;
+            }
+        },
+        _templateEventMouseout: function(event){
+            var e = event || window.event,
+                target = e.target || e.srcElement;
+            while(target != this.opts.wrap) {
+                if(target.getAttribute('data-hfiler')=== 'hfiler' && target.children.length >1){
+                    if(target.children[1].getAttribute('data-hfiler-tools')==='tools'){
+                        target.children[1].removeAttribute('style');
+                        Hfiler.utils.delClass(target.children[1],this.opts.limitClass);
                     }
-                    target = target.parentNode;
                 }
-            });
+                target = target.parentNode;
+            }
         },
         _templateButtonsEvent: function(){
             var self = this,
@@ -480,6 +502,14 @@
         bind: function(el,fn){
             return function (){
                 fn.apply(el,arguments);
+            }
+        },
+        hasClass : function(el,klass){
+            return !!el.className.match(new RegExp("(\\s|^)" + klass + "(\\s|$)"));
+        },
+        delClass : function(el,klass){
+            if(this.hasClass(el,klass)){
+                el.className = el.className.replace(new RegExp( "(\\s|^)" + klass + "(\\s|$)" ),"");
             }
         },
         isEmpty : function(obj){

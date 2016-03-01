@@ -1,6 +1,6 @@
 $name :     'hfiler' !default;
 .#{$name}-cube{
-  .#{$name}-dir,.#{$name}-file{
+  .#{$name}-dir,.#{$name}-file,.#{$name}-project{
     position: relative;
     width: 160px;
     height: 160px;
@@ -8,6 +8,8 @@ $name :     'hfiler' !default;
   }
   .#{$name}-file{
     .#{$name}-file-name{
+      height: 160px;
+      padding-top: 20px;
       .#{$name}-file-name--icon{
         display: block;
         position: relative;
@@ -51,7 +53,13 @@ $name :     'hfiler' !default;
       }
     }
   }
-  .#{$name}-dir,.#{$name}-file{
+  .#{$name}-dir,.#{$name}-project{
+    .#{$name}-dir-name{
+      height: 160px;
+      padding-top: 20px;
+    }
+  }
+  .#{$name}-dir,.#{$name}-file,.#{$name}-project{
     .#{$name}-dir-name,.#{$name}-file-name{
       >input{
         display: inline-block;
@@ -97,7 +105,7 @@ $name :     'hfiler' !default;
     .#{$name}-dir-tools,.#{$name}-file-tools{
       position: absolute;
       z-index: 9999;
-      top:130px;
+      top:155px;
       left: 50%;
       margin-left: -113px;
       width: 226px;
@@ -152,6 +160,18 @@ $name :     'hfiler' !default;
         }
       }
     }
+    &.#{$name}-project--empty{
+      .#{$name}-dir-name{
+        .#{$name}-dir-name--icon{
+          background-image: url(../images/dir-empty1.png);
+        }
+      }
+    }
+  }
+  .#{$name}-project{
+    .#{$name}-dir-name--icon{
+      background-image: url(../images/dir-empty2.png);
+    }
   }
 }
 //list
@@ -159,7 +179,18 @@ $name :     'hfiler' !default;
   .wd-utils-left{
     float: none;
   }
-  .#{$name}-dir,.#{$name}-file{
+  .#{$name}-dir{
+    .hfiler-dir-create{
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: 240px;
+      >a{
+        padding: 0 8px;
+      }
+    }
+  }
+  .#{$name}-dir,.#{$name}-file,.#{$name}-project{
     height: 56px;
     line-height: 56px;
     border-bottom: 1px solid #ddd;
@@ -167,10 +198,13 @@ $name :     'hfiler' !default;
       background-color: #fafafa;
     }
   }
-  .#{$name}-dir,.#{$name}-file{
+  .#{$name}-dir,.#{$name}-file,.#{$name}-project{
     position: relative;
     .#{$name}-dir-name,.#{$name}-file-name{
       position: relative;
+      >input{
+        margin-left: 56px;
+      }
       >a{
         display: block;
         >img{
@@ -242,7 +276,6 @@ $name :     'hfiler' !default;
           }
         }
       }
-
     }
     &.#{$name}-dir--empty{
       .#{$name}-dir-name{

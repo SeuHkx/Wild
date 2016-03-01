@@ -7,11 +7,10 @@ window.onload = function () {
 
         classes : 'wd-utils-left animated flipInY custom',
         events: {
-            Edit : function(filerNode,filer){
-                alert('编辑');
-                console.log(filerNode,filer);
+            Edit : function(filerNode,filerInfo){
+                console.log(filerNode,filerInfo);
             },
-            Del : function(filerNode,filer){
+            Del : function(filerNode,filerInfo){
                 hbox.open({
                     cssAnimation  : ['magictime spaceInUp','magictime spaceOutUp'],
                     mask : false,
@@ -31,7 +30,7 @@ window.onload = function () {
                     },
                     drag : true
                 });
-                console.log(filerNode,filer);
+                console.log(filerNode,filerInfo);
             }
         }
     };
@@ -43,7 +42,7 @@ window.onload = function () {
     var configs = {
         fileId: 'fileDemo',
         fileUploadUrl: '/upload',
-        maxFileSize : '100KB',
+        maxFileSize : '300KB',
         maxFileSizeFn : function(name){
             hbox.open({
                 cssAnimation  : ['magictime foolishIn','magictime foolishOut'],
@@ -56,7 +55,8 @@ window.onload = function () {
                     ok : function(){
                         hbox.close();
                     }
-                }
+                },
+                drag:true
             });
         },
         beforeUpload: function (fileInfo,setData) {
@@ -118,7 +118,6 @@ window.onload = function () {
                         buttons : [{name:"编辑",func : 'Edit'},{name:"移动",func : 'Move'},{name:"删除",func:'Del'}],
                         empty : true
                     };
-                    alert(name);
                     filer.updateFolder(dataInit,id);
                 },
                 cancel  : function(filerNode){
@@ -128,5 +127,16 @@ window.onload = function () {
             }
         };
         filer.build(setting);
-    }
+    };
+    //var a ={
+    //    text : '2',
+    //    type : 'file',
+    //    methods : 'post'
+    //}
+    //var b ={
+    //    type : '',
+    //    name : '',
+    //    method: ''
+    //}
+    // text --> name  type --> type methods --> method
 };

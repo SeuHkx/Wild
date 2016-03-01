@@ -6,6 +6,7 @@
 window.onload = function(){
     tabSwitch();
     var createButton = document.getElementById('createButton');
+    var createFileButton = document.getElementById('createFileButton');
     var loading = document.getElementById('loading');
     var configs = {
         wrap : 'hfiles',
@@ -23,17 +24,18 @@ window.onload = function(){
         }
     };
     var filer = hfiler(configs);
-    filer.init(jsonData);
 
     setTimeout(function(){
         document.getElementById('hfiles').removeChild(loading);
-    },4000);
+        filer.init(jsonData);
+    },1200);
     createButton.onclick = function(){
         var setting = {
             buttons : ['创建','取消'],
             events  : {
                 creates : function(filerNode,id,name){
                     var dataInit = {
+                        project:true,
                         id : id,
                         name : name ,
                         type: "folder",
@@ -52,5 +54,8 @@ window.onload = function(){
         };
         filer.build(setting);
     };
+    createFileButton.onclick = function(){
+        filer.add(addData);
+    }
 };
 

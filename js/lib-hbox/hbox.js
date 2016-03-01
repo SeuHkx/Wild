@@ -179,7 +179,11 @@
             }else{
                 style = 'auto';
             }
-            return '<div class='+ klass.content +' style="height:'+ style +'">'+ str +'</div>'
+            if(utils.client().mobile){
+                return '<div class='+ klass.content +' style="height:'+ style +';-webkit-overflow-scrolling:touch;overflow-y: auto;">'+ str +'</div>'
+            }else{
+                return '<div class='+ klass.content +' style="height:'+ style +';overflow-y: auto;">'+ str +'</div>'
+            }
         },
         footer  : function(btns,klass,arr){
             var btn = '';
@@ -205,7 +209,11 @@
             }else{
                 style = 'auto';
             }
-            return '<div class='+ klass.content +' style="height:'+ style +'"><iframe data-id='+ configStyle.ID +' src=' + url + '  frameborder="0" scrolling="auto" width="100%" height="100%">'+'</iframe></div>';
+            if(utils.client().mobile){
+                return '<div class='+ klass.content +' style="height:'+ style +';-webkit-overflow-scrolling:touch;overflow-y: auto;"><iframe data-id='+ configStyle.ID +' src=' + url + '  frameborder="0" scrolling="auto" width="100%" height="100%" style="-webkit-overflow-scrolling:touch;">'+'</iframe></div>';
+            }else{
+                return '<div class='+ klass.content +' style="height:'+ style +'"><iframe data-id='+ configStyle.ID +' src=' + url + '  frameborder="0" scrolling="auto" width="100%" height="100%">'+'</iframe></div>';
+            }
         }
     };
     var cacheData = {
@@ -325,13 +333,23 @@
             this._setParentBox();
             utils.html(this.parent, this._createHtml(this.configs));
             utils.append(this.parent);
+            if(utils.client().mobile){
+                this.parent.style.top = '50%';
+                this.parent.style.marginTop = -(this.parent.offsetHeight/2) + 'px';
+            }
             if(this.configs.init !== null && typeof this.configs.init === 'function'){
                 this.configs.init();
             }
             if (this.configs.mask) {
-                utils.append(this._createShade(configStyle.count));
+                var shade = this._createShade(configStyle.count);
+                utils.append(shade);
                 cacheData.nodeShade[configStyle.ID] = this.shade;
                 cacheData.mask[configStyle.ID] = this.configs.mask;
+                if(utils.client().mobile){
+                    utils.addEvent(shade,'touchmove',function(e){
+                        e.preventDefault();
+                    })
+                }
             } else {
                 cacheData.mask[configStyle.ID] = this.configs.mask;
             }
@@ -388,7 +406,7 @@
         _judge : function(){
             //TODO
             this._createBox();
-            if(!!this.configs.drag){
+            if(!!this.configs.drag && !utils.client().mobile){
                 this._dragBox();
             }
             this._closeIcon();

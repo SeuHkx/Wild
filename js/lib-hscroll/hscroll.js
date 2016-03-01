@@ -165,7 +165,7 @@
     HScroll.fn._setAttrScroll = function () {
 
         var self = this,
-            wrapperPadding = parseInt(utils.$getStyle(self.wrapper, 'padding')) * 2,
+            wrapperPadding = parseInt(utils.$getStyle(self.wrapper, 'paddingTop')) + parseInt(utils.$getStyle(self.wrapper, 'paddingBottom')),
             style = {
             position: 'absolute',
             top: 0,
@@ -178,6 +178,7 @@
                 } else {
                     if(self.opts.slider.height === 'auto'){
                        height = parseInt((self.opts.height / (self.scroll.offsetHeight + wrapperPadding)) * self.opts.height);
+                        console.log('height:'+ height)
                         return height;
                     }else{
                         return self.opts.slider.height;
@@ -327,7 +328,7 @@
 
     HScroll.fn._scrollExe = function (distance) {
         var percent,
-            padding = parseInt(utils.$getStyle(this.wrapper, 'padding')) * 2;
+            padding = parseInt(utils.$getStyle(this.wrapper, 'paddingTop')) + parseInt(utils.$getStyle(this.wrapper, 'paddingBottom'));
         saveMemory.scroll[this.opts.wrapper] = this.scroll.offsetHeight;
 
         if (distance < 0) {
@@ -362,8 +363,8 @@
         }
         _cacheHeight = saveMemory.scrollTarget[id].offsetHeight;
 
-        var padding = parseInt(utils.$getStyle(utils.$node(id), 'padding')) * 2,
-            sliderHeight = Math.ceil((saveMemory.opts[id].height / (saveMemory.scrollTarget[id].offsetHeight + padding)) * saveMemory.opts[id].height);
+        var padding = parseInt(utils.$getStyle(utils.$node(id), 'paddingTop')) + parseInt(utils.$getStyle(utils.$node(id), 'paddingBottom')),
+            sliderHeight = Math.ceil((saveMemory.opts[id].height / (saveMemory .scrollTarget[id].offsetHeight + padding)) * saveMemory.opts[id].height);
         if(saveMemory.opts[id].slider.height === 'auto'){
             saveMemory.sliderTarget[id].style.height = sliderHeight + 'px';
         }

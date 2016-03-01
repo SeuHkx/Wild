@@ -34,7 +34,8 @@ window.onload = function(){
                         maskAnimation : ['animated maskPop'],
                         cssAnimation  : ['animated flipInX','animated hinge'],
                         title:'旅行的意义',
-                        content:'你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴',
+                        height:200,
+                        content:'你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴',
                         button : ['信仰','关闭'],
                         buttonClass : ['red','blue'],
                         callback : {
@@ -45,6 +46,7 @@ window.onload = function(){
                                     cssAnimation: ['pop'],
                                     id : 'iframeID',
                                     title : '信仰',
+                                    height: 300,
                                     iframe : true,
                                     url : 'test/iframe.html',
                                     mask : false,
