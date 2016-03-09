@@ -20,3 +20,5 @@
 
 ####6.[文件夹管理器](https://github.com/SeuHkx/Wild/tree/master/js/lib-hfiler)
 
+####6.[模版引擎](https://github.com/SeuHkx/Wild/tree/master/js/lib-htpl)
+
