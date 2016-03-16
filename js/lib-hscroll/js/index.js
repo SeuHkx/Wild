@@ -1,69 +1,51 @@
 /**
- * Created by Hekx on 15/12/14.
+ * Created by Hekx on 16/3/11.
  */
-window.onload = function () {
-     hscroll.roll({
-            wrapper: 'wrap',
-            scroll: 'scroll',
-            height: 300,
-            slider: {
-                width: 12,
-                color: '#2196F3',
-                classes : 'test-slider'
-            },
-            bar: {
-                width: 12,
-                classes : 'test-bar'
-            }
-        });
-     hscroll.roll({
-            wrapper: 'wrapper',
-            scroll: 'scrollWrap',
-            height: 300,
-            slider: {
-                width: 12,
-                color: '#ab2bc1'
-            },
-            bar: {
-                width: 12,
-                color: '#ab2bc1'
-            }
-        });
-      hscroll.roll({
-            wrapper: 'wrapper_three',
-            scroll: 'scroll_three',
-            height: 300,
-            slider: {
-                width: 12,
-                color: '#ab2bc1'
-            },
-            bar: {
-                width: 12,
-                color: '#ab2bc1'
-            },
-             emit : function (distance,bottom) {
-                 var load = document.getElementById('lodeHTML');
-                 if(distance === bottom){
-                     //todo
-                     load.innerHTML +=  '<p style="line-height: 246px;">还需要多久 多长 多伤</p>';
-                 }
-             }
-        });
+window.onload = function(){
+
+    var config = {
+        height : 333
+    };
+    var opts   = {
+        height : 333
+    };
+    var setting= {
+        height : 333
+    };
+    var change = {
+        height : '100%'
+
+    };
+    var scroll   = hscroll('wrap',opts);
+    var myScroll = hscroll('wrapper',config);
+    var srcollT  = hscroll('wrapper_three',setting);
+    var srcollF  = hscroll('scrollChange',change);
+
     var btnBlue = document.getElementById('btnBlue');
     var strBlue = document.getElementById('strBlue');
     var btnPos  = document.getElementById('btnPos');
     var strPos  = document.getElementById('strPos');
+
+    var testButton = document.getElementById('testButton');
+    testButton.onclick = function(){
+        strPos.innerHTML += '1</br>';
+        myScroll.refresh();
+    };
     btnBlue.onclick = function(){
         strBlue.innerHTML = '如果当时吻你 当时抱你</br>'
-                          + '也许结局难讲</br>'
-                          + '我那么多遗憾 那么多期盼</br>'
-                          + ' 你知道吗</br>';
-        hscroll.fresh('wrap');
+            + '也许结局难讲</br>'
+            + '我那么多遗憾 那么多期盼</br>'
+            + ' 你知道吗</br>';
+        scroll.refresh();
     };
     btnPos.onclick = function(){
         strPos.innerHTML += '还需要多久 多长 多伤<br>'
             + '坚强像谎言一样 不过是一种伪装 我只希望有个机会能被你爱上<br>'
             + '我还是爱着你 每分每秒一样 就好像一个傻瓜<br>';
-        hscroll.fresh('wrapper');
+        myScroll.refresh();
     };
+
 };
+
+
+
