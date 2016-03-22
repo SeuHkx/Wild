@@ -18,7 +18,11 @@
 
 ####6.[拖拽](https://github.com/SeuHkx/Wild/tree/master/js/lib-hdrag)
 
-####6.[文件夹管理器](https://github.com/SeuHkx/Wild/tree/master/js/lib-hfiler)
+####7.[文件夹管理器](https://github.com/SeuHkx/Wild/tree/master/js/lib-hfiler)
 
-####6.[模版引擎](https://github.com/SeuHkx/Wild/tree/master/js/lib-htpl)
+####8.[模版引擎](https://github.com/SeuHkx/Wild/tree/master/js/lib-htpl)
+
+####9.[日期控件](https://github.com/SeuHkx/Wild/tree/master/js/lib-hdate)
+
+####10.[图片延迟加载](https://github.com/SeuHkx/Wild/tree/master/js/lib-hlazyImg)
 
