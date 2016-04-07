@@ -74,8 +74,7 @@
         this.coordinate= {};
         this.resize    = null;
         //todo
-        var setScrollBar = this._setScrollBar();
-        HScroll.utils.html(this.scrollBar,this._templateSlider(setScrollBar.padding));
+        HScroll.utils.html(this.scrollBar,this._templateSlider(this._setScrollBar().padding));
 
         this.scrollSlider = this.scrollBar.children[0];
         //todo
@@ -104,12 +103,12 @@
                     filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=' + self.opts.bar.opacity * 100 + ')'
                 };
             this.scroll.style.position = 'relative';
-
+            this.coordinate.scrollHeight = this.scroll.offsetHeight;
             this.scrollBar.className = self.opts.bar.classes;
             for (var attr in style)this.scrollBar.style[attr] = style[attr];
             this.wrapper.style['height']   = typeof self.opts.height === 'string' ? self.opts.height : self.opts.height + 'px';
             this.wrapper.style['overflow'] = 'hidden';
-            this.wrapper.style['paddingRight'] =  self.opts.bar.width === 0 ? 1 : self.opts.bar.width + 'px';
+            this.wrapper.style['paddingRight'] =  self.opts.bar.width === 0 ? 1 : self.opts.bar.width*2 + 'px';
             this.wrapper.appendChild(this.scrollBar);
             return {
                 padding : padding
@@ -122,7 +121,7 @@
                 __initSliderHeight = HScroll.utils.bindFn(this,this._calculateFormula.initSliderHeight);
             height = this.opts.slider.height === 'auto' ? parseInt(__initSliderHeight(this.opts.height,this.scroll.offsetHeight + padding)) : this.opts.slider.height;
             color  = this.opts.slider.color;
-            tmpl = '<div class="'+ this.opts.slider.classes +'" style="height: '+ height +'px;background: '+ color +';width:'+ this.opts.slider.width +'px;position: absolute;left: 50%;z-index:9999;margin-left: '+ -(this.opts.slider.width/2) +'px;filter: progid:DXImageTransform.Microsoft.Alpha(Opacity='+ this.opts.slider.opacity*100 +');"></div>';
+            tmpl   = '<div class="'+ this.opts.slider.classes +'" style="opacity:'+ this.opts.slider.opacity +';height: '+ height +'px;background: '+ color +';width:'+ this.opts.slider.width +'px;position: absolute;left: 50%;z-index:9999;margin-left: '+ -(this.opts.slider.width/2) +'px;filter: progid:DXImageTransform.Microsoft.Alpha(Opacity='+ this.opts.slider.opacity*100 +');"></div>';
             return tmpl;
         },
         _dragScrollSlider : function(){
@@ -134,7 +133,7 @@
                 HScroll.utils.addEvent(doc,'mousemove',__dragScrollSliderExe);
                 HScroll.utils.addEvent(doc,'mouseup',function(){
                     HScroll.utils.removeEvent(doc,'mousemove',__dragScrollSliderExe);
-                    HScroll.utils.removeEvent(doc,'mouseup',__dragScrollSliderExe);
+                    HScroll.utils.removeEvent(doc,'mouseup',  __dragScrollSliderExe);
                 });
             });
             return this;
@@ -142,7 +141,7 @@
         _dragScrollSliderExe : function(e){
             var event = e || event,
                 limitTop = event.clientY - this.coordinate.startY;
-            this.coordinate.endY = limitTop;
+            this.coordinate.distance = limitTop;
             this._scrollExe(limitTop);
         },
         _scrollExe : function(distance){
@@ -158,16 +157,22 @@
 
             if(this.opts.emit !== null){
                 this.opts.emit.call(this,distance,optsHeight - this.scrollSlider.offsetHeight);
-                //this._fresh(this.opts.wrapper);
+                this.refresh();
             }
-
             percent = distance / (optsHeight - this.scrollSlider.offsetHeight);
             this.scrollSlider.style.top = distance + 'px';
             this.scroll.style.top = -(this.scroll.offsetHeight - this.wrapper.offsetHeight + padding ) * percent + 'px';
-            this.coordinate.endY = distance;
+            this.coordinate.distance      = distance;
+            this.coordinate.optsHeight    = optsHeight - this.scrollSlider.offsetHeight;
+            this.coordinate.scrollTop = HScroll.utils.getStyle(this.scroll, 'top').replace(/px/g,'');
         },
         _sliderBindShow : function(){
             //todo show
+            var self = this;
+            this.scrollBar.style.display = 'none';
+            HScroll.utils.addEvent(this.wrapper,'mouseover',function () {
+                self.scrollBar.style.display = 'block';
+            });
         },
         _resizeTemplateSlider : function(){
             var self = this,
@@ -175,19 +180,40 @@
             HScroll.utils.addEvent(window,'resize',HScroll.utils.delayResize(__resizeTemplateUpdateSlider,self));
         },
         _resizeTemplateUpdateSlider : function(){
-            //todo update
             var self = this,
-                padding = parseInt(HScroll.utils.getStyle(this.wrapper, 'paddingTop')) + parseInt(HScroll.utils.getStyle(this.wrapper, 'paddingBottom'));
+                padding = parseInt(HScroll.utils.getStyle(self.wrapper, 'paddingTop')) + parseInt(HScroll.utils.getStyle(self.wrapper, 'paddingBottom'));
 
-            var scrollTop = self.scroll.offsetTop - parseInt(HScroll.utils.getStyle(this.wrapper, 'paddingTop'));
+            var scrollTop;
             var uDiff     = self.scroll.offsetHeight - self.wrapper.offsetHeight;
             var H         = self.wrapper.offsetHeight;
-            var uSlider   = self._calculateFormula.initSliderHeight(this.opts.height,this.scroll.offsetHeight + padding);
+            var uSlider   = self._calculateFormula.initSliderHeight(self.opts.height,self.scroll.offsetHeight + padding);
+            var uDist;
 
-            this.scrollSlider.style.height = this._calculateFormula.initSliderHeight(this.opts.height,this.scroll.offsetHeight + padding) + 'px';
-
-            var uDist = self._calculateFormula.updateSlider(scrollTop,uDiff,H,uSlider);
-            self.scrollSlider.style.top = -uDist + 'px';
+            //todo
+            // scrollTop = self.scroll.offsetTop - parseInt(HScroll.utils.getStyle(self.wrapper, 'paddingTop'));
+            // uDist = self._calculateFormula.updateSlider(scrollTop,uDiff,H,uSlider);
+            // self.scrollSlider.style.height = self._calculateFormula.initSliderHeight(self.opts.height,self.scroll.offsetHeight + padding) + 'px';
+            // self.scrollSlider.style.top    = -uDist + 'px';
+            // self.coordinate.scrollHeight   = self.scroll.offsetHeight;
+            if(self.scroll.offsetHeight > self.coordinate.scrollHeight){
+                scrollTop = parseInt(HScroll.utils.getStyle(self.scroll, 'top')) - parseInt(HScroll.utils.getStyle(self.wrapper, 'paddingTop'));
+                uDist = self._calculateFormula.updateSlider(scrollTop,uDiff,H,uSlider);
+                self.scrollSlider.style.height = self._calculateFormula.initSliderHeight(self.opts.height,self.scroll.offsetHeight + padding) + 'px';
+                self.scrollSlider.style.top    = -uDist + 'px';
+                console.log('up');
+            }else if(self.scroll.offsetHeight < self.coordinate.scrollHeight){
+                //算top
+                self.scroll.style.top = -(self.scroll.offsetHeight - self.wrapper.offsetHeight + padding ) * (self.coordinate.distance / self.coordinate.optsHeight) + 'px';
+                if(this.coordinate.distance === self.coordinate.optsHeight){
+                    uDist = self._calculateFormula.updateSlider(parseInt(HScroll.utils.getStyle(self.scroll, 'top')) + parseInt(HScroll.utils.getStyle(self.wrapper, 'paddingTop'))*2 ,uDiff,H,uSlider);
+                }else{
+                    uDist = self._calculateFormula.updateSlider(parseInt(HScroll.utils.getStyle(self.scroll, 'top')) - parseInt(HScroll.utils.getStyle(self.wrapper, 'paddingTop')) ,uDiff,H,uSlider);
+                }
+                self.scrollSlider.style.height = self._calculateFormula.initSliderHeight(self.opts.height,self.scroll.offsetHeight + padding) + 'px';
+                self.scrollSlider.style.top    = -uDist + 'px';
+                console.log('down')
+            }
+            self.coordinate.scrollHeight = self.scroll.offsetHeight;
         },
         _calculateFormula :{
             initSliderHeight : function(H,nowH){
