@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
@@ -14,64 +14,44 @@
             background-color: #F4F4F4;
         }
         .demo{
-            width: 1000px;
+            max-width: 1100px;
             margin: 60px auto;
-            position: relative;
         }
-        .demo .wd-bubble{
+        .demo .wrapper{
             position: relative;
             float: left;
-            width: 200px;
+            width: 20%;
+            background-color: #fff;
         }
-        .demo .wd-bubble.first{
-        }
-        .demo .wd-bubble.second{
+        .demo .wrapper.first{
             left: 100px;
         }
-        .demo .wd-bubble.three{
-            left: 200px;
+        .demo .wrapper .scroll{
+            min-width: 160px;
+            background-color: #fff;
+            padding: 8px 16px;
         }
-        .demo .btn{
-            padding:16px;
-            text-align: center;
+        .demo .wrapper.second{
+            position: absolute;
+            top:0;
+            right: 300px;
         }
-        .wd-bubble  p::selection,.wd-bubble p::selection{
-            background-color: red;
-            color: #fff;
+        .buttonBox{
+            padding: 16px;
+        }
+        .hscroll-slider{
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+            border-bottom-left-radius: 16px;
+            border-bottom-right-radius: 16px;
         }
     </style>
 </head>
 <body>
 
 <div class="demo wd-utils-clear">
-    <div class="wd-bubble first" id="wrap">
-        <div id="scroll">
-            <p>
-                每当我听见忧郁的乐章</br>
-                勾起回忆的伤</br>
-                每当我看见白色的月光</br>
-                想起你的脸庞</br>
-                明知不该去想 不能去想</br>
-                偏又想到迷惘</br>
-                是谁让我心酸 谁让我牵挂</br>
-                是你啊</br>
-                我知道那些不该说的话</br>
-                让你负气流浪</br>
-                想知道多年漂浮的时光</br>
-                是否你也想家</br>
-                如果当时吻你 当时抱你</br>
-                也许结局难讲</br>
-                我那么多遗憾 那么多期盼</br>
-                你知道吗</br>
-            </p>
-            <div class="btn">
-                <a class="wd-button wd-button--blue wd-button--block" id="btnBlue">点击加载更多</a>
-            </div>
-            <div id="strBlue"></div>
-        </div>
-    </div>
-    <div class="wd-bubble second" id="wrapper">
-        <div id="scrollWrap">
+    <div id="wrapper" class="wrapper wd-utils-bs first">
+        <div class="scroll">
             <p>
                 还需要多久 多长 多伤<br>
                 你才会听见我没说的话<br>
@@ -90,35 +70,78 @@
                 我还是爱着你 每分每秒一样 就好像一个傻瓜<br>
 
             </p>
-            <div class="btn">
-                <a class="wd-button wd-button--positive" id="btnPos">点击加载更多</a>
+            <div id="strPos">
+                <p>其实台下的观众就我一个</p>
+                <p>其实我也看出你有点不舍</p>
+                <p>场景也习惯我们来回拉扯</p>
+                <p>还计较着什么</p>
+
+                <p>其实说分不开的也不见得</p>
+                <p>其实感情最怕的就是拖着</p>
+                <p>越演到重场戏越哭不出了</p>
+                <p>是否还值得</p>
             </div>
-            <div id="strPos"></div>
         </div>
     </div>
-    <div class="wd-bubble three" id="wrapper_three" >
-        <div id="scroll_three">
-            <p>
-                愿意 在角落唱沙哑的歌<br>
-                再大声也都是给你<br>
-                请原谅我 不会说谎<br>
-                愿意 用一支黑色的铅笔<br>
-                画一出沉默舞台剧<br>
-                灯光再亮 也抱住你<br>
-                愿意 在角落唱沙哑的歌<br>
-                再大声也都是给你<br>
-                请原谅我 不会说谎<br>
-                愿意 用一支黑色的铅笔<br>
-                画一出沉默舞台剧<br>
-                灯光再亮 也抱住你<br>
-                愿意 在角落唱沙哑的歌<br>
-                愿意 在角落唱沙哑的歌<br>
-            </p>
-            <div id="lodeHTML"></div>
+    <div class="wrapper wd-utils-bs second" id="wrap">
+        <div class="scroll">
+            简单点说话的方式简单点<br>
+
+            递进的情绪请省略<br>
+            你又不是个演员<br>
+            别设计那些情节<br>
+
+            没意见我只想看看你怎么圆<br>
+
+            你难过的太表面 像没天赋的演员<br>
+            观众一眼能看见<br>
+            该配合你演出的我演视而不见<br>
+            在逼一个最爱你的人即兴表演<br>
+            什么时候我们开始收起了底线<br>
+            顺应时代的改变看那些拙劣的表演<br>
+            可你曾经那么爱我干嘛演出细节<br>
+            我该变成什么样子才能延缓厌倦<br>
+            原来当爱放下防备后的这些那些<br>
+            才是考验<br>
+
+            简单点说话的方式简单点<br>
+
+            递进的情绪请省略<br>
+            你又不是个演员<br>
+            别设计那些情节<br>
+
+            没意见我只想看看你怎么圆<br>
+            <div id="strText">
+                你难过的太表面 像没天赋的演员<br>
+                观众一眼能看见<br>
+                该配合你演出的我演视而不见<br>
+                在逼一个最爱你的人即兴表演<br>
+                什么时候我们开始收起了底线<br>
+                顺应时代的改变看那些拙劣的表演<br>
+                可你曾经那么爱我干嘛演出细节<br>
+                我该变成什么样子才能延缓厌倦<br>
+                原来当爱放下防备后的这些那些<br>
+                才是考验<br>
+
+                你难过的太表面 像没天赋的演员<br>
+                观众一眼能看见<br>
+                该配合你演出的我演视而不见<br>
+                在逼一个最爱你的人即兴表演<br>
+                什么时候我们开始收起了底线<br>
+                顺应时代的改变看那些拙劣的表演<br>
+                可你曾经那么爱我干嘛演出细节<br>
+                我该变成什么样子才能延缓厌倦<br>
+                原来当爱放下防备后的这些那些<br>
+                才是考验<br>
+            </div>
         </div>
     </div>
 </div>
-<div class="demo">
+<div class="buttonBox">
+    <button class="wd-button wd-button--green" id="testButton">删除内容</button>
+    <button class="wd-button wd-button-raised wd-button--red" id="btnPos">添加内容</button>
+    <button class="wd-button wd-button-raised wd-button--positive" id="rightBtn">删除</button>
+    <button class="wd-button wd-button-raised wd-button--orange" id="rightAddBtn">添加</button>
 </div>
 <script src="hscroll.js"></script>
 <script src="js/index.js"></script>
