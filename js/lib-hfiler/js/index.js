@@ -24,6 +24,7 @@ window.onload = function(){
         }
     };
     var filer = hfiler(configs);
+    console.log(filer);
 
     setTimeout(function(){
         document.getElementById('hfiles').removeChild(loading);

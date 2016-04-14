@@ -216,21 +216,21 @@
             }
         }
     };
-    var cacheData = {
-        nodeParent   : {},
-        nodeShade    : {},
-        mask         : {},
-        changeId     : '',
-        animateStart : {},
-        animateEnd   : {}
-    };
     var HBox = function(opts){
         return new HBox.fn.init(opts);
     };
     HBox.fn = HBox.prototype = {
         constructor : HBox
     };
-
+    HBox.cacheData = {
+        nodeParent   : {},
+        nodeShade    : {},
+        mask         : {},
+        changeId     : '',
+        animateStart : {},
+        animateEnd   : {},
+        singleId     : ''
+    };
     var init = HBox.fn.init = function(opts){
         this.configs = {
                 style    : {
@@ -284,6 +284,8 @@
     var methodsBox = {
         _setParentBox : function(){
             this.configs.id !== '' ? configStyle.ID = this.configs.id : configStyle.ID =  configStyle.style.parent + configStyle.count;
+            this.configs.id = configStyle.ID;
+            // this.configs.id !== '' ? HBox.cacheData.singleId = this.configs.id : HBox.cacheData.singleId = null;
             for (var attr in configStyle.parentBox){
                 if(typeof configStyle.parentBox[attr] === 'function'){
                     if(this.configs.width !== null && attr === 'width'){
@@ -301,7 +303,7 @@
                                 break;
                             case 'className' :
                                 this.parent[attr] = configStyle.parentBox[attr](this.configs.style.parent + ' ' + (typeof this.configs.cssAnimation[0] === 'undefined'?'':this.configs.cssAnimation[0]));
-                                cacheData.animateStart[configStyle.ID] = this.configs.cssAnimation[0];
+                                HBox.cacheData.animateStart[configStyle.ID] = this.configs.cssAnimation[0];
                                 break;
                             case 'id' :
                                 this.parent[attr] = configStyle.parentBox[attr](configStyle.ID);
@@ -343,19 +345,19 @@
             if (this.configs.mask) {
                 var shade = this._createShade(configStyle.count);
                 utils.append(shade);
-                cacheData.nodeShade[configStyle.ID] = this.shade;
-                cacheData.mask[configStyle.ID] = this.configs.mask;
+                HBox.cacheData.nodeShade[configStyle.ID] = this.shade;
+                HBox.cacheData.mask[configStyle.ID] = this.configs.mask;
                 if(utils.client().mobile){
                     utils.addEvent(shade,'touchmove',function(e){
                         e.preventDefault();
                     })
                 }
             } else {
-                cacheData.mask[configStyle.ID] = this.configs.mask;
+                HBox.cacheData.mask[configStyle.ID] = this.configs.mask;
             }
-            cacheData.nodeParent[configStyle.ID] = this.parent;
-            cacheData.changeId = configStyle.ID;
-            if(typeof this.configs.cssAnimation[1] !== 'undefined')cacheData.animateEnd[configStyle.ID] = this.configs.cssAnimation[1];
+            HBox.cacheData.nodeParent[configStyle.ID] = this.parent;
+            HBox.cacheData.changeId = configStyle.ID;
+            if(typeof this.configs.cssAnimation[1] !== 'undefined')HBox.cacheData.animateEnd[configStyle.ID] = this.configs.cssAnimation[1];
         },
         _dragBox : function(){
             var self = this;
@@ -443,11 +445,14 @@
         },
         _registerCall : function(el,index,fn){
             var that = this;
-            utils.eventClick(el,function(){
-                if(cacheData.changeId !== this.getAttribute('data-id')){
-                    cacheData.changeId =  this.getAttribute('data-id');
+            utils.eventClick(el,function(e){
+                var evt = event || e;
+                evt.preventDefault();
+                if(HBox.cacheData.changeId !== this.getAttribute('data-id')){
+                    HBox.cacheData.changeId =  this.getAttribute('data-id');
                 }
-                that.configs.callback[fn[index]]();
+                that.configs.callback[fn[index]].call(this);
+                return false;
             });
         },
         _closeIcon : function(){
@@ -455,7 +460,7 @@
                 that = this;
             utils.eventClick(closeIcon[0],function(){
                 var dataID  = this.getAttribute('data-id');
-                if(typeof cacheData.animateEnd[dataID] !== 'undefined' && window.addEventListener && utils.client().mobile === null) {
+                if(typeof HBox.cacheData.animateEnd[dataID] !== 'undefined' && window.addEventListener && utils.client().mobile === null) {
                     that._exeIconCss(that,dataID);
                     utils.log('icon close css');
                 }else{
@@ -467,78 +472,84 @@
         },
         _exeIconCss: function(self,id){
             var $el  = utils.$class(id);
-            utils.$delClass($el,cacheData.animateStart[id]);
-            $el.className += ' ' + cacheData.animateEnd[id];
+            utils.$delClass($el,HBox.cacheData.animateStart[id]);
+            $el.className += ' ' + HBox.cacheData.animateEnd[id];
             utils.pfxEvent($el, 'animationend', function () {
                 utils.log('css icon close animationend remove child');
                 self._exeIcon(self,id);
             });
         },
         _exeIcon   : function(self,id){
-            utils.remove(cacheData.nodeParent[id]);
-            cacheData.nodeParent[id] = 'undefined';
+            utils.remove(HBox.cacheData.nodeParent[id]);
+            HBox.cacheData.nodeParent[id] = 'undefined';
             if(self.configs.mask){
-                utils.remove(cacheData.nodeShade[id]);
-                cacheData.nodeShade[id] = 'undefined';
+                utils.remove(HBox.cacheData.nodeShade[id]);
+                HBox.cacheData.nodeShade[id] = 'undefined';
             }
         },
         _shadeDel : function(opt){
-            var arg = typeof opt === 'undefined' ? cacheData.changeId : opt;
-            if(cacheData.mask[arg] !== false){
-                utils.remove(cacheData.nodeShade[arg]);
-                cacheData.nodeShade[arg] = 'undefined';
+            var arg = typeof opt === 'undefined' ? HBox.cacheData.changeId : opt;
+            if(HBox.cacheData.mask[arg] !== false){
+                utils.remove(HBox.cacheData.nodeShade[arg]);
+                HBox.cacheData.nodeShade[arg] = 'undefined';
             }
         },
         _exeEventCss: function(self){
-            var $cacheElement = cacheData.nodeParent[cacheData.changeId],
-                $cacheStart   = cacheData.animateStart[cacheData.changeId],
-                $cacheEnd     = cacheData.animateEnd[cacheData.changeId];
+            var $cacheElement = HBox.cacheData.nodeParent[HBox.cacheData.changeId],
+                $cacheStart   = HBox.cacheData.animateStart[HBox.cacheData.changeId],
+                $cacheEnd     = HBox.cacheData.animateEnd[HBox.cacheData.changeId];
             utils.$delClass($cacheElement,$cacheStart);
             $cacheElement.className += ' ' + $cacheEnd;
             utils.pfxEvent($cacheElement,'animationend',function(){
                 utils.log('close box start');
                 self._executive($cacheElement);
             });
-            cacheData.nodeParent[cacheData.changeId] = 'undefined';
+            HBox.cacheData.nodeParent[HBox.cacheData.changeId] = 'undefined';
+            return {
+                close : utils.bindFn(self,self._executive)
+            };
         },
         _executive : function(opts){
+            var self = this;
             switch (typeof opts){
                 case 'undefined':
-                    utils.log('exe default');
-                    utils.log('exe undefined:' + cacheData.nodeParent[cacheData.changeId]);
-
-                    utils.remove(cacheData.nodeParent[cacheData.changeId]);
-                    this._shadeDel();
-                    cacheData.nodeParent[cacheData.changeId] = 'undefined';
+                    utils.log('exe default undefined');
+                    utils.remove(HBox.cacheData.nodeParent[HBox.cacheData.changeId]);
+                    self._shadeDel();
+                    HBox.cacheData.nodeParent[HBox.cacheData.changeId] = 'undefined';
                     break;
                 case 'object' :
                     utils.log('exe css animation remove child');
                     utils.log('exe object:' + opts);
-
                     utils.remove(opts);
-                    this._shadeDel();
+                    self._shadeDel();
                     break;
                 case 'string':
-                    utils.log('exe css animation remove child');
                     utils.log('exe string:' + opts);
-
-                    utils.remove(cacheData.nodeParent[opts]);
-                    this._shadeDel(opts);
-                    cacheData.nodeParent[opts] = 'undefined';
+                    utils.remove(HBox.cacheData.nodeParent[opts]);
+                    self._shadeDel(opts);
+                    HBox.cacheData.nodeParent[opts] = 'undefined';
                     break;
             }
+            return {
+                close : utils.bindFn(self,self._executive)
+            };
         },
         _closeBox : function(){
             var arg  = arguments[0],
                 that = this;
             if(arg !== ''&& typeof arg !== 'undefined') {
-                this._executive(arg);
+                if(typeof HBox.cacheData.animateEnd[arg] !== 'undefined' && window.addEventListener && utils.client().mobile === null){
+                    return this._exeEventCss(that);
+                }else{
+                    return this._executive(arg);
+                }
             }
-            if(typeof cacheData.animateEnd[cacheData.changeId] !== 'undefined' && window.addEventListener && utils.client().mobile === null){
-                this._exeEventCss(that);
-            }else{
+            if(typeof HBox.cacheData.animateEnd[HBox.cacheData.changeId] !== 'undefined' && window.addEventListener && utils.client().mobile === null){
+                return this._exeEventCss(that);
+            } else{
                 //todo mobile
-                this._executive();
+                return this._executive();
             }
         }
     };
@@ -548,7 +559,7 @@
         version : '1.0.0',
         open : function(cfg){
             if(cfg.id !==''){
-                if(cacheData.nodeParent[cfg.id] === 'undefined' || typeof cacheData.nodeParent[cfg.id] === 'undefined'){
+                if(HBox.cacheData.nodeParent[cfg.id] === 'undefined' || typeof HBox.cacheData.nodeParent[cfg.id] === 'undefined'){
                     HBox(cfg)._popBox();
                 }
             }else{
@@ -556,7 +567,7 @@
             }
         },
         close : function(id){
-            HBox()._closeBox(id);
+            return HBox()._closeBox(id);
         },
         fn : [],
         register : function(fn){

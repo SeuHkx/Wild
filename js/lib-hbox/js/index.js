@@ -28,13 +28,14 @@ window.onload = function(){
             switch (index){
                 case 0 :
                     hbox.open({
+                        id : 'test22',
                         init : function(){
                             //todo
                         },
                         maskAnimation : ['animated maskPop'],
                         cssAnimation  : ['animated flipInX','animated hinge'],
                         title:'旅行的意义',
-                        height:200,
+                        height:400,
                         content:'你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴你看过了许多美景</br>你看过了许多美女</br>你迷失在地图上每一道短暂的光阴',
                         button : ['信仰','关闭'],
                         buttonClass : ['red','blue'],
@@ -81,6 +82,8 @@ window.onload = function(){
                                                                     hbox.open({
                                                                         cssAnimation: ['pop'],
                                                                         id : 'iframeID2',
+                                                                        mask : false,
+
                                                                         iframe : true,
                                                                         url : 'test/iframe2.html',
                                                                         drag : true
@@ -93,7 +96,7 @@ window.onload = function(){
                                             })
                                         },
                                         cancel : function(){
-                                            hbox.close();
+                                            hbox.close().close('test3');
                                         }
                                     }
                                 })
@@ -102,6 +105,7 @@ window.onload = function(){
                                 hbox.close();
                             }
                         },
+                        mask : false,
                         drag : true
                     });
                     hbox.register(iFrame);
@@ -119,7 +123,7 @@ window.onload = function(){
                         callback : {
                             ok : function(){
                                 //TODO
-                                hbox.close();
+                                hbox.close().close('test1');
 
                             }
                         },
@@ -146,15 +150,14 @@ window.onload = function(){
                     break;
                 case 3 :
                     hbox.open({
-                        id : 'test',
+                        id : 'test1',
                         cssAnimation: ['animated wobble','animated zoomOutUp'],
                         mask : false,
                         title:'你在南方的艳阳里大雪纷飞',
                         content:'如果天黑之前来得及</br>我要忘了你的眼睛</br>穷极一生做不完一场梦',
                         button : ['北秋悲'],
                         callback : {
-                            ok : function(){
-                                //TODO
+                            ok : function () {
                                 hbox.close();
                             }
                         },

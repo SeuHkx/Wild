@@ -154,7 +154,7 @@
                     type : f.type
                 };
             }
-            self.opts.beforeUpload(fileInfo,self._fileBeforeData);
+            if(this.opts.beforeUpload !== null && typeof this.opts.beforeUpload === 'function')self.opts.beforeUpload(fileInfo,self._fileBeforeData);
             self._fileInfo = fileInfo;
         },
         _ajaxReadPicture : function(file,index,progress,setData){

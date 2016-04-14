@@ -50,6 +50,7 @@
                 opacity: .3,
                 classes: 'hscroll-bar'
             },
+            transition : false,
             show: true,
             emit: null
         },
@@ -80,9 +81,9 @@
     };
     var  methodsScroll = {
         _init : function(){
-            if(!this.opts.show)this._sliderBindShow();
             this._setScrollBar();
             this._dragScrollSlider()._scrollWheel();
+            if(!this.opts.show)this._sliderBindShow();
         },
         _setScrollBar : function(){
             var self    = this,
@@ -97,6 +98,7 @@
                     filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=' + self.opts.bar.opacity * 100 + ')'
                 };
             this.scroll.style.position = 'relative';
+            if(self.opts.transition)this._setScrollTransition();
             this.coordinate.scrollHeight = this.scroll.offsetHeight;
             this.scrollBar.className = self.opts.bar.classes;
             for (var attr in style)this.scrollBar.style[attr] = style[attr];
@@ -106,6 +108,18 @@
             this.hscroll.appendChild(this.scrollBar);
             this._setScrollSlider();
             this.scrollSlider = this.scrollBar.children[0];
+            if(self.opts.transition)this._setScrollSliderTransition();
+
+        },
+        _setScrollTransition : function () {
+            this.scroll.style.webkitTransform = 'translate(0px,0px) translateZ(0px)';
+            this.scroll.style.webkitTransitionDuration = '500ms';
+            this.scroll.style.webkitTransitionTimingFunction = 'cubic-bezier(0.1, 0.57, 0.1, 1)';
+        },
+        _setScrollSliderTransition : function () {
+            this.scrollSlider.style.webkitTransitionDuration = '500ms';
+            this.scrollSlider.style.webkitTransitionTimingFunction = 'cubic-bezier(0.1, 0.57, 0.1, 1)';
+            this.scrollSlider.style.webkitTransform = 'translate(0px,0px) translateZ(0px)';
         },
         _setScrollSlider : function () {
             HScroll.utils.html(this.scrollBar,this._templateSlider());
@@ -125,7 +139,12 @@
                 __dragScrollSliderExe = HScroll.utils.bindFn(self,self._dragScrollSliderExe);
             HScroll.utils.addEvent(self.scrollSlider,'mousedown',function(e){
                 var event = e || event;
-                self.coordinate.startY = event.clientY - self.scrollSlider.offsetTop;
+                if(self.opts.transition){
+                    if(typeof self.coordinate.distance === 'undefined')self.coordinate.distance = 0;
+                    self.coordinate.startY = event.clientY - self.coordinate.distance;
+                }else{
+                    self.coordinate.startY = event.clientY - self.scrollSlider.offsetTop;
+                }
                 HScroll.utils.addEvent(doc,'mousemove',__dragScrollSliderExe);
                 HScroll.utils.addEvent(doc,'mouseup',function(){
                     HScroll.utils.removeEvent(doc,'mousemove',__dragScrollSliderExe);
@@ -137,7 +156,6 @@
         _dragScrollSliderExe : function(e){
             var event = e || event,
                 limitTop = event.clientY - this.coordinate.startY;
-            this.coordinate.distance = limitTop;
             this._scrollExe(limitTop);
         },
         _scrollExe : function(distance){
@@ -152,22 +170,31 @@
             }
 
             if(this.opts.emit !== null){
-                this.opts.emit.call(this,distance,optsHeight - this.scrollSlider.offsetHeight);
-                this.refresh();
+                this.opts.emit.call(this,this,distance,optsHeight - this.scrollSlider.offsetHeight);
             }
             percent = distance / (optsHeight - this.scrollSlider.offsetHeight);
-            this.scrollSlider.style.top = distance + 'px';
-            this.scroll.style.top = -(this.scroll.offsetHeight - this.hscroll.offsetHeight) * percent + 'px';
+
+            this.opts.transition ? this.scrollSlider.style.webkitTransform = 'translate(0px,'+ distance +'px) translateZ(0px)' : this.scrollSlider.style.top = distance + 'px';
+            this.opts.transition ? this.scroll.style.webkitTransform = 'translate(0px,'+ -(this.scroll.offsetHeight - this.hscroll.offsetHeight) * percent +'px) translateZ(0px)' : this.scroll.style.top = -(this.scroll.offsetHeight - this.hscroll.offsetHeight) * percent + 'px';
+
             this.coordinate.distance      = distance;
             this.coordinate.optsHeight    = optsHeight - this.scrollSlider.offsetHeight;
-            this.coordinate.scrollTop = HScroll.utils.getStyle(this.scroll, 'top').replace(/px/g,'');
+            this.coordinate.scrollTop     = this.opts.transition ? -(this.scroll.offsetHeight - this.hscroll.offsetHeight) * percent : HScroll.utils.getStyle(this.scroll, 'top').replace(/px/g,'');
         },
         _sliderBindShow : function(){
             //todo show
             var self = this;
-            this.scrollBar.style.display = 'none';
+            this.hscroll.style['paddingRight'] = '0';
+            this.scrollBar.style['width'] = '0';
+            this.scrollBar.style['right'] = '0';
+            this.scrollSlider.style['marginLeft'] = '0';
+            this.scrollSlider.style['left']    = -this.opts.slider.width + 'px';
+            this.scrollSlider.style['opacity'] = '0';
             HScroll.utils.addEvent(this.hscroll,'mouseover',function () {
-                self.scrollBar.style.display = 'block';
+                self.scrollSlider.style.opacity = '1';
+            });
+            HScroll.utils.addEvent(this.hscroll,'mouseout',function () {
+                self.scrollSlider.style.opacity = '0';
             });
         },
         _resizeTemplateSlider : function(){
@@ -181,33 +208,39 @@
             var uDiff     = self.scroll.offsetHeight - self.hscroll.offsetHeight;
             var H         = self.hscroll.offsetHeight;
             var uSlider   = self._calculateFormula.initSliderHeight(self.opts.height,self.scroll.offsetHeight);
-            var uDist;
             var height;
+
             typeof self.opts.height === 'string' ? height = window.innerHeight || doc.documentElement.clientHeight || doc.body.clientHeight : height = self.opts.height;
             if(typeof self.opts.height === 'string'){
                 uSlider = self._calculateFormula.initSliderHeight(height,self.scroll.offsetHeight);
-                scrollTop = parseInt(HScroll.utils.getStyle(self.scroll, 'top'));
-                self._resizeUpdateReset(uDist,scrollTop,uDiff,H,uSlider);
+                scrollTop = self.opts.transition ?  self.coordinate.scrollTop : HScroll.utils.getStyle(self.scroll, 'top').replace(/px/g,'');
+                self._resizeUpdateReset(scrollTop,uDiff,H,uSlider);
             }
             if(height >= self.scroll.offsetHeight){
                 self.scrollBar.style['visibility'] = 'hidden';
-                self.scroll.style['top'] = 0;
+                self.opts.transition ? self.scroll.style.webkitTransform = 'translate(0px,0px) translateZ(0px)' : self.scroll.style['top'] = 0;
                 return false;
             }
             self.scrollBar.style['visibility'] = 'visible';
             if(self.scroll.offsetHeight > self.coordinate.scrollHeight){
-                scrollTop = parseInt(HScroll.utils.getStyle(self.scroll, 'top'));
-                self._resizeUpdateReset(uDist,scrollTop,uDiff,H,uSlider);
+                scrollTop = self.opts.transition ?  self.coordinate.scrollTop : HScroll.utils.getStyle(self.scroll, 'top').replace(/px/g,'');
+                self._resizeUpdateReset(scrollTop,uDiff,H,uSlider);
             }else if(self.scroll.offsetHeight < self.coordinate.scrollHeight){
-                self.scroll.style.top = -(self.scroll.offsetHeight - self.hscroll.offsetHeight) * (self.coordinate.distance / self.coordinate.optsHeight) + 'px';
-                self._resizeUpdateReset(uDist,parseInt(HScroll.utils.getStyle(self.scroll, 'top')),uDiff,H,uSlider);
+                if(self.opts.transition){
+                    self.scroll.style.webkitTransform = 'translate(0px,'+ -(self.scroll.offsetHeight - self.hscroll.offsetHeight) * (self.coordinate.distance / self.coordinate.optsHeight) +'px) translateZ(0px)';
+                    self._resizeUpdateReset(-(self.scroll.offsetHeight - self.hscroll.offsetHeight) * (self.coordinate.distance / self.coordinate.optsHeight),uDiff,H,uSlider);
+                }else{
+                    self.scroll.style.top = -(self.scroll.offsetHeight - self.hscroll.offsetHeight) * (self.coordinate.distance / self.coordinate.optsHeight) + 'px';
+                    self._resizeUpdateReset(HScroll.utils.getStyle(self.scroll, 'top').replace(/px/g,''),uDiff,H,uSlider);
+                }
             }
             self.coordinate.scrollHeight = self.scroll.offsetHeight;
         },
-        _resizeUpdateReset:function (uDist,scrollTop,uDiff,H,uSlider) {
-            uDist = this._calculateFormula.updateSlider(scrollTop,uDiff,H,uSlider);
+        _resizeUpdateReset:function (scrollTop,uDiff,H,uSlider) {
+            var uDist = this._calculateFormula.updateSlider(scrollTop,uDiff,H,uSlider);
             this.scrollSlider.style.height = this._calculateFormula.initSliderHeight(this.opts.height,this.scroll.offsetHeight) + 'px';
-            this.scrollSlider.style.top    = -uDist + 'px';
+            this.opts.transition ? this.scrollSlider.style.webkitTransform = 'translate(0px,'+ -uDist +'px) translateZ(0px)' : this.scrollSlider.style.top = -uDist + 'px';
+            this.coordinate.distance = -uDist;
         },
         _calculateFormula :{
             initSliderHeight : function(H,nowH){
@@ -217,7 +250,7 @@
             updateSlider : function(scrollTop,uDiff,H,uSlider){
                 var distance;
                 distance = scrollTop/uDiff*(H-uSlider);
-                return distance;
+                return isNaN(distance) ? 0 : distance;
             }
         },
         _scrollWheel: function(){
@@ -226,9 +259,11 @@
             HScroll.utils.addEvent(self.scroll, 'DOMMouseScroll', HScroll.utils.bindFn(self,self._mouseWheel));
         },
         _mouseWheel : function(e){
+            if(this.opts.transition && typeof this.coordinate.distance === 'undefined')this.coordinate.distance = 0;
             var event = e || event,
-                wheelEventDown = event.wheelDelta ? event.wheelDelta < 0 : event.detail > 0;
-            wheelEventDown ? this._scrollExe(this.scrollSlider.offsetTop + 16) : this._scrollExe(this.scrollSlider.offsetTop - 16);
+                wheelEventDown = event.wheelDelta ? event.wheelDelta < 0 : event.detail > 0,
+                scrollSliderTop= this.opts.transition ? this.coordinate.distance : this.scrollSlider.offsetTop;
+            wheelEventDown ? this._scrollExe(scrollSliderTop+ 16) : this._scrollExe(scrollSliderTop - 16);
             if (event.preventDefault)event.preventDefault();
             return false;
         },

@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
+var browserSync = require('browser-sync').create();
 var path = require('path');
 var packageJson = require('./package');
 var config = require('./config');
@@ -45,7 +46,8 @@ gulp.task('compile',function(){
                         ],
                         cascade: true
                     }))
-                    .pipe(gulp.dest(file.fileDist ? config.dir.dist :config.dir.widget));
+                    .pipe(gulp.dest(file.fileDist ? config.dir.dist :config.dir.widget))
+                    .pipe(browserSync.stream());
 
                 return compile;
             }
@@ -73,4 +75,13 @@ gulp.task('minify',['clean'],function(){
         .pipe(plugins.mini({compatibility: 'ie7'}))
         .pipe(gulp.dest(config.dir.dist));
 });
-
+gulp.task('serve',['compile'] ,function() {
+    browserSync.init({
+        server: {
+            baseDir: './'
+        }
+    });
+    gulp.watch(config.dir.sass, ['compile']);
+    gulp.watch('./src/**/*.js').on('change',browserSync.reload);
+    gulp.watch('./example/**/*.html').on('change', browserSync.reload);
+});

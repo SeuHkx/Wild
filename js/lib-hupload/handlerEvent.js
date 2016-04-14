@@ -72,7 +72,7 @@ var handlerEvent = {
                 res.write(JSON.stringify(data));
                 res.end();
                 console.log("*---^上传成功^---* :  " + files.upload.name);
-                //console.log(util.inspect({fields: fields, files: files}))
+                console.log(util.inspect({fields: fields, files: files}))
             })
         }else{
             res.writeHead(200, {'Content-Type': 'text/html'});
