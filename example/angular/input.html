@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>input</title>
+    <link rel="stylesheet" href="/dist/Wild.min.css"/>
+    <link rel="stylesheet" href="../../js/lib-hbox/css/hbox-skin-material.css"/>
+    <link rel="stylesheet" href="../../js/lib-hbox/css/animation.css"/>
+    <script src="../../node_modules/angular/angular.min.js"></script>
+    <style>
+        .myInput{
+            max-width: 600px;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="myInput" class="myInput">
+        <wd-input styles="wd-input wd-input-field"  ng-class="{true : 'wd-input--error'}[isEmpty]" placeholder="please your name!"  ng-model="example.text" name="{{example.text}}" type="text" id="wd-input" ng-change="example.fn()"></wd-input>
+        <span>输入的值:{{example.text}}</span>
+    </div>
+    <script src="../../src/angular/ng.input.js"></script>
+    <script>
+        var app = angular.module('inputDemo',['wd.input']);
+        app.controller('myInput',['$scope',function ($scope) {
+            $scope.example = {
+                fn : function () {
+                    typeof $scope.example.text === 'undefined' || $scope.example.text === '' ?  $scope.isEmpty = true : $scope.isEmpty = false;
+                }
+            };
+            $scope.example.text = 'Hkx';
+
+            if(typeof $scope.example.text === 'undefined')$scope.example.fn();
+        }]);
+        angular.bootstrap(document,['inputDemo']);
+    </script>
+</body>
+</html>
