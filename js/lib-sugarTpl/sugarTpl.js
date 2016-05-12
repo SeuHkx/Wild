@@ -29,7 +29,6 @@
             variantExp    : /^\${|}/g
         },
         SugarTemplate = function (str) {
-            if(str === '')return;
             this.template = str.replace(/(^\s+)|(\s+$)/g, '');
         };
     SugarTemplate.fn = SugarTemplate.prototype;
@@ -67,6 +66,7 @@
              * @type {string|XML}
              */
             template = this.template.replace(/\{+\{/g, '{').replace(/\}\}+/g, '}').replace(/\\/g, '\\\\').replace(/(?="|')/g,'\\')
+                .replace(/(\}@\/\w+\})(\s)(\{@\w+\{)/g,'$1$3')
                 .replace(exp.tagStart, '";$1')
                 .replace(exp.connection,function (code) {
                     code = code.replace(exp.tagConnection,'"$1$2$3');

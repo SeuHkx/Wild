@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>htpl</title>
+    <link rel="stylesheet" href="../../dist/Wild.min.css"/>
+</head>
+<body>
+<div class="view" id="view"></div>
+<!--<div class="" id="chart"></div>-->
+<a class="wd-button wd-button--blue" id="button">开始执行模版</a>
+<script src="sugarTpl.js"></script>
+<script src="data.js"></script>
+<script src="index.js"></script>
+<script id="tplDemo" type="text/html">
+    <h4>${json.title}</h4>
+    <ul>
+        {@for(var i = 0, l = json.list.length; i < l ; i += 1){
+            {@if (i===0){
+                <li style="color: red;">
+                    <span>${json.list[i].name}</span>
+                    <span>${json.list[i].song}</span>
+                </li>
+            }@/if}{@else{
+                {@if(i===1){
+                    <div style="color: mediumblue">${i}</div>
+                }@/if}{@else{
+                    <div style="color: brown">${i}</div>
+                }@/else}
+                <li>
+                    <span>${json.list[i].name}</span>
+                    <span>${json.list[i].song}</span>
+                </li>
+            }@/else}
+        }@/for}
+    </ul>
+</script>
+</body>
+</html>
