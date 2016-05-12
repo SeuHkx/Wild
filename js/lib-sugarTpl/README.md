@@ -31,9 +31,11 @@
 	}@/else}
 </script>
 ```
+
 ### API
-`sugarTpl(template)`
-`sugarTpl(template).compile(json,fn)`
+* `sugarTpl(template)`
+* `sugarTpl(template).compile(json,fn)`
+
 ```javascript
 //获取当前的模版 <script type="template/html" id="template"></script>的内容
 var template = document.getElementById('template').innerHTML;
