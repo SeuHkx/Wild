@@ -1,6 +1,7 @@
 @import "../variables/variables",
         "../base/wild.reset",
         "../base/wild.type",
+        "../layout/wild.layout",
         "../mixins/mixins",
         "../ui/wild.button",
         "../ui/wild.dropdown",
@@ -14,5 +15,7 @@
         "../ui/wild.badge",
         "../ui/wild.bubble",
         "../ui/wild.triangle",
+        "../ui/wild.chips",
+        "../ui/wild.card",
         "../utils/wild.utils",
         "../utils/wild.responsive";

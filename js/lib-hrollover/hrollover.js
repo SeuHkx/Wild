@@ -106,10 +106,12 @@
             if(curr >= this.configs.offset && this._storage.count === 0 && this.configs.type === ''){
                 this._setScroll(element);
                 this._storage.count++;
+                console.log('down')
             }else{
                 if(curr <= this.configs.offset && this._storage.count === 1 && this.configs.type === ''){
                     this._setScroll(element);
                     this._storage.count--;
+                    console.log('up')
                 }
             }
             if(this.configs.type === 'modern' && curr >= this.configs.offset){

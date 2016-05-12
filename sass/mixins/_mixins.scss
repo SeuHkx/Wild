@@ -81,6 +81,21 @@
     border-left-color: $color;
   }
 }
+@mixin setButtonDisabled(){
+  &.wd-button--disabled{
+    background-color: #DFDFDF;
+    border-color: #DFDFDF;
+    box-shadow: none;
+    color: #9F9F9F;
+    cursor: default;
+    &:hover,&:active{
+      background-color: #DFDFDF;
+      border-color: #DFDFDF;
+      box-shadow: none;
+      color: #9F9F9F;
+    }
+  }
+}
 //设置按钮主题
 @mixin setButtonTheme($name,$color,$bgColor,$bdColor,$floatingShadow){
   .wd-button--#{$name}{
@@ -89,7 +104,7 @@
     border-color: darken($bdColor,2%);
     &:hover{
       color: $color;
-      background-color: lighten($bgColor,4%);//#fafafa;
+      background-color: lighten($bgColor,6%);//#fafafa;
       border-color: lighten($bdColor,6%);    //#ccc;
     }
     &:active{
@@ -107,6 +122,7 @@
           box-shadow: $floatingShadow;
         }
       }
+      @include setButtonDisabled();
     }
     &.wd-button-flat{
       background-color: transparent;
@@ -116,13 +132,48 @@
         color: $bgColor;
         background-color: #F2F2F2;
       }
+      &.wd-button-raised{
+        &.wd-button{
+          &:active{
+            color: $bgColor;
+            background-color: #F2F2F2;
+          }
+        }
+      }
+      &.wd-button--disabled{
+        &.wd-button{
+          background-color: #DFDFDF;
+          border-color: #DFDFDF;
+          box-shadow: none;
+          color: #9F9F9F;
+          cursor: default;
+          &:hover,&:active{
+            background-color: #DFDFDF;
+            border-color: #DFDFDF;
+            box-shadow: none;
+            color: #9F9F9F;
+          }
+        }
+      }
+    }
+    &.wd-button-raised{
+      &.wd-button{
+        &:active{
+          color: $color;
+          background-color: lighten($bgColor,6%);
+          border-color: lighten($bdColor,6%);
+        }
+      }
+      @include setButtonDisabled();
     }
     @include triangleTheme(#FFFFFF);
+    @include setButtonDisabled();
   }
   .wd-button--default{
     @include triangleTheme(#333);
   }
 }
+
 //设置组按钮主题
 @mixin setGroupButtonTheme($name,$color,$bgColor,$bdColor){
   .wd-button-group{
@@ -144,6 +195,68 @@
         &:active{
           background-color: darken($bgColor,8%);//#fafafa;
           border-color: darken($bdColor,10%);//#ccc;
+        }
+      }
+    }
+    &.wd-button-flat{
+      &.wd-button--#{$name}{
+        .wd-button{
+          background-color: transparent;
+          color: $bgColor;
+          border-color:transparent;
+          &:hover{
+            color: $bgColor;
+            background-color: #F2F2F2;
+          }
+        }
+      }
+    }
+  }
+}
+@mixin setCheckTheme($name,$color){
+  .wd-checkbox{
+    &.wd-checkbox--#{$name}{
+      >input[type='checkbox']{
+        &:checked + label{
+          &:before{
+            border: 2px solid $color;
+            background-color: $color;
+          }
+        }
+      }
+    }
+  }
+  .wd-radio{
+    &.wd-radio--#{$name}{
+      >input[type='radio']{
+        &:checked + label{
+          &:before{
+            border: 2px solid $color;
+          }
+          &:after{
+            border: 2px solid $color;
+            background-color: $color;
+          }
+        }
+      }
+    }
+  }
+  .wd-switch{
+    &.wd-switch--#{$name}{
+      >label{
+        >input[type='checkbox']{
+          &:checked + .wd-switch-lever{
+            background-color: rgba($color,.2);
+            &:active{
+              &:before{
+                box-shadow: 0 1px 3px 1px rgba($color,0.4),0 0 0 15px rgba($color,0.08);
+              }
+            }
+            &:before{
+              left: 26px;
+              background-color: $color;
+            }
+          }
         }
       }
     }
@@ -215,8 +328,8 @@
   border-radius: $radius;
 }
 //css3 过渡
-@mixin transition($prop,$time){
-  transition: $prop $time;
+@mixin transition($arguments...){
+  transition: $arguments;
 }
 //三角形
 @mixin triangle($name,$size,$color){

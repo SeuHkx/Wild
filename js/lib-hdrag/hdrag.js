@@ -30,9 +30,10 @@
                     id : '',
                     elements : '',
                     statics  : true,
-                    sort   : true,
+                    sort   : false,
                     finish : null,
-                    move   : null
+                    move   : null,
+                    clone  : false
                 };
             this.opts= HDrag.utils.extend({},cfgs);
             this.opts.id = id;
@@ -110,21 +111,22 @@
                 this.element.style['left'] = this.collection.left + event.clientX - this.collection.startX + 'px';
                 this.element.style['top']  = this.collection.top  + event.clientY - this.collection.startY + 'px';
                 //todo
-               if(clientY > this.collection.prev){
+               if(clientY > this.collection.currClient){
                    if(this.collection._lately){
                        this._dragElementsPlaceholder(this.collection._lately.nextSibling);
                        this.collection.lately = this.collection._lately;
                        this.collection.direction = 'down';
                    }
-               }else if(clientY < this.collection.prev){
+               }else if(clientY < this.collection.currClient){
                    if(this.collection._lately){
                        this._dragElementsPlaceholder(this.collection._lately);
                        this.collection.lately = this.collection._lately;
                        this.collection.direction = 'up';
                    }
                }
-                this.collection.prev = clientY;
+                this.collection.currClient = clientY;
                 this.opts.move  && this.opts.move();
+                window.getSelection ? window.getSelection().removeAllRanges() : doc.selection.empty();
                 this.setCapture && this.setCapture();
             },
             _dragElementsTransform: function(){

@@ -1,0 +1,30 @@
+@import "../base/wild.type";
+@import "../variables/var.chips";
+.wd-chips{
+  display: inline-block;
+  height: $wd-chips-height;
+  line-height: $wd-chips-height;
+  padding: 0 $wd-chips-padding;
+  font-size: $wd-type-font-size - 2;
+  font-weight: 500;
+  color: $wd-type-secondary-font-color;
+  border-radius: $wd-chips-bd-radius;
+  background-color: $wd-chips-bg-color;
+  >img,.wd-chips-icon{
+    width: $wd-chips-height;
+    height: $wd-chips-height;
+    border-radius: 50%;
+  }
+  >img{
+    float: left;
+    margin-left: -$wd-chips-padding;
+    margin-right: $wd-chips-padding/2;
+  }
+  .wd-chips-icon{
+    display: inline-block;
+    float: right;
+    margin-right: -$wd-chips-padding;
+    margin-left: $wd-chips-padding/2;
+    cursor: pointer;
+  }
+}

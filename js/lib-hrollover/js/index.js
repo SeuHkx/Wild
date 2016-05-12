@@ -5,15 +5,14 @@
 
     var config = {
         element      : 'headerRoll',
-        offset       : 300,
-        type         : 'modern',
-        cssAnimation : ['animated slideOutUp','animated slideInDown']
-    };
-    var opts  = {
-        element      : 'top',
-        offset       : 300,
-        cssAnimation : ['animated slideInUp show','animated slideOutDown show']
+        offset       : 200,
+        top:150
     };
     hrollover.init(config);
-    hrollover.init(opts);
+    //var opts  = {
+    //    element      : 'top',
+    //    offset       : 300,
+    //    cssAnimation : ['animated slideInUp show','animated slideOutDown show']
+    //};
+    //hrollover.init(opts);
 }());

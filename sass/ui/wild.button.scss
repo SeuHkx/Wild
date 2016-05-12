@@ -1,13 +1,12 @@
 @import "../mixins/mixins",
         "../variables/var.button";
-
-//bug
 .wd-button{
   position: relative;
   display: inline-block;
   *display: inline;
   zoom: 1;
-  padding: 0 $wd-button-padding;
+  padding: 0 $wd-button-padding + 10 \9;
+  padding: 1px $wd-button-padding + 10;
   margin-bottom: 0;
   font-size: $wd-button-font-size;
   font-weight: 400;
@@ -21,12 +20,13 @@
   touch-action: manipulation;
   cursor: pointer;
   background-image: none;
-  border: 1px solid transparent;
-  *border: none;
+  border: none;
+  border: 1px solid transparent\9;
   border-radius: $wd-button-radius;
-  @include transition(all ease-out,.2s);
+  will-change: box-shadow;
   @include user-select();
   @include box-shadow($wd-button-box-shadow);
+  @include transition($wd-button-transition);
   &:hover{
     text-decoration: none;
     @include box-shadow($wd-button-hover-box-shadow);
@@ -35,6 +35,7 @@
     @include box-shadow($wd-button-active-shadow);
   }
   &.wd-button--block{
+    width: 100%;
     display: block;
   }
   .wd-badge{
@@ -51,13 +52,19 @@
       vertical-align: middle\9;
     }
   }
-  //wd-button-flat
   &.wd-button-flat{
     background-color : transparent;
     border: none;
     @include box-shadow(none);
     &:hover{
       @include box-shadow(none);
+    }
+    &.wd-button-raised{
+      &.wd-button{
+        &:active{
+          @include box-shadow(none);
+        }
+      }
     }
   }
   input[type='file']{
@@ -71,9 +78,30 @@
     opacity: 0;
     filter:alpha(opacity=0);
   }
+  &.wd-button--disabled{
+    background-color: #DFDFDF;
+    border-color: #DFDFDF;
+    box-shadow: none;
+    color: #9F9F9F;
+    cursor: default;
+    &:hover,&:active{
+      background-color: #DFDFDF;
+      border-color: #DFDFDF;
+      box-shadow: none;
+      color: #9F9F9F;
+    }
+  }
 }
-.wd-button-default{
-  @include box-shadow(none);
+.wd-button-raised{
+  &:hover{
+    @include box-shadow($wd-button-box-shadow);
+  }
+  &.wd-button{
+    &:active{
+      @include box-shadow($wd-button-hover-box-shadow);
+    }
+  }
+  @include box-shadow($wd-button-box-shadow);
 }
 .wd-button-floating{
   width: 40px;
@@ -107,14 +135,14 @@
     background-repeat: no-repeat;
   }
 }
-@include setButtonTheme($wd-button-default...);
+@include setButtonTheme($wd-button-white...);
 @include setButtonTheme($wd-button-orange...);
 @include setButtonTheme($wd-button-red...);
 @include setButtonTheme($wd-button-green...);
 @include setButtonTheme($wd-button-positive...);
 @include setButtonTheme($wd-button-blue...);
 
-.wd-button-dropdown{
+.wd-button-drop{
   position: relative;
   display: inline-block;
   *display: inline;
@@ -148,20 +176,34 @@
   .wd-button{
     float: left;
     border-radius: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border: 1px solid transparent;
     box-shadow: none;
     &:active{
       @include box-shadow($wd-button-active-shadow);
     }
   }
-  >.wd-button-dropdown{
+  >.wd-button-drop{
     display: block;
     float: left;
   }
+  &.wd-button-flat{
+    border-radius: 0;
+    @include box-shadow(none);
+    .wd-button{
+      background-color : transparent;
+      border: none;
+      @include box-shadow(none);
+      &:hover{
+        @include box-shadow(none);
+      }
+    }
+  }
 }
-@include setGroupButtonTheme($wd-button-default...);
+@include setGroupButtonTheme($wd-button-white...);
 @include setGroupButtonTheme($wd-button-positive...);
 @include setGroupButtonTheme($wd-button-orange...);
 @include setGroupButtonTheme($wd-button-red...);
 @include setGroupButtonTheme($wd-button-green...);
 @include setGroupButtonTheme($wd-button-blue...);
-

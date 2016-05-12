@@ -62,6 +62,7 @@ window.onload = function () {
         beforeUpload: function (fileInfo,setData) {
             //todo
             setData.push({'beforeId':'before' + ('file' +  Math.random()).replace(/\D/g, "")});
+            upload.beforeStop = true;
         },
         data : [{'Hkx' : 'This is handsome!'}],
         previewFile : function(progress,fileInfo,thumbnail,setData){
@@ -104,7 +105,7 @@ window.onload = function () {
         multiple : true,
         control: false
     };
-    hupload(configs);
+    var upload = hupload(configs);
     createFile.onclick = function(){
         var setting = {
             buttons : ['确定','取消'],

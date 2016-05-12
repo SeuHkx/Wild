@@ -3,7 +3,7 @@
 .wd-nav{
   width: 100%;
   min-height: $wd-nav-min-height;
-  background-color: $wd-nav-bg-color;
+  //background-color: $wd-nav-bg-color;
   z-index: $wd-nav-base-zIndex * 2;
   zoom: 1;
   &.wd-nav--vertical{
@@ -35,7 +35,7 @@
       line-height: $wd-nav-min-height;
       padding: 0 $wd-nav-padding;
 
-      background-color: $wd-nav-bg-color;
+      //background-color: $wd-nav-bg-color;
       z-index: $wd-nav-base-zIndex * 2;
 
       text-align: center;
@@ -47,7 +47,7 @@
         text-decoration: none;
       }
       >img{
-        vertical-align: top;
+        vertical-align: middle;
         width: 46px;
         height: 46px;
         margin-top: 5px;
@@ -79,7 +79,7 @@
       padding: 0 $wd-nav-padding - 1;
       line-height: $wd-nav-min-height;
 
-      background-color: $wd-nav-bg-drown-color;
+      //background-color: $wd-nav-bg-drown-color;
       border: $wd-nav-bd-width solid $wd-nav-bd-color;
       border-top: none;
       border-bottom: $wd-nav-bd-width solid $wd-nav-bg-drown-color;
@@ -110,18 +110,18 @@
   }
 }
 .wd-nav-wrap{
-  position: relative;
-  height: $wd-nav-min-height;
-  max-width: 1000px;
-  margin: 0 auto;
-  .wd-nav-fixed{
-    position: fixed;
-    max-width: 1000px;
-    width: 100%;
-    z-index: 9999;
-
-    background-color: $wd-nav-bg-color;
-  }
+  //position: relative;
+  //height: $wd-nav-min-height;
+  //max-width: 1000px;
+  //margin: 0 auto;
+  //.wd-nav-fixed{
+  //  position: fixed;
+  //  max-width: 1000px;
+  //  width: 100%;
+  //  z-index: 9999;
+  //
+  //  //background-color: $wd-nav-bg-color;
+  //}
 }
 .wd-nav-logo{
   display: block;

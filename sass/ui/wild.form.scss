@@ -1,5 +1,10 @@
 @import "../mixins/mixins",
         "../variables/var.form";
+
+.wd-input-wrap{
+  display: inline-block;
+  *display:inline;
+}
 textarea,
 input[type="text"],
 input[type="password"]{
@@ -17,14 +22,15 @@ input[type="password"]{
   background-color: $wd-form-input-bg-color;
   border: 1px solid $wd-form-input-bd-color;
   border-radius: $wd-form-input-bd-radius;
+  will-change: border-color;
   @include box-shadow($wd-form-box-shadow);
-  @include transition(all ease-in,.3s);
+  @include transition($wd-form-input-transition);
 
   &:focus{
     border-color: $wd-form-input-focus-bd-color;
     outline: 0;
   }
-  &.wd-input{
+  &.wd-input,&.wd-textarea{
     padding: $wd-form-input-padding 0;
     background-color: transparent;
     border: 0;
@@ -37,15 +43,206 @@ input[type="password"]{
     }
     &.wd-input--error{
       border-bottom: 1px solid $wd-input-error-color;
-      color: $wd-input-error-font-color;
       @include box-shadow(0 1px 0 0 $wd-input-error-color);
       &:focus{
         border-bottom-color: $wd-input-error-color;
         @include box-shadow(0 1px 0 0 $wd-input-error-color);
       }
     }
+    &.wd-input--correct{
+      border-bottom: 1px solid $wd-input-correct-color;
+      @include box-shadow(0 1px 0 0 $wd-input-correct-color);
+      &:focus{
+        border-bottom-color: $wd-input-correct-color;
+        @include box-shadow(0 1px 0 0 $wd-input-correct-color);
+      }
+    }
+    &.wd-input-field,&.wd-textarea-field{
+      border: 0;
+      background-image: linear-gradient($wd-form-input-focus-bd-color, $wd-form-input-focus-bd-color), linear-gradient(#D2D2D2, #D2D2D2);
+      background-size: 0 2px, 100% 1px;
+      background-repeat: no-repeat;
+      background-position: center bottom, center calc(100% - 1px);
+      background-color: rgba(0, 0, 0, 0);
+      transition: background .1s ease-out;
+      box-shadow: none;
+      border-radius: 0;
+      &:focus{
+        outline: none;
+        background-image: linear-gradient($wd-form-input-focus-bd-color, $wd-form-input-focus-bd-color), linear-gradient(#D2D2D2, #D2D2D2);
+        background-size: 100% 2px, 100% 1px;
+        box-shadow: none;
+        transition-duration: 0.3s;
+      }
+      &.wd-input--error{
+        background-size: 0 2px, 100% 0;
+        background-image: linear-gradient($wd-input-error-color, $wd-input-error-color), linear-gradient(#D2D2D2, #D2D2D2);
+        @include box-shadow(0 1px 0 0 $wd-input-error-color);
+        &:focus{
+          background-image: linear-gradient($wd-input-error-color, $wd-input-error-color), linear-gradient(#D2D2D2, #D2D2D2);
+        }
+      }
+      &.wd-input--correct{
+        background-size: 0 2px, 100% 0;
+        background-image: linear-gradient($wd-input-correct-color, $wd-input-correct-color), linear-gradient(#D2D2D2, #D2D2D2);
+        @include box-shadow(0 1px 0 0 $wd-input-correct-color);
+        &:focus{
+          background-image: linear-gradient($wd-input-correct-color, $wd-input-correct-color), linear-gradient(#D2D2D2, #D2D2D2);
+        }
+      }
+    }
   }
 }
+select{
+  &.wd-select-browser{
+    background-color: rgba(255,255,255,0.9);
+    padding: 5px;
+    border: 1px solid #e9e9e9;
+    border-radius: 2px;
+    height: $wd-form-input-height;
+  }
+}
+.wd-checkbox,.wd-radio{
+  display: inline-block;
+  position: relative;
+  padding-left: 24px;
+  height: 24px;
+  line-height: 24px;
+  >input[type='radio'],>input[type='checkbox']{
+    position: absolute;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    border: none;
+    -webkit-appearance: none;
+  }
+  >label{
+    &:before,&:after{
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      margin: 4px;
+      box-sizing: border-box;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #5a5a5a;
+      z-index: 2;
+      transition: .3s ease;
+    }
+  }
+}
+.wd-checkbox{
+  >input[type='checkbox']{
+    &:checked + label{
+      &:before{
+        border: 2px solid $wd-form-input-focus-bd-color;
+        background-color: $wd-form-input-focus-bd-color;
+      }
+      &:after{
+        top: 1px;
+        left: 1px;
+        width: 6px;
+        height: 12px;
+        border-top: 2px solid transparent;
+        border-left: 2px solid transparent;
+        border-right: 2px solid #fff;
+        border-bottom: 2px solid #fff;
+        -webkit-transform: rotateZ(37deg);
+        transform: rotateZ(37deg);
+        -webkit-transform-origin: 100% 100%;
+        transform-origin: 100% 100%;
+      }
+    }
+  }
+}
+.wd-radio{
+  >input[type='radio']{
+    &:checked + label{
+      &:before{
+        border: 2px solid $wd-form-input-focus-bd-color;
+      }
+      &:after{
+        border-radius: 50%;
+        border: 2px solid $wd-form-input-focus-bd-color;
+        background-color: $wd-form-input-focus-bd-color;
+        z-index: 0;
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+      }
+    }
+  }
+  >label{
+    &:before,&:after{
+      @include border-radius(50%)
+    }
+  }
+}
+.wd-switch{
+  position: relative;
+  display: inline-block;
+  >label{
+    >input[type='checkbox']{
+      position: absolute;
+      width: 0;
+      height: 0;
+      margin: 0;
+      padding: 0;
+      opacity: 0;
+      border: none;
+      -webkit-appearance: none;
+      &:checked + .wd-switch-lever{
+        background-color: rgba($wd-form-input-focus-bd-color,.2);
+        &:active{
+          &:before{
+            box-shadow: 0 1px 3px 1px rgba($wd-form-input-focus-bd-color,0.4),0 0 0 15px rgba($wd-form-input-focus-bd-color,0.08);
+          }
+        }
+        &:before{
+          left: 26px;
+          background-color: $wd-form-input-focus-bd-color;
+        }
+      }
+    }
+    .wd-switch-lever{
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 16px;
+      margin: 0 16px;
+
+      background-color: #818181;
+      border-radius: 15px;
+      transition: background 0.3s ease-out;
+      vertical-align: middle;
+      &:active{
+        &:before{
+          box-shadow: 0 1px 3px 1px rgba(0,0,0,0.4),0 0 0 15px rgba(0,0,0,0.08);
+        }
+      }
+      &:before{
+        content: "";
+        position: absolute;
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        margin-top: -11px;
+        left: -8px;
+        top: 50%;
+        background-color: #F1F1F1;
+        border-radius: 22px;
+        box-shadow: 0 1px 3px 1px rgba(0,0,0,0.4);
+        transition: left 0.3s ease, background .3s ease, box-shadow 0.1s ease;
+      }
+    }
+  }
+}
+@include setCheckTheme($wd-form-check-orange...);
+@include setCheckTheme($wd-form-check-red...);
+@include setCheckTheme($wd-form-check-positive...);
+@include setCheckTheme($wd-form-check-green...);
 .wd-form-controls{
   overflow: hidden;
   input{
@@ -166,7 +363,8 @@ input[type="password"]{
   }
   .wd-form-fixed-flux{
     margin-left: 180px;
-    input{
+    line-height: $wd-form-input-height;
+    input,select{
       min-width: 220px;
     }
     p{

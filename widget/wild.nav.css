@@ -1,7 +1,6 @@
 .wd-nav {
   width: 100%;
   min-height: 56px;
-  background-color: #FFF;
   z-index: 20;
   zoom: 1; }
   .wd-nav.wd-nav--vertical > li {
@@ -26,7 +25,6 @@
       height: 56px;
       line-height: 56px;
       padding: 0 16px;
-      background-color: #FFF;
       z-index: 20;
       text-align: center;
       color: #212121;
@@ -34,7 +32,7 @@
       .wd-nav > li > a:hover {
         text-decoration: none; }
       .wd-nav > li > a > img {
-        vertical-align: top;
+        vertical-align: middle;
         width: 46px;
         height: 46px;
         margin-top: 5px;
@@ -57,7 +55,6 @@
     z-index: 100;
     padding: 0 15px;
     line-height: 56px;
-    background-color: #FFF;
     border: 1px solid #DADADA;
     border-top: none;
     border-bottom: 1px solid #FFF;
@@ -80,18 +77,6 @@
     .wd-nav .wd-nav-drown .wd-bubble .wd-dropdown {
       border-top-left-radius: 0;
       border-top-right-radius: 0; }
-
-.wd-nav-wrap {
-  position: relative;
-  height: 56px;
-  max-width: 1000px;
-  margin: 0 auto; }
-  .wd-nav-wrap .wd-nav-fixed {
-    position: fixed;
-    max-width: 1000px;
-    width: 100%;
-    z-index: 9999;
-    background-color: #FFF; }
 
 .wd-nav-logo {
   display: block;

@@ -17,10 +17,15 @@
 </head>
 <body>
     <div ng-controller="myInput" class="myInput">
-        <wd-input styles="wd-input wd-input-field"  ng-class="{true : 'wd-input--error'}[isEmpty]" placeholder="please your name!"  ng-model="example.text" name="{{example.text}}" type="text" id="wd-input" ng-change="example.fn()"></wd-input>
+        <wd-input styles="wd-input wd-input-field" select ng-class="{true : 'wd-input--error'}[isEmpty]" placeholder="please your name!"  ng-model="example.text" name="{{example.text}}" type="text" id="wd-input" ng-change="example.fn()"></wd-input>
         <span>输入的值:{{example.text}}</span>
+        <!--<wd-checkbox styles="wd-checkbox&#45;&#45;red" label="相依为命1">-->
+            <!--<wd-input type="checkbox" id="checkbox"></wd-input>-->
+            <!--<wd-checkbox-label></wd-checkbox-label>-->
+        <!--</wd-checkbox>-->
     </div>
     <script src="../../src/angular/ng.input.js"></script>
+    <script src="../../src/angular/ng.checkbox.js"></script>
     <script>
         var app = angular.module('inputDemo',['wd.input']);
         app.controller('myInput',['$scope',function ($scope) {

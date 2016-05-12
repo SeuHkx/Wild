@@ -133,7 +133,7 @@ window.onload = function(){
                 case 2 :
                     hbox.open({
                         id : 'test2',
-                        cssAnimation: ['animated pop'],
+                        cssAnimation: ['animated pop','animated rotateOut'],
                         title:'信仰',
                         width : 600,
                         content:'仍然自问幸福虽说有阵时为你生气</br>其实以前和你互相不懂得死心塌地</br>直到共你渡过多灾世纪',
@@ -158,7 +158,7 @@ window.onload = function(){
                         button : ['北秋悲'],
                         callback : {
                             ok : function () {
-                                hbox.close();
+                                hbox.close('test1');
                             }
                         },
                         drag : true
@@ -170,4 +170,5 @@ window.onload = function(){
     for (;i < buttons.length; i += 1){
         buttonsEvent(buttons[i],i);
     }
+
 };

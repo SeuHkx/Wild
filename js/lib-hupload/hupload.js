@@ -78,6 +78,7 @@
                 this._onAjax();
             }
         },
+        beforeStop : false,
         _init: function () {
             if (checkFile.file && checkFile.form && checkFile.fileReader) {
                 this._onChangeAjax();
@@ -100,10 +101,10 @@
             var maxFileSize = parseInt(this.opts.maxFileSize),
                 KB = /k/gi,
                 MB = /m/gi,
-                i = 0;
-            if(this.opts.beforeUpload !== null && typeof this.opts.beforeUpload === 'function' || this.opts.maxFileSize !== null){
-                this._ajaxFileInfo();
-            }
+                i = 0,
+                beforeStop;
+            this.beforeStop = false;
+            if(this.opts.beforeUpload !== null && typeof this.opts.beforeUpload === 'function' || this.opts.maxFileSize !== null)beforeStop = this._ajaxFileInfo();
             if(this.opts.maxFileSize !== ''){
                 for(; i < this._fileInfo.length; i += 1){
                     switch (this.opts.maxFileSize !== ''){
@@ -130,6 +131,7 @@
                     }
                 }
             }
+            if(beforeStop)return false;
             this._ajaxFormData();
         },
         _fileBeforeData : [],
@@ -156,6 +158,7 @@
             }
             if(this.opts.beforeUpload !== null && typeof this.opts.beforeUpload === 'function')self.opts.beforeUpload(fileInfo,self._fileBeforeData);
             self._fileInfo = fileInfo;
+            if(this.beforeStop)return true;
         },
         _ajaxReadPicture : function(file,index,progress,setData){
             var self = this,
@@ -292,7 +295,6 @@
         },
         _onChangeUpload: function () {
             var wrapper = this.iFrameWrapper = this._templateIFrame();
-            //if(this.opts.beforeUpload !== null && typeof this.opts.beforeUpload === 'function')this.opts.beforeUpload();
             Hupload.utilKit.append(wrapper);
             this.iFrameForm = Hupload.utilKit.$node(cacheID[this.iFrameExpando], 'form');
             this._exchangeFile();

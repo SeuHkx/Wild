@@ -255,7 +255,8 @@
                 callback : null,
                 cssAnimation : [],
                 drag     : false,
-                init     : null
+                init     : null,
+                lock     : true
         };
         this.parent = utils.createNode('div');
         this.shade  = utils.createNode('div');
@@ -280,12 +281,9 @@
         }
         return source;
     };
-
     var methodsBox = {
         _setParentBox : function(){
             this.configs.id !== '' ? configStyle.ID = this.configs.id : configStyle.ID =  configStyle.style.parent + configStyle.count;
-            this.configs.id = configStyle.ID;
-            // this.configs.id !== '' ? HBox.cacheData.singleId = this.configs.id : HBox.cacheData.singleId = null;
             for (var attr in configStyle.parentBox){
                 if(typeof configStyle.parentBox[attr] === 'function'){
                     if(this.configs.width !== null && attr === 'width'){
@@ -362,7 +360,7 @@
         _dragBox : function(){
             var self = this;
             this._dragCache.title     = utils.bindFn(self,self._dragBindTitle);
-            this._dragCache.document = utils.bindFn(self,self._dragBindDocument);
+            this._dragCache.document  = utils.bindFn(self,self._dragBindDocument);
             utils.addEvent(self.parent.children[0],'mousedown',self._dragCache.title);
             utils.addEvent(self.parent.children[0],'mouseup',self._dragCache.document);
         },
@@ -532,7 +530,7 @@
                     break;
             }
             return {
-                close : utils.bindFn(self,self._executive)
+                close : utils.bindFn(self,self._closeBox)
             };
         },
         _closeBox : function(){

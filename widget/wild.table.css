@@ -9,7 +9,7 @@
     border-bottom: 1px solid #DADADA; }
   .wd-table thead > tr > th, .wd-table tbody > tr > td {
     position: relative;
-    padding: 13px 8px;
+    padding: 10px 8px;
     line-height: 1.571; }
   .wd-table.wd-table--striped > tbody tr:nth-of-type(odd) {
     background-color: #F2F2F2; }

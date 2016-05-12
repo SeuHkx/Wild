@@ -14,9 +14,6 @@
   >tbody{
     tr{
       border-bottom: 1px solid $wd-table-border-color;
-      //&:last-child{
-      //  border-bottom: none;
-      //}
     }
   }
   thead > tr > th,tbody > tr >td{
