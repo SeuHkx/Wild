@@ -6,7 +6,6 @@ window.onload = function () {
     var view = document.getElementById('view');
     var source = document.getElementById('tplDemo').innerHTML;
     var tpl  = sugarTpl(source);
-
     btn.onclick = function(){
         tpl.compile(json,function(tpl){
             view.innerHTML = tpl;

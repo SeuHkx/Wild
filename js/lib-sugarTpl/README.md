@@ -34,7 +34,7 @@
 ```
 
 ### API
-* `sugarTpl(template)`
+* `sugarTpl(template,argument)`   第二个参数用于修改变量表达式默认为${},可以修改为arguments{}  
 * `sugarTpl(template).compile(json,fn)`
 
 ```javascript

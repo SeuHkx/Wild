@@ -28,8 +28,15 @@
             variant       : /\$\{([\s\S]*?)\}/g,
             variantExp    : /^\${|}/g
         },
-        SugarTemplate = function (str) {
+        SugarTemplate = function (str,config) {
+            if(typeof config !== 'undefined' && typeof config === 'string'){
+                var variant    = new RegExp(config + '\\{([\\s\\S]*?)\\}','g'),
+                    variantExp = new RegExp('^'+config+'{|}','g');
+                sugarTemplateSettings.variant = variant;
+                sugarTemplateSettings.variantExp = variantExp;
+            }
             this.template = str.replace(/(^\s+)|(\s+$)/g, '');
+
         };
     SugarTemplate.fn = SugarTemplate.prototype;
 
@@ -66,7 +73,7 @@
              * @type {string|XML}
              */
             template = this.template.replace(/\{+\{/g, '{').replace(/\}\}+/g, '}').replace(/\\/g, '\\\\').replace(/(?="|')/g,'\\')
-                .replace(/(\}@\/\w+\})(\s)(\{@\w+\{)/g,'$1$3')
+                .replace(/(\}@\/\w+\})(\s)(\{@\w+)(\s)(\{)/g,'$1$3$5')
                 .replace(exp.tagStart, '";$1')
                 .replace(exp.connection,function (code) {
                     code = code.replace(exp.tagConnection,'"$1$2$3');
@@ -117,9 +124,9 @@
      * @param str
      * @returns {*}
      */
-    sugarTemplate = function (str) {
+    sugarTemplate = function (str,config) {
         if (str === '' || typeof str !== 'string')return false;
-        return new SugarTemplate(str);
+        return new SugarTemplate(str,config);
     };
     return sugarTemplate;
 });
