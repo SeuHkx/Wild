@@ -86,9 +86,7 @@
                     return '"+' + code.replace(/\\/g, '') + '+"';
                 })
                 .replace(/[\r\n\t]/g, ' ');
-
             template = ' "use strict"; var sugarBuildTemplate = "' + template + '"; return sugarBuildTemplate;';
-            console.log(template);
             try {
                 this._cache = templateEngine = new Function('data', template);
                 return templateEngine(data);
