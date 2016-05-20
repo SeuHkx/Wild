@@ -329,7 +329,12 @@ select{
     display: inline-block;
     *display: inline;
     zoom: 1;
+    >label{
+      min-width: 48px;
+      *widthe : 48px;
+    }
     >input{
+      margin-left: 8px;
       display: inline-block;
       *display: inline;
       zoom: 1;

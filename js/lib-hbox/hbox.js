@@ -99,8 +99,10 @@
                 return document.getElementById(id);
             }
             for(; i < l ; i += 1){
-                if(this.$hasClass(elements[i],klass)){
-                    els.push(elements[i]);
+                if(elements[i].className === klass && elements[i].className !== ''){
+                    if(this.$hasClass(elements[i],klass)){
+                        els.push(elements[i]);
+                    }
                 }
             }
             return els;

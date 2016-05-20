@@ -405,7 +405,11 @@ select.wd-select-browser {
     display: inline-block;
     *display: inline;
     zoom: 1; }
+    .wd-form-group.wd-form-group--inline > label {
+      min-width: 48px;
+      *widthe: 48px; }
     .wd-form-group.wd-form-group--inline > input {
+      margin-left: 8px;
       display: inline-block;
       *display: inline;
       zoom: 1;

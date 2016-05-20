@@ -3,38 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <title>htpl</title>
-    <link rel="stylesheet" href="../../dist/Wild.min.css"/>
+    <title>sugarTpl</title>
+    <link rel="stylesheet" href="dist/Wild.min.css"/>
 </head>
 <body>
 <div class="view" id="view"></div>
-<!--<div class="" id="chart"></div>-->
 <a class="wd-button wd-button--blue" id="button">开始执行模版</a>
 <script src="sugarTpl.js"></script>
 <script src="data.js"></script>
 <script src="index.js"></script>
-<script id="tplDemo" type="text/html">
+<script type="text/html" id="tplDemo">
     <h4>${json.title}</h4>
     <ul>
         {@for(var i = 0, l = json.list.length; i < l ; i += 1){
             {@if (i===0){
-                <li style="color: red;">
-                    <span>${json.list[i].name}</span>
-                    <span>${json.list[i].song}</span>
+                <li>
+                    <span class="wd-badge wd-badge--blue"><i>${json.list[i].name}</i></span>
+                    <span class="wd-badge wd-badge--blue"><i>${json.list[i].song}</i></span>
                 </li>
             }@/if}{@else{
-                {@if(i===1){
-                    <div style="color: mediumblue">${i}</div>
-                }@/if}{@else{
-                    <div style="color: brown">${i}</div>
-                }@/else}
                 <li>
-                    <span>${json.list[i].name}</span>
-                    <span>${json.list[i].song}</span>
+                    <span class="wd-badge wd-badge--red"><i>${json.list[i].name}</i></span>
+                    <span class="wd-badge wd-badge--red"><i>${json.list[i].song}</i></span>
                 </li>
             }@/else}
         }@/for}
-    </ul>
+     </ul>
+
+    {@for(var j = 0 , len = json.list.length; j < len ; j += 1){
+        <span class="wd-badge wd-badge--blue">
+            <i>${json.list[j].name}</i>
+        </span>
+    }@/for}
 </script>
 </body>
 </html>
