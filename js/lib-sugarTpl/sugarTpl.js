@@ -26,7 +26,11 @@
             sentenceStart : /\{@(.\w+.+)/g,
             sentenceEnd   : /\}@\/\w+./g,
             variant       : /\$\{([\s\S]*?)\}/g,
-            variantExp    : /^\${|}/g
+            variantExp    : /^\${|}/g,
+            codeExp       : function (exp) {
+                return new RegExp(exp + '\\.','g');
+            },
+            codeExpCache  : null
         },
         SugarTemplate = function (str,config) {
             if(typeof config !== 'undefined' && typeof config === 'string'){
@@ -66,7 +70,7 @@
         _parser: function (data) {
             var templateEngine,
                 template,
-                exp = sugarTemplateSettings;
+                exp = sugarTemplateSettings,
             /**
              * 
              * @type {string|XML}
@@ -91,9 +95,11 @@
                 })
                 .replace(exp.evaluate,'')
                 .replace(exp.variant, function (code) {
-                    code = code.replace(exp.variantExp, '');
+                    code  = code.replace(exp.variantExp, '');
+                    exp.codeExpCache = code.split('.')[0];
                     return '"+' + code.replace(/\\/g, '') + '+"';
                 })
+                .replace(exp.codeExp(exp.codeExpCache),'data.')
                 .replace(/[\r\n\t]/g, ' ');
             template = ' "use strict"; var sugarBuildTemplate = "' + template + '"; return sugarBuildTemplate;';
             try {
