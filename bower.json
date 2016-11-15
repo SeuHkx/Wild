@@ -1,0 +1,21 @@
+{
+  "name": "Wild",
+  "description": "css ui component",
+  "main": "wild.min.css",
+  "authors": [
+    "hkx <990565670@qq.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "css",
+    "ui"
+  ],
+  "homepage": "https://github.com/SeuHkx/Wild",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

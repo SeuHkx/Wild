@@ -1,0 +1,9 @@
+{
+  "name":{
+    "gulp-autoprefixer": "prefix",
+    "gulp-clean-css": "mini",
+    "gulp-rename": "rename",
+    "gulp-sass": "sass",
+    "gulp-util": "util"
+  }
+}

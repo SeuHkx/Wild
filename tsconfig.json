@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "jsx": "preserve",
+    "rootDir": "./components",
+    "outDir": "./build"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

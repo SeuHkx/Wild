@@ -1,0 +1,33 @@
+{
+  "name": "Wild",
+  "version": "0.0.2",
+  "scripts": {
+    "test": "mocha ./build/test",
+    "build-jsx": "rm -rf && tsc --pretty",
+    "lint": "tslint components/**/*.ts"
+  },
+  "dependencies": {
+    "@types/react": "^0.14.48",
+    "@types/react-dom": "^0.14.18",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
+  },
+  "devDependencies": {
+    "@types/classnames": "^0.0.32",
+    "babel": "^6.5.2",
+    "babel-core": "^6.18.2",
+    "babel-eslint": "^7.1.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-register": "^6.18.0",
+    "classnames": "^2.2.5",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean-css": "^2.0.13",
+    "gulp-load-plugins": "^1.4.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-util": "^3.0.7"
+  }
+}
