@@ -1,14 +1,5 @@
-## [Wild CSS](https://github.com/SeuHkx/Wild "Wild CSS")
+## [Wild](https://github.com/SeuHkx/Wild "Wild")
+--
+> A Simple and Fast ,Modern CSS UI Framework
 
-基于谷歌Material-Design设计语言结合实际应用情况而诞生的超轻量级CSS框架。丰满健壮的组件以及灵活的定制性，跨屏幕的响应式、低耦合的设计。良好的兼容性，模块式的管理，让你更快速的搭建一个，漂亮，美观，跨屏幕的响应式应用。
-
-+ 响应式
-+ 兼容性高(支持无耻的IE7:joy:)
-+ 定制性高、轻量级
-+ 极其简单的结构
-+ 组件之间的相互嵌套与结合
-+ 更漂亮,美观,时尚
-
-
-
-##正在更行中......
+###coming soon......
