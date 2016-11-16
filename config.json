@@ -4,6 +4,7 @@
     "gulp-clean-css": "mini",
     "gulp-rename": "rename",
     "gulp-sass": "sass",
-    "gulp-util": "util"
+    "gulp-util": "util",
+    "gulp-sass-lint": "sassLint"
   }
 }

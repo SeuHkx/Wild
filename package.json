@@ -1,9 +1,10 @@
 {
   "name": "Wild",
   "version": "0.0.2",
+  "sasslintConfig": "./sass-lint.yml",
   "scripts": {
     "test": "mocha ./build/test",
-    "build-jsx": "rm -rf && tsc --pretty",
+    "build-jsx": "rm -rf ./build && tsc --pretty",
     "lint": "tslint components/**/*.ts"
   },
   "dependencies": {
@@ -28,6 +29,10 @@
     "gulp-load-plugins": "^1.4.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.2",
-    "gulp-util": "^3.0.7"
+    "gulp-sass-lint": "^1.3.2",
+    "gulp-util": "^3.0.7",
+    "sass-lint": "^1.10.2",
+    "source-map-loader": "^0.1.5",
+    "ts-loader": "^1.2.1"
   }
 }
