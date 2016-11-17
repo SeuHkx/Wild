@@ -5,6 +5,7 @@
 import gulp from 'gulp';
 import gulpPlugins from 'gulp-load-plugins';
 import path from 'path';
+import browserSync from 'browser-sync';
 import * as config from './config';
 import * as packageJson from './package';
 
@@ -18,6 +19,16 @@ const opts = {
 const sassLintConfig = {
   configFile: '/.sass-lint.yml'
 };
+const AUTO_PREFIXER = [
+  'last 2 version',
+  'safari 5',
+  'ie 8',
+  'ie 9',
+  'opera 12.1',
+  'ios 6',
+  'android 4'
+];
+const BROWSER_PORT = 3333;
 const file = {
   changeFile(event){
     return path.dirname(event.path) + '/' + path.basename(event.path);
@@ -34,9 +45,9 @@ const file = {
     return false;
   }
 };
+const bs = browserSync.create();
 const plugins = gulpPlugins(opts);
-
-gulp.task('sass', () => {
+gulp.task('sass',['minify'],() => {
   const watcher = gulp.watch('sass/**/*.scss', event => {
     let compile;
     if (event.type === 'changed' || event.type === 'added') {
@@ -47,42 +58,74 @@ gulp.task('sass', () => {
         .pipe(plugins.sassLint.failOnError())
         .pipe(plugins.sass().on('error', plugins.sass.logError))
         .pipe(plugins.prefix({
-          browsers: [
-            'last 2 version', 'safari 5', 'ie 8',
-            'ie 9', 'opera 12.1', 'ios 6', 'android 4'
-          ],
+          browsers: AUTO_PREFIXER,
           cascade: true
         }));
       return compile;
     }
   });
-  watcher.on('change', (event) => {
+  watcher.on('change',(event) => {
     if (event.type === 'changed') {
       plugins.util.log(
-        plugins.util.colors.magenta('😂 Being compiled😝:'),
+        plugins.util.colors.magenta.bold('😂 Being compiled😝:'),
         plugins.util.colors.bgMagenta.bold(path.basename(event.path))
       );
     }
-  })
+  });
+  gulp.watch('sass/**/*.scss',['minify']);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+gulp.task('minify',()=>{
+  return gulp.src('sass/wild.scss')
+    .pipe(plugins.sass().on('error',plugins.sass.logError))
+    .pipe(plugins.prefix({
+      browsers: [
+        'last 2 version', 'safari 5', 'ie 8',
+        'ie 9', 'opera 12.1', 'ios 6', 'android 4'
+      ],
+      cascade: false
+    }))
+    .pipe(gulp.dest('dist/'))
+    .pipe(plugins.rename({
+      suffix : '.min'
+    }))
+    .pipe(plugins.cleanCSS(
+      {
+        compatibility: 'ie8',
+        debug: true
+      },(details)=>{
+        plugins.util.log(
+          plugins.util.colors.magenta('Before' + details.name + ':') + plugins.util.colors.bgMagenta.bold(Math.floor(details.stats.originalSize/1024) + 'KB'),
+          plugins.util.colors.magenta('After ' + details.name + ':') + plugins.util.colors.bgMagenta.bold(Math.floor(details.stats.minifiedSize/1024) + 'KB')
+        );
+    }))
+    .pipe(gulp.dest('dist/'))
+});
+gulp.task('serve',()=>{
+  bs.init({
+    server:{
+      baseDir : './'
+    },
+    port : BROWSER_PORT
+  });
+  gulp.watch('./docs/**/*.pug',['pug']);
+  gulp.watch('./docs/**/*.html').on('change', bs.reload);
+});
+gulp.task('pug',()=>{
+  return plugins.$w('docs/**/*.pug',event=>{
+    let dist = path.dirname(event.path);
+    gulp.src(file.changeFile(event))
+      .pipe(plugins.plumber())
+      .pipe(plugins.pug({
+        doctype: 'html'
+      }))
+      .pipe(plugins.rename({
+        basename: 'index'
+      }))
+      .pipe(gulp.dest(dist))
+      .pipe(bs.stream({once: true}));
+    plugins.util.log(
+      plugins.util.colors.magenta.bold('😂 Being compiled pug 😝 😝:'),
+      plugins.util.colors.bgMagenta.bold(path.basename(event.path))
+    );
+  });
+});

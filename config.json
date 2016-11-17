@@ -1,10 +1,13 @@
 {
   "name":{
     "gulp-autoprefixer": "prefix",
-    "gulp-clean-css": "mini",
+    "gulp-clean-css": "cleanCSS",
     "gulp-rename": "rename",
     "gulp-sass": "sass",
     "gulp-util": "util",
-    "gulp-sass-lint": "sassLint"
+    "gulp-sass-lint": "sassLint",
+    "gulp-pug": "pug",
+    "gulp-watch": "$w",
+    "gulp-plumber": "plumber"
   }
 }
