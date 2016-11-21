@@ -1,0 +1,5 @@
+{
+  "name": "txhui",
+  "version": "0.0.1",
+  "start": "node ./app/bin/www"
+}

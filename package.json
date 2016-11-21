@@ -4,8 +4,10 @@
   "sasslintConfig": "./sass-lint.yml",
   "scripts": {
     "test": "mocha ./build/test",
-    "build-jsx": "rm -rf ./build && tsc --pretty",
-    "lint": "tslint components/**/*.ts"
+    "build:tsx": "rm -rf ./build && tsc --pretty",
+    "tslint": "tslint components/**/*.ts",
+    "dev:ui": "gulp",
+    "build:ts": "./node_modules/.bin/webpack"
   },
   "dependencies": {
     "@types/react": "^0.14.48",
@@ -14,7 +16,13 @@
     "react-dom": "^15.3.2"
   },
   "devDependencies": {
+    "@types/chalk": "^0.4.31",
     "@types/classnames": "^0.0.32",
+    "@types/koa": "^2.0.34",
+    "@types/koa-bodyparser": "^3.0.20",
+    "@types/koa-router": "^7.0.21",
+    "@types/koa-static": "^2.0.21",
+    "@types/node": "^6.0.48",
     "babel": "^6.5.2",
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.0",
@@ -23,7 +31,11 @@
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.18.0",
     "browser-sync": "^2.18.1",
+    "chalk": "^1.1.3",
     "classnames": "^2.2.5",
+    "eslint": "^3.10.2",
+    "eslint-config-google": "^0.7.0",
+    "eslint-plugin-react": "^6.7.1",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-clean-css": "^2.0.13",
@@ -33,12 +45,22 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.2",
     "gulp-sass-lint": "^1.3.2",
+    "gulp-tslint": "^6.1.3",
+    "gulp-typescript": "^3.1.3",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.10",
+    "koa": "^2.0.0",
+    "koa-bodyparser": "^2.3.0",
+    "koa-router": "^5.4.0",
+    "koa-static": "^2.0.0",
+    "nodemon": "^1.11.0",
     "pug": "^2.0.0-beta6",
     "sass-lint": "^1.10.2",
     "source-map-loader": "^0.1.5",
     "ts-loader": "^1.2.1",
-    "typescript": "^2.0.10"
+    "ts-node": "^1.7.0",
+    "tslint": "^3.15.1",
+    "typescript": "^2.0.10",
+    "webpack": "^1.13.3"
   }
 }

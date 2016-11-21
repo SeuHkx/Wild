@@ -47,6 +47,7 @@ const file = {
 };
 const bs = browserSync.create();
 const plugins = gulpPlugins(opts);
+const ts = plugins.ts.createProject('tsconfig.json');
 gulp.task('sass',['minify'],() => {
   const watcher = gulp.watch('sass/**/*.scss', event => {
     let compile;
@@ -60,7 +61,8 @@ gulp.task('sass',['minify'],() => {
         .pipe(plugins.prefix({
           browsers: AUTO_PREFIXER,
           cascade: true
-        }));
+        }))
+        .pipe(bs.stream());
       return compile;
     }
   });
@@ -100,32 +102,58 @@ gulp.task('minify',()=>{
     }))
     .pipe(gulp.dest('dist/'))
 });
-gulp.task('serve',()=>{
+gulp.task('serve',['pug'],()=>{
   bs.init({
     server:{
-      baseDir : './'
+      baseDir : './',
+      index :'./docs/index.html',
+      routes: {
+        '/docs': 'docs'
+      }
     },
     port : BROWSER_PORT
   });
-  gulp.watch('./docs/**/*.pug',['pug']);
+  gulp.watch('./docs/**/*.pug',['pug:watch']);
+  gulp.watch('./sass/**/*.scss',['sass']);
+  gulp.watch('./dist/**/*.css').on('change',bs.reload);
   gulp.watch('./docs/**/*.html').on('change', bs.reload);
 });
 gulp.task('pug',()=>{
+  return gulp.src('docs/**/*.pug')
+    .pipe(plugins.plumber())
+    .pipe(plugins.pug({
+      doctype: 'html',
+      pretty : true
+    }))
+    .pipe(plugins.rename({
+      basename : 'index'
+    }))
+    .pipe(gulp.dest('docs/'))
+    .pipe(bs.stream());
+});
+gulp.task('pug:watch',()=>{
   return plugins.$w('docs/**/*.pug',event=>{
     let dist = path.dirname(event.path);
     gulp.src(file.changeFile(event))
       .pipe(plugins.plumber())
       .pipe(plugins.pug({
-        doctype: 'html'
+        doctype: 'html',
+        pretty : true
       }))
       .pipe(plugins.rename({
         basename: 'index'
       }))
       .pipe(gulp.dest(dist))
-      .pipe(bs.stream({once: true}));
+      .pipe(bs.stream());
     plugins.util.log(
       plugins.util.colors.magenta.bold('😂 Being compiled pug 😝 😝:'),
       plugins.util.colors.bgMagenta.bold(path.basename(event.path))
     );
   });
 });
+gulp.task('ts',()=>{
+  return ts.src()
+    .pipe(ts())
+    .js.pipe(gulp.dest('build'));
+});
+gulp.task('default',['serve']);

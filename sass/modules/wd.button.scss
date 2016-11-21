@@ -1,12 +1,8 @@
-@import "../variables/var.button";
-$ns : 'wd' !default;
+@import '../variables/var.button';
+$ns : '.wd' !default;
 #{$ns}-button{
   color: $color;
   &--blue{
     color: $color;
   }
 }
-
-
-
-

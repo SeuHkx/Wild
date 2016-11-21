@@ -1,33 +1,9 @@
-import React,{Component} from 'react';
-import classname from 'classnames';
+import * as React from "react";
 
-export type ButtonType = 'primary' | 'ghost' | 'dashed'
-export type ButtonShape = 'circle' | 'circle-outline'
-export type ButtonSize = 'small' | 'large'
+export interface HelloProps { compiler: string; framework: string; }
 
-export interface ButtonProps {
-	type?: ButtonType;
-	htmlType?: string;
-	icon?: string;
-	shape?: ButtonShape;
-	size?: ButtonSize;
-	onClick?: React.FormEventHandler<any>;
-	onMouseUp?: React.FormEventHandler<any>;
-	loading?: boolean;
-	disabled?: boolean;
-	style?: React.CSSProperties;
-	prefixCls?: string;
-	className?: string;
+export class Hello extends React.Component<HelloProps, {}> {
+  render() {
+    return <h1>Hello from {this.props.compiler} and {this.props.framework}!</h1>;
+  }
 }
-
-export default class Button extends Component<ButtonProps, any>{
-	render(){
-		return (
-			<button>
-				test
-			</button>
-		);
-	}
-}
-
-

@@ -4,11 +4,12 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "noImplicitAny": true,
-    "jsx": "preserve",
+    "jsx": "react",
     "rootDir": "./components",
     "outDir": "./build"
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "site"
   ]
 }

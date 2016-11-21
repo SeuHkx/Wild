@@ -8,6 +8,7 @@
     "gulp-sass-lint": "sassLint",
     "gulp-pug": "pug",
     "gulp-watch": "$w",
-    "gulp-plumber": "plumber"
+    "gulp-plumber": "plumber",
+    "gulp-typescript": "ts"
   }
 }
