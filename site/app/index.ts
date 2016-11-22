@@ -1,13 +1,13 @@
 /**
  * Created by hkx on 2016/11/17.
  */
-import * as Koa from 'koa';
+import Server from './txh';
+import * as chalk from 'chalk';
 
-const app = new Koa();
+const port:number = 3000;
+const app = Server.init().app;
 
-app.use(async (ctx:Koa.Context)=>{
-  ctx.body = 'hi koa2!'
+app.listen(port,()=>{
+	console.log(chalk.white.bgMagenta.bold(`Listening on port ${port}`));
 });
-app.listen(3000,()=>{
-  console.log('start serve!')
-});
+

@@ -1,5 +1,4 @@
 {
   "name": "txhui",
-  "version": "0.0.1",
-  "start": "node ./app/bin/www"
+  "version": "1.0.0"
 }
