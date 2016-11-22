@@ -1,4 +1,26 @@
 {
   "name": "txhui",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "scripts": {
+      "start": "tsc init && npm install"
+  },
+  "devDependencies": {
+    "@types/chalk": "^0.4.31",
+    "@types/classnames": "^0.0.32",
+    "@types/koa": "^2.0.34",
+    "@types/koa-bodyparser": "^3.0.20",
+    "@types/koa-router": "^7.0.21",
+    "@types/koa-static": "^2.0.21",
+    "@types/node": "^6.0.48",
+    "@types/pug": "^2.0.3",
+    "koa": "^2.0.0",
+    "koa-bodyparser": "^2.3.0",
+    "koa-router": "^7.0.1",
+    "koa-static": "^2.0.0",
+    "nodemon": "^1.11.0",
+    "pug": "^2.0.0-beta6",
+    "ts-node": "^1.7.0",
+    "typescript": "^2.0.10",
+    "webpack": "^1.13.3"
+  }
 }
