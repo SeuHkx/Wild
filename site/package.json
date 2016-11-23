@@ -2,7 +2,9 @@
   "name": "txhui",
   "version": "1.0.0",
   "scripts": {
-      "start": "tsc init && npm install"
+    "init": "./node_modules/.bin/tsc --init",
+    "start": "npm install && ./node_modules/.bin/tsc --init && ts-node ./app/index.ts",
+    "dev": "nodemon -w ./app/ -x ts-node ./app/index.ts"
   },
   "devDependencies": {
     "@types/chalk": "^0.4.31",
@@ -13,12 +15,19 @@
     "@types/koa-static": "^2.0.21",
     "@types/node": "^6.0.48",
     "@types/pug": "^2.0.3",
+    "@types/socket.io": "^1.4.27",
+    "@types/webpack": "^2.0.0",
     "koa": "^2.0.0",
     "koa-bodyparser": "^2.3.0",
     "koa-router": "^7.0.1",
     "koa-static": "^2.0.0",
+    "babel-polyfill": "^6.16.0",
     "nodemon": "^1.11.0",
+    "pm2": "^2.1.5",
     "pug": "^2.0.0-beta6",
+    "socket.io": "^1.6.0",
+    "source-map-loader": "^0.1.5",
+    "ts-loader": "^1.2.1",
     "ts-node": "^1.7.0",
     "typescript": "^2.0.10",
     "webpack": "^1.13.3"

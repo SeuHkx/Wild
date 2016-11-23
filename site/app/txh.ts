@@ -6,8 +6,6 @@ import * as serve from 'koa-static';
 import * as bodyParser from 'koa-bodyparser';
 import router from './routes';
 
-
-
 export default class Server{
 	public app:Koa;
 	public static init():Server{
@@ -19,7 +17,7 @@ export default class Server{
 		this.routes();
 	}
 	public config(){
-		this.app.use(serve(__dirname + '/client/public'))
+		this.app.use(serve(__dirname + '/client/public'));
 	}
 	private routes(){
 		this.app
