@@ -47,7 +47,11 @@ const file = {
 };
 const bs = browserSync.create();
 const plugins = gulpPlugins(opts);
-const ts = plugins.ts.createProject('tsconfig.json');
+const ts = plugins.ts.createProject('tsconfig.json',{
+    target: 'es5',
+    rootDir: './components',
+    outDir: './build'
+});
 gulp.task('sass',['minify'],() => {
   const watcher = gulp.watch('sass/**/*.scss', event => {
     let compile;

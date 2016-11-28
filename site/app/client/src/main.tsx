@@ -1,12 +1,32 @@
 /**
  * Created by hkx on 2016/11/23.
  */
+declare const io:any;
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 
-export interface HelloProps { compiler: string; framework: string; }
+import Loading from './loading';
+import Footer  from './footer';
+import socket from './socket';
 
-export class Hello extends React.Component<HelloProps, {}> {
-	render() {
-		return <h1>Hello Kitty</h1>;
-	}
-}
+const App:React.StatelessComponent<any> = ():any=>(
+	<div>
+		<Loading leftFlag="{" rightFlag="}" loadingText="正在开发中"/>
+	</div>
+);
+
+ReactDOM.render(<App/>,document.getElementById('app'));
+socket(io,'http://localhost:3333');
+
+
+
+
+
+
+
+
+
+
+
+
+

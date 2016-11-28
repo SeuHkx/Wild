@@ -2,20 +2,10 @@ extends common/_layout
 block title
     title 同学会
 block link
-    link(rel='stylesheet' href='/css/loading.css')
+    link(rel='stylesheet' href='public/css/loading.css')
 block content
     #app
-        .loader
-            div.loader-wrap
-                span.loader-span.loader-first {
-                span.loader-text 正在开发中
-                span.loader-span.loader-last }
     script(src='/socket.io/socket.io.js')
     script(src='/dist/main.bundle.js')
-    script.
-        var socket = io('http://192.168.7.103:3000');
-        socket.emit('come in', 'user');
-        socket.on('come in',function (data) {
-            console.log(data);
-        })
+
 

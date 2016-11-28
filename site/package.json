@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "init": "./node_modules/.bin/tsc --init",
-    "start": "npm install && ./node_modules/.bin/tsc --init && ts-node ./app/index.ts",
-    "dev": "nodemon -w ./app/ -x ts-node ./app/index.ts"
+    "start": "npm install && npm run init && ts-node ./app/index.ts",
+    "dev": "nodemon -w ./app/ -x ts-node ./app/index.ts",
+    "server":"./node_modules/.bin/gulp server"
   },
   "devDependencies": {
     "@types/chalk": "^0.4.31",
@@ -30,6 +31,8 @@
     "ts-loader": "^1.2.1",
     "ts-node": "^1.7.0",
     "typescript": "^2.0.10",
-    "webpack": "^1.13.3"
+    "webpack": "^1.13.3",
+    "gulp-webpack": "^1.5.0",
+    "gulp-typescript": "^3.1.3"
   }
 }

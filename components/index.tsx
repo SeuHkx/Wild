@@ -1,9 +1,5 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import Button from "./button/button";
 
-import { Hello } from "./button/button";
+import Form from './form/form'
 
-ReactDOM.render(
-  <Hello compiler="TypeScript" framework="React" />,
-  document.getElementById("example")
-);
+import Nav from './nav/nav';

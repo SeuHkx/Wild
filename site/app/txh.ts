@@ -17,7 +17,7 @@ export default class Server{
 		this.routes();
 	}
 	public config(){
-		this.app.use(serve(__dirname + '/client/public'));
+		this.app.use(serve(__dirname + '/client/'));
 	}
 	private routes(){
 		this.app

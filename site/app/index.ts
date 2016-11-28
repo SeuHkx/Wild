@@ -5,7 +5,7 @@ import Server from './txh';
 import Socket from './socket';
 import * as chalk from 'chalk';
 
-const port:number = 3000;
+const port:number = 3333;
 const app = Server.init().app;
 const server = app.listen(port,()=>{
 	console.log(chalk.white.bgMagenta.bold(`Listening on port ${port}`));

@@ -7,7 +7,7 @@ const path = require('path');
 module.exports = {
     entry : {
         main: [
-            './app/client/src/main.ts'
+            './app/client/build/src/main.js'
         ]
     },
     output: {
@@ -21,5 +21,9 @@ module.exports = {
         loaders: [
             { test: /\.tsx?$/, loader: './../node_modules/ts-loader' }
         ]
-    }
+    },
+    externals: {
+        'react': 'React',
+        'react-dom': 'ReactDOM'
+    },
 };

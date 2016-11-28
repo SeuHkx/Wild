@@ -7,4 +7,7 @@ import action from './../controllers/'
 const router = new Router();
 
 router.get('/',action.index);
+
+
+
 export default router;
