@@ -1,0 +1,26 @@
+//browser
+$browser-default-font-size          :         16    !default;
+
+//tap
+$tap-highlight-color                :         rgba(255, 255, 255, 0) !default;
+
+//base
+$html-font-family                   :         "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif !default;
+$html-font-size-percentage          :         62.5%   !default;
+$html-font-size-default             :         $browser-default-font-size * $html-font-size-percentage   !default;
+
+$html-font-set-size                 :         100px   !default;
+
+//body
+$body-font-size-default             :         12px    !default;
+
+//selection
+$selection-bg-color                 :         #b3d4fc !default;
+
+//shadow
+
+$shadow-key-umbra-opacity           :         0.2     !default;
+$shadow-key-penumbra-opacity        :         0.14    !default;
+$shadow-ambient-shadow-opacity      :         0.12    !default;
+
+

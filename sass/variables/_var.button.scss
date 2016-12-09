@@ -1,2 +1,26 @@
-$color : #222 !default;
+$btn-radius                 :                 2px   !default;
+$btn-font-size              :                 14px  !default;
 
+$btn-height                 :                 36px  !default;
+$btn-line-height            :                 $btn-height !default;
+
+$btn-min-width              :                 64px  !default;
+
+$btn-paddingLR              :                 16px  !default;
+
+$btn-hover-bg-color         :                 rgba(158,158,158,.2)  !default;
+$btn-hover-bg-color-c       :                 #ececec !default;
+
+$btn-active-bg-color        :                 rgba(158,158,158,.4)  !default;
+$btn-active-bg-color-c      :                 #D5D5D5 !default;
+
+$btn-font-color             :                 #000    !default;
+
+$btn-disabled-bg-color      :                 transparent !default;
+$btn-disabled-color         :                 rgba(0,0,0,.26) !default;
+$btn-disabled-color-c       :                 #c3c3c3 !default;
+
+$btn-primary-bg-color       :                 #3f51b5 !default;
+$btn-primary-color          :                 #fff    !default;
+
+$btn-primary-default-color  :                 $btn-primary-bg-color !default;

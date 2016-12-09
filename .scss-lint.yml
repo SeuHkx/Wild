@@ -5,11 +5,11 @@ files:
   include:
     - 'sass/modules/*.s+(a|c)ss'
     - 'sass/layout/*.s+(a|c)ss'
+    - 'sass/wild.scss'
   ignore:
     - 'sass/mixins/*.scss'
-    - 'sass/function/*.scss'
+    - 'sass/variables/*.scss'
     - 'sass/core/*.scss'
-rules:
 rules:
   # Extends
   extends-before-mixins: 1

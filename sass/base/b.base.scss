@@ -1,0 +1,144 @@
+@import '../mixins/mixin';
+
+* {
+  @include box-sizing(border-box);
+  @include tap-highlight();
+  &:before,
+  &:after {
+    @extend *;
+  }
+}
+
+html {
+  font-family: $html-font-family;
+  font-size: $html-font-set-size;
+  line-height: 1.4;
+  touch-action: manipulation;
+}
+
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  @include font-size($body-font-size-default);
+}
+
+
+::selection {
+  background: $selection-bg-color;
+  text-shadow: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 ,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+input,
+button,
+select,
+textarea {
+  margin: 0;
+  vertical-align: middle;
+}
+
+body, button, input, select, textarea, strong, p, span, small{
+  font-family: $html-font-family;
+}
+
+input,
+textarea,
+button {
+  outline: none;
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+
+button,
+input[type='button'],
+input[type='reset'],
+input[type='submit'],
+select {
+  cursor: pointer;
+}
+
+button,
+input[type='button'],
+input[type='reset'],
+input[type='submit'] {
+  @include appearance(button);
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+a[href]:hover {
+  cursor: pointer;
+}
+
+a,
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+
+b,
+strong {
+  font-weight: bold;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+menu,
+nav,
+section {
+  display: block;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+img ,
+iframe {
+  border: none;
+  -webkit-user-drag: none;
+}

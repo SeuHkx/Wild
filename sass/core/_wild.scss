@@ -1,5 +1,33 @@
-@import "../base/b.normalize",
-        "../base/b.base",
+@import '../namespace/namespace',
+        '../theme/theme.default',
 
-        "../modules/wd.form",
-        "../modules/wd.button";
+        '../variables/var.form',
+        '../variables/var.button',
+        '../variables/var.badge',
+        '../variables/var.pagination',
+        '../variables/var.dropdown',
+        '../variables/var.img',
+        '../variables/var.tab',
+        '../variables/var.table',
+        '../variables/var.triangle',
+        '../variables/var.nav',
+        '../variables/var.media',
+
+        '../base/b.normalize',
+        '../base/b.base',
+        '../base/b.typography',
+
+        '../layout/l.layout',
+        '../utils/u.utils',
+
+        '../modules/wd.form',
+        '../modules/wd.button',
+        '../modules/wd.badge',
+        '../modules/wd.pagination',
+        '../modules/wd.dropdown',
+        '../modules/wd.img',
+        '../modules/wd.tab',
+        '../modules/wd.table',
+        '../modules/wd.triangle',
+        '../modules/wd.nav',
+        '../modules/wd.media';
