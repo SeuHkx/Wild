@@ -1,10 +1,11 @@
+$btn                        :                '$btn' !default;
 $btn-radius                 :                 2px   !default;
 $btn-font-size              :                 14px  !default;
 
 $btn-height                 :                 36px  !default;
 $btn-line-height            :                 $btn-height !default;
 
-$btn-min-width              :                 64px  !default;
+$btn-min-width              :                 46px  !default;
 
 $btn-paddingLR              :                 16px  !default;
 
@@ -20,7 +21,32 @@ $btn-disabled-bg-color      :                 transparent !default;
 $btn-disabled-color         :                 rgba(0,0,0,.26) !default;
 $btn-disabled-color-c       :                 #c3c3c3 !default;
 
-$btn-primary-bg-color       :                 #3f51b5 !default;
-$btn-primary-color          :                 #fff    !default;
-
+$btn-primary-name           :                 'primary'   !default;
+$btn-primary-bg-color       :                 #3f51b5     !default;
+$btn-primary-color          :                 #fff        !default;
 $btn-primary-default-color  :                 $btn-primary-bg-color !default;
+$btn-primary-options        :                 $btn-primary-name $btn-primary-bg-color $btn-primary-color $btn-primary-default-color !default;
+
+$btn-accent-name            :                 'accent'    !default;
+$btn-accent-bg-color        :                 #ff4081     !default;
+$btn-accent-color           :                 #fff        !default;
+$btn-accent-default-color   :                 $btn-accent-bg-color !default;
+$btn-accent-options         :                 $btn-accent-name $btn-accent-bg-color $btn-accent-color $btn-accent-default-color !default;
+
+$btn-success-name           :                 'success'   !default;
+$btn-success-bg-color       :                 #1FBCD2     !default;
+$btn-success-color          :                 #424242     !default;
+$btn-success-default-color  :                 $btn-success-bg-color !default;
+$btn-success-options        :                 $btn-success-name $btn-success-bg-color $btn-success-color $btn-success-default-color !default
+
+$btn-info-name              :                 'info'      !default;
+$btn-info-bg-color          :                 #1EAAF1     !default;
+$btn-info-color             :                 #424242     !default;
+$btn-info-default-color     :                 $btn-info-bg-color !default;
+$btn-info-options           :                 $btn-info-name $btn-info-bg-color $btn-info-color $btn-info-default-color !default;
+
+$btn-warning-name           :                 'warning'   !default;
+$btn-warning-bg-color       :                 #FEE94E     !default;
+$btn-warning-color          :                 #424242     !default;
+$btn-warning-default-color  :                 $btn-warning-bg-color !default;
+$btn-warning-options        :                 $btn-warning-name $btn-warning-bg-color $btn-warning-color $btn-warning-default-color !default;

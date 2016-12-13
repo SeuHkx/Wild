@@ -9,11 +9,13 @@
   height: toREM($btn-height);
   line-height: $btn-line-height;
   line-height: toREM($btn-line-height);
-  min-width: $btn-min-width;
-  min-width: toREM($btn-min-width);
   margin: 0;
   padding: 0 $btn-paddingLR;
   padding: 0 toREM($btn-paddingLR);
+  min-width: $btn-min-width;
+  min-width: toREM($btn-min-width);
+  //ie8+
+  @include widthCompatible('min',$btn-min-width,$btn-paddingLR);
   @include font-size($btn-font-size);
   background: 0 0;
   color: $btn-font-color;
@@ -56,8 +58,9 @@
   min-width: 56px;
   width: 56px;
   height: 56px;
-  line-height: normal;
-  background: $btn-hover-bg-color;
+  line-height: 56px;
+  background-color: $btn-hover-bg-color-c;
+  background-color: $btn-hover-bg-color;
   @include border-radius(50%);
   box-shadow: 0 1px 1.5px 0 rgba(0,0,0,0.12),
               0 1px 1px 0 rgba(0,0,0,0.24);
@@ -69,21 +72,15 @@
 }
 
 //primary
-#{$ns}-button--primary {
-  &#{$ns}-button {
-    color: $btn-primary-default-color;
-  }
-  &#{$ns}-button--raised {
-    background-color: $btn-primary-bg-color;
-    color: $btn-primary-color;
-    &:hover {
-      background-color: $btn-primary-bg-color;
-    }
-  }
-  &#{$ns}-button--fab {
-    @extend &#{$ns}-button--raised;
-  }
-}
+@include md-button-type($btn-primary-options...);
+//accent
+@include md-button-type($btn-accent-options...);
+//success
+@include md-button-type($btn-success-options...);
+//warning
+@include md-button-type($btn-warning-options...);
+//info
+@include md-button-type($btn-info-options...);
 
 //disabled
 #{$ns}-button {
@@ -92,7 +89,7 @@
     background-color: $btn-disabled-bg-color;
     color: $btn-disabled-color-c;
     color: $btn-disabled-color;
-    cursor: default;
+    cursor: not-allowed;
   }
 }
 
@@ -107,12 +104,104 @@
       @extend #{$ns}-button--disabled#{$ns}-button--raised;
     }
   }
+  &#{$ns}-button--fab {
+    @extend #{$ns}-button--disabled#{$ns}-button--raised;
+  }
 }
 
+//group
+#{$ns}-button-group {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  //ie8+
+  border-left: 1px solid  transparent\9;
+  border-right: 1px solid transparent\9;
+  padding-left: 1px\9;
+  background-color: $btn-hover-bg-color-c \9;
+  &:before,&:after {
+    display: block;
+    content: "";
+  }
+  &:after {
+    clear: both;
+  }
+  > #{$ns}-button {
+    float: left;
+    //ie8+
+    margin-left: -1px \9;
+    border-left: 1px solid darken($btn-hover-bg-color-c,20%) \9;
+    border-right:1px solid darken($btn-hover-bg-color-c,20%) \9;
+    border-radius: 0 \9;
+    box-shadow: none;
+    &:active {
+      @include shadow-4dp();
+    }
+    &:not(:first-child):not(:last-child){
+      border-radius: 0;
+      border-left: 1px solid darken($btn-hover-bg-color-c,20%);
+    }
+    &:first-child {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    &:last-child {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-left: 1px solid darken($btn-hover-bg-color-c,20%);
+    }
+  }
+  @include shadow-2dp();
+}
 
+//primary
+@include md-button-group-type($btn-primary-name,$btn-primary-bg-color,$btn-active-bg-color-c)
+//accent
+@include md-button-group-type($btn-accent-name,$btn-accent-bg-color,$btn-active-bg-color-c)
+//success
+@include md-button-group-type($btn-success-name,$btn-success-bg-color,$btn-active-bg-color-c)
+//info
+@include md-button-group-type($btn-info-name,$btn-info-bg-color,$btn-active-bg-color-c)
+//warning
+@include md-button-group-type($btn-warning-name,$btn-warning-bg-color,$btn-active-bg-color-c)
 
-
-
-
-
+#{$ns}-button-group {
+  background-color: $btn-disabled-bg-color \9;
+  > #{$ns}-button {
+    &#{$ns}-button--disabled {
+      &:active{
+        box-shadow: none;
+      }
+    }
+  }
+  &#{$ns}-button--disabled {
+    > #{$ns}-button {
+      border-left : none \9;
+      border-right: none \9;
+      &#{$ns}-button--raised {
+        border-left : 1px solid darken($btn-active-bg-color-c,20%) \9;
+        border-right: 1px solid darken($btn-active-bg-color-c,20%) \9;
+        @extend #{$ns}-button--disabled#{$ns}-button--raised;
+        &:not(:first-child):not(:last-child) {
+          border-left : 1px solid darken($btn-active-bg-color-c,20%);
+        }
+        &:last-child {
+          border-left : 1px solid darken($btn-active-bg-color-c,20%);
+        }
+        &:active {
+          box-shadow: none;
+        }
+      }
+      &:not(:first-child):not(:last-child) {
+        border-left : none;
+      }
+      &:last-child {
+        border-left : none;
+      }
+      @extend #{$ns}-button#{$ns}-button--disabled;
+      cursor: not-allowed;
+    }
+    box-shadow: none;
+  }
+}
 

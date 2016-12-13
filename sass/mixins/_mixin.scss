@@ -1,3 +1,4 @@
+@import '../namespace/namespace';
 @import '../theme/theme.default';
 
 //function
@@ -76,4 +77,53 @@
   box-shadow: 0  9px 46px  8px rgba(0, 0, 0, $shadow-key-penumbra-opacity),
   0 11px 15px -7px rgba(0, 0, 0, $shadow-ambient-shadow-opacity),
   0 24px 38px  3px rgba(0, 0, 0, $shadow-key-umbra-opacity);
+}
+
+@mixin md-button-type($name,$opts-bg-color,$opts-color,$opts-color-default) {
+  #{$ns}-button--#{$name} {
+    &#{$ns}-button {
+      color: $opts-color-default;
+    }
+    &#{$ns}-button--raised {
+      background-color: $opts-bg-color;
+      color: $opts-color;
+      &:hover {
+        background-color: $opts-bg-color;
+      }
+    }
+    &#{$ns}-button--fab {
+      @extend &#{$ns}-button--raised;
+    }
+  }
+}
+
+@mixin widthCompatible ($type,$width,$padding){
+  @if $type == 'min' {
+    #{$type}-width: $width - $padding * 2 \9;
+  }
+  @if $type == 'max' {
+    #{$type}-width: $width - $padding * 2 \9;
+  }
+}
+
+@mixin md-button-group-type ($name,$bd-color,$bd-disabled-color){
+  #{$ns}-button-group {
+    background-color: $bd-color \9;
+    > #{$ns}-button {
+      &#{$ns}-button--#{$name} {
+        border-left : 1px solid darken($bd-color,20%) \9;
+        border-right: 1px solid darken($bd-color,20%) \9;
+        &#{$ns}-button--disabled {
+          border-left : 1px solid darken($bd-disabled-color,20%) \9;
+          border-right: 1px solid darken($bd-disabled-color,20%) \9;
+        }
+        &:not(:first-child):not(:last-child) {
+          border-left : 1px solid darken($bd-color,20%);
+        }
+        &:last-child {
+          border-left : 1px solid darken($bd-color,20%);
+        }
+      }
+    }
+  }
 }
