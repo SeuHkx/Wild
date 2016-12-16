@@ -111,19 +111,101 @@
     background-color: $bd-color \9;
     > #{$ns}-button {
       &#{$ns}-button--#{$name} {
-        border-left : 1px solid darken($bd-color,20%) \9;
-        border-right: 1px solid darken($bd-color,20%) \9;
+        border-left : 1px solid darken($bd-color,8%) \9;
+        border-right: 1px solid darken($bd-color,8%) \9;
         &#{$ns}-button--disabled {
-          border-left : 1px solid darken($bd-disabled-color,20%) \9;
-          border-right: 1px solid darken($bd-disabled-color,20%) \9;
+          border-left : 1px solid darken($bd-disabled-color,8%) \9;
+          border-right: 1px solid darken($bd-disabled-color,8%) \9;
         }
         &:not(:first-child):not(:last-child) {
-          border-left : 1px solid darken($bd-color,20%);
+          border-left : 1px solid darken($bd-color,8%);
         }
         &:last-child {
-          border-left : 1px solid darken($bd-color,20%);
+          border-left : 1px solid darken($bd-color,8%);
         }
       }
+    }
+  }
+}
+@mixin md-button-size ($name,$height,$padding,$size){
+  &--#{$name} {
+    height: $height;
+    height: toREM($height);
+    line-height: $height;
+    line-height: toREM($height);
+
+    padding: 0 $padding;
+    padding: 0 toREM($padding);
+    @include font-size($size);
+  }
+  @if $name == 'large' {
+    &--small {
+      &#{$ns}-button--fab {
+        min-width: $height;
+        min-width: toREM($height);
+        width: $height;
+        width: toREM($height);
+
+        height: $height;
+        height: toREM($height);
+        line-height: $height;
+        line-height: toREM($height);
+        padding: 0;
+      }
+    }
+  }
+  @if $name == 'mini' {
+    &--mini {
+      &#{$ns}-button--fab {
+        min-width: $height;
+        min-width: toREM($height);
+        width: $height;
+        width: toREM($height);
+
+        height: $height;
+        height: toREM($height);
+        line-height: $height;
+        line-height: toREM($height);
+        padding: 0;
+      }
+    }
+  }
+}
+
+@mixin clear (){
+  &:before,&:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin clearGutter ($child){
+  & {
+    font-size: 0;
+    letter-spacing:-6px;
+    letter-spacing:- toREM(6px);
+    *font-size:0;
+    *letter-spacing:normal;
+    *word-spacing:-1px;
+    > #{$child} {
+        *display:inline;
+        zoom:1;
+        font-size: medium;
+        letter-spacing:normal;
+        *word-spacing:normal;
+        vertical-align: top;
+    }
+  }
+}
+
+@mixin setProp ($prop,$value){
+  & {
+    #{$prop}:$value;
+    @if type-of($value) == 'number' {
+      #{$prop} : toREM($value);
     }
   }
 }

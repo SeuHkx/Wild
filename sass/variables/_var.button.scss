@@ -1,4 +1,3 @@
-$btn                        :                '$btn' !default;
 $btn-radius                 :                 2px   !default;
 $btn-font-size              :                 14px  !default;
 
@@ -50,3 +49,24 @@ $btn-warning-bg-color       :                 #FEE94E     !default;
 $btn-warning-color          :                 #424242     !default;
 $btn-warning-default-color  :                 $btn-warning-bg-color !default;
 $btn-warning-options        :                 $btn-warning-name $btn-warning-bg-color $btn-warning-color $btn-warning-default-color !default;
+
+$btn-group-primary-options  :                 $btn-primary-name $btn-primary-bg-color $btn-active-bg-color-c    !default;
+$btn-group-accent-options   :                 $btn-accent-name $btn-accent-bg-color $btn-active-bg-color-c      !default;
+$btn-group-success-options  :                 $btn-success-name $btn-success-bg-color $btn-active-bg-color-c    !default;
+$btn-group-info-options     :                 $btn-info-name $btn-info-bg-color $btn-active-bg-color-c          !default;
+$btn-group-warning-options  :                 $btn-warning-name $btn-warning-bg-color $btn-active-bg-color-c    !default;
+
+$btn-mini-height            :                 22px        !default;
+$btn-mini-padding           :                 $btn-paddingLR/2  !default;
+$btn-mini-font-size         :                 12px        !default;
+$btn-mini-options           :                 $btn-mini-height $btn-mini-padding $btn-mini-font-size !default;
+
+$btn-small-height           :                 28px        !default;
+$btn-small-padding          :                 $btn-mini-padding + 4 !default;
+$btn-small-font-size        :                 $btn-mini-font-size !default;
+$btn-small-options          :                 $btn-small-height $btn-small-padding $btn-small-font-size !default;
+
+$btn-large-height           :                 40px        !default;
+$btn-large-padding          :                 $btn-paddingLR + 4  !default;
+$btn-large-font-size        :                 16px        !default;
+$btn-large-options          :                 $btn-large-height $btn-large-padding $btn-large-font-size !default;

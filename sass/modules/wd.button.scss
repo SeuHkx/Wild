@@ -39,6 +39,17 @@
     background-color: $btn-active-bg-color-c;
     background-color: $btn-active-bg-color;
   }
+  input[type='file']{
+    display: block;
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    filter:alpha(opacity=0);
+  }
 }
 
 #{$ns}-button--raised {
@@ -155,15 +166,15 @@
 }
 
 //primary
-@include md-button-group-type($btn-primary-name,$btn-primary-bg-color,$btn-active-bg-color-c)
+@include md-button-group-type($btn-group-primary-options...)
 //accent
-@include md-button-group-type($btn-accent-name,$btn-accent-bg-color,$btn-active-bg-color-c)
+@include md-button-group-type($btn-group-accent-options...)
 //success
-@include md-button-group-type($btn-success-name,$btn-success-bg-color,$btn-active-bg-color-c)
+@include md-button-group-type($btn-group-success-options...)
 //info
-@include md-button-group-type($btn-info-name,$btn-info-bg-color,$btn-active-bg-color-c)
+@include md-button-group-type($btn-group-info-options...)
 //warning
-@include md-button-group-type($btn-warning-name,$btn-warning-bg-color,$btn-active-bg-color-c)
+@include md-button-group-type($btn-group-warning-options...)
 
 #{$ns}-button-group {
   background-color: $btn-disabled-bg-color \9;
@@ -179,14 +190,14 @@
       border-left : none \9;
       border-right: none \9;
       &#{$ns}-button--raised {
-        border-left : 1px solid darken($btn-active-bg-color-c,20%) \9;
-        border-right: 1px solid darken($btn-active-bg-color-c,20%) \9;
+        border-left : 1px solid darken($btn-active-bg-color-c,8%) \9;
+        border-right: 1px solid darken($btn-active-bg-color-c,8%) \9;
         @extend #{$ns}-button--disabled#{$ns}-button--raised;
         &:not(:first-child):not(:last-child) {
-          border-left : 1px solid darken($btn-active-bg-color-c,20%);
+          border-left : 1px solid darken($btn-active-bg-color-c,8%);
         }
         &:last-child {
-          border-left : 1px solid darken($btn-active-bg-color-c,20%);
+          border-left : 1px solid darken($btn-active-bg-color-c,8%);
         }
         &:active {
           box-shadow: none;
@@ -204,4 +215,14 @@
     box-shadow: none;
   }
 }
+
+//size
+#{$ns}-button {
+  @include md-button-size('mini', $btn-mini-options...);
+  @include md-button-size('small',$btn-small-options...);
+  @include md-button-size('large',$btn-large-options...);
+}
+
+
+
 

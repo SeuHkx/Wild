@@ -1,0 +1,107 @@
+@import '../namespace/namespace';
+@import '../mixins/mixin';
+@import 'l.layout.setting';
+
+#{$ns}-layout {
+  @include clear();
+}
+
+#{$ns}-layout-full {
+  position:absolute;
+  left:0;
+  min-width: $layout-width;
+  min-width: toREM($layout-width);
+  background-color: $layout-bg-color;
+  &--left {
+    top:0;
+    bottom: 0;
+    overflow: auto;
+  }
+  &--right {
+    top:0;
+    bottom: 0;
+    right:0;
+    left:$layout-width;
+    left:toREM($layout-width);
+    overflow: auto;
+    background-color: $layout-bg-color;
+  }
+}
+
+#{$ns}-layout-left--fixed {
+  position: relative;
+  float: left;
+  min-width: $layout-width;
+  min-width: toREM($layout-width);
+  min-height: $layout-height;
+  min-height: toREM($layout-height);
+  margin-right: -$layout-width;
+  margin-right: - toREM($layout-width);
+  background-color: $layout-bg-color;
+}
+
+#{$ns}-layout-right--fixed {
+  position: relative;
+  float: right;
+  min-width: $layout-width;
+  min-width: toREM($layout-width);
+  min-height: $layout-height;
+  min-height: toREM($layout-height);
+  margin-left: -$layout-width;
+  margin-left: - toREM($layout-width);
+  background-color: $layout-bg-color;
+}
+
+#{$ns}-layout-left--adaptive {
+  float: left;
+  width: 100%;
+  > #{$ns}-layout-left-flow {
+    margin-right: $layout-width + $layout-gutter;
+    margin-right: toREM($layout-width + $layout-gutter);
+    background-color: $layout-bg-color;
+  }
+}
+
+#{$ns}-layout-right--adaptive {
+  float: right;
+  width: 100%;
+  > #{$ns}-layout-right-flow {
+    margin-left: $layout-width + $layout-gutter;
+    margin-left: toREM($layout-width + $layout-gutter);
+    background-color: $layout-bg-color;
+  }
+}
+
+#{$ns}-layout-center--adaptive {
+  float: left;
+  width: 100%;
+  > #{$ns}-layout-center-flow {
+    margin-left: $layout-width + $layout-gutter;
+    margin-left: toREM($layout-width + $layout-gutter);
+    margin-right: $layout-width + $layout-gutter;
+    margin-right: toREM($layout-width + $layout-gutter);
+    background-color: $layout-bg-color;
+  }
+}
+
+#{$ns}-layout-left--col {
+  position: relative;
+  float: left;
+  min-width: $layout-width;
+  min-width: toREM($layout-width);
+  min-height: $layout-height;
+  min-height: toREM($layout-height);
+  margin-right: $layout-gutter;
+  margin-right: toREM($layout-gutter);
+  background-color: $layout-bg-color;
+}
+
+#{$ns}-layout-left--col ~ #{$ns}-layout-right--adaptive {
+  margin-left: -($layout-width + $layout-gutter)*$layout-col-number;
+  margin-left: - toREM(($layout-width + $layout-gutter)*$layout-col-number);
+  > #{$ns}-layout-right-flow {
+    margin-left: ($layout-width + $layout-gutter)*$layout-col-number;
+    margin-left: toREM(($layout-width + $layout-gutter)*$layout-col-number);
+    background-color: $layout-bg-color;
+  }
+}

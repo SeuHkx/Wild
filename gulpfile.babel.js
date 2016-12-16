@@ -136,7 +136,7 @@ gulp.task('serve', ['pug'], () => {
         },
         port: BROWSER_PORT
     });
-    gulp.watch('./docs/**/*.pug', pugServeWatchExc);
+    plugins.$w('./docs/**/*.pug',pugServeWatchExc);
     gulp.watch('./sass/**/*.scss',['minify']);
     gulp.watch('./dist/**/*.css').on('change', bs.reload);
     gulp.watch('./docs/**/*.html').on('change', bs.reload);

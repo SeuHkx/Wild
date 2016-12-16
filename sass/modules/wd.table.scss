@@ -1,0 +1,120 @@
+@import '../namespace/namespace';
+@import '../variables/var.table';
+@import '../mixins/mixin';
+
+#{$ns}-table {
+  display: table;
+  width: 100%;
+  background-color: $table-bg-color;
+  &--striped {
+    > tbody {
+      > tr {
+        &:nth-child(odd) {
+          background-color: $table-tr-bg-color;
+        }
+      }
+    }
+  }
+  > thead,
+  > tbody {
+    > tr,
+    > td {
+      border-bottom: 1px solid $table-tr-bd-color;
+    }
+  }
+  > thead {
+    > tr {
+      > th {
+        text-overflow: ellipsis;
+        font-weight: 700;
+        @include font-size($table-th-font-size);
+        color: $table-th-font-color-c !important;
+        color: $table-th-font-color   !important;
+      }
+    }
+  }
+  tr {
+    transition-duration: .3s;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-property: background-color;
+    > th ,
+    > td {
+      display: table-cell;
+      padding: $table-td-paddingTB $table-td-paddingTB/2;
+      padding: toREM($table-td-paddingTB) toREM($table-td-paddingTB/2);
+      text-align: left;
+      vertical-align: middle;
+      color: $table-th-font-color-c;
+    }
+  }
+  > tbody {
+    > tr {
+      &:hover {
+        background-color: $table-tr-bg-color;
+      }
+    }
+  }
+}
+
+//select
+#{$ns}-table {
+  #{$ns}-table-tr--select {
+    background-color: $table-tr-bg-color;
+  }
+}
+
+//responsive
+#{$ns}-table {
+  &#{$ns}-table--responsive {
+    position: relative;
+    border-bottom: 1px solid $table-tr-bd-color;
+    @media only screen and (max-width: 720px) {
+      @at-root {
+        & {
+          border-top:1px solid $table-tr-bd-color;
+        }
+      }
+      display: block;
+      > thead {
+        display: block;
+        float: left;
+        @include setProp(margin-right,4px);
+        border-right: 1px solid $table-tr-bd-color;
+        > tr {
+          display: block;
+          border: 0;
+          @include setProp(box-shadow,4px 0 8px #d3d4d6);
+          @include setProp(box-shadow,toREM(4px) 0 toREM(8px) #d3d4d6);
+          > th {
+            display: block;
+            text-align: right;
+            vertical-align: top;
+            @include font-size($body-font-size-default);
+          }
+        }
+      }
+      tbody {
+        display: block;
+        width: auto;
+        position: relative;
+        overflow-x: auto;
+        white-space: nowrap;
+        @include clearGutter(tr);
+        > tr {
+          display: inline-block;
+          border: none;
+          vertical-align: top;
+          @include font-size($body-font-size-default);
+          > td {
+            display: block;
+            text-align: left;
+            margin: 0;
+            vertical-align: top;
+            border-right: 1px solid $table-tr-bd-color;
+          }
+        }
+      }
+    }
+  }
+}
+

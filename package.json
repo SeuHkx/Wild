@@ -1,6 +1,6 @@
 {
   "name": "Wild",
-  "version": "0.0.2",
+  "version": "0.2.1",
   "sasslintConfig": "./sass-lint.yml",
   "scripts": {
     "test": "mocha ./build/test",

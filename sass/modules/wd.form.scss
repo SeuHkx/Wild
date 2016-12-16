@@ -1,1 +1,382 @@
+@import '../namespace/namespace';
+@import '../variables/var.form';
+@import '../mixins/mixin';
+
+//input
+#{$ns}-input {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  > input[type='text'],
+  > input[type='password'],
+  > input[type='email'],
+  > input[type='url'],
+  > input[type='time'],
+  > input[type='date'],
+  > input[type='datetime'],
+  > input[type='datetime-local'],
+  > input[type='tel'],
+  > input[type='number'],
+  > input[type='search'],
+  > textarea {
+    &:focus {
+      border-bottom: 1px solid $input-text-bd-color-c;
+      border-bottom: 1px solid $input-text-bd-color;
+      box-shadow: none;
+      @at-root {
+        &:focus ~ #{$ns}-input-label {
+          top: -$input-text-font-size + 2;
+          top: toREM(-$input-text-font-size + 2);
+          @include font-size($input-text-font-size - 2);
+          color: $input-text-focus-bd-color;
+          visibility: visible;
+          &:after {
+            left: 0;
+            width: 100%;
+            visibility: visible;
+          }
+        }
+      }
+    }
+  }
+
+  > #{$ns}-input-label {
+    pointer-events: none;
+    position: absolute;
+    display: block;
+    top: $input-label-top;
+    top: toREM($input-label-top);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    text-align: left;
+    @include font-size($input-text-font-size);
+    color: $input-text-font-color;
+    transition-duration: .2s;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    &:after {
+      position: absolute;
+      bottom: -$input-label-after-bottom;
+      bottom: - toREM($input-label-after-bottom);
+      content: '';
+      left: $input-label-after-left;
+      left: toREM($input-label-after-left);
+      width: $input-label-after-width;
+      width: toREM($input-label-after-width);
+      height: $input-label-after-height;
+      height: toREM($input-label-after-height);
+      //ie8+
+      left: 0 \9;
+      width: 100% \9;
+      //end
+      background-color: $input-text-focus-bd-color;
+      transition-duration: .2s;
+      transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+      visibility: hidden;
+    }
+  }
+}
+
+//disabled
+#{$ns}-checkbox,
+#{$ns}-radio {
+  &#{$ns}-checkbox--disabled,
+  &#{$ns}-radio--disabled {
+    cursor: not-allowed;
+    > input[type='checkbox'],
+    > input[type='radio'] {
+      &:checked ~ span {
+        &:active{
+          &:before{
+            box-shadow: none;
+          }
+        }
+        &:before {
+          border: 2px solid $input-disabled-font-color-c;
+          border: 2px solid $input-disabled-font-color;
+          background-color: $input-disabled-font-color-c;
+          background-color: $input-disabled-font-color;
+        }
+      }
+    }
+    > input[type='checkbox'] ~ span,
+    > input[type='radio'] ~ span {
+      color: $input-disabled-font-color-c;
+      color: $input-disabled-font-color;
+      &:after, &:before {
+        border: 2px solid $input-disabled-font-color-c;
+        border: 2px solid $input-disabled-font-color;
+      }
+    }
+    > input[type='radio'] {
+      @at-root {
+        &:checked ~ span {
+          &:before {
+            border: 2px solid $input-disabled-font-color-c;
+            border: 2px solid $input-disabled-font-color;
+          }
+          &:after {
+            background-color: $input-disabled-font-color-c;
+            background-color: $input-disabled-font-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+#{$ns}-switch {
+  &#{$ns}-switch--disabled {
+    color: $input-disabled-font-color-c;
+    color: $input-disabled-font-color;
+    cursor: not-allowed;
+    > input[type='checkbox'] {
+      &:checked ~ span ,
+      &:checked ~ #{$ns}-switch-lever {
+        background-color:$input-disabled-font-color-c;
+        &:active{
+          &:before{
+            @include shadow-2dp();
+          }
+        }
+        &:before {
+          background-color: $input-disabled-font-color-c;
+        }
+      }
+    }
+
+    > span, #{$ns}-switch-lever {
+      background-color: $input-disabled-font-color-c;
+      background-color: $input-disabled-font-color;
+      &:active{
+        &:before{
+          @include shadow-2dp();
+        }
+      }
+      &:before {
+        background-color: $input-disabled-font-color-c;
+      }
+    }
+  }
+}
+
+//checkbox,radio
+#{$ns}-checkbox,
+#{$ns}-radio {
+  position: relative;
+  display: inline-block;
+  padding-left: $input-checkbox-paddingLeft;
+  padding-left: toREM($input-checkbox-paddingLeft);
+  height: $input-checkbox-height;
+  height: toREM($input-checkbox-height);
+  line-height: $input-checkbox-height;
+  line-height: toREM($input-checkbox-height);
+  > input[type='checkbox'],
+  > input[type='radio'] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    border: none;
+    @include appearance(none);
+    @at-root {
+      &:checked ~ span {
+        &:active{
+          &:before{
+            box-shadow: 0 1px 3px 1px rgba($input-text-focus-bd-color,0.4),0 0 0 15px rgba($input-text-focus-bd-color,0.08);
+            box-shadow: 0 toREM(1px) toREM(3px) toREM(1px) rgba($input-text-focus-bd-color,0.4),0 0 0 toREM(15px) rgba($input-text-focus-bd-color,0.08);
+          }
+        }
+        &:before {
+          border: 2px solid $input-text-focus-bd-color;
+          background-color: $input-text-focus-bd-color;
+        }
+        &:after {
+          top: $input-checkbox-pseudo-after-top;
+          top: toREM($input-checkbox-pseudo-after-top);
+          left: $input-checkbox-pseudo-after-left;
+          left: toREM($input-checkbox-pseudo-after-left);
+          width: $input-checkbox-pseudo-after-width;
+          width: toREM($input-checkbox-pseudo-after-width);
+          height: $input-checkbox-pseudo-after-height;
+          height:toREM($input-checkbox-pseudo-after-height);
+          border-top: 2px solid transparent;
+          border-left: 2px solid transparent;
+          border-right: 2px solid #fff;
+          border-bottom: 2px solid #fff;
+          transform: rotateZ(40deg);
+          transform-origin: 100% 100%;
+        }
+      }
+    }
+  }
+  > input[type='radio'] {
+    @at-root {
+      &:checked ~ span {
+        &:before {
+          border: 2px solid $input-text-focus-bd-color;
+          background-color: #fff;
+        }
+        &:after {
+          top: ($input-checkbox-pseudo-after-width + 2)/2;
+          top: toREM(($input-checkbox-pseudo-after-width + 2)/2);
+          left: ($input-checkbox-pseudo-after-width + 2)/2;
+          left: toREM(($input-checkbox-pseudo-after-width + 2)/2);
+          width: $input-checkbox-pseudo-after-width + 2;
+          width: toREM($input-checkbox-pseudo-after-width + 2);
+          height: $input-checkbox-pseudo-after-width + 2;
+          height:toREM($input-checkbox-pseudo-after-width + 2);
+          background-color: $input-text-focus-bd-color;
+          border: none;
+          transform-origin: 0;
+          transform: rotateZ(0);
+        }
+      }
+    }
+  }
+  > input[type='checkbox'] ~ span,
+  > input[type='radio'] ~ span {
+    @include font-size($input-text-font-size);
+    color: $input-text-font-color;
+    &:after, &:before {
+      position: absolute;
+      left: 0;
+      top: 0;
+      content: '';
+      margin: $input-checkbox-pseudo-margin;
+      margin: toREM($input-checkbox-pseudo-margin);
+      width: $input-checkbox-pseudo-width;
+      width: toREM($input-checkbox-pseudo-width);
+      height: $input-checkbox-pseudo-height;
+      height: toREM($input-checkbox-pseudo-height);
+      border: 2px solid $input-checkbox-pseudo-bd-color;
+      @include border-radius(2px);
+      transition: .2s cubic-bezier(.4, 0, .2, 1);
+    }
+  }
+  > input[type='radio'] ~ span {
+    &:after,&:before {
+      @include border-radius(50%);
+    }
+  }
+}
+
+//switch
+#{$ns}-switch {
+  position: relative;
+  display: inline-block;
+  height: $input-checkbox-height;
+  height: toREM($input-checkbox-height);
+  line-height: $input-checkbox-height;
+  line-height: toREM($input-checkbox-height);
+  @include font-size($input-text-font-size);
+  color: $input-text-font-color;
+  > input[type='checkbox'] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    border: none;
+    @include appearance(none);
+
+    &:checked ~ span ,
+    &:checked ~ #{$ns}-switch-lever {
+      background-color: lighten($input-text-focus-bd-color,25%);
+      &:active{
+        &:before{
+          box-shadow: 0 1px 3px 1px rgba($input-text-focus-bd-color,0.4),0 0 0 15px rgba($input-text-focus-bd-color,0.08);
+          box-shadow: 0 toREM(1px) toREM(3px) toREM(1px) rgba($input-text-focus-bd-color,0.4),0 0 0 toREM(15px) rgba($input-text-focus-bd-color,0.08);
+        }
+      }
+      &:before {
+        left: $input-switch-pseudo-checked-before-left;
+        left: toREM($input-switch-pseudo-checked-before-left);
+        background-color: $input-text-focus-bd-color;
+      }
+    }
+  }
+  > span, #{$ns}-switch-lever {
+    position: relative;
+    display: inline-block;
+    width: $input-switch-lever-width;
+    width: toREM($input-switch-lever-width);
+    height: $input-switch-lever-height;
+    height: toREM($input-switch-lever-height);
+    margin: 0 $input-switch-lever-marginLR;
+    margin: 0 toREM($input-switch-lever-marginLR);
+    background-color: $input-switch-lever-bg-color;
+    @include border-radius($input-switch-lever-bd-radius);
+    transition: background-color 0.2s cubic-bezier(.4, 0, .2, 1);
+    vertical-align: middle;
+    &:active{
+      &:before{
+        box-shadow: 0 1px 3px 1px rgba($input-text-focus-bd-color,0.4),0 0 0 15px rgba($input-text-focus-bd-color,0.08);
+        box-shadow: 0 toREM(1px) toREM(3px) toREM(1px) rgba($input-text-focus-bd-color,0.4),0 0 0 toREM(15px) rgba($input-text-focus-bd-color,0.08);
+      }
+    }
+    &:before {
+      position: absolute;
+      display: inline-block;
+      width: $input-switch-pseudo-before-width;
+      width: toREM($input-switch-pseudo-before-width);
+      height: $input-switch-pseudo-before-height;
+      height: toREM($input-switch-pseudo-before-height);
+      left: -2px;
+      left: toREM(-2px);
+      top: 50%;
+      margin-top: -$input-switch-pseudo-before-marginTop;
+      margin-top: - toREM($input-switch-pseudo-before-marginTop);
+      content: "";
+      will-change: box-shadow;
+      background-color: $input-switch-pseudo-before-bg-color;
+      border-radius: 50%;
+      @include shadow-2dp();
+      transition: left 0.3s       cubic-bezier(.4, 0, .2, 1),
+                  background .3s  cubic-bezier(.4, 0, .2, 1),
+                  box-shadow 0.1s cubic-bezier(.4, 0, .2, 1);
+    }
+  }
+}
+
+//default
+input[type='text'],
+input[type='password'],
+input[type='email'],
+input[type='url'],
+input[type='time'],
+input[type='date'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='tel'],
+input[type='number'],
+input[type='search'],
+textarea {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid $input-text-bd-color-c;
+  border-bottom: 1px solid $input-text-bd-color;
+  border-radius: 0;
+  outline: none;
+  @include font-size($input-text-font-size);
+  padding: $input-text-paddingTB 0;
+  padding: toREM($input-text-paddingTB) 0;
+  color: $input-text-font-color;
+  box-shadow: none;
+  transition-duration: .2s;
+  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+
+  &:focus {
+    border-bottom: 1px solid $input-text-focus-bd-color;
+    box-shadow: 0 1px 0 0 $input-text-focus-bd-color;
+  }
+  &[disabled] {
+    cursor: not-allowed;
+  }
+}
 

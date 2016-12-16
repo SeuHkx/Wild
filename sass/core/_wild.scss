@@ -12,11 +12,13 @@
         '../variables/var.triangle',
         '../variables/var.nav',
         '../variables/var.media',
+        '../variables/var.grid',
 
         '../base/b.normalize',
         '../base/b.base',
         '../base/b.typography',
 
+        '../layout/l.layout.setting',
         '../layout/l.layout',
         '../utils/u.utils',
 
@@ -30,4 +32,5 @@
         '../modules/wd.table',
         '../modules/wd.triangle',
         '../modules/wd.nav',
-        '../modules/wd.media';
+        '../modules/wd.media',
+        '../modules/wd.grid';

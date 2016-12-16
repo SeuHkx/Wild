@@ -1,0 +1,48 @@
+$input-text-font-size                                           :                                             14px            !default;
+$input-text-bd-color                                            :                                             rgba(0,0,0,.12) !default;
+$input-text-bd-color-c                                          :                                             #dfdfdf         !default;
+$input-text-focus-bd-color                                      :                                             #3f51b5         !default;
+$input-text-font-color                                          :                                             #757575         !default;
+$input-text-paddingTB                                           :                                             5px             !default;
+$input-text-error-bd-color                                      :                                             #ff4081         !default;
+
+$input-label-top                                                :                                             3px             !default;
+$input-label-after-left                                         :                                             45%             !default;
+$input-label-after-bottom                                       :                                             1px             !default;
+$input-label-after-width                                        :                                             10px            !default;
+$input-label-after-height                                       :                                             2px             !default;
+
+
+$input-checkbox-paddingLeft                                     :                                             26px            !default;
+$input-checkbox-height                                          :                                             24px            !default;
+$input-checkbox-pseudo-width                                    :                                             16px            !default;
+$input-checkbox-pseudo-height                                   :                                             $input-checkbox-pseudo-width !default;
+$input-checkbox-pseudo-margin                                   :                                             ($input-checkbox-height - $input-checkbox-pseudo-width)/2 !default;
+$input-checkbox-pseudo-bd-color                                 :                                             #5a5a5a         !default;
+
+$input-checkbox-pseudo-after-top                                :                                             1px             !default;
+$input-checkbox-pseudo-after-left                               :                                             $input-checkbox-pseudo-after-top  !default;
+$input-checkbox-pseudo-after-width                              :                                             6px             !default;
+$input-checkbox-pseudo-after-height                             :                                             $input-checkbox-pseudo-after-width * 2            !default;
+
+$input-switch-lever-width                                       :                                             40px            !default;
+$input-switch-lever-height                                      :                                             14px            !default;
+$input-switch-lever-marginLR                                    :                                             4px             !default;
+$input-switch-lever-bg-color                                    :                                             #818181         !default;
+$input-switch-lever-bd-radius                                   :                                             15px            !default;
+
+$input-switch-pseudo-before-width                               :                                             20px            !default;
+$input-switch-pseudo-before-height                              :                                             $input-switch-pseudo-before-width            !default;
+$input-switch-pseudo-before-marginTop                           :                                             $input-switch-pseudo-before-width/2          !default;
+$input-switch-pseudo-before-bg-color                            :                                             #f4f4f4         !default;
+$input-switch-pseudo-checked-before-left                        :                                             $input-switch-lever-width -  $input-switch-pseudo-before-width + 2           !default;
+
+$input-disabled-font-color                                      :                                             rgba(0, 0, 0, 0.26) !default;
+$input-disabled-font-color-c                                    :                                             #D1D1D1             !default;
+
+
+
+
+
+
+
