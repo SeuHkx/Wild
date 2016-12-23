@@ -1,0 +1,22 @@
+@import '../namespace/namespace';
+@import '../variables/var.tag';
+@import '../mixins/mixin';
+
+#{$ns}-tag {
+  display: inline-block;
+  @include setProp(padding-left,$tag-padding-left);
+  @include setProp(padding-right,$tag-padding-right);
+  @include setProp(height,$tag-height);
+  @include setProp(line-height,$tag-line-height);
+  @include setProp(border-radius,$tag-bd-radius);
+  border: 1px solid $tag-bd-color;
+  background-color: $tag-bg-color;
+  color: $tag-color;
+  white-space: nowrap;
+}
+
+@include tag-type($tag-primary-options...);
+@include tag-type($tag-accent-options...);
+@include tag-type($tag-success-options...);
+@include tag-type($tag-info-options...);
+@include tag-type($tag-warning-options...);

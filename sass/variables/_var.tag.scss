@@ -1,0 +1,38 @@
+$tag-padding-left                         :                                       8px       !default;
+$tag-padding-right                        :                                       $tag-padding-left   !default;
+$tag-height                               :                                       24px      !default;
+$tag-line-height                          :                                       $tag-height - 2     !default;
+$tag-bg-color                             :                                       #ececec   !default;
+$tag-bd-color                             :                                       darken($tag-bg-color,4%)  !default;
+$tag-bd-radius                            :                                       2px       !default;
+$tag-color                                :                                       darken($tag-bg-color,62%)   !default;
+
+$tag-primary-name                         :                                       'primary'   !default;
+$tag-primary-bg-color                     :                                       #3f51b5     !default;
+$tag-primary-bd-color                     :                                       darken($tag-primary-bg-color,4%)          !default;
+$tag-primary-color                        :                                       #fff         !default;
+$tag-primary-options                      :                                       $tag-primary-name $tag-primary-bg-color $tag-primary-bd-color $tag-primary-color !default;
+
+$tag-accent-name                          :                                       'accent'    !default;
+$tag-accent-bg-color                      :                                       #ff4081     !default;
+$tag-accent-bd-color                      :                                       darken($tag-accent-bg-color,4%)           !default;
+$tag-accent-color                         :                                       #fff        !default;
+$tag-accent-options                       :                                       $tag-accent-name $tag-accent-bg-color $tag-accent-bd-color $tag-accent-color !default;
+
+$tag-success-name                         :                                       'success'   !default;
+$tag-success-bg-color                     :                                       #1FBCD2     !default;
+$tag-success-bd-color                     :                                       darken($tag-success-bg-color,4%)          !default;
+$tag-success-color                        :                                       #424242     !default;
+$tag-success-options                      :                                       $tag-success-name $tag-success-bg-color $tag-success-bd-color $tag-success-color !default
+
+$tag-info-name                            :                                       'info'      !default;
+$tag-info-bg-color                        :                                       #1EAAF1     !default;
+$tag-info-bd-color                        :                                       darken($tag-info-bg-color,4%)             !default;
+$tag-info-color                           :                                       #424242     !default;
+$tag-info-options                         :                                       $tag-info-name $tag-info-bg-color $tag-info-bd-color $tag-info-color !default;
+
+$tag-warning-name                         :                                       'warning'   !default;
+$tag-warning-bg-color                     :                                       #FEE94E     !default;
+$tag-warning-bd-color                     :                                       darken($tag-warning-bg-color,16%)          !default;
+$tag-warning-color                        :                                       #424242     !default;
+$tag-warning-options                      :                                       $tag-warning-name $tag-warning-bg-color $tag-warning-bd-color $tag-warning-color !default;

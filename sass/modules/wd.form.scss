@@ -27,7 +27,7 @@
         &:focus ~ #{$ns}-input-label {
           top: -$input-text-font-size + 2;
           top: toREM(-$input-text-font-size + 2);
-          @include font-size($input-text-font-size - 2);
+          //@include font-size($input-text-font-size - 2);
           color: $input-text-focus-bd-color;
           visibility: visible;
           &:after {
@@ -51,7 +51,7 @@
     right: 0;
     width: 100%;
     text-align: left;
-    @include font-size($input-text-font-size);
+    //@include font-size($input-text-font-size);
     color: $input-text-font-color;
     transition-duration: .2s;
     transition-timing-function: cubic-bezier(.4, 0, .2, 1);
@@ -239,7 +239,7 @@
   }
   > input[type='checkbox'] ~ span,
   > input[type='radio'] ~ span {
-    @include font-size($input-text-font-size);
+    //@include font-size($input-text-font-size);
     color: $input-text-font-color;
     &:after, &:before {
       position: absolute;
@@ -272,7 +272,7 @@
   height: toREM($input-checkbox-height);
   line-height: $input-checkbox-height;
   line-height: toREM($input-checkbox-height);
-  @include font-size($input-text-font-size);
+  //@include font-size($input-text-font-size);
   color: $input-text-font-color;
   > input[type='checkbox'] {
     position: absolute;
@@ -363,7 +363,7 @@ textarea {
   border-bottom: 1px solid $input-text-bd-color;
   border-radius: 0;
   outline: none;
-  @include font-size($input-text-font-size);
+  //@include font-size($input-text-font-size);
   padding: $input-text-paddingTB 0;
   padding: toREM($input-text-paddingTB) 0;
   color: $input-text-font-color;

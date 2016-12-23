@@ -1,0 +1,57 @@
+@import "../namespace/namespace";
+@import '../mixins/mixin';
+
+h1,
+#{$ns}-typo-h1 {
+  @include font-size(32px);
+}
+h2,
+#{$ns}-typo-h2 {
+  @include font-size(24px);
+}
+h3,
+#{$ns}-typo-h3 {
+  @include font-size(20px);
+}
+h4,
+#{$ns}-typo-h4 {
+  @include font-size(16px);
+}
+h5,
+#{$ns}-typo-h5 {
+  @include font-size(14px);
+}
+h6,
+#{$ns}-typo-h6 {
+  @include font-size(12px);
+}
+
+#{$ns}-typo-bold {
+  font-weight: 700;
+}
+#{$ns}-typo-regular {
+  font-weight: 400;
+}
+#{$ns}-typo-italic {
+  font-style: italic;
+}
+#{$ns}-typo-nowrap {
+  white-space: nowrap;
+}
+#{$ns}-typo-underline {
+  text-decoration: underline;
+}
+
+//align
+@each $props in left,right,center,justify{
+  #{$ns}-typo-text--#{$props}{
+    text-align: $props;
+  }
+}
+
+//transform
+@each $props in lowercase,uppercase,capitalize{
+  #{$ns}-typo-text--#{$props}{
+    text-transform: $props;
+  }
+}

@@ -172,6 +172,15 @@
   }
 }
 
+//tag
+@mixin tag-type ($name,$bg-color,$bd-color,$color){
+  #{$ns}-tag--#{$name} {
+    background-color: $bg-color;
+    border-color: $bd-color;
+    color: $color;
+  }
+}
+
 @mixin clear (){
   &:before,&:after {
     content: "";

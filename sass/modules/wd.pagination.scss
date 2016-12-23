@@ -1,0 +1,74 @@
+@import '../namespace/namespace';
+@import '../variables/var.pagination';
+@import '../mixins/mixin';
+
+#{$ns}-pagination {
+  display: inline-block;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  @include setProp(border-radius,$pagination-bd-radius);
+  @include clear();
+  > li {
+    float: left;
+    &:first-child {
+      > a {
+        @include setProp(border-top-left-radius,$pagination-bd-radius);
+        @include setProp(border-bottom-left-radius,$pagination-bd-radius);
+      }
+    }
+    &:last-child {
+      > a {
+        @include setProp(border-top-right-radius,$pagination-bd-radius);
+        @include setProp(border-bottom-right-radius,$pagination-bd-radius);
+      }
+    }
+    > a {
+      position: relative;
+      display: block;
+      @include setProp(min-width,$pagination-min-width);
+      @include setProp(min-height,$pagination-min-height);
+      @include setProp(line-height,$pagination-min-height);
+      @include setProp(margin-left,$pagination-marginLeft);
+      border: 1px solid $pagination-bd-color;
+      color: $pagination-default-color;
+      background-color: $pagination-bg-color;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+}
+
+//prev next
+#{$ns}-pagination-prev,
+#{$ns}-pagination-next {
+  color: rgb(153, 169, 191);
+  &#{$ns}-pagination-prev--disabled,
+  &#{$ns}-pagination-next--disabled {
+    > a {
+      color: rgb(228, 228, 228);
+      cursor: not-allowed;
+    }
+  }
+}
+
+//pager
+#{$ns}-pagination-pager {
+  &:hover {
+    > a {
+      color: $wd-pagination-active-bg-color;
+    }
+  }
+  &#{$ns}-pagination-pager--active {
+    > a {
+      background-color: $wd-pagination-active-bg-color;
+      border-color: $wd-pagination-active-bg-color;
+      color: $wd-pagination-active-color;
+      z-index: 10;
+    }
+    &:hover {
+      > a {
+        cursor: default;
+      }
+    }
+  }
+}

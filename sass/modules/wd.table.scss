@@ -89,7 +89,7 @@
             display: block;
             text-align: right;
             vertical-align: top;
-            @include font-size($body-font-size-default);
+            //@include font-size($body-font-size-default);
           }
         }
       }
@@ -104,7 +104,7 @@
           display: inline-block;
           border: none;
           vertical-align: top;
-          @include font-size($body-font-size-default);
+          //@include font-size($body-font-size-default);
           > td {
             display: block;
             text-align: left;

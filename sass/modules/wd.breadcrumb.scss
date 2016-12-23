@@ -1,0 +1,31 @@
+@import '../namespace/namespace';
+@import '../variables/var.breadcrumb';
+@import '../mixins/mixin';
+
+#{$ns}-breadcrumb {
+   > #{$ns}-breadcrumb-item {
+     color: $breadcrumb-item-color;
+     text-decoration: none;
+     cursor: default;
+     &:hover {
+       color: $breadcrumb-item-hover-color;
+     }
+     &:last-child {
+       font-weight: 500;
+       &:hover {
+         color: $breadcrumb-item-color;
+       }
+     }
+     &#{$ns}-breadcrumb-item--active {
+       font-weight: 500;
+       &:hover {
+         color: $breadcrumb-item-color;
+       }
+     }
+     > #{$ns}-breadcrumb-item-separator {
+       margin: 0 $breadcrumb-item-separator-marginTB;
+       margin: 0 toREM($breadcrumb-item-separator-marginTB);
+       color: $breadcrumb-item-separator-color;
+     }
+   }
+}

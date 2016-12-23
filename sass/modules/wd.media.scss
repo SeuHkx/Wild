@@ -1,0 +1,27 @@
+@import '../namespace/namespace';
+@import '../variables/var.media';
+@import '../mixins/mixin';
+
+#{$ns}-media {
+  @include clear();
+  > #{$ns}-media-avatar {
+    float: left;
+    @include setProp(margin-right,$media-margin-right);
+    > img {
+      @include setProp(min-width,$media-min-width);
+      @include setProp(min-height,$media-min-height);
+    }
+  }
+  > #{$ns}-media-body {
+    @include setProp(padding-bottom,$media-padding-bottom);
+    overflow: hidden;
+    > h4 {
+      @include setProp(margin-bottom,$media-padding-bottom);
+      @include font-size($media-body-font-size);
+      font-weight: 700;
+    }
+    > p {
+      @include setProp(margin-bottom,$media-padding-bottom);
+    }
+  }
+}

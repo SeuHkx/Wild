@@ -1,0 +1,115 @@
+@import '../namespace/namespace';
+@import '../variables/var.tab';
+@import '../mixins/mixin';
+
+#{$ns}-tab {
+  @include clear();
+  border-bottom: 1px solid $tab-bd-color;
+  border-bottom: toREM(1px) solid $tab-bd-color;
+  > #{$ns}-tab-item {
+    float: left;
+    &#{$ns}-tab-item--active {
+      > a {
+        border-bottom: 2px solid $tab-item-bd-active-color;
+        border-bottom: toREM(2px) solid $tab-item-bd-active-color;
+        color: $tab-item-font-active-color;
+      }
+    }
+    > a {
+      position: relative;
+      display: block;
+      @include setProp(margin-bottom,-1px);
+      padding: 0 $tab-paddingLR;
+      padding: 0 toREM($tab-paddingLR);
+      @include setProp(height,$tab-height);
+      @include setProp(line-height,$tab-line-height);
+      border: 1px solid transparent;
+      border: toREM(1px) solid transparent;
+      color: #454545;
+      cursor: pointer;
+      &:hover {
+        color: $tab-item-font-active-color;
+      }
+    }
+  }
+}
+
+#{$ns}-tab--card {
+  > #{$ns}-tab-item {
+    transition: all .3s cubic-bezier(.645,.045,.355,1);
+    > a {
+      @include setProp(line-height,$tab-line-height - 2);
+      border: 1px solid transparent;
+      border: toREM(1px) solid transparent;
+    }
+    &#{$ns}-tab-item--active {
+      > a {
+        border: 1px solid $tab-bd-color;
+        border: toREM(1px) solid $tab-bd-color;
+        border-bottom-width: 2px \9;
+        border-bottom-color: $tab-card-item-active-bg-color;
+        border-radius: 4px 4px 0 0;
+        border-radius: toREM(4px) toREM(4px) 0 0;
+        background-color: $tab-card-item-active-bg-color;
+      }
+    }
+  }
+}
+
+//left
+#{$ns}-tab--left {
+  border-right: 1px solid $tab-bd-color;
+  border-right: toREM(1px) solid $tab-bd-color;
+  border-bottom: none;
+  > #{$ns}-tab-item {
+    float: none;
+    transition: all .3s cubic-bezier(.645,.045,.355,1);
+    > a {
+      @include setProp(margin-right,-1px);
+      @include setProp(line-height,$tab-line-height - 2);
+      border: 1px solid transparent;
+      border: toREM(1px) solid transparent;
+    }
+    &#{$ns}-tab-item--active {
+      > a {
+        border: 1px solid $tab-bd-color;
+        border: toREM(1px) solid $tab-bd-color;
+        border-right-width: 2px \9;
+        border-right-color: $tab-card-item-active-bg-color;
+        border-radius: 4px 0 0 4px;
+        border-radius: toREM(4px) 0 0 toREM(4px);
+        background-color: $tab-card-item-active-bg-color;
+      }
+    }
+  }
+}
+
+//right
+#{$ns}-tab--right {
+  border-left: 1px solid $tab-bd-color;
+  border-left: toREM(1px) solid $tab-bd-color;
+  border-bottom: none;
+  > #{$ns}-tab-item {
+    float: none;
+    transition: all .3s cubic-bezier(.645,.045,.355,1);
+    > a {
+      @include setProp(margin-left,-1px);
+      @include setProp(line-height,$tab-line-height - 2);
+      border: 1px solid transparent;
+      border: toREM(1px) solid transparent;
+    }
+    &#{$ns}-tab-item--active {
+      > a {
+        border: 1px solid $tab-bd-color;
+        border: toREM(1px) solid $tab-bd-color;
+        border-left-width: 2px \9;
+        border-left-color: $tab-card-item-active-bg-color;
+        border-radius: 0 4px 4px 0;
+        border-radius: 0 toREM(4px) toREM(4px) 0;
+        background-color: $tab-card-item-active-bg-color;
+      }
+    }
+  }
+}
+
+//group panel

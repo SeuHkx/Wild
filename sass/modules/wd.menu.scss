@@ -1,0 +1,56 @@
+@import '../namespace/namespace';
+@import '../variables/var.menu';
+@import '../mixins/mixin';
+
+#{$ns}-menu {
+  display: inline-block;
+  padding: $menu-paddingTB 0;
+  padding: toREM($menu-paddingTB) 0;
+  height: auto;
+  width: auto;
+  overflow-y: auto;
+  @include setProp(min-width,$menu-min-width);
+  @include shadow-2dp();
+  border: 1px solid $menu-item-divider-color \9;
+  background-color: $menu-bg-color;
+  > #{$ns}-menu-item {
+    padding: 0 $menu-item-paddingLR;
+    padding: 0 toREM($menu-item-paddingLR);
+    @include setProp(height,$menu-item-height);
+    @include setProp(line-height,$menu-item-height);
+    white-space: nowrap;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-align: left;
+    color: $menu-item-color;
+    cursor: pointer;
+    background-color: $menu-bg-color;
+    transition: background-color .2s cubic-bezier(.4,0,.2,1);
+    &:hover {
+      background-color: $menu-item-hover-bg-color;
+    }
+    &#{$ns}-menu-item--divider {
+      border-bottom: 1px solid $menu-item-divider-color;
+    }
+    &#{$ns}-menu-item--disabled,
+    &[disbaled][disabled] {
+      color: $menu-item-disabled-color;
+      cursor: not-allowed;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+//menu-compress
+#{$ns}-menu--compress {
+  padding: $menu-paddingTB*2 0;
+  padding: toREM($menu-paddingTB*2) 0;
+  > #{$ns}-menu-item {
+    padding: 0 $menu-item-paddingLR;
+    padding: 0 toREM($menu-item-paddingLR);
+    @include setProp(height,$menu-item-height - $menu-item-paddingLR);
+    @include setProp(line-height,$menu-item-height - $menu-item-paddingLR);
+  }
+}

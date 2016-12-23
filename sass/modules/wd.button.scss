@@ -16,7 +16,7 @@
   min-width: toREM($btn-min-width);
   //ie8+
   @include widthCompatible('min',$btn-min-width,$btn-paddingLR);
-  @include font-size($btn-font-size);
+  //@include font-size($btn-font-size);
   background: 0 0;
   color: $btn-font-color;
   font-weight: 500;

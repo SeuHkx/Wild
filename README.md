@@ -23,6 +23,12 @@
     ✔   utils
     ✔   img
     ✔   triangle
+    ✔   pagination
+    ✔   breadcrumb
+    ✔   tab
+    ✔   chips
+    ✔   menu
+    ✔   tag
     
 >  react ui components part
 

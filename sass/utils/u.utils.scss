@@ -1,0 +1,45 @@
+@import '../namespace/namespace';
+@import "../mixins/mixin";
+
+//clear
+#{$ns}-utils-clear {
+  @include clear();
+}
+
+//left
+#{$ns}-utils-left {
+  float: left;
+}
+
+//right
+#{$ns}-utils-right {
+  float: right;
+}
+
+//...
+#{$ns}-utils--omit {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+//set block
+#{$ns}-utils-block {
+  display: block;
+  &#{$ns}-utils-block--center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+//set inline-block
+#{$ns}-utils-inline {
+  display: inline-block;
+}
+
+//set user-select default none!
+#{$ns}-utils-select {
+  user-select: none;
+}
+
+

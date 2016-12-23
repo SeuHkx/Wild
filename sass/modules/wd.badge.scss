@@ -14,7 +14,7 @@
   padding: 0 toREM($badge-paddingLR);
   //ie8+
   @include widthCompatible('min',$badge-width,$badge-paddingLR);
-  @include font-size($badge-font-size);
+  //@include font-size($badge-font-size);
   font-weight: 600;
   border-radius: $badge-radius;
   border-radius: toREM($badge-radius);
@@ -25,4 +25,15 @@
 #{$ns}-badge--accent {
   background-color: $badge-accent-bg-color;
   color: $badge-accent-color;
+}
+
+#{$ns}-badge--dot {
+  min-width: $badge-width - 12;
+  min-width: toREM($badge-width - 12);
+  height: $badge-height - 12;
+  height: toREM($badge-height - 12);
+  line-height: $badge-height - 12;
+  line-height: toREM($badge-height - 12);
+  padding: 0 $badge-paddingLR - 3;
+  padding: 0 toREM($badge-paddingLR - 3);
 }

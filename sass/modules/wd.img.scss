@@ -1,0 +1,20 @@
+@import '../namespace/namespace';
+@import '../variables/var.img';
+@import '../mixins/mixin';
+
+#{$ns}-img {
+  vertical-align: middle;
+  &--rounded {
+    @include border-radius($img-bd-radius);
+  }
+  &--circle {
+    @include border-radius(50%);
+  }
+  &--thumbnial {
+    display: inline-block;
+    border: 1px solid $img-bd-color;
+    @include setProp(padding,$img-padding);
+    @include border-radius($img-bd-radius);
+    background-color: $img-bg-color;
+  }
+}

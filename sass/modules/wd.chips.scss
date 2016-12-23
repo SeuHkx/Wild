@@ -1,0 +1,30 @@
+@import '../namespace/namespace';
+@import '../variables/var.chips';
+@import '../mixins/mixin';
+
+#{$ns}-chips {
+  display: inline-block;
+  @include setProp(height,$chips-height);
+  @include setProp(line-height,$chips-line-height);
+  padding: 0 $chips-paddingLR;
+  padding: 0 toREM($chips-paddingLR);
+  font-weight: 500;
+  color: $chips-color;
+  @include setProp(border-radius,$chips-bd-radius);
+  white-space: nowrap;
+  background-color: $chips-bg-color;
+  > img {
+    float: left;
+    @include setProp(margin-left,-$chips-paddingLR);
+    @include setProp(margin-right,$chips-paddingLR);
+    @include setProp(height,$chips-height);
+    @include setProp(width,$chips-height);
+    border-radius: 50%;
+  }
+  > #{$ns}-chips-close {
+    float: right;
+    @include setProp(margin-left,$chips-paddingLR);
+    @include setProp(line-height,$chips-line-height);
+    cursor: pointer;
+  }
+}
