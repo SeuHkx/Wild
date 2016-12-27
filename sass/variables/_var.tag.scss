@@ -1,3 +1,38 @@
+@import "../theme/theme.default";
+
+@if $global-flag == true {
+  $tag-primary-name                       :                                       $global-primary-name;
+  $tag-primary-bg-color                   :                                       $global-primary-bg-color;
+  $tag-primary-bd-color                   :                                       darken($tag-primary-bg-color,4%);
+  $tag-primary-color                      :                                       $global-primary-color;
+  $tag-primary-options                    :                                       $tag-primary-name $tag-primary-bg-color $tag-primary-bd-color $tag-primary-color;
+
+  $tag-accent-name                        :                                       $global-accent-name;
+  $tag-accent-bg-color                    :                                       $global-accent-bg-color;
+  $tag-accent-bd-color                    :                                       darken($tag-accent-bg-color,4%);
+  $tag-accent-color                       :                                       $global-accent-color;
+  $tag-accent-options                     :                                       $tag-accent-name $tag-accent-bg-color $tag-accent-bd-color $tag-accent-color;
+
+  $tag-success-name                       :                                       $global-success-name;
+  $tag-success-bg-color                   :                                       $global-success-bg-color;
+  $tag-success-bd-color                   :                                       darken($tag-success-bg-color,4%);
+  $tag-success-color                      :                                       $global-success-color;
+  $tag-success-options                    :                                       $tag-success-name $tag-success-bg-color $tag-success-bd-color $tag-success-color;
+
+  $tag-info-name                          :                                       $global-info-name;
+  $tag-info-bg-color                      :                                       $global-info-bg-color;
+  $tag-info-bd-color                      :                                       darken($tag-info-bg-color,4%);
+  $tag-info-color                         :                                       $global-info-color;
+  $tag-info-options                       :                                       $tag-info-name $tag-info-bg-color $tag-info-bd-color $tag-info-color;
+
+  $tag-warning-name                       :                                       $global-warning-name;
+  $tag-warning-bg-color                   :                                       $global-warning-bg-color;
+  $tag-warning-bd-color                   :                                       darken($tag-warning-bg-color,16%);
+  $tag-warning-color                      :                                       $global-warning-color;
+  $tag-warning-options                    :                                       $tag-warning-name $tag-warning-bg-color $tag-warning-bd-color $tag-warning-color;
+}
+
+
 $tag-padding-left                         :                                       8px       !default;
 $tag-padding-right                        :                                       $tag-padding-left   !default;
 $tag-height                               :                                       24px      !default;

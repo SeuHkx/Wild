@@ -120,6 +120,12 @@
   }
 }
 
+//full
+#{$ns}-button--full {
+  display: block;
+  width: 100%;
+}
+
 //group
 #{$ns}-button-group {
   position: relative;
@@ -222,6 +228,7 @@
   @include md-button-size('small',$btn-small-options...);
   @include md-button-size('large',$btn-large-options...);
 }
+
 
 
 

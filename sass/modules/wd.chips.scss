@@ -28,3 +28,15 @@
     cursor: pointer;
   }
 }
+
+//theme
+@each $name,$bg-color,$color in ($chips-primary-name,$chips-primary-bg-color,$chips-primary-color),
+                            ($chips-accent-name,$chips-accent-bg-color,$chips-accent-color),
+                            ($chips-success-name,$chips-success-bg-color,$chips-success-color),
+                            ($chips-info-name,$chips-info-bg-color,$chips-info-color),
+                            ($chips-warning-name,$chips-warning-bg-color,$chips-warning-color),{
+  #{$ns}-chips--#{$name} {
+    background-color: $bg-color;
+    color: $color;
+  }
+}

@@ -1,12 +1,36 @@
+@import "../theme/theme.default";
+
+@if $global-flag == true {
+  $input-text-focus-bd-color                                    :                                             $global-primary-bg-color;
+  $input-text-error-bd-color                                    :                                             $global-accent-bg-color;
+
+  $input-state-name-accent                                      :                                             $global-accent-name;
+  $input-state-accent-color                                     :                                             $global-accent-bg-color;
+
+  $input-state-name-success                                     :                                             $global-success-name;
+  $input-state-success-color                                    :                                             $global-success-bg-color;
+
+  $input-state-name-info                                        :                                             $global-info-name;
+  $input-state-info-color                                       :                                             $global-info-bg-color;
+
+  $input-state-name-warning                                     :                                             $global-warning-name;
+  $input-state-warning-color                                    :                                             $global-warning-bg-color;
+
+}
+
+
 $input-text-font-size                                           :                                             14px            !default;
 $input-text-bd-color                                            :                                             rgba(0,0,0,.12) !default;
 $input-text-bd-color-c                                          :                                             #dfdfdf         !default;
 $input-text-focus-bd-color                                      :                                             #3f51b5         !default;
 $input-text-font-color                                          :                                             #757575         !default;
-$input-text-paddingTB                                           :                                             5px             !default;
+$input-text-paddingTB                                           :                                             11px            !default;
+$input-text-height                                              :                                             36px            !default;
+$input-text-line-height                                         :                                             $input-text-height          !default;
 $input-text-error-bd-color                                      :                                             #ff4081         !default;
 
-$input-label-top                                                :                                             3px             !default;
+
+$input-label-top                                                :                                             10px            !default;
 $input-label-after-left                                         :                                             45%             !default;
 $input-label-after-bottom                                       :                                             1px             !default;
 $input-label-after-width                                        :                                             10px            !default;
@@ -21,7 +45,7 @@ $input-checkbox-pseudo-margin                                   :               
 $input-checkbox-pseudo-bd-color                                 :                                             #5a5a5a         !default;
 
 $input-checkbox-pseudo-after-top                                :                                             1px             !default;
-$input-checkbox-pseudo-after-left                               :                                             $input-checkbox-pseudo-after-top  !default;
+$input-checkbox-pseudo-after-left                               :                                             $input-checkbox-pseudo-after-top                  !default;
 $input-checkbox-pseudo-after-width                              :                                             6px             !default;
 $input-checkbox-pseudo-after-height                             :                                             $input-checkbox-pseudo-after-width * 2            !default;
 
@@ -39,6 +63,25 @@ $input-switch-pseudo-checked-before-left                        :               
 
 $input-disabled-font-color                                      :                                             rgba(0, 0, 0, 0.26) !default;
 $input-disabled-font-color-c                                    :                                             #D1D1D1             !default;
+
+$input-state-name-accent                                        :                                             'accent'        !default;
+$input-state-accent-color                                       :                                             #ff4081         !default;
+
+$input-state-name-success                                       :                                             'success'       !default;
+$input-state-success-color                                      :                                             #1FBCD2         !default;
+
+$input-state-name-info                                          :                                             'info'          !default;
+$input-state-info-color                                         :                                             #1EAAF1         !default;
+
+$input-state-name-warning                                       :                                             'warning'       !default;
+$input-state-warning-color                                      :                                             #FEE94E         !default;
+
+
+
+
+
+
+
 
 
 

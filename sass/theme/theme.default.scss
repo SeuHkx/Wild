@@ -1,26 +1,53 @@
+//global
+$global-flag                        :         true          !default;
+
+//global button
+$global-primary-name                :         'primary'     !default;
+$global-primary-bg-color            :         #3f51b5       !default;
+$global-primary-color               :         #fff          !default;
+
+$global-accent-name                 :         'accent'      !default;
+$global-accent-bg-color             :         #ff4081       !default;
+$global-accent-color                :         #fff          !default;
+
+$global-success-name                :         'success'     !default;
+$global-success-bg-color            :         #1FBCD2       !default;
+$global-success-color               :         #424242       !default;
+
+$global-info-name                   :         'info'        !default;
+$global-info-bg-color               :         #1EAAF1       !default;
+$global-info-color                  :         #424242       !default;
+
+$global-warning-name                :         'warning'     !default;
+$global-warning-bg-color            :         #FEE94E       !default;
+$global-warning-color               :         #424242       !default;
+
 //browser
-$browser-default-font-size          :         16    !default;
+$browser-default-font-size          :         16            !default;
 
 //tap
 $tap-highlight-color                :         rgba(255, 255, 255, 0) !default;
 
 //base
 $html-font-family                   :         "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif !default;
-$html-font-size-percentage          :         62.5%   !default;
+$html-font-size-percentage          :         62.5%         !default;
 $html-font-size-default             :         $browser-default-font-size * $html-font-size-percentage   !default;
 
-$html-font-set-size                 :         100px   !default;
+$html-font-set-size                 :         100px         !default;
 
 //body
-$body-font-size-default             :         12px    !default;
+$body-font-size-default             :         12px          !default;
 
 //selection
-$selection-bg-color                 :         #b3d4fc !default;
+$selection-bg-color                 :         #b3d4fc       !default;
 
 //shadow
 
-$shadow-key-umbra-opacity           :         0.2     !default;
-$shadow-key-penumbra-opacity        :         0.14    !default;
-$shadow-ambient-shadow-opacity      :         0.12    !default;
+$shadow-key-umbra-opacity           :         0.2           !default;
+$shadow-key-penumbra-opacity        :         0.14          !default;
+$shadow-ambient-shadow-opacity      :         0.12          !default;
+
+
+
 
 

@@ -27,7 +27,7 @@
       > th {
         text-overflow: ellipsis;
         font-weight: 700;
-        @include font-size($table-th-font-size);
+        //@include font-size($table-th-font-size);
         color: $table-th-font-color-c !important;
         color: $table-th-font-color   !important;
       }
@@ -117,4 +117,3 @@
     }
   }
 }
-

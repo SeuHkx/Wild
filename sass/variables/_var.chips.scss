@@ -1,3 +1,27 @@
+@import "../theme/theme.default";
+
+@if $global-flag == true {
+  $chips-primary-name                     :                         $global-primary-name;
+  $chips-primary-bg-color                 :                         $global-primary-bg-color;
+  $chips-primary-color                    :                         $global-primary-color;
+
+  $chips-accent-name                        :                       $global-accent-name;
+  $chips-accent-bg-color                    :                       $global-accent-bg-color;
+  $chips-accent-color                       :                       $global-accent-color;
+
+  $chips-success-name                       :                       $global-success-name;
+  $chips-success-bg-color                   :                       $global-success-bg-color;
+  $chips-success-color                      :                       $global-success-color;
+
+  $chips-info-name                          :                       $global-info-name;
+  $chips-info-bg-color                      :                       $global-info-bg-color;
+  $chips-info-color                         :                       $global-info-color;
+
+  $chips-warning-name                       :                       $global-warning-name;
+  $chips-warning-bg-color                   :                       $global-warning-bg-color;
+  $chips-warning-color                      :                       $global-warning-color;
+}
+
 $chips-height                             :                         32px          !default;
 $chips-line-height                        :                         $chips-height !default;
 $chips-paddingLR                          :                         12px          !default;
@@ -5,3 +29,22 @@ $chips-color                              :                         #666        
 $chips-bg-color                           :                         #e4e4e4       !default;
 $chips-bd-radius                          :                         16px          !default;
 
+$chips-primary-name                       :                         'primary'     !default;
+$chips-primary-bg-color                   :                         #3f51b5       !default;
+$chips-primary-color                      :                         #fff          !default;
+
+$chips-accent-name                        :                         'accent'      !default;
+$chips-accent-bg-color                    :                         #ff4081       !default;
+$chips-accent-color                       :                         #fff          !default;
+
+$chips-success-name                       :                         'success'     !default;
+$chips-success-bg-color                   :                          #1FBCD2      !default;
+$chips-success-color                      :                          #fff         !default;
+
+$chips-info-name                          :                         'info'        !default;
+$chips-info-bg-color                      :                          #1EAAF1      !default;
+$chips-info-color                         :                          #fff         !default;
+
+$chips-warning-name                       :                         'warning'     !default;
+$chips-warning-bg-color                   :                          #FEE94E      !default;
+$chips-warning-color                      :                          #fff         !default;

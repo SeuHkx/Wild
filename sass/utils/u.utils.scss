@@ -42,4 +42,50 @@
   user-select: none;
 }
 
+//set max-width
+#{$ns}-utils-fit {
+  max-width:100%;
+}
 
+//set position
+#{$ns}-utils-position--relative {
+  position: relative;
+}
+
+#{$ns}-utils-position--absolute {
+  position: absolute;
+}
+
+#{$ns}-utils-position--fixed {
+  position: fixed;
+}
+
+//shadow
+
+#{$ns}-utils-shadow--2dp {
+  @include shadow-2dp();
+}
+
+#{$ns}-utils-shadow--3dp {
+  @include shadow-3dp();
+}
+
+#{$ns}-utils-shadow--4dp {
+  @include shadow-4dp();
+}
+
+#{$ns}-utils-shadow--6dp {
+  @include shadow-6dp();
+}
+
+#{$ns}-utils-shadow--8dp {
+  @include shadow-8dp();
+}
+
+#{$ns}-utils-shadow--16dp {
+  @include shadow-16dp();
+}
+
+#{$ns}-utils-shadow--24dp {
+  @include shadow-24dp();
+}

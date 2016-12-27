@@ -1,10 +1,17 @@
+@import "../theme/theme.default";
+
+@if $global-flag == true {
+  $wd-pagination-active-bg-color                :                                     $global-primary-bg-color;
+  $wd-pagination-active-color                   :                                     $global-primary-color;
+}
+
 $pagination-min-height                          :                                     30px    !default;
 $pagination-min-width                           :                                     32px    !default;
 $pagination-marginLeft                          :                                     -1px    !default;
 
 $pagination-bd-radius                           :                                     2px     !default;
 $pagination-default-color                       :                                     #000    !default;
-$pagination-bd-color                            :                                     rgb(211, 220, 230)  !default;
+$pagination-bd-color                            :                                     #e9e9e9 !default;
 $pagination-bg-color                            :                                     #fff    !default;
 $wd-pagination-active-bg-color                  :                                     #3f51b5 !default;
 $wd-pagination-active-color                     :                                     #fff    !default;

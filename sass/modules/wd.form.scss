@@ -25,9 +25,9 @@
       box-shadow: none;
       @at-root {
         &:focus ~ #{$ns}-input-label {
-          top: -$input-text-font-size + 2;
-          top: toREM(-$input-text-font-size + 2);
-          //@include font-size($input-text-font-size - 2);
+          top: -($input-text-font-size - 2);
+          top: toREM(-($input-text-font-size - 2));
+          @include font-size($input-text-font-size - 2);
           color: $input-text-focus-bd-color;
           visibility: visible;
           &:after {
@@ -35,6 +35,9 @@
             width: 100%;
             visibility: visible;
           }
+        }
+        &:focus ~ #{$ns}-input-icon {
+          color: $input-text-focus-bd-color;
         }
       }
     }
@@ -49,7 +52,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    width: 100%;
+    //width: 100%;
     text-align: left;
     //@include font-size($input-text-font-size);
     color: $input-text-font-color;
@@ -61,7 +64,7 @@
       bottom: - toREM($input-label-after-bottom);
       content: '';
       left: $input-label-after-left;
-      left: toREM($input-label-after-left);
+      //left: toREM($input-label-after-left);
       width: $input-label-after-width;
       width: toREM($input-label-after-width);
       height: $input-label-after-height;
@@ -75,10 +78,34 @@
       transition-timing-function: cubic-bezier(.4, 0, .2, 1);
       visibility: hidden;
     }
+    &#{$ns}-input-label--active {
+      top: -($input-text-font-size - 2);
+      top: toREM(-($input-text-font-size - 2));
+      @include font-size($input-text-font-size - 2);
+      color: $input-text-focus-bd-color;
+      visibility: visible;
+      &:after {
+        left: 0;
+        width: 100%;
+        visibility: visible;
+      }
+    }
+    &#{$ns}-input-label--active ~ #{$ns}-input-icon {
+      color: $input-text-focus-bd-color;
+    }
   }
 }
 
-//disabled
+//floating
+#{$ns}-input {
+  &#{$ns}-input--floating {
+  > #{$ns}-input-label {
+      @include setProp(top,-($input-text-font-size - 2));
+    }
+  }
+}
+
+//checkbox radio disabled
 #{$ns}-checkbox,
 #{$ns}-radio {
   &#{$ns}-checkbox--disabled,
@@ -86,7 +113,9 @@
     cursor: not-allowed;
     > input[type='checkbox'],
     > input[type='radio'] {
-      &:checked ~ span {
+      &:checked ~ span,
+      &:checked ~ #{$ns}-checkbox-text,
+      &:checked ~ #{$ns}-radio-text {
         &:active{
           &:before{
             box-shadow: none;
@@ -101,7 +130,9 @@
       }
     }
     > input[type='checkbox'] ~ span,
-    > input[type='radio'] ~ span {
+    > input[type='radio'] ~ span ,
+    > input[type='checkbox'] ~  #{$ns}-checkbox-text,
+    > input[type='radio'] ~ #{$ns}-radio-text {
       color: $input-disabled-font-color-c;
       color: $input-disabled-font-color;
       &:after, &:before {
@@ -111,7 +142,8 @@
     }
     > input[type='radio'] {
       @at-root {
-        &:checked ~ span {
+        &:checked ~ span,
+        &:checked ~ #{$ns}-radio-text{
           &:before {
             border: 2px solid $input-disabled-font-color-c;
             border: 2px solid $input-disabled-font-color;
@@ -126,6 +158,7 @@
   }
 }
 
+//switch disabled
 #{$ns}-switch {
   &#{$ns}-switch--disabled {
     color: $input-disabled-font-color-c;
@@ -146,7 +179,8 @@
       }
     }
 
-    > span, #{$ns}-switch-lever {
+    > span,
+    #{$ns}-switch-lever {
       background-color: $input-disabled-font-color-c;
       background-color: $input-disabled-font-color;
       &:active{
@@ -183,7 +217,9 @@
     border: none;
     @include appearance(none);
     @at-root {
-      &:checked ~ span {
+      &:checked ~ span,
+      &:checked ~ #{$ns}-checkbox-text,
+      &:checked ~ #{$ns}-radio-text {
         &:active{
           &:before{
             box-shadow: 0 1px 3px 1px rgba($input-text-focus-bd-color,0.4),0 0 0 15px rgba($input-text-focus-bd-color,0.08);
@@ -215,7 +251,8 @@
   }
   > input[type='radio'] {
     @at-root {
-      &:checked ~ span {
+      &:checked ~ span,
+      &:checked ~ #{$ns}-checkbox-radio {
         &:before {
           border: 2px solid $input-text-focus-bd-color;
           background-color: #fff;
@@ -238,7 +275,9 @@
     }
   }
   > input[type='checkbox'] ~ span,
-  > input[type='radio'] ~ span {
+  > input[type='radio'] ~ span,
+  > input[type='checkbox'] ~ #{$ns}-checkbox-text,
+  > input[type='radio'] ~ #{$ns}-radio-text {
     //@include font-size($input-text-font-size);
     color: $input-text-font-color;
     &:after, &:before {
@@ -257,7 +296,8 @@
       transition: .2s cubic-bezier(.4, 0, .2, 1);
     }
   }
-  > input[type='radio'] ~ span {
+  > input[type='radio'] ~ span,
+  > input[type='radio'] ~ #{$ns}-radio-text{
     &:after,&:before {
       @include border-radius(50%);
     }
@@ -300,7 +340,8 @@
       }
     }
   }
-  > span, #{$ns}-switch-lever {
+  > span,
+  #{$ns}-switch-lever {
     position: relative;
     display: inline-block;
     width: $input-switch-lever-width;
@@ -344,39 +385,201 @@
 }
 
 //default
-input[type='text'],
-input[type='password'],
-input[type='email'],
-input[type='url'],
-input[type='time'],
-input[type='date'],
-input[type='datetime'],
-input[type='datetime-local'],
-input[type='tel'],
-input[type='number'],
-input[type='search'],
-textarea {
-  width: 100%;
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid $input-text-bd-color-c;
-  border-bottom: 1px solid $input-text-bd-color;
-  border-radius: 0;
-  outline: none;
-  //@include font-size($input-text-font-size);
-  padding: $input-text-paddingTB 0;
-  padding: toREM($input-text-paddingTB) 0;
-  color: $input-text-font-color;
-  box-shadow: none;
-  transition-duration: .2s;
-  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+#{$ns}-input {
+  > input[type='text'],
+  > input[type='password'],
+  > input[type='email'],
+  > input[type='url'],
+  > input[type='time'],
+  > input[type='date'],
+  > input[type='datetime'],
+  > input[type='datetime-local'],
+  > input[type='tel'],
+  > input[type='number'],
+  > input[type='search'],
+  > textarea {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid $input-text-bd-color-c;
+    border-bottom: 1px solid $input-text-bd-color;
+    border-radius: 0;
+    outline: none;
+    @include setProp(height,$input-text-height);
+    @include setProp(line-height,$input-text-line-height);
+    //@include font-size($input-text-font-size);
+    //padding: $input-text-paddingTB 0;
+    //padding: toREM($input-text-paddingTB) 0;
+    color: $input-text-font-color;
+    box-shadow: none;
+    transition-duration: .2s;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
 
-  &:focus {
-    border-bottom: 1px solid $input-text-focus-bd-color;
-    box-shadow: 0 1px 0 0 $input-text-focus-bd-color;
-  }
-  &[disabled] {
-    cursor: not-allowed;
+    &:focus {
+      border-bottom: 1px solid $input-text-focus-bd-color;
+      border-bottom: 2px solid $input-text-focus-bd-color \9;
+      box-shadow: 0 1px 0 0 $input-text-focus-bd-color;
+    }
+    &[disabled] {
+      cursor: not-allowed;
+    }
   }
 }
+//textarea
+#{$ns}-input {
+  > textarea {
+    height: auto;
+    line-height:inherit;
+  }
+}
+
+//select
+#{$ns}-select {
+  position: relative;
+  display: inline-block;
+  > select {
+    width: 100%;
+    padding: $input-text-paddingTB $input-text-paddingTB*4 $input-text-paddingTB 0;
+    padding: toREM($input-text-paddingTB) toREM($input-text-paddingTB*4) toREM($input-text-paddingTB) 0;
+    border: none;
+    border-bottom: 1px solid $input-text-bd-color-c;
+    border-bottom: 1px solid $input-text-bd-color;
+    background-color: transparent;
+    outline: none;
+    color: $input-text-font-color;
+    @include border-radius(0);
+    @include appearance(none);
+    &[disabled] {
+      cursor: not-allowed;
+    }
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    top:50%;
+    right: 0;
+    @include setProp(margin-top,-2px);
+    display: block;
+    border-right: 4px solid transparent;
+    border-right: toREM(4px) solid transparent;
+    border-left: 4px solid transparent;
+    border-left: toREM(4px) solid transparent;
+    border-top: 4px solid #333;
+    border-top: toREM(4px) solid #333;
+  }
+}
+
+//input state
+@each $name,$color in ($input-state-name-accent,$input-state-accent-color),
+                      ($input-state-name-success,$input-state-success-color),
+                      ($input-state-name-info,$input-state-info-color),
+                      ($input-state-name-warning,$input-state-warning-color){
+  #{$ns}-input {
+    &#{$ns}-input--default {
+      &#{$ns}-input--#{$name} {
+        > input[type='text'],
+        > input[type='password'],
+        > input[type='email'],
+        > input[type='url'],
+        > input[type='time'],
+        > input[type='date'],
+        > input[type='datetime'],
+        > input[type='datetime-local'],
+        > input[type='tel'],
+        > input[type='number'],
+        > input[type='search'],
+        > textarea {
+          border-bottom: 1px solid $color;
+          border-bottom: 2px solid $color \9;
+          box-shadow: 0 1px 0 0 $color;
+        }
+      }
+    }
+    &#{$ns}-input--#{$name} {
+      > input[type='text'],
+      > input[type='password'],
+      > input[type='email'],
+      > input[type='url'],
+      > input[type='time'],
+      > input[type='date'],
+      > input[type='datetime'],
+      > input[type='datetime-local'],
+      > input[type='tel'],
+      > input[type='number'],
+      > input[type='search'],
+      > textarea {
+
+        &:focus {
+          @at-root {
+            &:focus ~ #{$ns}-input-label,
+            &:focus ~ #{$ns}-input-icon {
+              color: $color;
+            }
+          }
+          border-bottom: 1px solid $color;
+          border-bottom: 2px solid $color \9;
+          box-shadow: 0 1px 0 0 $color;
+        }
+      }
+      > #{$ns}-input-icon {
+        color: $color;
+      }
+      > #{$ns}-input-label {
+        top: -($input-text-font-size - 2);
+        top: toREM(-($input-text-font-size - 2));
+        color: $color;
+        &:after {
+          left: 0;
+          width: 100%;
+          background-color: $color;
+          visibility: visible;
+        }
+      }
+    }
+  }
+}
+
+//icon
+#{$ns}-input {
+  &#{$ns}-input--sign {
+    @include setProp(padding-left,$input-text-height);
+    > #{$ns}-input-label{
+      @include setProp(left,$input-text-height);
+    }
+  }
+  > #{$ns}-input-icon {
+    position: absolute;
+    display: block;
+    @include setProp(width,$input-text-height);
+    @include setProp(height,$input-text-height);
+    @include setProp(line-height,$input-text-height);
+    top:0;
+    left: 0;
+    text-align: center;
+  }
+}
+
+//browser hard code default
+#{$ns}-select-browser {
+  border: 1px solid #f2f2f2;
+  border-radius: 2px;
+  background-color: #fff;
+  height: 36px;
+  outline: none;
+}
+
+// form hard code
+#{$ns}-form {
+  > #{$ns}-input--floating {
+    @include setProp(margin-top,16px);
+    @include setProp(margin-bottom,16px);
+  }
+  &#{$ns}-form--floating {
+    @include setProp(margin-top,32px);
+    @include setProp(margin-bottom,32px);
+  }
+}
+
+
+
 

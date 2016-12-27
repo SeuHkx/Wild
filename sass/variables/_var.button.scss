@@ -1,3 +1,37 @@
+@import "../theme/theme.default";
+
+@if $global-flag == true {
+  $btn-primary-name           :                 $global-primary-name;
+  $btn-primary-bg-color       :                 $global-primary-bg-color;
+  $btn-primary-color          :                 $global-primary-color;
+  $btn-primary-default-color  :                 $btn-primary-bg-color;
+  $btn-primary-options        :                 $btn-primary-name $btn-primary-bg-color $btn-primary-color $btn-primary-default-color;
+
+  $btn-accent-name            :                 $global-accent-name;
+  $btn-accent-bg-color        :                 $global-accent-bg-color;
+  $btn-accent-color           :                 $global-accent-color;
+  $btn-accent-default-color   :                 $btn-accent-bg-color;
+  $btn-accent-options         :                 $btn-accent-name $btn-accent-bg-color $btn-accent-color $btn-accent-default-color;
+
+  $btn-success-name           :                 $global-success-name;
+  $btn-success-bg-color       :                 $global-success-bg-color;
+  $btn-success-color          :                 $global-success-color;
+  $btn-success-default-color  :                 $btn-success-bg-color;
+  $btn-success-options        :                 $btn-success-name $btn-success-bg-color $btn-success-color $btn-success-default-color;
+
+  $btn-info-name              :                 $global-info-name;
+  $btn-info-bg-color          :                 $global-info-bg-color;
+  $btn-info-color             :                 $global-info-color;
+  $btn-info-default-color     :                 $btn-info-bg-color;
+  $btn-info-options           :                 $btn-info-name $btn-info-bg-color $btn-info-color $btn-info-default-color;
+
+  $btn-warning-name           :                 $global-warning-name;
+  $btn-warning-bg-color       :                 $global-warning-bg-color;
+  $btn-warning-color          :                 $global-warning-color;
+  $btn-warning-default-color  :                 $btn-warning-bg-color;
+  $btn-warning-options        :                 $btn-warning-name $btn-warning-bg-color $btn-warning-color $btn-warning-default-color;
+}
+
 $btn-radius                 :                 2px   !default;
 $btn-font-size              :                 14px  !default;
 

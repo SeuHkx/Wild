@@ -1,3 +1,27 @@
+@import "../theme/theme.default";
+
+@if $global-flag == true {
+  $badge-primary-name                 :                  $global-primary-name;
+  $badge-primary-bg-color             :                  $global-primary-bg-color;
+  $badge-primary-color                :                  $global-primary-color;
+
+  $badge-accent-name                  :                  $global-accent-name;
+  $badge-accent-bg-color              :                  $global-accent-bg-color;
+  $badge-accent-color                 :                  $global-accent-color;
+
+  $badge-success-name                 :                   $global-success-name;
+  $badge-success-bg-color             :                   $global-success-bg-color;
+  $badge-success-color                :                   $global-success-color;
+
+  $badge-info-name                    :                   $global-info-name;
+  $badge-info-bg-color                :                   $global-info-bg-color;
+  $badge-info-color                   :                   $global-info-color;
+
+  $badge-warning-name                 :                   $global-warning-name;
+  $badge-warning-bg-color             :                   $global-warning-bg-color;
+  $badge-warning-color                :                   $global-warning-color;
+}
+
 $badge-width                          :                   22px                    !default;
 $badge-height                         :                   $badge-width            !default;
 $badge-paddingLR                      :                   6px                     !default;
@@ -9,5 +33,29 @@ $badge-font-size                      :                   12px                  
 $badge-bg-color                       :                   rgba(158,158,158,.2)    !default;
 $badge-bg-color-c                     :                   #9E9E9E                 !default;
 
+$badge-primary-name                   :                   'primary'               !default;
+$badge-primary-bg-color               :                   #3f51b5                 !default;
+$badge-primary-color                  :                   #fff                    !default;
+
+$badge-accent-name                    :                   'accent'                !default;
 $badge-accent-bg-color                :                   #ff4081                 !default;
 $badge-accent-color                   :                   #fff                    !default;
+
+$badge-success-name                   :                  'success'                !default;
+$badge-success-bg-color               :                  #1FBCD2                  !default;
+$badge-success-color                  :                  #424242                  !default;
+
+$badge-info-name                      :                  'info'                   !default;
+$badge-info-bg-color                  :                  #1EAAF1                  !default;
+$badge-info-color                     :                  #424242                  !default;
+
+$badge-warning-name                   :                  'warning'                !default;
+$badge-warning-bg-color               :                  #FEE94E                  !default;
+$badge-warning-color                  :                  #424242                  !default;
+
+
+
+
+
+
+

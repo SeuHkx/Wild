@@ -22,10 +22,17 @@
   background-color: $badge-bg-color-c;
   background-color: $badge-bg-color;
 }
-#{$ns}-badge--accent {
-  background-color: $badge-accent-bg-color;
-  color: $badge-accent-color;
+@each $name,$bg-color,$color in ($badge-accent-name,$badge-accent-bg-color,$badge-accent-color),
+        ($badge-primary-name,$badge-primary-bg-color,$badge-primary-color),
+        ($badge-success-name,$badge-success-bg-color,$badge-success-color),
+        ($badge-info-name,$badge-info-bg-color,$badge-info-color),
+        ($badge-warning-name,$badge-warning-bg-color,$badge-warning-color){
+  #{$ns}-badge--#{$name} {
+    background-color: $bg-color;
+    color: $color;
+  }
 }
+
 
 #{$ns}-badge--dot {
   min-width: $badge-width - 12;
