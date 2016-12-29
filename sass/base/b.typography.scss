@@ -3,27 +3,27 @@
 
 h1,
 #{$ns}-typo-h1 {
-  @include font-size(32px);
+  @include font-size($typo-h1-font-size);
 }
 h2,
 #{$ns}-typo-h2 {
-  @include font-size(24px);
+  @include font-size($typo-h2-font-size);
 }
 h3,
 #{$ns}-typo-h3 {
-  @include font-size(20px);
+  @include font-size($typo-h3-font-size);
 }
 h4,
 #{$ns}-typo-h4 {
-  @include font-size(16px);
+  @include font-size($typo-h4-font-size);
 }
 h5,
 #{$ns}-typo-h5 {
-  @include font-size(14px);
+  @include font-size($typo-h5-font-size);
 }
 h6,
 #{$ns}-typo-h6 {
-  @include font-size(12px);
+  @include font-size($typo-h6-font-size);
 }
 
 #{$ns}-typo-bold {
@@ -53,5 +53,16 @@ h6,
 @each $props in lowercase,uppercase,capitalize{
   #{$ns}-typo-text--#{$props}{
     text-transform: $props;
+  }
+}
+
+//a link
+a {
+  color: $typo-link-color;
+  text-decoration: none;
+
+  &:hover {
+    color: $typo-link-color;
+    text-decoration: underline;
   }
 }

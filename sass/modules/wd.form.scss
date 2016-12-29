@@ -469,6 +469,9 @@
   }
 }
 
+//input default
+#{$ns}-input--default{}
+
 //input state
 @each $name,$color in ($input-state-name-accent,$input-state-accent-color),
                       ($input-state-name-success,$input-state-success-color),

@@ -42,10 +42,21 @@ $body-font-size-default             :         12px          !default;
 $selection-bg-color                 :         #b3d4fc       !default;
 
 //shadow
-
 $shadow-key-umbra-opacity           :         0.2           !default;
 $shadow-key-penumbra-opacity        :         0.14          !default;
 $shadow-ambient-shadow-opacity      :         0.12          !default;
+
+//typo
+$typo-h1-font-size                  :         32px          !default;
+$typo-h2-font-size                  :         24px          !default;
+$typo-h3-font-size                  :         20px          !default;
+$typo-h4-font-size                  :         16px          !default;
+$typo-h5-font-size                  :         14px          !default;
+$typo-h6-font-size                  :         12px          !default;
+
+//a link
+$typo-link-color                    :         $global-primary-bg-color  !default;
+
 
 
 

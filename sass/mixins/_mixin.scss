@@ -218,3 +218,63 @@
     }
   }
 }
+
+@mixin placeholderColor ($color){
+  &::-webkit-input-placeholder,
+  &:-ms-input-placeholder,
+  &::-moz-placeholder {
+    color: $color;
+  }
+}
+
+@mixin float-grid($ns,$class, $i: 1, $list: '#{$ns}-#{$class}-#{$i}') {
+  @for $i from (1 + 1) through 12 {
+    $list: '#{$list}, #{$ns}-#{$class}-#{$i}';
+  }
+  #{$list} {
+    position: relative;
+    display: block;
+    float: left;
+    @include setProp(min-height,$body-font-size-default);
+  }
+}
+
+@mixin calculate-fixed-grid($ns,$class,$container:1200,$width:64,$col:12,$gutter:16) {
+  @if type_of($gutter)!= 'number' {
+    $gutter: 0;
+  }
+  @if type_of($width) != 'number' {
+    $width : ($container - ($col - 1)*$gutter)/$col;
+  }@else {
+    $width : $width;
+  }
+  #{$ns}-#{$class}--fixed {
+    margin-left: -$gutter + px;
+    margin-left: - toREM($gutter);
+  }
+  @for $index from 1 through $col {
+    #{$ns}-#{$class}--fixed {
+      > #{$ns}-#{$class}-#{$index} {
+          margin-left: $gutter + px;
+          margin-left: toREM($gutter);
+          width: $width * $index + ($index - 1)*$gutter + px;
+          width: toREM($width * $index + ($index - 1)*$gutter);
+      }
+    }
+  }
+}
+
+@mixin calculate-fluid-grid($ns,$class,$container:1200,$col:12,$gutter:16) {
+  $width : (($container - ($col - 1)*$gutter)/$col)/$container;
+  @for $index from 1 through $col {
+    #{$ns}-#{$class}--fluid {
+      > #{$ns}-#{$class}-#{$index} {
+        margin-left: percentage($gutter/$container);
+        width: percentage($width * $index + ($index - 1)*$gutter/$container);
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}

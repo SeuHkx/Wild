@@ -2,6 +2,11 @@
 @import '../variables/var.grid';
 @import '../mixins/mixin';
 
-#{$ns}-grid {
-
+#{$ns}-#{$wd-grid-class},
+#{$ns}-#{$wd-grid-class}--fixed,
+#{$ns}-#{$wd-grid-class}--fluid {
+  @include clear();
 }
+@include float-grid($ns,$wd-grid-class);
+@include calculate-fixed-grid($ns,$wd-grid-class,$width:false);
+@include calculate-fluid-grid($ns,$wd-grid-class);
