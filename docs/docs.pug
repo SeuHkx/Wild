@@ -2,10 +2,111 @@ extends common/_layoutHeader
 
 block title
   title index
+block link
+  link(rel='stylesheet' href='../dist/wild.min.css')
+  link(rel='stylesheet' href='../bower_components/mdi/css/materialdesignicons.min.css')
+  style.
+    .container{
+      width: 800px;
+      margin: 50px auto;
+    }
+    .container .container-wrap{
+      margin: 10px 0;
+    }
+    .container .container-wrap >.wd-button{
+      margin-right: 20px;
+    }
+    .span{
+      display: block;
+      /*width: 50px;*/
+      /*height: 50px;*/
+      border-radius: 75px;
+      position: absolute;
+      background: salmon;
+      -webkit-transform: scale(0);
+      -moz-transform: scale(0);
+      -ms-transform: scale(0);
+      -o-transform: scale(0);
+      transform: scale(0);
+    }
+    .animate {
+      -webkit-animation: ripple .5s linear;
+      -moz-animation: ripple .5s linear;
+      -ms-animation: ripple .5s linear;
+      -o-animation: ripple .5s linear;
+      animation: ripple .5s linear
+    }
+
+    @-webkit-keyframes ripple {
+      100% {
+        opacity: 0;
+        -webkit-transform: scale(1.5)
+      }
+    }
+
+    @-moz-keyframes ripple {
+      100% {
+        opacity: 0;
+        -moz-transform: scale(0.5)
+      }
+    }
+
+    @-o-keyframes ripple {
+      100% {
+        opacity: 0;
+        -o-transform: scale(0.5)
+      }
+    }
+
+    @keyframes ripple {
+      100% {
+        opacity: 0;
+        transform: scale(0.5)
+      }
+    }
 block content
-  h4 index
-  a(href='/docs/badge') badge2
-  div#example
-  script(src='/dist/wild.js')
-
-
+  .container
+    .container-wrap
+      button(class='wd-button wd-button--raised wd-button--disabled ') wild sweet
+      button(class='wd-button wd-button--raised wd-button--primary')
+        span.span.animate
+        | WE LIKE 2 PARTY
+      button(class='wd-button wd-button--raised wd-button--primary')
+        i(class='mdi mdi-gamepad-variant')
+      button(class='wd-button wd-button--raised wd-button--warning') WE LIKE 2 PARTY
+        i(class='mdi mdi-google-controller')
+      button(class='wd-button wd-button--raised wd-button--info') WE LIKE 2 PARTY
+      button(class='wd-button wd-button--raised wd-button--success') WE LIKE 2 PARTY
+      button(class='wd-button wd-button--raised') loser
+      button(class='wd-button wd-button--raised wd-button--accent') good boy
+    .container-wrap
+      button(class='wd-button') BANG BANG BANG
+      button(class='wd-button wd-button--primary') WE LIKE 2 PARTY
+      button(class='wd-button wd-button--accent') WE LIKE 2 PARTY
+      button(class='wd-button wd-button--disabled') loser
+      a(class='wd-button wd-button--primary')
+        | upload
+        input(type='file')
+    .container-wrap
+      a(class='wd-button wd-button--fab wd-button--mini wd-button--primary')
+        i(class='mdi mdi-music-note')
+      button(class='wd-button wd-button--fab wd-button--small wd-button--accent')
+        i(class='mdi mdi-signal')
+      button(class='wd-button wd-button--fab')
+        i(class='mdi mdi-google-plus')
+      button(class='wd-button wd-button--fab wd-button--disabled')
+        i(class='mdi mdi-gamepad')
+    .container-wrap
+      button(class='wd-button wd-button--raised wd-button--accent wd-button--mini') button
+      button(class='wd-button wd-button--raised wd-button--accent wd-button--small') button
+      button(class='wd-button wd-button--raised wd-button--accent') button
+      button(class='wd-button wd-button--raised wd-button--accent wd-button--large') button
+    .container-wrap
+      .wd-button-group
+        button(class='wd-button wd-button--raised wd-button--info') WE LIKE 2 PARTY
+          i(class='mdi mdi-google-controller')
+        button(class='wd-button wd-button--raised wd-button--info') WE LIKE 2 PARTY
+        button(class='wd-button wd-button--raised wd-button--info') WE LIKE 2 PART
+    .container-wrap
+        span(class='wd-badge wd-badge--accent') 1
+        span(class='wd-badge wd-badge--accent wd-badge--dot')
