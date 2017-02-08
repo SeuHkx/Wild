@@ -3,12 +3,9 @@
     "target": "es6",
     "moduleResolution": "node",
     "sourceMap": true,
-    "noImplicitAny": true,
-    "jsx": "react"
+    "noImplicitAny": true
   },
   "exclude": [
-    "node_modules",
-    "site",
-    "components/index.tsx"
+    "node_modules"
   ]
 }
